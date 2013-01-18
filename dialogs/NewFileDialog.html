@@ -1,0 +1,190 @@
+<div id="newFileDialogContent" class="dijitDialogPaneContentArea">
+
+    <script>
+            
+        function done() {
+            
+            alert('save file');
+            
+        }
+    </script>
+
+    <div class="floater">
+
+        <div id="newFileWizard" data-dojo-type="dojox/widget/Wizard" data-dojo-props="nextButtonLabel:'Next', doneButtonLabel:'Create File' ">
+
+            <div id="newFileStep1" data-dojo-type="dojox/widget/WizardPane" data-dojo-props="title:'Step 1'">
+
+                <div class="stepsBanner">
+
+                    <span class="stepTitle"><b>Steps:</b></span>
+                    <hr class="stepHr">
+                    <ol>
+                        <li>Choose File Type</li>
+                        <li class="stepDisabled">...</li>
+                    </ol>
+                </div>
+
+                <div class="stepsMidScreen">
+                    <span class="stepTitle"><b>Choose File Type:</b></span>
+                    <hr class="stepHr">
+
+                    <div style="margin-left: 10px; margin-top: 10px;">
+                        <span class="projectStepSelect">Project &nbsp;</span>
+                        <div data-dojo-type="dojo/store/Memory"
+                             data-dojo-id="newFileProjectStore"
+                             data-dojo-props="data: [ { name : 'Project 1' }, { name : 'Project 2' }]"></div>
+                        <select data-dojo-type="dijit/form/ComboBox" 
+                                data-dojo-props="store:newFileProjectStore, searchAttr:'name'">
+
+                            <script type="dojo/method" event="onChange" args="newValue">
+                                dojo.byId('projectName').innerHTML = newValue;
+                            </script>
+                        </select>
+                    </div>
+
+                    <div data-dojo-type="dojo/store/JsonRest" data-dojo-id="fileRestStore" data-dojo-props="target: 'http://localhost/stormcloud/api/filesystem/types', headers: { Authorization: 'Basic bWFydGlqbjox'}"></div>
+                    <div data-dojo-type="dojo/data/ObjectStore" data-dojo-id="fileStore" data-dojo-props="objectStore:fileRestStore"></div>
+                    <div data-dojo-type="dijit/tree/TreeStoreModel" data-dojo-id="fileTreeModel" data-dojo-props="store:fileStore"></div>
+                    <div data-dojo-type="dijit/Tree" id="fileTree" data-dojo-props="model:fileTreeModel,showRoot:false">
+
+                        <script type="dojo/method" data-dojo-event="getIconClass" data-dojo-args="item, opened">
+
+                            require(['stormcloud/gui/tree'],function(tree){
+
+                            return tree.iconClass(item, opened);
+
+                            });
+
+                        </script>
+
+                        <script type="dojo/connect" data-dojo-event="onClick" data-dojo-args="item">
+
+                            dojo.byId('fileDescription').innerHTML = item.description;
+
+                        </script>
+                    </div>
+                </div>
+
+                <div class="stepsRightScreen">
+                    <span class="stepTitle"><b>Description:</b></span>
+                    <hr class="stepHr">
+                    <table style="margin-left: 10px;">
+                        <tr>
+                            <td style="width: 280px;"><div id="fileDescription">Select a File Type to see it's description</div></td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+
+            <div id="newFileStep2" data-dojo-id="newFileStep2" data-dojo-type="dojox/widget/WizardPane" data-dojo-props='doneFunction:done'>
+
+                <div class="stepsBanner">
+
+                    <span class="stepTitle"><b>Steps:</b></span>
+                    <hr class="stepHr">
+                    <ol>
+                        <li class="stepDisabled">Choose File Type</li>
+                        <li>Your File Details</li>
+                    </ol>
+                </div>
+
+                <div style="float: left;width:600px; height: 100%; border-right: 1px solid #b5bcc7;">
+                    <span style="font-size: 12px; margin-left: 10px;"><b>File Details:</b></span>
+                    <hr style="color:#b5bcc7">
+
+                    <form data-dojo-type="dijit/form/Form" id="newFileForm">
+                        <table style="margin-left: 10px; width: 600px;">
+                            <tr style="width: 500px;">
+                                <td>
+                                    <label for="name">Project</label>
+                                </td>
+                                <td style="width: 20px;"></td>
+                                <td style="width: 480px;">
+                                    <div id="projectName"></div>
+                                </td>        
+                            </tr>
+                            <tr style="width: 500px;">
+                                <td>
+                                    <label for="name">File Name</label>
+                                </td>
+                                <td style="width: 20px;"></td>
+                                <td style="width: 480px;">
+                                    <input type="text" id="fileName" style="width:450px"
+                                           required="true" 
+                                           data-dojo-type="dijit/form/ValidationTextBox"/>
+                                </td>        
+                            </tr>
+                            <tr style="width: 500px;">
+                                <td>
+                                    <label for="name">Location</label>
+                                </td>
+                                <td style="width: 20px;"></td>
+                                <td style="width: 480px;">
+                                    <select data-dojo-type="dijit/form/ComboBox">
+                                        <option>Source Packages</option>
+                                        <option>Test Packages</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr style="width: 500px;">
+                                <td>
+                                    <label for="name">Package</label>
+                                </td>
+                                <td style="width: 20px;"></td>
+                                <td style="width: 480px;">
+                                    <input type="text" id="packageName" style="width:385px"
+                                           required="true" 
+                                           data-dojo-type="dijit/form/ValidationTextBox"/>
+                                    <button data-dojo-type="dijit/form/Button" type="button">
+                                        <script type="dojo/connect" data-dojo-event="onClick">
+                                            alert('Browse');
+                                        </script>
+                                        Browse
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr style="width: 500px;">
+                                <td>
+                                    <label for="name">Created File</label>
+                                </td>
+                                <td style="width: 20px;"></td>
+                                <td style="width: 480px;">
+                                    <input data-dojo-type="dijit/form/TextBox" style="width:450px"/>
+                                </td>
+                            </tr>
+
+                        </table>
+                        <script type="dojo/method" data-dojo-event="onValidStateChange" data-dojo-args="valid">
+
+                            //var btn = dijit.byId('newProjectOkButton');
+
+                            //if(valid){
+                            //btn.setAttribute('disabled', false);
+                            //}else{
+                            //btn.setAttribute('disabled', true);
+                            // }
+
+                        </script>
+                    </form>
+
+                </div>
+
+            </div>
+
+            <script type="dojo/method" event="cancelFunction">
+
+                require(['stormcloud/gui/dialog'],function(dialog){
+
+                dialog.hide('newFileDialog');
+                });
+
+                dijit.byId('newFileWizard').selectChild('newFileStep1');
+
+            </script>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,152 @@
+
+{
+    "bugs": [
+    {
+        "id": "1",
+        "type" : "Defect", 
+        "status": "Open", 
+        "name": "Breaking the code", 
+        "description": "The critter messes things up.", 
+        "votes": "2",
+        "user" : "martijn",
+        "comments" : [
+        {
+            "date" : "Tuesday Dec 18th 12:10:08 PM",
+            "user" : "martijn",
+            "text" : "comment 1 Lorum Ipsum <br> etc etc <br><br> Is <b>zo</b> <br><br>Multiline Comment <br><u>met markup</u> <br> en een link <a href=\"http://www.google.com\" target=\"_blank\">Here</a><br>",
+            "vote" : 0
+        },
+        {
+            "date" : "Tuesday Dec 18th 12:11:34 PM",
+            "user" : "martijn1",
+            "text" : "comment 2",
+            "vote" : 1
+        },
+        {
+            "date" : "Tuesday Dec 18th 12:12:22 PM",
+            "user" : "martijn2",
+            "text" : "comment 3",
+            "vote" : -1
+        },
+        {
+            "date" : "Tuesday Dec 18th 12:15:10 PM",
+            "user" : "martijn",
+            "text" : "comment 4",
+            "vote" : 0
+        },
+        {
+            "date" : "Tuesday Dec 18th 12:23:26 PM",
+            "user" : "martijn1",
+            "text" : "comment 5",
+            "vote" : 1
+        },
+        {
+            "date" : "Tuesday Dec 18th 12:43:00 PM",
+            "user" : "martijn2",
+            "text" : "comment 6",
+            "vote" : -1
+        },
+        {
+            "date" : "Tuesday Dec 18th 12:50:12 PM",
+            "user" : "martijn2",
+            "text" : "comment 7",
+            "vote" : -1
+        },
+        {
+            "date" : "Tuesday Dec 18th 12:52:56 PM",
+            "user" : "martijn2",
+            "text" : "comment 8",
+            "vote" : -1
+        },
+        {
+            "date" : "Tuesday Dec 18th 12:59:01 PM",
+            "user" : "martijn2",
+            "text" : "comment 9",
+            "vote" : -1
+        }
+        ]
+    
+    }, {			
+        "id": "2", 
+        "type" : "Enhancement",
+        "status": "Assigned", 
+        "name": "Pimp the looks", 
+        "description": "Looks like crap at the moment.", 
+        "votes": "6",
+        "user" : "martijn",
+        "comments" : [
+        {
+            "date" : "Tuesday Dec 18th",
+            "user" : "martijn",
+            "text" : "Looks good to me"
+        },
+        {
+            "date" : "Wednesday Dec 19th",
+            "user" : "user2",
+            "text" : "You just don't know"
+        }
+        ]
+    }, {			
+        "id": "3", 
+        "type" : "Enhancement",
+        "status": "Assigned", 
+        "name": "Pimp the looks", 
+        "description": "Looks like crap at the moment.", 
+        "votes": "6",
+        "user" : "martijn",
+        "comments" : [
+        {
+            "date" : "Tuesday Dec 18th",
+            "user" : "martijn",
+            "text" : "Looks good to me"
+        },
+        {
+            "date" : "Wednesday Dec 19th",
+            "user" : "user2",
+            "text" : "You just don't know"
+        }
+        ]
+    }, {			
+        "id": "4", 
+        "type" : "Enhancement",
+        "status": "Assigned", 
+        "name": "Pimp the looks", 
+        "description": "Looks like crap at the moment.", 
+        "votes": "6",
+        "user" : "martijn",
+        "comments" : [
+        {
+            "date" : "Tuesday Dec 18th",
+            "user" : "martijn",
+            "text" : "Looks good to me"
+        },
+        {
+            "date" : "Wednesday Dec 19th",
+            "user" : "user2",
+            "text" : "You just don't know"
+        }
+        ]
+    }, {			
+        "id": "5", 
+        "type" : "Enhancement",
+        "status": "Assigned", 
+        "name": "Pimp the looks", 
+        "description": "Looks like crap at the moment.", 
+        "votes": "6",
+        "user" : "martijn",
+        "comments" : [
+        {
+            "date" : "Tuesday Dec 18th",
+            "user" : "martijn",
+            "text" : "Looks good to me"
+        },
+        {
+            "date" : "Wednesday Dec 19th",
+            "user" : "user2",
+            "text" : "You just don't know"
+        }
+        ]
+    }
+    ]
+}
+

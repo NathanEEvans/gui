@@ -1,0 +1,291 @@
+<div class="dijitDialogPaneContentArea" style="width: 900px; height: 500px;">
+
+    <style type="text/css">
+        .floater {
+            float:left;
+            margin-right:15px;
+            margin-bottom:8px;
+        }
+
+        .stepsBanner{
+            background-color: #abd6ff;
+            background-repeat: repeat-x;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+    </style>
+
+    <script>
+        	
+        function done() {
+            
+            var data = {
+                archetypeGroupId : dojo.byId('archetypeGroupId').innerHTML,
+                archetypeArtifactId : dojo.byId('archetypeArtifactId').innerHTML,
+                archetypeVersion : dojo.byId('archetypeVersion').innerHTML,
+                projectName : projectName.value,
+                groupId : groupId.value,
+                artifactId : artifactId.value,
+                description : description.value,
+                version : version.value,
+                javaPackage : javaPackage.value
+            };
+            
+            require(['stormcloud/services/maven','stormcloud/gui/dialog','stormcloud/gui/statusbar'],function(maven,dialog,statusbar){
+            
+                maven.create(data);
+            
+                statusbar.infoStatus('Creating Project');
+                statusbar.showProgress();
+            
+                dialog.hide(DIALOG.NEW_PROJECT);
+                dijit.byId('newProjectWizard').selectChild('step1');
+            
+            });    
+    
+        }
+    </script>
+
+    <div class="floater">
+
+        <div id="newProjectWizard" data-dojo-type="dojox/widget/Wizard" data-dojo-props="style:'width:900px; height:500px', nextButtonLabel:'Next', doneButtonLabel:'Create Project' ">
+
+            <div id="step1" data-dojo-type="dojox/widget/WizardPane" data-dojo-props="title:'Step 1'">
+
+                <div class="stepsBanner" style="float:left; width:270px; height: 100%; border-right: 1px solid #b5bcc7;">
+
+                    <span style="font-size: 12px; margin-left: 10px;"><b>Steps:</b></span>
+                    <hr style="color:#b5bcc7">
+                    <ol>
+                        <li>Choose Maven Archetype</li>
+                        <li style="color:grey;">...</li>
+                    </ol>
+                </div>
+
+                <div style="float: left;width:320px; height: 100%; border-right: 1px solid #b5bcc7;">
+                    <span style="font-size: 12px; margin-left: 10px;"><b>Maven Archetypes:</b></span>
+                    <hr style="color:#b5bcc7">
+                    <div data-dojo-type="dojo/store/JsonRest" data-dojo-id="archetypeRestStore" data-dojo-props="target:  'http://localhost/stormcloud/api/maven/archetypes', headers: { Authorization: 'Basic bWFydGlqbjox'}"></div>
+                    <div data-dojo-type="dojo/data/ObjectStore" data-dojo-id="archetypeStore" data-dojo-props="objectStore:archetypeRestStore"></div>
+                    <div data-dojo-type="dijit/tree/TreeStoreModel" data-dojo-id="archetypeTreeModel" data-dojo-props="store:archetypeStore"></div>
+                    <div data-dojo-type="dijit/Tree" id="archetypeTree" style="height: 50%; padding-top: 5px;" data-dojo-props="model:archetypeTreeModel,showRoot:false">
+
+                        <script type="dojo/method" data-dojo-event="getIconClass" data-dojo-args="item, opened">
+                            return 'projectIcon';
+                        </script>
+
+                        <script type="dojo/connect" data-dojo-event="onClick" data-dojo-args="item">
+
+                            dojo.byId('archetypeGroupId').innerHTML = item.groupId;
+                            dojo.byId('archetypeArtifactId').innerHTML = item.artifactId;
+                            dojo.byId('archetypeVersion').innerHTML = item.version;
+                            dojo.byId('archetypeDescription').innerHTML = item.description;
+
+                            dojo.byId('archetypeGroupId2').innerHTML = item.groupId;
+                            dojo.byId('archetypeArtifactId2').innerHTML = item.artifactId;
+                            dojo.byId('archetypeVersion2').innerHTML = item.version;
+                            dojo.byId('archetypeDescription2').innerHTML = item.description;
+
+                        </script>
+                    </div>
+                </div>
+
+                <div style="float:left;width:280px; height: 100%;">
+                    <span style="font-size: 12px; margin-left: 10px;"><b>Archetype Details:</b></span>
+                    <hr style="color:#b5bcc7">
+                    <table style="margin-left: 10px;">
+                        <tr>
+                            <td style="text-align: right; width: 67px;">Group id:</td><td><div id="archetypeGroupId">&nbsp;</div></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right; width: 67px;">Artifact id:</td><td><div id="archetypeArtifactId">&nbsp;</div></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right; width: 67px;">Version:</td><td><div id="archetypeVersion">&nbsp;</div></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="width: 280px;">Description:</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="width: 280px;"><div id="archetypeDescription">Select an Archetype to see it's description</div></td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <div data-dojo-type="dojox/widget/WizardPane" data-dojo-props='doneFunction:done'>
+
+                <div class="stepsBanner" style="float:left; width:270px; height: 100%; border-right: 1px solid #b5bcc7;">
+
+                    <span style="font-size: 12px; margin-left: 10px;"><b>Steps:</b></span>
+                    <hr style="color:#b5bcc7">
+                    <ol>
+                        <li style="color:grey;">Choose Maven Archetype</li>
+                        <li>Your Project Details</li>
+                    </ol>
+                </div>
+
+                <div style="float: left;width:320px; height: 100%; border-right: 1px solid #b5bcc7;">
+                    <span style="font-size: 12px; margin-left: 10px;"><b>Project Details:</b></span>
+                    <hr style="color:#b5bcc7">
+
+                    <form data-dojo-type="dijit/form/Form" id="newProjectForm">
+                        <table style="margin-left: 10px;">
+                            <tr>
+                                <td>
+                                    <label for="name">Name</label>
+                                </td>
+                                <td style="width: 20px;"></td>
+                                <td>
+                                    <input type="text" id="projectName" 
+                                           required="true" 
+                                           data-dojo-type="dijit/form/ValidationTextBox"/>
+                                    <span data-dojo-type="dijit/Tooltip" data-dojo-props="connectId:'projectName'" style="display:none;">
+                                        Give your Project a name. 
+                                        <br>
+                                        This is the name that will
+                                        <br>
+                                        appear in the Project Explorer.
+                                    </span>
+                                </td>        
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="name">GroupId</label>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <input type="text" id="groupId" 
+                                           required="true" 
+                                           data-dojo-type="dijit/form/ValidationTextBox"
+                                           data-dojo-props="regExp:'[\\w]+', invalidMessage:'The GroupId cannot contain any spaces.'" />
+                                    <span data-dojo-type="dijit/Tooltip" data-dojo-props="connectId:'groupId'" style="display:none;">
+                                        This is the Projects' GroupId.
+                                        <br>
+                                        <a href="javascript:alert('open maven doc');">Read some more on the subject</a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="name">ArtifactId</label>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <input type="text" id="artifactId" 
+                                           required="true" 
+                                           data-dojo-type="dijit/form/ValidationTextBox"
+                                           data-dojo-props="regExp:'[\\w]+', invalidMessage:'The ArtifactId cannot contain any spaces.'" />
+                                    <span data-dojo-type="dijit/Tooltip" data-dojo-props="connectId:'artifactId'" style="display:none;">
+                                        This is the Projects' ArtifactId.
+                                        <br>
+                                        <a href="javascript:alert('open maven doc');">Read some more on the subject</a>
+                                    </span>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="name">Description</label>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <input id="description" data-dojo-type="dijit/form/TextBox">
+                                    <span data-dojo-type="dijit/Tooltip" data-dojo-props="connectId:'description'" style="display:none;">
+                                        A brief description on what
+                                        <br>
+                                        this project is used for.
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="name">Version</label>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <input type="text" id="version"
+                                           value="1.0-SNAPSHOT"
+                                           required="true" 
+                                           data-dojo-type="dijit/form/ValidationTextBox"/>
+                                    <span data-dojo-type="dijit/Tooltip" data-dojo-props="connectId:'version'" style="display:none;">
+                                        The version number to start<br>
+                                        your Project with. You can <br>
+                                        always change this later on<br>
+                                        in the Project settings.
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="name">Java Package</label></td>
+                                <td></td>
+                                <td>
+                                    <input type="text" id="javaPackage"
+                                           required="false" 
+                                           data-dojo-type="dijit/form/ValidationTextBox"
+                                           data-dojo-props="regExp:'[\\w]+', invalidMessage:'The Java Package cannot contain any spaces.'" />
+                                    <span data-dojo-type="dijit/Tooltip" data-dojo-props="connectId:'javaPackage'" style="display:none;">
+                                        This is the initial Java package
+                                        <br>
+                                        that will be added to the Project.
+                                    </span>
+                                </td>
+                            </tr>
+
+                        </table>
+                        <script type="dojo/method" data-dojo-event="onValidStateChange" data-dojo-args="valid">
+
+                            //var btn = dijit.byId('newProjectOkButton');
+
+                            //if(valid){
+                            //btn.setAttribute('disabled', false);
+                            //}else{
+                            //btn.setAttribute('disabled', true);
+                            // }
+
+                        </script>
+                    </form>
+
+                </div>
+
+                <div style="float:left;width:280px; height: 100%;">
+                    <span style="font-size: 12px; margin-left: 10px;"><b>Archetype Details:</b></span>
+                    <hr style="color:#b5bcc7">
+                    <table style="margin-left: 10px;">
+                        <tr>
+                            <td style="text-align: right; width: 67px;">Group id:</td><td><div id="archetypeGroupId2">&nbsp;</div></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right; width: 67px;">Artifact id:</td><td><div id="archetypeArtifactId2">&nbsp;</div></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right; width: 67px;">Version:</td><td><div id="archetypeVersion2">&nbsp;</div></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="width: 280px;">Description:</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="width: 280px;"><div id="archetypeDescription2">Select an Archetype to see it's description</div></td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <script type="dojo/method" event="cancelFunction">
+                require(['stormcloud/gui/dialog'],function(dialog){
+
+                dialog.hide(DIALOG.NEW_PROJECT);
+                dijit.byId('newProjectWizard').selectChild('step1');
+
+                });
+            </script>
+        </div>
+
+    </div>
+
+</div>

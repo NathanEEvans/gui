@@ -1,0 +1,137 @@
+.designer{
+
+    margin:0;
+    padding:0;
+    height: 99.5%; 
+    width: 99.5%; 
+}
+
+.designerContainer{
+
+    width: 100%; 
+    height: 100%;
+}
+
+.designerCanvas{
+
+    border: 0px !important;
+}
+
+.flow{
+
+    margin-bottom : 10px;
+    height: 25%;
+    width: 100%;
+    border: 1px dotted gray;
+}
+
+.flowName{
+
+    position:absolute;
+    color:gray;
+}
+
+
+.dojoDndItem{
+
+    padding-top: 2px;
+    padding-right: 2px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+}
+
+.dojoDndItemOver{
+
+    cursor: pointer;
+}
+
+.dojoDndAvatar{
+
+    /*assigned to the avatar (the table).
+    */
+}
+
+.dojoDndAvatarHeader{
+
+    /*assigned to the first row (the header).
+    */
+}
+
+.dojoDndAvatarItem{
+
+    /*assigned to the avatar item rows.
+    */
+}
+
+.dojoDndAvatarCanDrop{
+
+    /*added to the avatar (the table) when the mouse is over a target, 
+      which can accept transferred items. Otherwise it is removed.
+    */
+}
+
+
+.dojoDndIgnore{
+
+
+
+}
+
+.dojoDndHandle{
+
+    border: 10px red solid !important;
+
+}
+
+.dojoDndMove{
+
+
+
+}
+
+
+.dojoDndItemSelected{
+
+    /* 
+    */
+
+}
+
+.dojoDndTargetDisabled{
+
+
+
+}
+
+.dojoDndAvatarHeader{
+
+    /* The avatar header during dragging
+    */
+}
+
+.dojoDndAvatarItem{
+
+    /* The avatar body during dragging
+    */
+}
+
+.dojoDndContainer{
+
+    /* The container (also the tree) when not hovering over.
+    */
+}
+
+.dojoDndContainerOver{
+
+    /* When hovering over source container
+    */
+
+}
+
+.dojoDndCopy{
+
+    /* This class is for the body during DnD copy.
+    */
+
+}
+

@@ -1,0 +1,97 @@
+<link rel="stylesheet" href="../../css/designer.css">
+
+<div class="designer">
+
+    <div class="designerContainer" data-dojo-type="dijit/layout/BorderContainer">
+
+        <div class="designerCanvas" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'">
+
+            <label class="flowName">Flow : Outgoing Orders</label>
+
+            <div id="outgoing_orders" class="flow" data-dojo-type="dojo/dnd/Source" data-dojo-props="accept: [ 'jdbcInbound' ]">
+
+
+                <script type="dojo/connect" data-dojo-event="onDraggingOver">
+                    console.debug('onDraggingOver');
+                </script>
+
+
+                <script type="dojo/connect" data-dojo-event="onDrop" data-dojo-args="source, nodes, copy">
+                    console.debug('onDrop');
+                </script>
+
+                <script type="dojo/connect" data-dojo-event="onOverEvent">
+
+                    console.debug('Over');
+
+                </script>
+
+                <script type="dojo/connect" data-dojo-event="onOutEvent">
+
+                    console.debug('Out');
+
+                </script>
+
+                <script type="dojo/connect" data-dojo-event="onDndCancel">
+
+                    console.debug('Cancel');
+
+                </script>
+
+            </div>
+        </div>
+
+        <div data-dojo-type="dijit/layout/AccordionContainer" data-dojo-props="region:'trailing' " style="width: 20%;">
+
+            <div data-dojo-type="dijit/layout/AccordionPane" title="Endpoints">
+
+                <div data-dojo-type="dojo/dnd/Source" data-dojo-props="copyOnly:true, accept: [ 'nada' ]">
+
+
+                    <div class="dojoDndItem" dndType="jdbcInbound">JDBC Inbound</div>
+
+                    <div class="dojoDndItem" dndType="sftpInbound">SFTP Inbound</div>
+
+
+                    <script type="dojo/connect" data-dojo-event="onDndStart" data-dojo-args="source, nodes, copy">
+                        // alert('onDndStart');
+
+
+
+
+                    </script>
+
+                </div>
+            </div>
+
+            <div data-dojo-type="dijit/layout/AccordionPane" title="Scopes">
+
+            </div>
+
+            <div data-dojo-type="dijit/layout/AccordionPane" title="Components">
+
+            </div>
+
+            <div data-dojo-type="dijit/layout/AccordionPane" title="Transformers">
+
+            </div>
+
+            <div data-dojo-type="dijit/layout/AccordionPane" title="Filters">
+
+            </div>
+
+            <div data-dojo-type="dijit/layout/AccordionPane" title="Flow Control">
+
+            </div>
+
+            <div data-dojo-type="dijit/layout/AccordionPane" title="Error Handling">
+
+            </div>
+
+            <div data-dojo-type="dijit/layout/AccordionPane" title="Cloud Connectors">
+
+            </div>
+
+        </div>
+    </div>
+</div>

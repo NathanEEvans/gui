@@ -1,0 +1,41 @@
+<div class="dijitDialogPaneContentArea" style="width: 400px;">
+
+    <p>
+        You are about to remove ... to the Trash. 
+    </p>
+    <p>
+        Are you sure about this?
+    </p>
+
+</div>
+
+
+<div class="dijitDialogPaneActionBar">
+
+    <button data-dojo-type="dijit/form/Button" type="button">
+        <script type="dojo/connect" data-dojo-event="onClick">
+
+            require(['stormcloud/gui/dialog'],function(dialog){
+
+            dialog.hide(DIALOG.DELETE);
+
+            });
+        </script>
+        No
+    </button>
+
+    <button data-dojo-type="dijit/form/Button" type="button">
+        <script type="dojo/connect" data-dojo-event="onClick">
+
+            require(['stormcloud/services/filesystem','stormcloud/gui/dialog'],function(filesystem,dialog){
+
+            filesystem.del(dijit.byId('projectTree').attr('selectedItem'));
+            dialog.hide(DIALOG.DELETE);
+            
+            });
+
+        </script>
+        Yes
+    </button>
+
+</div>
