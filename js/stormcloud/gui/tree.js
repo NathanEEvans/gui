@@ -20,11 +20,17 @@
  */
 define([
     'dijit/registry',
+    'dojo/store/JsonRest',
+    'dojo/data/ObjectStore',
+    'dijit/tree/TreeStoreModel',
     'dijit/Tree',
     'stormcloud/_base/context',
     'stormcloud/services/filesystem'], 
     function(
         registry,
+        JsonRest,
+        ObjectStore,
+        TreeStoreModel,
         Tree,
         context,
         filesystem){
@@ -41,7 +47,31 @@ define([
 
             initialize : function(){
             
+                /**
+             * @todo solution for the auth header
+             */
+            
                 // create project tree
+                var projectRestStore = new JsonRest({
+                
+                    target : 'http://localhost/stormcloud/api/filesystem/opened',
+                    headers: {
+                        Authorization: 'Basic bWFydGlqbjox'
+                    }
+                });
+                    
+                
+                var treeModel = new TreeStoreModel({
+          
+                    store : new ObjectStore({
+                    
+                        objectStore : projectRestStore
+                    }),
+                    
+                    mayHaveChildren : this.mayHaveChildren
+                });
+       
+       
                 var projectTree = new Tree({
                     
                     model:treeModel, 
@@ -57,6 +87,26 @@ define([
                 
                 
                 // create filesystem tree
+                var filesystemRestStore = new JsonRest({
+                
+                    target : 'http://localhost/stormcloud/api/filesystem/bare',
+                    headers: {
+                        Authorization: 'Basic bWFydGlqbjox'
+                    }
+                });
+                    
+                
+                var filesystemModel = new TreeStoreModel({
+          
+                    store : new ObjectStore({
+                    
+                        objectStore : filesystemRestStore
+                    }),
+                    
+                    mayHaveChildren : this.mayHaveChildren
+                    
+                });
+                
                 var filesystemTree = new Tree({
                     
                     model:filesystemModel, 
@@ -70,8 +120,27 @@ define([
     
                 }, 'filesystemTree');
                 
-                // create tomcat tree
-                var tomcatTree = new Tree({
+                // create services tree
+                var servicesRestStore = new JsonRest({
+                
+                    target : 'http://localhost/stormcloud/api/services',
+                    headers: {
+                        Authorization: 'Basic bWFydGlqbjox'
+                    }
+                });
+                   
+                var servicesTreeModel = new TreeStoreModel({
+          
+                    store : new ObjectStore({
+                    
+                        objectStore : servicesRestStore
+                    }),
+                    
+                    mayHaveChildren : this.mayHaveChildren
+                    
+                });
+
+                var servicesTree = new Tree({
                     
                     model:servicesTreeModel, 
                     persist:true, 
@@ -86,9 +155,19 @@ define([
             
                 this.bindContextMenus(projectTree);
                 this.bindContextMenus(filesystemTree);    
-                this.bindContextMenus(tomcatTree);
+                this.bindContextMenus(servicesTree);
                 
             },
+
+            mayHaveChildren : function(item){
+    
+                if(item.children.length == 0){
+                    return false;
+                }else{
+                    return true;
+                }
+            },
+
 
             bindContextMenus : function(widget){
     

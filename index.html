@@ -84,59 +84,6 @@
             <div id="loaderInner">Please stick around while we prepare your application ...</div>
         </div>
 
-
-        <!--
-            @todo move this Rest Store to JavaScript so we can
-                  get rid of the url (target) property problem
-                  and have a solution for the authentication header
-        -->
-        <div data-dojo-type="dojo/store/JsonRest" data-dojo-id="projectRestStore" data-dojo-props="target: 'http://localhost/stormcloud/api/filesystem/opened', headers: { Authorization: 'Basic bWFydGlqbjox'}"></div>
-        <div data-dojo-type="dojo/data/ObjectStore" data-dojo-id="projectStore" data-dojo-props="objectStore:projectRestStore"></div>
-        <div data-dojo-type="dijit/tree/TreeStoreModel" data-dojo-id="treeModel" data-dojo-props="store:projectStore">
-            <script type="dojo/method" data-dojo-event="mayHaveChildren" data-dojo-args="item">
-                if(item.children.length == 0){
-                return false;
-                }else{
-                return true;
-                }
-            </script>
-        </div>
-
-        <!--
-            @todo move this Rest Store to JavaScript so we can
-                  get rid of the url (target) property problem
-                  and have a solution for the authentication header
-        -->
-        <div data-dojo-type="dojo/store/JsonRest" data-dojo-id="filesystemRestStore" data-dojo-props="target: 'http://localhost/stormcloud/api/filesystem/bare', headers: { Authorization: 'Basic bWFydGlqbjox'}"></div>
-        <div data-dojo-type="dojo/data/ObjectStore" data-dojo-id="filesystemStore" data-dojo-props="objectStore:filesystemRestStore"></div>
-        <div data-dojo-type="dijit/tree/TreeStoreModel" data-dojo-id="filesystemModel" data-dojo-props="store:filesystemStore">
-            <script type="dojo/method" data-dojo-event="mayHaveChildren" data-dojo-args="item">
-                if(item.children.length == 0){
-                return false;
-                }else{
-                return true;
-                }
-            </script>
-        </div>
-
-
-        <!--
-            @todo move this Rest Store to JavaScript so we can
-                  get rid of the url (target) property problem
-                  and have a solution for the authentication header
-        -->
-        <div data-dojo-type="dojo/store/JsonRest" data-dojo-id="servicesRestStore" data-dojo-props="target:  'http://localhost/stormcloud/api/services', headers: { Authorization: 'Basic bWFydGlqbjox'}"></div>
-        <div data-dojo-type="dojo/data/ObjectStore" data-dojo-id="servicesStore" data-dojo-props="objectStore:servicesRestStore"></div>
-        <div data-dojo-type="dijit/tree/TreeStoreModel" data-dojo-id="servicesTreeModel" data-dojo-props="store:servicesStore">
-            <script type="dojo/method" data-dojo-event="mayHaveChildren" data-dojo-args="item">
-                if(item.children.length == 0){
-                return false;
-                }else{
-                return true;
-                }
-            </script>
-        </div>
-
         <div data-dojo-type="dojox/widget/DialogSimple" id="aboutDialog" data-dojo-props="href: 'dialogs/AboutDialog/index.html'" title="About Stormcloud IDE"></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="preferencesDialog" data-dojo-props="href: 'dialogs/PreferencesDialog.html'" title="Preferences ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="myAccountDialog" data-dojo-props="href: 'dialogs/MyAccountDialog.html'" title="My Account ..."></div>
