@@ -2,17 +2,17 @@
 <div class="dijitDialogPaneContentArea" style="width: 900px; height: 500px;">
 
     <script>
-        	
+        require(['stormcloud/dialogs/OpenProject'], function(dialog){
+       
+            dialog.init();
+        }); 
+                
         function done() {
             
-            var item = dijit.byId('closedProjectTree').attr('selectedItem');
-
-            require(['stormcloud/gui/dialog','stormcloud/services/filesystem'], function(dialog, filesystem){
-                
-                filesystem.open(item);
-                dialog.hide(DIALOG.OPEN_PROJECT);
-            
-            });
+            require(['stormcloud/dialogs/OpenProject'], function(dialog){
+       
+                dialog.done();
+            }); 
         }
     </script>
 
@@ -34,18 +34,7 @@
                 <div style="float: left;width:320px; height: 100%; border-right: 1px solid #b5bcc7;">
                     <span style="font-size: 12px; margin-left: 10px;"><b>Available Projects:</b></span>
                     <hr style="color:#b5bcc7">
-                    <div data-dojo-type="dojo/store/JsonRest" data-dojo-id="closedProjectRestStore" data-dojo-props="target: 'http://localhost/stormcloud/api/filesystem/closed', headers: { Authorization: 'Basic bWFydGlqbjox'}"></div>
-                    <div data-dojo-type="dojo/data/ObjectStore" data-dojo-id="closedProjectStore" data-dojo-props="objectStore:closedProjectRestStore"></div>
-                    <div data-dojo-type="dijit/tree/TreeStoreModel" data-dojo-id="closedTreeModel" data-dojo-props="store:closedProjectStore">
-                        <script type="dojo/method" data-dojo-event="mayHaveChildren" data-dojo-args="item">
-                            return false;
-                        </script>
-                    </div>
-                    <div data-dojo-type="dijit/Tree" id="closedProjectTree" style="height: 50%; padding-top: 5px;" data-dojo-props="model:closedTreeModel, showRoot:false">
-
-                        <script type="dojo/method" data-dojo-event="getIconClass" data-dojo-args="item, opened">
-                            return 'projectIcon';
-                        </script>
+                    <div id="closedProjectTree" style="height: 50%; padding-top: 5px;">
 
                     </div>
                 </div>    

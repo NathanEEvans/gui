@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/dialogs/NewFile/styles.css">
-<div class="dijitDialogPaneContentArea" style="width: 600px;">
+<div class="dijitDialogPaneContentArea" style="width: 900px;">
 
     <script>
         require(['stormcloud/dialogs/NewFile'], function(dialog){
@@ -12,7 +12,10 @@
             
         function done() {
             
-            alert('save file');
+            require(['stormcloud/dialogs/NewFile'], function(dialog){
+       
+                dialog.done();
+            }); 
             
         }
     </script>
@@ -39,6 +42,10 @@
 
                     <div style="margin-left: 10px; margin-top: 10px;">
                         <span class="projectStepSelect">Project &nbsp;</span>
+                        <!--
+                            @todo Make this an actual list, i thnk an API call
+                                  to get available (open) projects.
+                        -->
                         <div data-dojo-type="dojo/store/Memory"
                              data-dojo-id="newFileProjectStore"
                              data-dojo-props="data: [ { name : 'Project 1' }, { name : 'Project 2' }]"></div>
@@ -51,26 +58,7 @@
                         </select>
                     </div>
 
-                    <div data-dojo-type="dojo/store/JsonRest" data-dojo-id="fileRestStore" data-dojo-props="target: 'http://localhost/stormcloud/api/filesystem/types', headers: { Authorization: 'Basic bWFydGlqbjox'}"></div>
-                    <div data-dojo-type="dojo/data/ObjectStore" data-dojo-id="fileStore" data-dojo-props="objectStore:fileRestStore"></div>
-                    <div data-dojo-type="dijit/tree/TreeStoreModel" data-dojo-id="fileTreeModel" data-dojo-props="store:fileStore"></div>
-                    <div data-dojo-type="dijit/Tree" id="fileTree" data-dojo-props="model:fileTreeModel,showRoot:false">
-
-                        <script type="dojo/method" data-dojo-event="getIconClass" data-dojo-args="item, opened">
-
-                            require(['stormcloud/gui/tree'],function(tree){
-
-                            return tree.iconClass(item, opened);
-
-                            });
-
-                        </script>
-
-                        <script type="dojo/connect" data-dojo-event="onClick" data-dojo-args="item">
-
-                            dojo.byId('fileDescription').innerHTML = item.description;
-
-                        </script>
+                    <div id="fileTree">
                     </div>
                 </div>
 
