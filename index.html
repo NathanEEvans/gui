@@ -4,15 +4,6 @@
         <title>Stormcloud IDE</title>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <link rel="stylesheet" href="css/claro/document.css">
-        <link rel="stylesheet" href="css/claro/claro.css">
-        <link rel="stylesheet" href="js/dojox/widget/Wizard/Wizard.css">
-        <link rel="stylesheet" href="js/dojox/layout/resources/FloatingPane.css">
-        <link rel="stylesheet" href="js/dojox/layout/resources/ResizeHandle.css">
-        <link rel="stylesheet" href="js/dojox/grid/resources/Grid.css">
-        <link rel="stylesheet" href="js/dojox/grid/resources/claroGrid.css">
-
         <link rel="stylesheet" href="css/stormcloud.css">
 
         <!-- Load Dojo -->
@@ -106,7 +97,7 @@
             <div data-dojo-type="dijit/MenuItem" id="projectMenu_clean_project" data-dojo-props="iconClass:'cleanCommandIcon'  ">Clean Project</div>
             <div data-dojo-type="dijit/MenuItem" id="projectMenu_install_project" data-dojo-props="iconClass:'installCommandIcon'">Install Project</div>
             <div data-dojo-type="dijit/MenuSeparator"></div>
-            <div data-dojo-type="dijit/MenuItem" id="projectMenu_run_project">Run</div>
+            <div data-dojo-type="dijit/MenuItem" id="projectMenu_deploy_project">Deploy</div>
             <div data-dojo-type="dijit/MenuSeparator"></div>
             <div data-dojo-type="dijit/PopupMenuItem"><span>Git</span>
                 <div data-dojo-type="dijit/Menu">
@@ -734,7 +725,7 @@
                         <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'bottom'" style="border: 0px;">
 
                             <div style="text-align: center;margin-bottom: 10px;"">
-                                <input data-dojo-type="dijit/form/CheckBox" checked/><label>Show on Startup</label>
+                                 <input data-dojo-type="dijit/form/CheckBox" checked/><label>Show on Startup</label>
                             </div>
                         </div>
                     </div>

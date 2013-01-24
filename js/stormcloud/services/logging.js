@@ -39,7 +39,9 @@ define([
    
         var CONSTANTS = {
    
-            MAVEN_LOG : context.getApiUrl() + 'log/maven'
+            MAVEN_LOG : context.getApiUrl() + 'log/maven',
+            TOMCAT_LOG : context.getApiUrl() + 'log/tomcat'
+            
         }
    
         var Poll = function(pollFunction, intervalTime) {
@@ -65,6 +67,79 @@ define([
         var p;
        
         return {
+       
+            startTomcatDeploy : function(){
+              
+                statusbar.showProgress();
+                statusbar.infoStatus('Deploying Project');
+           
+                // switch to tomcat window
+                
+                p = new Poll(function() {
+                
+                    xhr.get({
+                        url: CONSTANTS.TOMCAT_LOG,
+                        load: function(data) {
+            
+                            var logWindow = document.getElementById('tomcatLogWindow');
+                        
+                            logWindow.value = data; 
+                        
+                            logWindow.scrollTop = logWindow.scrollHeight;
+                        }
+                    });
+                
+                }, 1000);
+            
+                p.start();
+           
+              
+              
+            },
+        
+            stopTomcatDeploy: function(){
+           
+                p.stop();
+          
+                statusbar.hideProgress();
+                statusbar.clearStatus();
+            
+                var failed = false
+            
+                if(data != '0'){
+                
+                    // failure
+                    failed = true;
+                }
+          
+                xhr.get({
+                    url: CONSTANTS.TOMCAT_LOG,
+                    load: function(data) {
+            
+                        var logWindow = document.getElementById('tomcatLogWindow');
+                        
+                        logWindow.value = data; 
+                        logWindow.scrollTop = logWindow.scrollHeight;
+                    
+                    
+                        if(failed){
+                            var lines = document.getElementById('tomcatLogWindow').value.split('\n');
+
+                            for(line in lines){
+                        
+                                if(lines[line].lastIndexOf('ERROR', 0) === 0){
+                                    alert(lines[line]);
+                                }
+                            }
+                        }
+                    
+                    }
+                });
+          
+            
+           
+            },
+       
        
             startMaven : function(){
            

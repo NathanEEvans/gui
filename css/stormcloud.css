@@ -1,4 +1,22 @@
 
+
+/**
+ * Dojo style imports
+*/
+@import url(claro/document.css);
+@import url(claro/claro.css);
+/**
+ * dojox widgets
+*/
+@import url(/js/dojox/widget/Wizard/Wizard.css);
+@import url(/js/dojox/layout/resources/FloatingPane.css);
+@import url(/js/dojox/layout/resources/ResizeHandle.css);
+@import url(/js/dojox/grid/resources/Grid.css);
+@import url(/js/dojox/grid/resources/claroGrid.css);
+
+/**
+ * Stormcloud styling
+ */
 @import url(stormcloud/icons.css);
 @import url(stormcloud/chat.css);
 @import url(stormcloud/dialogs.css);

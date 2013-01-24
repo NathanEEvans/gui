@@ -19,12 +19,16 @@
  * 
  */
 define([
-    "stormcloud/context",
-    "stormcloud/request/xhr"], 
+    'stormcloud/_base/context',
+    'stormcloud/rest/xhr',
+    'stormcloud/services/logging',
+    'stormcloud/gui/statusbar',],
     function(
         context,
-        xhr){
-    
+        xhr,
+        logging,
+        statusbar) {
+
         //
         // module      : stormcloud/tomcat/manager
         // 
@@ -33,71 +37,110 @@ define([
         // description : This module defines the operations that can be performed
         //               on the remote Tomcat instance.
         //
-    
-    
+
+
         // Some convenience 'constants'
-        TOMCAT = {
-        
-            STOP_APPLICATION     : {
-                command : "/manager/html/stop?path="
+        var TOMCAT = {
+            
+            STOP_APPLICATION: {
+                command: "/manager/html/stop?path="
             },
-            START_APPLICATION    : {
-                command : "/manager/html/start?path="
+            
+            START_APPLICATION: {
+                command: "/manager/html/start?path="
             },
-            RELOAD_APPLICATION   : {
-                command : "/manager/html/reload?path="
+            
+            RELOAD_APPLICATION: {
+                command: "/manager/html/reload?path="
             },
-            UNDEPLOY_APPLICATION : {
-                command : "/manager/html/undeploy?path="
+            
+            UNDEPLOY_APPLICATION: {
+                command: "/manager/html/undeploy?path="
             },
-            STOP_CONTAINER : "",
-            START_CONTAINER : ""
+            
+            DEPLOY_APPLICATION: context.getApiUrl() + 'services/tomcat/deploy',
+            
+            
+            
+            STOP_CONTAINER: "",
+            
+            START_CONTAINER: ""
         };
 
         return {
-      
-            stop : function(args){
-          
+            
+            
+            stop: function(args) {
+
                 // construct and add the url based on the given arguments 
-                args.url = this._construct(args); 
-                
+                args.url = this._construct(args);
                 xhr.get(args);
             },
-      
-        
-      
+            
+            
             // http://localhost:8080/manager/html/start?path=/cometd%2Ddemo%2D2%2E5%2E0
-            start : function(){
-          
-          
-          
-            }, 
-        
+            start: function() {
+
+
+
+            },
+            
+            
             // http://localhost:8080/manager/html/reload?path=/cometd%2Ddemo%2D2%2E5%2E0
-            reload: function(){
-          
-          
-          
+            reload: function() {
+
+
+
             },
-        
+            
+            
             // http://localhost:8080/manager/html/undeploy?path=/cometd%2Ddemo%2D2%2E5%2E0
-            undeploy : function(){
-          
-          
-          
-          
+            undeploy: function() {
+
             },
+            
+            
+            deploy: function(item) {
+
+                var data = {
+                    filePath : item.id
+                };
+
+                var xhrArgs = {
+                    url: TOMCAT.DEPLOY_APPLICATION,
+                    handleAs: 'json',
+                    postData: dojo.toJson(data)
+                }
+    
+                var deferred = xhr.post(xhrArgs,'JSON');
+            
+                logging.startTomcatDeploy();
+            
+                deferred.then(
+                    function(data){
+            
+                        logging.stopTomcatDeploy(data);
+                    
+                    },
+                    function(error){
+            
+                        statusbar.errorStatus(error);
+                    });
+
+            },
+            
+            
             
             // private method
             // constructs the url to call
-            _construct : function(args){
-                
-                return context.protocol 
-                + context.host 
-                + ":" 
-                + context.port 
-                + args.action.command 
-                + args.application; 
+            _construct: function(args) {
+
+                return context.protocol
+                + context.host
+                + ":"
+                + context.port
+                + args.action.command
+                + args.application;
             }
         };
     });

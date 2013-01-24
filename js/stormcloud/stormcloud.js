@@ -19,10 +19,10 @@
  * 
  */
 require([
-    'dojo/ready'], 
+    'dojo/ready'],
     function(
-        ready){
-    
+        ready) {
+
         //
         // module      : stormcloud/stormcloud
         // 
@@ -32,12 +32,12 @@ require([
         //               events that need to be bound, gui related things etc...
         //               
 
-        ready(function(){
-        
+        ready(function() {
+
             // @todo do the check if the user is logged in
             //       when authenticated proceed with loading the code
             //       otherwise document.location = login.html
-        
+
             // When Dojo is ready we bootstrap everything we initially need.
             require([
                 'stormcloud/_base/context',
@@ -46,17 +46,17 @@ require([
                 ], function(
                     context,
                     events,
-                    gui){
-        
+                    gui) {
+
                     // nothing todo with the context just log where we got it
                     console.info("Context loaded api url : " + context.getApiUrl());
-        
+
                     // bind all events
                     events.bind();
-        
+
                     // bootstrap all gui activity
                     gui.bootstrap();
-                    
+
                     // When all is done, hide the loader
                     // hide the loader
                     // @todo tuck this away in a module
