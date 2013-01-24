@@ -24,7 +24,7 @@ define([
                 
                     target : 'http://localhost/stormcloud/api/filesystem/types',
                     headers: {
-                        Authorization: 'Basic bWFydGlqbjox'
+                        Authorization: 'Basic ' + auth.credentials()
                     }
                 });
                     

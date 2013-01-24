@@ -19,9 +19,9 @@
  * 
  */
 define([
-    'stormcloud/encoding/base64'], 
+    'stormcloud/_base/auth'], 
     function(
-        base64){
+        auth){
 
         //
         // module      : stormcloud/rest/xhr
@@ -35,15 +35,8 @@ define([
             
             get : function(args){
     
-                // @todo make them cookies work
-                // dojo.require('dojo.cookie');
-            
-                var str = 'martijn:1';
-            
-                var enc = base64.encode(str);
-        
                 args.headers = {
-                    Authorization : 'Basic ' + enc
+                    Authorization : 'Basic ' + auth.credentials
                 };
                
                 return dojo.xhr("GET", args);
@@ -51,10 +44,6 @@ define([
     
             post : function(args, contentType){
     
-                var str = 'martijn:1';
-            
-                var enc = base64.encode(str);
-        
                 var conType;
             
                 if(contentType == 'JSON'){
@@ -64,7 +53,7 @@ define([
                 }
         
                 args.headers = {
-                    Authorization : 'Basic ' + enc,
+                    Authorization : 'Basic ' + auth.credentials,
                     'Content-Type' : conType
                 };
                
@@ -77,9 +66,23 @@ define([
                 
             },
             
-            del : function(){
+            del : function(args, contentType){
                 
-                
+                var conType;
+            
+                if(contentType == 'JSON'){
+                    conType = 'application/json';
+                }else{
+                    conType = 'application/x-www-form-urlencoded';
+                }
+        
+                args.headers = {
+                    Authorization : 'Basic ' + auth.credentials,
+                    'Content-Type' : conType
+                };
+               
+    
+                return dojo.xhr("DELETE", args);
             }
         };
     

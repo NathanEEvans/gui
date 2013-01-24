@@ -19,6 +19,7 @@
  * 
  */
 define([
+    'stormcloud/_base/auth',
     'dijit/registry',
     'dojo/store/JsonRest',
     'dojo/data/ObjectStore',
@@ -27,6 +28,7 @@ define([
     'stormcloud/_base/context',
     'stormcloud/services/filesystem'], 
     function(
+        auth,
         registry,
         JsonRest,
         ObjectStore,
@@ -47,16 +49,13 @@ define([
 
             initialize : function(){
             
-                /**
-             * @todo solution for the auth header
-             */
             
                 // create project tree
                 var projectRestStore = new JsonRest({
                 
                     target : 'http://localhost/stormcloud/api/filesystem/opened',
                     headers: {
-                        Authorization: 'Basic bWFydGlqbjox'
+                        Authorization: 'Basic ' + auth.credentials()
                     }
                 });
                     
@@ -91,7 +90,7 @@ define([
                 
                     target : 'http://localhost/stormcloud/api/filesystem/bare',
                     headers: {
-                        Authorization: 'Basic bWFydGlqbjox'
+                        Authorization: 'Basic ' + auth.credentials()
                     }
                 });
                     
@@ -125,7 +124,7 @@ define([
                 
                     target : 'http://localhost/stormcloud/api/services',
                     headers: {
-                        Authorization: 'Basic bWFydGlqbjox'
+                        Authorization: 'Basic ' + auth.credentials()
                     }
                 });
                    

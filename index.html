@@ -733,7 +733,7 @@
 
             </div>
 
-            <div data-dojo-type="dijit/layout/TabContainer" doLayout="false" data-dojo-props="region:'bottom', splitter:false" style="margin-bottom: 20px; height: 200px;">
+            <div data-dojo-type="dijit/layout/TabContainer" id="logTabs" doLayout="false" data-dojo-props="region:'bottom', splitter:false" style="margin-bottom: 20px; height: 200px;">
 
                 <div data-dojo-type="dijit/layout/ContentPane" id="mavenLogTab" data-dojo-props="title:'Maven'" style="overflow: hidden !important;height:161px;">
 
@@ -759,9 +759,9 @@
 
                 </div>
 
-                <div data-dojo-type="dijit/layout/ContentPane" id="gitLogTomcat" data-dojo-props="title:'Tomcat'" style="overflow: hidden !important;height:161px;">
+                <div data-dojo-type="dijit/layout/ContentPane" id="tomcatLogTab" data-dojo-props="title:'Tomcat'" style="overflow: hidden !important;height:161px;">
 
-                    <div id="gitToolTomcat" data-dojo-type="dijit/Toolbar" style="border-top:1px solid #b5bcc7; float:left;width: 30px;height: 155px;">
+                    <div id="tomcatToolBar" data-dojo-type="dijit/Toolbar" style="border-top:1px solid #b5bcc7; float:left;width: 30px;height: 155px;">
                         <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'rerunMaven', showLabel:false"></div>
                         <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'runMaven', showLabel:false"></div>
                         <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'stop', showLabel:false"></div>

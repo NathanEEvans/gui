@@ -20,11 +20,13 @@
  */
 define([
     'stormcloud/_base/context',
+    'stormcloud/_base/auth',
     'stormcloud/rest/xhr',
     'stormcloud/services/logging',
     'stormcloud/gui/statusbar',],
     function(
         context,
+        auth,
         xhr,
         logging,
         statusbar) {
@@ -54,12 +56,9 @@ define([
                 command: "/manager/html/reload?path="
             },
             
-            UNDEPLOY_APPLICATION: {
-                command: "/manager/html/undeploy?path="
-            },
-            
             DEPLOY_APPLICATION: context.getApiUrl() + 'services/tomcat/deploy',
             
+            UNDEPLOY_APPLICATION: context.getApiUrl() + 'services/tomcat/undeploy',
             
             
             STOP_CONTAINER: "",
@@ -94,8 +93,33 @@ define([
             },
             
             
-            // http://localhost:8080/manager/html/undeploy?path=/cometd%2Ddemo%2D2%2E5%2E0
-            undeploy: function() {
+            undeploy: function(item) {
+                
+                var data = {
+                    filePath : item.id
+                };
+
+                var xhrArgs = {
+                    url: TOMCAT.UNDEPLOY_APPLICATION,
+                    handleAs: 'json',
+                    postData: dojo.toJson(data)
+                }
+    
+                var deferred = xhr.post(xhrArgs,'JSON');
+            
+                logging.startTomcatDeploy();
+            
+                deferred.then(
+                    function(data){
+            
+                        logging.stopTomcatDeploy(data);
+                    
+                    },
+                    function(error){
+            
+                        statusbar.errorStatus(error);
+                    });
+
 
             },
             

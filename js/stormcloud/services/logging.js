@@ -74,6 +74,10 @@ define([
                 statusbar.infoStatus('Deploying Project');
            
                 // switch to tomcat window
+                // get handle on the correct tab
+                var tabs = dijit.byId('logTabs');
+                var tab = dijit.byId('tomcatLogTab');
+                tabs.selectChild(tab);
                 
                 p = new Poll(function() {
                 
@@ -145,13 +149,20 @@ define([
            
                 statusbar.showProgress();
                 statusbar.infoStatus('Maven Running');
-           
+       
+                // get handle on the correct tab
+                var tabs = dijit.byId('logTabs');
+                var tab = dijit.byId('mavenLogTab');
+                tabs.selectChild(tab);
+                    
+                // start log polling
                 p = new Poll(function() {
                 
                     xhr.get({
                         url: CONSTANTS.MAVEN_LOG,
                         load: function(data) {
             
+                            // write result to the logwindow
                             var logWindow = document.getElementById('mavenLogWindow');
                         
                             logWindow.value = data; 
@@ -163,7 +174,6 @@ define([
                 }, 1000);
             
                 p.start();
-           
             },
        
             stopMaven : function(data){
@@ -194,7 +204,7 @@ define([
                         if(failed){
                             var lines = document.getElementById('mavenLogWindow').value.split('\n');
 
-                            for(line in lines){
+                            for(var line in lines){
                         
                                 if(lines[line].lastIndexOf('[ERROR]', 0) === 0){
                                     alert(lines[line]);
