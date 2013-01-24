@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="/dialogs/CloneRemote/styles.css">
+<div class="dijitDialogPaneContentArea" style="width: 600px;">
+
+    <script>
+        require(['stormcloud/dialogs/CloneRemote'], function(dialog){
+       
+            dialog.init();
+        }); 
+    </script>
+
+    <table>
+        <tr>
+            <td><label for="name">url:</label></td>
+            <td><input id="url" data-dojo-type="dijit/form/TextBox"></td>
+        </tr>
+    </table>
+
+</div>
+
+<div>
+    <div class="dijitDialogPaneActionBar">
+
+        <button data-dojo-type="dijit/form/Button" type="button">
+            <script type="dojo/connect" data-dojo-event="onClick">
+
+                require(['stormcloud/gui/dialog'], function(dialog){
+
+                dialog.hide(DIALOG.CLONE_REMOTE);
+                });
+            </script>
+            Cancel
+        </button>
+
+        <button data-dojo-type="dijit/form/Button" type="button">
+            <script type="dojo/connect" data-dojo-event="onClick">
+
+                require(['stormcloud/gui/dialog','stormcloud/services/git'], function(dialog,git){
+
+                git.clone(url.value);
+                dialog.hide(DIALOG.CLONE_REMOTE);
+                });
+            </script>
+            Clone
+        </button>
+
+    </div>
+</div>

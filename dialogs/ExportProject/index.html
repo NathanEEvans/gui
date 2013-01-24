@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="/dialogs/ExportProject/styles.css">
+<div class="dijitDialogPaneContentArea" style="width: 600px;">
+
+    <script>
+        require(['stormcloud/dialogs/ExportProject'], function(dialog){
+       
+            dialog.init();
+        }); 
+    </script>
+
+    Export project to Zip
+
+</div>
+
+<div class="dijitDialogPaneActionBar">
+
+    <button data-dojo-type="dijit/form/Button" type="button">
+        <script type="dojo/connect" data-dojo-event="onClick">
+
+        </script>
+        Help
+    </button>
+
+    <button data-dojo-type="dijit/form/Button" type="button">
+        <script type="dojo/connect" data-dojo-event="onClick">
+            Dialog.hide(DIALOG.MY_ACCOUNT);
+        </script>
+        Cancel
+    </button>
+
+    <button data-dojo-type="dijit/form/Button" type="button">
+        <script type="dojo/connect" data-dojo-event="onClick">
+            Dialog.hide(DIALOG.MY_ACCOUNT); 
+        </script>
+        OK
+    </button>
+
+</div>

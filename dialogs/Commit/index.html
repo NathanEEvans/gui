@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="/dialogs/Commit/styles.css">
+<div class="dijitDialogPaneContentArea" style="width: 600px;">
+
+    <script>
+        require(['stormcloud/dialogs/Commit'], function(dialog){
+       
+            dialog.init();
+        }); 
+    </script>
+
+
+
+</div>
+
+<div>
+    <div class="dijitDialogPaneActionBar">
+
+        <button data-dojo-type="dijit/form/Button" type="button">
+            <script type="dojo/connect" data-dojo-event="onClick">
+                Dialog.hide(DIALOG.COMMIT);
+            </script>
+            Cancel
+        </button>
+
+        <button data-dojo-type="dijit/form/Button" type="button">
+            <script type="dojo/connect" data-dojo-event="onClick">
+                Git.commit(selectedTreeItem);
+            </script>
+            Commit
+        </button>
+
+    </div>
+</div>

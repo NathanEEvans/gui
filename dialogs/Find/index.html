@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="/dialogs/Find/styles.css">
+<div class="dijitDialogPaneContentArea" style="width: 600px;">
+
+    <script>
+        require(['stormcloud/dialogs/Find'], function(dialog){
+       
+            dialog.init();
+        }); 
+    </script>
+
+    Find ...
+
+</div>
+
+<div>
+    <div class="dijitDialogPaneActionBar">
+
+        <button data-dojo-type="dijit/form/Button" type="button">
+            <script type="dojo/connect" data-dojo-event="onClick">
+                findDialog.hide();
+            </script>
+            Cancel
+        </button>
+
+        <button data-dojo-type="dijit/form/Button" type="button">
+            <script type="dojo/connect" data-dojo-event="onClick">
+                findDialog.hide();
+            </script>
+            Find
+        </button>
+
+    </div>
+</div>

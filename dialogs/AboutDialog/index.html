@@ -1,6 +1,12 @@
-<link rel="stylesheet" href="/dialogs/AboutDialog/AboutDialog.css">
-<script type="text/javascript" src="/dialogs/AboutDialog/AboutDialog.js"></script>
+<link rel="stylesheet" href="/dialogs/AboutDialog/styles.css">
 <div class="dijitDialogPaneContentArea" style="width: 600px;">
+
+    <script>
+        require(['stormcloud/dialogs/AboutDialog'], function(dialog){
+       
+            dialog.init();
+        }); 
+    </script>
 
     <div data-dojo-type="dijit/layout/ContentPane" id="aboutBanner" data-dojo-props="region:'top'">
 

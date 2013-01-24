@@ -1,0 +1,150 @@
+<link rel="stylesheet" href="/dialogs/Defects/styles.css">
+<div class="dijitDialogPaneContentArea" style="width: 1200px; height: 800px; overflow-y: hidden;">
+
+    <script>
+        require(['stormcloud/dialogs/Defects'], function(dialog){
+       
+            dialog.init();
+        }); 
+    </script>
+
+    <style>
+        #bugGrid{
+            height: 250px;
+        }
+
+        #bugComments{
+
+            border: 1px solid #b5bcc7;
+
+            height: 300px;
+            overflow-y: scroll;
+
+        }
+
+        .bugComment{
+
+            margin-bottom: 10px;
+        }
+
+        .commentHeader{
+
+            vertical-align: bottom;
+            width: 100%;
+            height:20px;     
+            background-color: #abd6ff;
+            background-repeat: repeat-x;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
+
+        }
+
+
+        .commentText{
+
+            padding: 5px;
+
+
+        }
+
+        #addComment{
+
+            border: 1px solid #b5bcc7;
+            width: 1198px;
+            resize: none;
+
+        }
+
+    </style>
+
+    <div id="bugGrid"></div>
+    <div id="bugToolBar" data-dojo-type="dijit/Toolbar" style="text-align: right;">
+        <div data-dojo-type="dijit/form/Button" id="bugToolBar_bug_add" data-dojo-props="iconClass:'bugAddIcon', showLabel:false"></div>
+        <div data-dojo-type="dijit/form/Button" id="bugToolBar_thumb_up" data-dojo-props="iconClass:'thumbUpIcon', showLabel:false"></div>
+        <div data-dojo-type="dijit/form/Button" id="bugToolBar_thumb_down" data-dojo-props="iconClass:'thumbDownIcon', showLabel:false"></div>
+    </div>       
+    <div style="margin-top:5px;">Comments:</div>
+    <div id="bugComments"><span style="color: #b5bcc7">Select an Issue to see the Comments.</span></div>
+    <div style="margin-top:5px;">Your Comment:</div>
+    <div data-dojo-type="dijit/Editor" id="addComment" data-dojo-props="" height="110px"></div>
+    <div id="commentToolBar" data-dojo-type="dijit/Toolbar">
+        <div data-dojo-type="dijit/form/Button" id="commentToolBar_add" data-dojo-props="iconClass:'commentAddIcon', showLabel:false"></div>
+    </div>       
+
+
+    <script>
+
+        require([
+            'dojox/grid/DataGrid',
+            'dojo/store/Memory',
+            'dojo/data/ObjectStore',
+            'dojo/request',
+            'dojo/domReady!'
+        ], function(DataGrid, Memory, ObjectStore, request){
+            var grid, dataStore;
+            request.get('critters.json', {
+                handleAs: 'json'
+            }).then(function(data){
+                
+                dataStore =  new ObjectStore({ objectStore:new Memory({ data: data.bugs }) });
+
+                grid = new DataGrid({
+                    store: dataStore,
+                    selectionMode : 'single',
+                    structure: [
+                        { name: 'Id', field: 'id', width: '5%' },
+                        { name: 'Type', field: 'type', width: '10%' },
+                        { name: 'Status', field: 'status', width: '10%', editable: true },
+                        { name: 'Name', field: 'name', width: '20%' },
+                        { name: 'Description', field: 'description', width: '45%' },
+                        { name: 'Votes', field: 'votes', width: '5%' },
+                        { name: 'User', field: 'user', width: '5%' }
+                    ]
+                }, 'bugGrid');
+
+                grid.startup();
+
+                grid.on("RowClick", function(evt){
+                    
+                    var idx = evt.rowIndex;
+                    var comments = grid.getItem(idx).comments;
+                    
+                    // get bugComments div
+                    var commentDisplay = document.getElementById('bugComments');
+                    
+                    // clear it
+                    commentDisplay.innerHTML = '';
+                    
+                    // loop trough comments and add them
+                    for(var comment in comments){
+                        
+                        var commentEntry = document.createElement("div");
+                        
+                        var vote = comments[comment].vote;
+                        
+                        var voteIcon = 'noThumbIcon';
+                        
+                        if(vote==-1){
+                            voteIcon = 'thumbDownIcon';
+                        }else if(vote==1){
+                            voteIcon = 'thumbUpIcon';
+                        }
+                        
+                        commentEntry.innerHTML = 
+                            '<div class="bugComment"><div class="commentHeader"><img style="margin-top:2px;" src="js/dojo/resources/blank.gif" alt="" class="'+voteIcon+'"> On '
+                            + comments[comment].date + ' <b>' + comments[comment].user 
+                            +'</b> wrote: </div><div class="commentText">' 
+                            + comments[comment].text
+                            +'</div></div>';
+                        
+                        commentDisplay.appendChild(commentEntry)
+                    }
+                    
+                }, true);
+        
+    
+            });
+        });
+
+    </script>
+
+</div>

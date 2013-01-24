@@ -1,0 +1,35 @@
+<<link rel="stylesheet" href="/dialogs/GitHistory/styles.css">
+<div class="dijitDialogPaneContentArea" style="width: 600px;">
+
+    <script>
+        require(['stormcloud/dialogs/GitHistory'], function(dialog){
+       
+            dialog.init();
+        }); 
+    </script>
+
+    <div data-dojo-type="dijit/layout/ContentPane" style="border: 1px solid #9fa8c6;">
+
+        Not yet supported.
+
+    </div>
+
+</div>
+
+<div class="dijitDialogPaneActionBar">
+
+    <button data-dojo-type="dijit/form/Button" type="button">
+        <script type="dojo/connect" data-dojo-event="onClick">
+            showGitHistoryDialog.hide();
+        </script>
+        Cancel
+    </button>
+
+    <button data-dojo-type="dijit/form/Button" type="button">
+        <script type="dojo/connect" data-dojo-event="onClick">
+            showGitHistoryDialog.hide();
+        </script>
+        OK
+    </button>
+
+</div>
