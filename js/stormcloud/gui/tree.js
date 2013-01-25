@@ -53,7 +53,7 @@ define([
                 // create project tree
                 var projectRestStore = new JsonRest({
                 
-                    target : 'http://localhost/stormcloud/api/filesystem/opened',
+                    target : context.getApiUrl() + 'filesystem/opened',
                     headers: {
                         Authorization: 'Basic ' + auth.credentials()
                     }
@@ -88,7 +88,7 @@ define([
                 // create filesystem tree
                 var filesystemRestStore = new JsonRest({
                 
-                    target : 'http://localhost/stormcloud/api/filesystem/bare',
+                    target : context.getApiUrl() + 'filesystem/bare',
                     headers: {
                         Authorization: 'Basic ' + auth.credentials()
                     }
@@ -122,7 +122,7 @@ define([
                 // create services tree
                 var servicesRestStore = new JsonRest({
                 
-                    target : 'http://localhost/stormcloud/api/services',
+                    target : context.getApiUrl() + 'services',
                     headers: {
                         Authorization: 'Basic ' + auth.credentials()
                     }

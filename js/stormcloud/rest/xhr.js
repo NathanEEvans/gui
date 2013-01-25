@@ -19,8 +19,10 @@
  * 
  */
 define([
+    'stormcloud/_base/context',
     'stormcloud/_base/auth'], 
     function(
+        context,
         auth){
 
         //
@@ -36,7 +38,8 @@ define([
             get : function(args){
     
                 args.headers = {
-                    Authorization : 'Basic ' + auth.credentials
+                    Authorization : 'Basic ' + auth.credentials(),
+                    'Origin' : context.host
                 };
                
                 return dojo.xhr("GET", args);
@@ -53,7 +56,7 @@ define([
                 }
         
                 args.headers = {
-                    Authorization : 'Basic ' + auth.credentials,
+                    Authorization : 'Basic ' + auth.credentials(),
                     'Content-Type' : conType
                 };
                
@@ -77,7 +80,7 @@ define([
                 }
         
                 args.headers = {
-                    Authorization : 'Basic ' + auth.credentials,
+                    Authorization : 'Basic ' + auth.credentials(),
                     'Content-Type' : conType
                 };
                

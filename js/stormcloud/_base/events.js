@@ -80,10 +80,34 @@ define([
             // Bind the events to the widgets
             bind: function() {
 
+                on(registry.byId('tomcatAppMenu_view'), EVENT.CLICK, function(e) {
+
+                    tomcat.view(dijit.byId('servicesTree').attr('selectedItem'));
+                });
+                
+                on(registry.byId('tomcatAppMenu_stop'), EVENT.CLICK, function(e) {
+
+                    tomcat.stopApplication(dijit.byId('servicesTree').attr('selectedItem'));
+                });
+                
+                on(registry.byId('tomcatAppMenu_start'), EVENT.CLICK, function(e) {
+
+                    tomcat.startApplication(dijit.byId('servicesTree').attr('selectedItem'));
+                });
+                
+                on(registry.byId('tomcatAppMenu_reload'), EVENT.CLICK, function(e) {
+
+                    tomcat.reload(dijit.byId('servicesTree').attr('selectedItem'));
+                });
+                
                 on(registry.byId('tomcatAppMenu_undeploy'), EVENT.CLICK, function(e) {
 
                     tomcat.undeploy(dijit.byId('servicesTree').attr('selectedItem'));
                 });
+                
+                
+                
+                
 
 
                 on(registry.byId('projectMenu_compile_project'), EVENT.CLICK, function(e) {

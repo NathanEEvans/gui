@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/_base/gui
+ * Stormcloud IDE - stormcloud/rest/request
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -19,43 +19,48 @@
  * 
  */
 define([
-    'stormcloud/gui/tooltips',
-    'stormcloud/gui/tree',
-    'stormcloud/chat/manager',
-    'stormcloud/services/filesystem',
-    'stormcloud/services/logging'], 
+    'stormcloud/_base/auth',
+    'dojo/request/xhr'], 
     function(
-        tooltips,
-        tree,
-        manager,
-        filesystem,
-        logging){
+        auth,
+        xhr){
 
         //
-        // module      : stormcloud/_base/gui
+        // module      : stormcloud/rest/xhr
         // 
-        // summary     : initialize anything concerning gui
+        // summary     : 
         // 
         // description : 
         //               
 
         return{
+
+            get : function(args){
     
-            bootstrap : function(){
-                
-                // bind the tooltips
-                tooltips.bind();
-                
-                // create the trees
-                tree.initialize();
+    
+                xhr(args.url, {
+                    
+                    method : 'GET',
+                    headers: {
+                        'Authorization' : auth.credentials()
+                    }
+                    
+                }).then(function(data){
+                    
+                    alert(data);
+                    
+                }, function(err){
+        
+                    alert(err);
             
-                // check for trash
-                filesystem.checkTrash();
+                }, function(evt){
+                    
+                    //
+                    });
+    
                 
             }
-    
+
         }
-
-
     });
 

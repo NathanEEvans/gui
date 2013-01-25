@@ -35,16 +35,34 @@ define([],
         return {
 
             // 
-            host     : 'localhost',
-        
+            host     : 'stormcloud-ide.com',
+            
+            
+            tomcatViewUrl : 'martijn.stormcloud-ide.com:8180',
+            
+            
+            tomcatManagerUrl : 'martijn.stormcloud-ide.com/manager/text/',
+            
             //
             protocol : 'http',
         
             //
             apiUrl   : '/stormcloud/api/',
+            
+            //
             getApiUrl : function(){
             
                 return this.protocol + '://' + this.host + this.apiUrl;
+            },
+            
+            getTomcatHost: function(){
+                
+                return this.protocol + '://' + this.tomcatHost
+            },
+            
+            getTomcatManagerUrl : function(){
+                
+                return this.protocol + '://' + this.tomcatManagerUrl;
             },
             
             // The item currently selected in the tree.

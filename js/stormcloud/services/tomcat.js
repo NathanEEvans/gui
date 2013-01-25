@@ -22,12 +22,14 @@ define([
     'stormcloud/_base/context',
     'stormcloud/_base/auth',
     'stormcloud/rest/xhr',
+    'stormcloud/rest/request',
     'stormcloud/services/logging',
     'stormcloud/gui/statusbar',],
     function(
         context,
         auth,
         xhr,
+        request,
         logging,
         statusbar) {
 
@@ -41,110 +43,143 @@ define([
         //
 
 
-        // Some convenience 'constants'
+        // http://localhost:8180/manager/text/serverinfo
+        // http://localhost:8180/manager/text/deploy?path=/Calculator&war=file:/filesystem/martijn/projects/MavenCalculator/target/Calculator.war
+        // http://localhost:8180/manager/text/resources
+        // http://localhost:8180/manager/text/sessions?path=/Calculator
+        // http://localhost:8180/manager/text/findleaks?statusLine=true
+
         var TOMCAT = {
             
-            STOP_APPLICATION: {
-                command: "/manager/html/stop?path="
-            },
+            LIST : context.getTomcatManagerUrl() + 'list',
             
-            START_APPLICATION: {
-                command: "/manager/html/start?path="
-            },
+            VIEW : context.getTomcatHost() + "/",
             
-            RELOAD_APPLICATION: {
-                command: "/manager/html/reload?path="
-            },
+            STOP_APPLICATION: context.getTomcatManagerUrl() + 'stop?path=/',
             
-            DEPLOY_APPLICATION: context.getApiUrl() + 'services/tomcat/deploy',
+            START_APPLICATION: context.getTomcatManagerUrl() + 'start?path=/',
             
-            UNDEPLOY_APPLICATION: context.getApiUrl() + 'services/tomcat/undeploy',
+            RELOAD_APPLICATION: context.getTomcatManagerUrl() + 'reload?path=/',
+            
+            DEPLOY_APPLICATION: context.getTomcatManagerUrl() + 'deploy?path=/',
+            
+            UNDEPLOY_APPLICATION: context.getTomcatManagerUrl() + 'undeploy?path=/',
             
             
-            STOP_CONTAINER: "",
+            STOP_CONTAINER: '',
             
-            START_CONTAINER: ""
+            START_CONTAINER: ''
         };
 
         return {
             
             
-            stop: function(args) {
-
-                // construct and add the url based on the given arguments 
-                args.url = this._construct(args);
-                xhr.get(args);
-            },
-            
-            
-            // http://localhost:8080/manager/html/start?path=/cometd%2Ddemo%2D2%2E5%2E0
-            start: function() {
-
-
-
-            },
-            
-            
-            // http://localhost:8080/manager/html/reload?path=/cometd%2Ddemo%2D2%2E5%2E0
-            reload: function() {
-
-
-
-            },
-            
-            
-            undeploy: function(item) {
+            view: function(item){
                 
-                var data = {
-                    filePath : item.id
-                };
-
+                window.open(TOMCAT.VIEW + item.label);
+                
+            },
+            
+            stopApplication: function(item) {  
+                
                 var xhrArgs = {
-                    url: TOMCAT.UNDEPLOY_APPLICATION,
-                    handleAs: 'json',
-                    postData: dojo.toJson(data)
+                    url: TOMCAT.STOP_APPLICATION + item.label
                 }
     
-                var deferred = xhr.post(xhrArgs,'JSON');
-            
-                logging.startTomcatDeploy();
+                var deferred = xhr.get(xhrArgs);
             
                 deferred.then(
                     function(data){
             
-                        logging.stopTomcatDeploy(data);
-                    
+                        statusbar.infoStatus(data);
+                        
+                    },
+                    function(error){
+            
+                        statusbar.errorStatus(error);
+                    });
+            
+                
+            },
+            
+            
+            startApplication: function(item) {
+                
+                var xhrArgs = {
+                    url: TOMCAT.START_APPLICATION + item.label
+                }
+    
+                var deferred = xhr.get(xhrArgs);
+            
+                deferred.then(
+                    function(data){
+            
+                        statusbar.infoStatus(data);
+                        
+                    },
+                    function(error){
+            
+                        statusbar.errorStatus(error);
+                    });
+            },
+            
+            
+            reload: function(item) {
+
+                var xhrArgs = {
+                    url: TOMCAT.RELOAD_APPLICATION + item.label
+                }
+    
+                var deferred = xhr.get(xhrArgs);
+            
+                deferred.then(
+                    function(data){
+            
+                        statusbar.infoStatus(data);
+                        
                     },
                     function(error){
             
                         statusbar.errorStatus(error);
                     });
 
-
+            },
+            
+            
+            undeploy: function(item) {
+                
+                var xhrArgs = {
+                    url: TOMCAT.UNDEPLOY_APPLICATION + item.label
+                }
+    
+                var deferred = xhr.get(xhrArgs);
+            
+                deferred.then(
+                    function(data){
+            
+                        statusbar.infoStatus(data);
+                        
+                    },
+                    function(error){
+            
+                        statusbar.errorStatus(error);
+                    });
             },
             
             
             deploy: function(item) {
 
-                var data = {
-                    filePath : item.id
-                };
-
                 var xhrArgs = {
-                    url: TOMCAT.DEPLOY_APPLICATION,
-                    handleAs: 'json',
-                    postData: dojo.toJson(data)
+                    url: TOMCAT.DEPLOY_APPLICATION + item.buildName + '&war=file:'+ item.id +'/target/' + item.buildName + '.war'
                 }
     
-                var deferred = xhr.post(xhrArgs,'JSON');
-            
-                logging.startTomcatDeploy();
+                var deferred = xhr.get(xhrArgs);
             
                 deferred.then(
                     function(data){
             
-                        logging.stopTomcatDeploy(data);
-                    
+                        statusbar.infoStatus(data);
+                        
                     },
                     function(error){
             

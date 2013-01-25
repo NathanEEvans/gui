@@ -93,12 +93,10 @@ define([
                         }
                     });
                 
-                }, 1000);
+                }, 100);
             
                 p.start();
            
-              
-              
             },
         
             stopTomcatDeploy: function(){
