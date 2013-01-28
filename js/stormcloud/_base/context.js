@@ -38,10 +38,10 @@ define([],
             host     : 'stormcloud-ide.com',
             
             
-            tomcatViewUrl : 'martijn.stormcloud-ide.com:8180',
+            tomcatHost : 'martijn.stormcloud-ide.com:8180',
             
             
-            tomcatManagerUrl : 'martijn.stormcloud-ide.com/manager/text/',
+            tomcatManagerUrl : 'stormcloud-ide.com/manager/text/',
             
             //
             protocol : 'http',
@@ -55,7 +55,7 @@ define([],
                 return this.protocol + '://' + this.host + this.apiUrl;
             },
             
-            getTomcatHost: function(){
+            getTomcatViewUrl: function(){
                 
                 return this.protocol + '://' + this.tomcatHost
             },

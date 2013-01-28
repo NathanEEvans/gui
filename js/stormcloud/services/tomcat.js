@@ -53,7 +53,7 @@ define([
             
             LIST : context.getTomcatManagerUrl() + 'list',
             
-            VIEW : context.getTomcatHost() + "/",
+            VIEW : context.getTomcatViewUrl() + "/",
             
             STOP_APPLICATION: context.getTomcatManagerUrl() + 'stop?path=/',
             
