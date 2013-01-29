@@ -21,7 +21,7 @@
 define([
     'stormcloud/_base/context',
     'stormcloud/gui/statusbar',
-    'stormcloud/ace/editor',
+    'stormcloud/editor/ace',
     'stormcloud/rest/xhr'], 
     function(
         context,
@@ -59,6 +59,7 @@ define([
             DELETE : context.getApiUrl() + 'filesystem/delete',
             // Get resource service url
             GET : context.getApiUrl() + 'filesystem/get',
+            //
             GET_BINARY : context.getApiUrl() + 'filesystem/getBinary',
             // Check if there is things in the trash bin
             HAS_TRASH : context.getApiUrl() + 'filesystem/hasTrash'

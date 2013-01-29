@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/ace/editor
+ * Stormcloud IDE - stormcloud/editor/ace
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -22,7 +22,7 @@ define([],
     function(
         ){
    
-        // module      : stormcloud/ace/editor
+        // module      : stormcloud/editor/ace
         // 
         // summary     :
         //		
