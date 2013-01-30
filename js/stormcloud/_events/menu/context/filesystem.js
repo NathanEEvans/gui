@@ -44,7 +44,16 @@ define([
             bind: function() {
 
 
-            // filesystemMenu_new
+                on(registry.byId('filesystemMenu_new'), EVENT.CLICK, function(e) {
+
+                    dialog.show(DIALOG.NEW_FILE);
+                });
+
+
+
+
+
+            // 
             // filesystemMenu_open
             // filesystemMenu_cut
             // filesystemMenu_copy

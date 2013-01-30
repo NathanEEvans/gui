@@ -33,10 +33,6 @@ define([
     'stormcloud/_events/menu/context/filesystem',
     'stormcloud/_events/menu/context/tomcat',
     'stormcloud/_events/menu/context/project',
-    'stormcloud/_events/menu/context/projectSettings',
-    'stormcloud/_events/menu/context/flowDesign',
-    'stormcloud/_events/menu/context/sources',
-    'stormcloud/_events/menu/context/resources',
     'stormcloud/_events/menu/tool/bar'],
     function(
         file,
@@ -53,10 +49,6 @@ define([
         filesystem,
         tomcat,
         project,
-        projectSettings,
-        flowDesign,
-        sources,
-        resources,
         bar) {
 
         //
@@ -107,14 +99,6 @@ define([
                 
                 project.bind();
                 
-                projectSettings.bind();
-                
-                flowDesign.bind();
-
-                sources.bind();
-
-                resources.bind();
-
                 stormcloud.bind();
                 
                 edit.bind();

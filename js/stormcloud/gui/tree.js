@@ -170,16 +170,14 @@ define([
 
             bindContextMenus : function(widget){
     
+                console.info('Binding menus');
+    
                 var menus = {
                     tomcat : registry.byId('tomcatMenu'),
                     tomcatWebApps : registry.byId('tomcatWebAppsMenu'),
                     tomcatApp : registry.byId('tomcatAppMenu'),
                     folder : registry.byId('filesystemMenu'),
-                    project : registry.byId('projectMenu'),
-                    projectSettings : registry.byId('projectSettingsMenu'),
-                    flowDesign : registry.byId('flowDesignMenu'),
-                    sources : registry.byId('sourcesMenu'),
-                    resources : registry.byId('resourcesMenu')
+                    project : registry.byId('projectMenu')
                 };
 
     
@@ -187,23 +185,25 @@ define([
 
                     function bindProperMenu(node, item){
 
-                        var m, type;
-                        item = item || {};
+                        console.info('Check binding for type '+item.type);
 
-                        for(m in menus){
-                            menus[m].unBindDomNode(node);
+                        for(var menu in menus){    
+                            menus[menu].unBindDomNode(node);
                         }
 
-                        type = item.type;
+                        if (item.type){
 
-                        if (type){
-                            menus[type].bindDomNode(node);
+                            var menuType = menus[item.type];
+
+                            if(menuType){
+                                menuType.bindDomNode(node);                            
+                            }
                         }
                     }
 
-                    var children = node.containerNode.childNodes,
-                    n = children.length,
-                    thisWidget;
+                    var children = node.containerNode.childNodes;
+                    var n = children.length;
+                    var thisWidget;
 
                     while(n--){
 
