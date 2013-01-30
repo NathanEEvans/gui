@@ -1,23 +1,20 @@
 <link rel="stylesheet" href="/dialogs/NewFile/styles.css">
-<div class="dijitDialogPaneContentArea" style="width: 900px;">
+<div class="dijitDialogPaneContentArea">
 
     <script>
-        require(['stormcloud/dialogs/NewFile'], function(dialog){
+        require(['stormcloud/dialogs/NewFile'], function(newFile){
        
-            dialog.init();
+            newFile.init();
         }); 
-    </script>
-
-    <script>
             
         function done() {
             
-            require(['stormcloud/dialogs/NewFile'], function(dialog){
+            require(['stormcloud/dialogs/NewFile'], function(newFile){
        
-                dialog.done();
-            }); 
-            
+                newFile.done();
+            });    
         }
+        
     </script>
 
     <div class="floater">
@@ -29,7 +26,6 @@
                 <div class="stepsBanner">
 
                     <span class="stepTitle"><b>Steps:</b></span>
-                    <hr class="stepHr">
                     <ol>
                         <li>Choose File Type</li>
                         <li class="stepDisabled">...</li>
@@ -38,24 +34,11 @@
 
                 <div class="stepsMidScreen">
                     <span class="stepTitle"><b>Choose File Type:</b></span>
-                    <hr class="stepHr">
 
                     <div style="margin-left: 10px; margin-top: 10px;">
                         <span class="projectStepSelect">Project &nbsp;</span>
-                        <!--
-                            @todo Make this an actual list, i thnk an API call
-                                  to get available (open) projects.
-                        -->
-                        <div data-dojo-type="dojo/store/Memory"
-                             data-dojo-id="newFileProjectStore"
-                             data-dojo-props="data: [ { name : 'Project 1' }, { name : 'Project 2' }]"></div>
-                        <select data-dojo-type="dijit/form/ComboBox" 
-                                data-dojo-props="store:newFileProjectStore, searchAttr:'name'">
 
-                            <script type="dojo/method" event="onChange" args="newValue">
-                                dojo.byId('projectName').innerHTML = newValue;
-                            </script>
-                        </select>
+                        <div id="projectSelector"></div>
                     </div>
 
                     <div id="fileTree">
@@ -64,7 +47,6 @@
 
                 <div class="stepsRightScreen">
                     <span class="stepTitle"><b>Description:</b></span>
-                    <hr class="stepHr">
                     <table style="margin-left: 10px;">
                         <tr>
                             <td style="width: 280px;"><div id="fileDescription">Select a File Type to see it's description</div></td>
@@ -79,7 +61,6 @@
                 <div class="stepsBanner">
 
                     <span class="stepTitle"><b>Steps:</b></span>
-                    <hr class="stepHr">
                     <ol>
                         <li class="stepDisabled">Choose File Type</li>
                         <li>Your File Details</li>
@@ -88,7 +69,6 @@
 
                 <div style="float: left;width:600px; height: 100%; border-right: 1px solid #b5bcc7;">
                     <span style="font-size: 12px; margin-left: 10px;"><b>File Details:</b></span>
-                    <hr style="color:#b5bcc7">
 
                     <form data-dojo-type="dijit/form/Form" id="newFileForm">
                         <table style="margin-left: 10px; width: 600px;">
@@ -106,10 +86,8 @@
                                     <label for="name">File Name</label>
                                 </td>
                                 <td style="width: 20px;"></td>
-                                <td style="width: 480px;">
-                                    <input type="text" id="fileName" style="width:450px"
-                                           required="true" 
-                                           data-dojo-type="dijit/form/ValidationTextBox"/>
+                                <td style="width: 280px;">
+                                    <div id="fileName"></div>
                                 </td>        
                             </tr>
                             <tr style="width: 500px;">
@@ -118,24 +96,12 @@
                                 </td>
                                 <td style="width: 20px;"></td>
                                 <td style="width: 480px;">
-                                    <select data-dojo-type="dijit/form/ComboBox">
-                                        <option>Source Packages</option>
-                                        <option>Test Packages</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr style="width: 500px;">
-                                <td>
-                                    <label for="name">Package</label>
-                                </td>
-                                <td style="width: 20px;"></td>
-                                <td style="width: 480px;">
-                                    <input type="text" id="packageName" style="width:385px"
+                                    <input type="text" id="filePath" style="width:385px"
                                            required="true" 
                                            data-dojo-type="dijit/form/ValidationTextBox"/>
-                                    <button data-dojo-type="dijit/form/Button" type="button">
+                                    <button data-dojo-type="dijit/form/Button" type="button" id="browseButton">
                                         <script type="dojo/connect" data-dojo-event="onClick">
-                                            alert('Browse');
+                                            browse();
                                         </script>
                                         Browse
                                     </button>
@@ -147,7 +113,7 @@
                                 </td>
                                 <td style="width: 20px;"></td>
                                 <td style="width: 480px;">
-                                    <input data-dojo-type="dijit/form/TextBox" style="width:450px"/>
+                                    <input data-dojo-type="dijit/form/TextBox" id="createdFile" style="width:450px" disabled="true"/>
                                 </td>
                             </tr>
 

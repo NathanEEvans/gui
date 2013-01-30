@@ -71,28 +71,8 @@
                 <div style="float: left;width:320px; height: 100%; border-right: 1px solid #b5bcc7;">
                     <span style="font-size: 12px; margin-left: 10px;"><b>Maven Archetypes:</b></span>
                     <hr style="color:#b5bcc7">
-                    <div data-dojo-type="dojo/store/JsonRest" data-dojo-id="archetypeRestStore" data-dojo-props="target:  'http://localhost/stormcloud/api/maven/archetypes', headers: { Authorization: 'Basic bWFydGlqbjox'}"></div>
-                    <div data-dojo-type="dojo/data/ObjectStore" data-dojo-id="archetypeStore" data-dojo-props="objectStore:archetypeRestStore"></div>
-                    <div data-dojo-type="dijit/tree/TreeStoreModel" data-dojo-id="archetypeTreeModel" data-dojo-props="store:archetypeStore"></div>
-                    <div data-dojo-type="dijit/Tree" id="archetypeTree" style="height: 50%; padding-top: 5px;" data-dojo-props="model:archetypeTreeModel,showRoot:false">
 
-                        <script type="dojo/method" data-dojo-event="getIconClass" data-dojo-args="item, opened">
-                            return 'projectIcon';
-                        </script>
-
-                        <script type="dojo/connect" data-dojo-event="onClick" data-dojo-args="item">
-
-                            dojo.byId('archetypeGroupId').innerHTML = item.groupId;
-                            dojo.byId('archetypeArtifactId').innerHTML = item.artifactId;
-                            dojo.byId('archetypeVersion').innerHTML = item.version;
-                            dojo.byId('archetypeDescription').innerHTML = item.description;
-
-                            dojo.byId('archetypeGroupId2').innerHTML = item.groupId;
-                            dojo.byId('archetypeArtifactId2').innerHTML = item.artifactId;
-                            dojo.byId('archetypeVersion2').innerHTML = item.version;
-                            dojo.byId('archetypeDescription2').innerHTML = item.description;
-
-                        </script>
+                    <div id="archetypeTree">
                     </div>
                 </div>
 

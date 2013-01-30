@@ -6,7 +6,7 @@ define([],
     
             init : function(){
                 
-                alert('init');
+                
             }
     
     

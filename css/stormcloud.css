@@ -13,13 +13,14 @@
 @import url(/js/dojox/layout/resources/ResizeHandle.css);
 @import url(/js/dojox/grid/resources/Grid.css);
 @import url(/js/dojox/grid/resources/claroGrid.css);
+@import url(/js/dojox/widget/FilePicker/FilePicker.css);
+
 
 /**
  * Stormcloud styling
- */
+*/
 @import url(stormcloud/icons.css);
 @import url(stormcloud/chat.css);
-@import url(stormcloud/dialogs.css);
 
 
 html, body {
