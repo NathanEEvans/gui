@@ -17,7 +17,7 @@ var Login = (function() {
             var enc = dojox.encoding.base64.encode(bytes);
         
             var xhrArgs = {
-                url: 'http://localhost/stormcloud/api/login',
+                url: 'http://stormcloud-ide.com/stormcloud/api/login',
                 headers: {
                     Authorization: "Basic " + enc
                 },
@@ -25,7 +25,7 @@ var Login = (function() {
                     
                     switch(ioargs.xhr.status ){
                         case 200:
-                            document.location = 'http://localhost';
+                            document.location = 'http://stormcloud-ide.com';
                             break;
                     }
                 },

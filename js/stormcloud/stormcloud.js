@@ -48,8 +48,16 @@ require([
                     events,
                     gui) {
 
-                    // nothing todo with the context just log where we got it
-                    console.info("Context loaded api url : " + context.getApiUrl());
+                    // get user settings from the database
+                    // and set the context values
+                    //
+                    //
+                    // store the provided username & pass
+                    // 
+                    // xhr call window.location.hostname
+                    // context.host.
+
+                    
 
                     // bind all events
                     events.bind();
