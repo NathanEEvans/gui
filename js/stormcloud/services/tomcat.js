@@ -20,14 +20,12 @@
  */
 define([
     'stormcloud/_base/context',
-    'stormcloud/_base/auth',
     'stormcloud/rest/xhr',
     'stormcloud/rest/request',
     'stormcloud/services/logging',
     'stormcloud/gui/statusbar',],
     function(
         context,
-        auth,
         xhr,
         request,
         logging,

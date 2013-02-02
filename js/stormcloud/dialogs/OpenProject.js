@@ -5,7 +5,6 @@ define([
     'dijit/tree/TreeStoreModel',
     'dijit/Tree',
     'stormcloud/_base/context',
-    'stormcloud/_base/auth',
     'stormcloud/services/filesystem'], 
     function(
         registry,
@@ -14,7 +13,6 @@ define([
         TreeStoreModel,
         Tree,
         context,
-        auth,
         filesystem){
             
             
@@ -25,9 +23,6 @@ define([
                 var closedProjectRestStore = new JsonRest({
                 
                     target : context.getApiUrl() + 'filesystem/closed',
-                    headers: {
-                        Authorization: 'Basic ' + auth.credentials()
-                    }
                 });
                     
                 

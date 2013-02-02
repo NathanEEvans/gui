@@ -26,7 +26,6 @@ define([
     'dijit/Dialog',
     'dijit/form/ComboBox',
     'dijit/form/ValidationTextBox',
-    'stormcloud/_base/auth',
     'stormcloud/_base/context',
     'stormcloud/gui/dialog'], 
     function(
@@ -37,7 +36,6 @@ define([
         Dialog,
         ComboBox,
         ValidationTextBox,
-        auth,
         context,
         dialog){
             
@@ -53,9 +51,7 @@ define([
                 var fileRestStore = new JsonRest({
                 
                     target : context.getApiUrl() + 'filesystem/templates',
-                    headers: {
-                        Authorization: 'Basic ' + auth.credentials()
-                    }
+              
                 });
                 
                 var fileTreeModel = new TreeStoreModel({
@@ -84,9 +80,6 @@ define([
                 var availableProjectStore = new JsonRest({
                     
                     target : context.getApiUrl() + 'filesystem/projects/available',
-                    headers: {
-                        Authorization: 'Basic ' + auth.credentials()
-                    }
                 });
                 
                 new ComboBox({

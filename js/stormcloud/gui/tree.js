@@ -19,7 +19,6 @@
  * 
  */
 define([
-    'stormcloud/_base/auth',
     'dijit/registry',
     'dojo/store/JsonRest',
     'dojo/data/ObjectStore',
@@ -28,7 +27,6 @@ define([
     'stormcloud/_base/context',
     'stormcloud/services/filesystem'], 
     function(
-        auth,
         registry,
         JsonRest,
         ObjectStore,
@@ -53,10 +51,7 @@ define([
                 // create project tree
                 var projectRestStore = new JsonRest({
                 
-                    target : context.getApiUrl() + 'filesystem/opened',
-                    headers: {
-                        Authorization: 'Basic ' + auth.credentials()
-                    }
+                    target : context.getApiUrl() + 'filesystem/opened'
                 });
                     
                 
@@ -88,10 +83,7 @@ define([
                 // create filesystem tree
                 var filesystemRestStore = new JsonRest({
                 
-                    target : context.getApiUrl() + 'filesystem/bare',
-                    headers: {
-                        Authorization: 'Basic ' + auth.credentials()
-                    }
+                    target : context.getApiUrl() + 'filesystem/bare'
                 });
                     
                 
@@ -122,10 +114,7 @@ define([
                 // create services tree
                 var servicesRestStore = new JsonRest({
                 
-                    target : context.getApiUrl() + 'services',
-                    headers: {
-                        Authorization: 'Basic ' + auth.credentials()
-                    }
+                    target : context.getApiUrl() + 'services'
                 });
                    
                 var servicesTreeModel = new TreeStoreModel({

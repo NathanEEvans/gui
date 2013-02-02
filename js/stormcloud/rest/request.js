@@ -19,10 +19,8 @@
  * 
  */
 define([
-    'stormcloud/_base/auth',
     'dojo/request/xhr'], 
     function(
-        auth,
         xhr){
 
         //
@@ -40,10 +38,7 @@ define([
     
                 xhr(args.url, {
                     
-                    method : 'GET',
-                    headers: {
-                        'Authorization' : auth.credentials()
-                    }
+                    method : 'GET'
                     
                 }).then(function(data){
                     

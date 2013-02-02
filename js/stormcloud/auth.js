@@ -87,6 +87,7 @@ define([
                         
                         // success, load context with the user settings
                         // context
+                        // alert(data);
                         
                         
                         }else{

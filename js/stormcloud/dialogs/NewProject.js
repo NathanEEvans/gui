@@ -3,14 +3,12 @@ define([
     'dojo/data/ObjectStore',
     'dijit/tree/TreeStoreModel',
     'dijit/Tree',
-    'stormcloud/_base/auth',
     'stormcloud/_base/context'], 
     function(
         JsonRest,
         ObjectStore,
         TreeStoreModel,
         Tree,
-        auth,
         context){
         
 
@@ -22,9 +20,6 @@ define([
                 var archetypeRestStore = new JsonRest({
                 
                     target : context.getApiUrl() + 'maven/archetypes',
-                    headers: {
-                        Authorization: 'Basic ' + auth.credentials()
-                    }
                 });
                 
                 var archetypeTreeModel = new TreeStoreModel({
