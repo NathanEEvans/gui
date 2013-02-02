@@ -10,6 +10,18 @@
         <script type="text/javascript">dojoConfig = {parseOnLoad: true}</script>
         <script type="text/javascript" src="js/dojo/dojo.js"></script>
 
+        <script>
+            
+            require(['stormcloud/auth'], function(auth) {
+        
+                // get user info
+                // when not found we redirect to the login page
+
+                auth.verify();
+            
+            });
+        </script>
+
         <!-- Load Ace -->
         <script type="text/javascript" src="js/ace/src-noconflict/ace.js"></script>
 

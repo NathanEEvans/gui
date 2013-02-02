@@ -18,12 +18,8 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([
-    'stormcloud/_base/context',
-    'stormcloud/_base/auth'], 
-    function(
-        context,
-        auth){
+define([], 
+    function(){
 
         //
         // module      : stormcloud/rest/xhr
@@ -37,10 +33,6 @@ define([
             
             get : function(args){
     
-                args.headers = {
-                    Authorization : 'Basic ' + auth.credentials(),
-                    'Origin' : context.host
-                };
                
                 return dojo.xhr("GET", args);
             }, 
@@ -56,7 +48,6 @@ define([
                 }
         
                 args.headers = {
-                    Authorization : 'Basic ' + auth.credentials(),
                     'Content-Type' : conType
                 };
                
@@ -80,7 +71,6 @@ define([
                 }
         
                 args.headers = {
-                    Authorization : 'Basic ' + auth.credentials(),
                     'Content-Type' : conType
                 };
                
