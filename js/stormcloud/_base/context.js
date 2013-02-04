@@ -26,45 +26,63 @@ define([],
         // 
         // summary      : Defines the application context
         // 
-        // description  : This module defines the application wide scope contextual variables:
-        //		
-        //		- Stormcloud API Base URL
-        //		- Loaded Projects
-        //		- ...
+        //
+        
+        SETTING = {  
+    
+            API_URL : 'API_URL',
+            TOMCAT_HOME : 'TOMCAT_HOME',
+            TOMCAT_MANAGER_URL : 'TOMCAT_MANAGER_URL',
+            TOMCAT_VIEW_URL : 'TOMCAT_PRIVATE_URL'
+        }
     
         return {
 
-            // 
-            host     : 'stormcloud-ide.com',
+            user : null,
             
-            
-            tomcatHost : 'martijn.stormcloud-ide.com:8180',
-            
-            
-            tomcatManagerUrl : 'stormcloud-ide.com/manager/text/',
-            
-            //
-            protocol : 'http',
-        
-            //
-            apiUrl   : '/stormcloud/api/',
-            
-            //
+            // convenience method to get the api url from user settings
             getApiUrl : function(){
             
-                return this.protocol + '://' + this.host + this.apiUrl;
+                return this.getSetting(SETTING.API_URL);
             },
             
+            // convenience method to get the 'private' tomcat view url
+            // from settings
             getTomcatViewUrl: function(){
                 
-                return this.protocol + '://' + this.tomcatHost
+                return this.getSetting(SETTING.TOMCAT_VIEW_URL);
             },
             
+            // convenience method to get the 'private' tomcat manager url
+            // from the user settings
             getTomcatManagerUrl : function(){
                 
-                return this.protocol + '://' + this.tomcatManagerUrl;
+                return this.getSetting(SETTING.TOMCAT_MANAGER_URL);
             },
             
+            // generic method to get a user setting based on a
+            // SETTING key
+            getSetting : function(key){
+              
+                for(var setting in this.user.settings){
+                    
+                    for(var x in this.user.settings[setting]){
+                    
+                        if(x == 'key' && this.user.settings[setting][x] == key){
+                            
+                            return this.user.settings[setting].value;
+                        }
+                    }   
+                }  
+            
+                return undefined;
+            },
+            
+            
+            /**
+             * @todo this is going to move in a treecontext object
+             * of some sort.
+             */
             // The item currently selected in the tree.
             selectedTreeItem : null,
 

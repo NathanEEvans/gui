@@ -70,14 +70,14 @@ define([
                 dojo.xhrPost(xhrArgs);
             },
         
-            // Make a call into the settings
+            // Make a call to get the user
             //
             verify : function(){
             
                 
                 var xhrArgs = {
                 
-                    url: 'http://' + window.location.host + '/stormcloud/api/user/settings',
+                    url: 'http://' + window.location.host + '/stormcloud/api/user',
                
                     load: function(data, ioargs){
                     
@@ -85,11 +85,9 @@ define([
                     
                         if(code == 200){
                         
-                        // success, load context with the user settings
-                        // context
-                        // alert(data);
-                        
-                        
+                            // success, set the user in context
+                            context.user = JSON.parse(data);
+                            
                         }else{
                             
                             document.location = 'http://' + window.location.host + '/login.html'; 
