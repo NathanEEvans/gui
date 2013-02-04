@@ -49,7 +49,7 @@ define([
 
         var TOMCAT = {
             
-            LIST : context.getTomcatManagerUrl() + 'list',
+            LIST : context.getTomcatManagerUrl() + '/list',
             
             VIEW : context.getTomcatViewUrl() + "/",
             

@@ -44,10 +44,10 @@ define([
 
         var GIT = {
             
-            ADD : context.getApiUrl() + 'git/add',
-            COMMIT : context.getApiUrl() + 'git/commit',
-            STATUS : context.getApiUrl() + 'git/status',
-            CLONE_REMOTE : context.getApiUrl() + 'git/clone-remote'
+            ADD : context.getApiUrl() + '/git/add',
+            COMMIT : context.getApiUrl() + '/git/commit',
+            STATUS : context.getApiUrl() + '/git/status',
+            CLONE_REMOTE : context.getApiUrl() + '/git/clone-remote'
         
         };
 

@@ -46,23 +46,23 @@ define([
         var FILESYSTEM = {  
         
             // Open project service url.
-            OPEN : context.getApiUrl() + 'filesystem/open',
+            OPEN : context.getApiUrl() + '/filesystem/open',
             // Close project service url.
-            CLOSE : context.getApiUrl() + 'filesystem/close',
+            CLOSE : context.getApiUrl() + '/filesystem/close',
             // Move/Rename service url
-            MOVE : context.getApiUrl() + 'filesystem/move',
+            MOVE : context.getApiUrl() + '/filesystem/move',
             // Copy service url
-            COPY : context.getApiUrl() + 'filesystem/copy',
+            COPY : context.getApiUrl() + '/filesystem/copy',
             // Save resource service url
-            SAVE : context.getApiUrl() + 'filesystem/save',
+            SAVE : context.getApiUrl() + '/filesystem/save',
             // Delete resource service url
-            DELETE : context.getApiUrl() + 'filesystem/delete',
+            DELETE : context.getApiUrl() + '/filesystem/delete',
             // Get resource service url
-            GET : context.getApiUrl() + 'filesystem/get',
+            GET : context.getApiUrl() + '/filesystem/get',
             //
-            GET_BINARY : context.getApiUrl() + 'filesystem/getBinary',
+            GET_BINARY : context.getApiUrl() + '/filesystem/getBinary',
             // Check if there is things in the trash bin
-            HAS_TRASH : context.getApiUrl() + 'filesystem/hasTrash'
+            HAS_TRASH : context.getApiUrl() + '/filesystem/hasTrash'
         
         };
     

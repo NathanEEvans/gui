@@ -44,8 +44,8 @@ define([
     
         var URL = {
       
-            MAVEN_EXECUTE : context.getApiUrl() + 'maven/execute',
-            MAVEN_CREATE : context.getApiUrl() + 'maven/create'
+            MAVEN_EXECUTE : context.getApiUrl() + '/maven/execute',
+            MAVEN_CREATE : context.getApiUrl() + '/maven/create'
         };
     
     

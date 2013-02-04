@@ -51,7 +51,7 @@ define([
                 // create project tree
                 var projectRestStore = new JsonRest({
                 
-                    target : context.getApiUrl() + 'filesystem/opened'
+                    target : context.getApiUrl() + '/filesystem/opened'
                 });
                     
                 
@@ -83,7 +83,7 @@ define([
                 // create filesystem tree
                 var filesystemRestStore = new JsonRest({
                 
-                    target : context.getApiUrl() + 'filesystem/bare'
+                    target : context.getApiUrl() + '/filesystem/bare'
                 });
                     
                 
@@ -114,7 +114,7 @@ define([
                 // create services tree
                 var servicesRestStore = new JsonRest({
                 
-                    target : context.getApiUrl() + 'services'
+                    target : context.getApiUrl() + '/services'
                 });
                    
                 var servicesTreeModel = new TreeStoreModel({

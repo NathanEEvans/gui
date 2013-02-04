@@ -39,8 +39,8 @@ define([
    
         var CONSTANTS = {
    
-            MAVEN_LOG : context.getApiUrl() + 'log/maven',
-            TOMCAT_LOG : context.getApiUrl() + 'log/tomcat'
+            MAVEN_LOG : context.getApiUrl() + '/log/maven',
+            TOMCAT_LOG : context.getApiUrl() + '/log/tomcat'
             
         }
    
