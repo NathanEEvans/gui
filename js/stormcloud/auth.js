@@ -19,8 +19,10 @@
  * 
  */
 define([
+    'stormcloud/rest/xhr',
     'stormcloud/_base/context'], 
     function(
+        xhr,
         context){
 
         // module:
@@ -73,14 +75,12 @@ define([
             // Make a call to get the user
             //
             verify : function(){
-            
                 
-                var xhrArgs = {
-                
+                xhr.get({
                     url: 'http://' + window.location.host + '/stormcloud/api/user',
-               
-                    load: function(data, ioargs){
-                    
+                    sync: true,
+                    load: function(data, ioargs) {
+            
                         var code = ioargs.xhr.status; 
                     
                         if(code == 200){
@@ -98,10 +98,11 @@ define([
                         document.location = 'http://' + window.location.host + '/login.html'; 
                         
                     }
-                };
-            
-                dojo.xhrGet(xhrArgs);
-            
+                    
+                });
+                
+                
+               
             
             }
 
