@@ -381,6 +381,14 @@ define([
                             fs.get(item, false);
                     
                         });
+                        
+                        // And refresh the project tree so it shows up in there
+                        require(['stormcloud/gui/tree'],function(tree){
+                
+                            tree.refresh('projectTree');
+                        });
+                            
+                        
                     },
 
                     function(error){
