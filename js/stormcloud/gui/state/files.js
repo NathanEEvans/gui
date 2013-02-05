@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/services/filesystem
+ * Stormcloud IDE - stormcloud/gui/state/files
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -28,7 +28,6 @@ define([
         // module:
         //		stormcloud/services/filesystem
         // summary:
-        //		Defines the application context
         //		
 
 

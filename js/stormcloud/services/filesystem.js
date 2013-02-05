@@ -23,7 +23,7 @@ define([
     'stormcloud/gui/statusbar',
     'stormcloud/editor/ace',
     'stormcloud/rest/xhr',
-    'stormcloud/gui/state/filestate'], 
+    'stormcloud/gui/state/files'], 
     function(
         context,
         statusbar,
