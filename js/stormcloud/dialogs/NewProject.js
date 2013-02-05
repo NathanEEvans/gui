@@ -19,7 +19,7 @@ define([
                
                 var archetypeRestStore = new JsonRest({
                 
-                    target : context.getApiUrl() + 'maven/archetypes',
+                    target : context.getApiUrl() + '/maven/archetypes'
                 });
                 
                 var archetypeTreeModel = new TreeStoreModel({

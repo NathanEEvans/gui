@@ -50,7 +50,7 @@ define([
                 // populate the templates tree
                 var fileRestStore = new JsonRest({
                 
-                    target : context.getApiUrl() + 'filesystem/templates',
+                    target : context.getApiUrl() + '/filesystem/templates'
               
                 });
                 
@@ -79,7 +79,7 @@ define([
             
                 var availableProjectStore = new JsonRest({
                     
-                    target : context.getApiUrl() + 'filesystem/projects/available',
+                    target : context.getApiUrl() + '/filesystem/projects/available'
                 });
                 
                 new ComboBox({

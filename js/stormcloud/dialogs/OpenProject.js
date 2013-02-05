@@ -22,7 +22,7 @@ define([
             
                 var closedProjectRestStore = new JsonRest({
                 
-                    target : context.getApiUrl() + 'filesystem/closed',
+                    target : context.getApiUrl() + '/filesystem/closed'
                 });
                     
                 
