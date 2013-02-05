@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/services/maven
+ * Stormcloud IDE - stormcloud/auth
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -97,16 +97,8 @@ define([
             
                         document.location = 'http://' + window.location.host + '/login.html'; 
                         
-                    }
-                    
+                    }          
                 });
-                
-                
-               
-            
             }
-
-
         };
-
     });

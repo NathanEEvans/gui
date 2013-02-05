@@ -31,6 +31,7 @@ define([],
         SETTING = {  
     
             API_URL : 'API_URL',
+            PROJECT_FOLDER : 'PROJECT_FOLDER',
             TOMCAT_HOME : 'TOMCAT_HOME',
             TOMCAT_MANAGER_URL : 'TOMCAT_MANAGER_URL',
             TOMCAT_VIEW_URL : 'TOMCAT_PRIVATE_URL'
@@ -44,6 +45,12 @@ define([],
             getApiUrl : function(){
             
                 return this.getSetting(SETTING.API_URL);
+            },
+            
+            // convenience method to get the users project folder
+            getProjectFolder : function(){
+              
+                return this.getSetting(SETTING.PROJECT_FOLDER);
             },
             
             // convenience method to get the 'private' tomcat view url

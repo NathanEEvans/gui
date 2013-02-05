@@ -57,6 +57,8 @@ define([
             COPY : context.getApiUrl() + '/filesystem/copy',
             // Save resource service url
             SAVE : context.getApiUrl() + '/filesystem/save',
+            // Create
+            CREATE : context.getApiUrl() + '/filesystem/create',
             // Delete resource service url
             DELETE : context.getApiUrl() + '/filesystem/delete',
             // Get resource service url
@@ -351,6 +353,42 @@ define([
                 alert('SaveAll Not Supported Yet.');
           
             },
+    
+    
+            // create a new file
+            create: function(item){
+              
+                var data = {
+        
+                    filePath : item.id,
+                    template : item.template
+                    
+                };
+    
+                var xhrArgs = {
+                    url: FILESYSTEM.CREATE,
+                    postData: dojo.toJson(data)
+                };
+            
+                var deferred = xhr.post(xhrArgs,'JSON');
+    
+                deferred.then(
+                    function(data){
+            
+                        // when succeeded, open it in the editor
+                        require(['stormcloud/services/filesystem'], function(fs){
+                
+                            fs.get(item, false);
+                    
+                        });
+                    },
+
+                    function(error){
+            
+                        statusbar.errorStatus(error);
+                    });
+            },
+    
     
             // Save a file to the filesystem.
             save: function(item, contents){

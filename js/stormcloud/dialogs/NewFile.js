@@ -27,6 +27,7 @@ define([
     'dijit/form/ComboBox',
     'dijit/form/ValidationTextBox',
     'stormcloud/_base/context',
+    'stormcloud/services/filesystem',
     'stormcloud/gui/dialog'], 
     function(
         JsonRest,
@@ -37,11 +38,12 @@ define([
         ComboBox,
         ValidationTextBox,
         context,
+        filesystem,
         dialog){
             
             
         var extension;
-        var filepath;
+        var template;
         
         return{
             
@@ -67,6 +69,7 @@ define([
                 new Tree({
                     
                     model:fileTreeModel, 
+                    
                     showRoot:false, 
                     // tree icon function
                     getIconClass : this.iconClass,
@@ -110,7 +113,7 @@ define([
             
             comboOnChange: function(newValue){
                 
-                dojo.byId('projectName').innerHTML = newValue;
+                dojo.byId('projectName').value = newValue;
             },
             
             
@@ -120,12 +123,89 @@ define([
                 
                 var regex = /(?:\.([^.]+))?$/;
               
-                extension = '.' + regex.exec(item.label)[1];   
+                extension = '.' + regex.exec(item.label)[1];  
+                template = item.id;
+            },
+            
+            
+            browse : function(){
+                
+                
+                var folderPicker = new Dialog({
+                    
+                    id : 'folderPicker',
+                    title: 'Pick a folder',
+                    content: '<div id="folderPickerTree"></div>',
+                    style: "width: 300px"
+                
+                });
+                
+                var folderPickerRestStore = new JsonRest({
+                
+                    target : context.getApiUrl() + '/filesystem/folderpicker?filePath=' + context.getProjectFolder() + '/' + dojo.byId('projectName').value
+              
+                });
+                
+                var folderPickerTreeModel = new TreeStoreModel({
+          
+                    store : new ObjectStore({
+                    
+                        objectStore : folderPickerRestStore
+                    }),
+                    
+                    mayHaveChildren : this.mayHaveChildren
+                });
+       
+                new Tree({
+                    
+                    model:folderPickerTreeModel, 
+                    showRoot:false, 
+                    // tree icon function
+                    getIconClass : this.iconClass,
+                    // tree double click handler
+                    onDblClick : this.openItem,
+                    // tree click
+                    onClick : this.folderPickerTreeOnClick
+    
+                }, 'folderPickerTree');
+            
+                
+                
+                folderPicker.show();    
+              
+            },
+            
+            // folder has been selected
+            folderPickerTreeOnClick : function(item){
+              
+                // set the selected path
+                dojo.byId('filePath').value = item.id;
+                
+                // update the created file preview  
+                dojo.byId('createdFile').value = item.id + '/' + dojo.byId('fileName').value + extension;
+                    
+              
+                // destory the folder picker and components
+                dijit.byId('folderPicker').destroyRecursive();
             },
             
             done : function() {
             
-                alert('save file');
+                // create the file item
+                var item = {
+                    
+                    id : dojo.byId('createdFile').value,
+                    label : dojo.byId('fileName').value + extension,
+                    type : 'javaFile',
+                    template : template
+                     
+                    
+                };
+                
+                filesystem.create(item);
+                
+                // hide the dialog
+                dialog.hide(DIALOG.NEW_FILE);
             },
             
             mayHaveChildren : function(item){

@@ -15,6 +15,15 @@
             });    
         }
         
+        function browse() {
+            
+            require(['stormcloud/dialogs/NewFile'], function(newFile){
+       
+                newFile.browse();
+            });    
+        }
+        
+        
     </script>
 
     <div class="floater">
@@ -77,8 +86,8 @@
                                     <label for="name">Project</label>
                                 </td>
                                 <td style="width: 20px;"></td>
-                                <td style="width: 480px;">
-                                    <div id="projectName"></div>
+                                <td style="width: 280px;">
+                                    <input data-dojo-type="dijit/form/TextBox" id="projectName" style="width:165px" disabled="true"/>
                                 </td>        
                             </tr>
                             <tr style="width: 500px;">
@@ -98,7 +107,7 @@
                                 <td style="width: 480px;">
                                     <input type="text" id="filePath" style="width:385px"
                                            required="true" 
-                                           data-dojo-type="dijit/form/ValidationTextBox"/>
+                                           data-dojo-type="dijit/form/TextBox"/>
                                     <button data-dojo-type="dijit/form/Button" type="button" id="browseButton">
                                         <script type="dojo/connect" data-dojo-event="onClick">
                                             browse();
