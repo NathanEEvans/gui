@@ -25,9 +25,10 @@ define([
         xhr,
         context){
 
-        // module:
+        //
+        // module   : stormcloud/auth
         //		
-        // summary:
+        // summary  :
         //		
     
         return{

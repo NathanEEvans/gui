@@ -35,12 +35,10 @@ define([
         context,
         filesystem){
 
+        //
         // module:
         //		stormcloud/gui/tree
         // summary:
-        //		
-        // description:
-        //		
         //		
         
         return{

@@ -23,15 +23,12 @@ define([
     function(
         registry){
 
-
+        //
         // module       : stormcloud/gui/dialog
         // 
         // summary      : 
-        // 
-        // description  : 
         //
-        //
-
+  
         // 'Constants' holding the dialog configuration.
         DIALOG = {
         

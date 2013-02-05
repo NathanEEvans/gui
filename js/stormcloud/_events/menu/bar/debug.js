@@ -29,7 +29,6 @@ define([
         // module      : stormcloud/_events/menu/bar/debug
         // 
         // summary     : Debug Menubar click events
-        // 
         //               
 
         return{

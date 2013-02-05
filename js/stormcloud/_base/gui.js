@@ -35,8 +35,6 @@ define([
         // module      : stormcloud/_base/gui
         // 
         // summary     : initialize anything concerning gui
-        // 
-        // description : 
         //               
 
         return{

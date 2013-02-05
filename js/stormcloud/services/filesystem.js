@@ -31,18 +31,11 @@ define([
         xhr,
         filestate){
 
-
-        // module:
-        //		stormcloud/services/filesystem
-        // summary:
-        //		Defines the application context
-        // description:
-        //		This module defines the application wide scope contextual variables:
+        //
+        // module   : stormcloud/services/filesystem
         //		
-        //		- Stormcloud API Base URL
-        //		- Loaded Projects
-        //		- ...
-    
+        // summary  :
+        //		
 
         // Filesystem constants.
         var FILESYSTEM = {  

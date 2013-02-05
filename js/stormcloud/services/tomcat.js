@@ -36,10 +36,7 @@ define([
         // 
         // summary     : Defines the Tomcat Manager for Tomcat instance operations
         // 
-        // description : This module defines the operations that can be performed
-        //               on the remote Tomcat instance.
-        //
-
+        
 
         // http://localhost:8180/manager/text/serverinfo
         // http://localhost:8180/manager/text/deploy?path=/Calculator&war=file:/filesystem/martijn/projects/MavenCalculator/target/Calculator.war

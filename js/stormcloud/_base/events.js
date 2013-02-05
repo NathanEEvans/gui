@@ -19,8 +19,8 @@
  * 
  */
 define([
-    'stormcloud/_events/menu/bar/file',
     'stormcloud/_events/menu/bar/stormcloud',
+    'stormcloud/_events/menu/bar/file',
     'stormcloud/_events/menu/bar/edit',
     'stormcloud/_events/menu/bar/view',
     'stormcloud/_events/menu/bar/navigate',
@@ -35,8 +35,8 @@ define([
     'stormcloud/_events/menu/context/project',
     'stormcloud/_events/menu/tool/bar'],
     function(
-        file,
         stormcloud,
+        file,
         edit,
         view,
         navigate,
@@ -54,10 +54,11 @@ define([
         //
         // module      : stormcloud/_base/events
         // 
-        // summary     : 
-        // 
+        // summary     : This file invokes the bind on the menu event files
+        //               and contains some event globals.
         //               
 
+        // Global events
         EVENT = {
             // “click” - the user clicked a node
             CLICK: 'click',
@@ -81,46 +82,37 @@ define([
             SUBMIT: 'submit'
 
         /** 
-                         * @todo find usable implementation for the dojo mouse events
-                         * dojo/mouse#enter - a normalized version of onmouseover that wont fire more than you’d like (only on first enter)    
-                         * dojo/mouse#leave - a normalized version of onmouseout that wont fire more than you’d like (only once when leaving)
-                         */
+         * @todo find usable implementation for the dojo mouse events
+         * dojo/mouse#enter - a normalized version of onmouseover that wont fire more than you’d like (only on first enter)    
+         * dojo/mouse#leave - a normalized version of onmouseout that wont fire more than you’d like (only once when leaving)
+         */
 
         }
 
         return{
+            
             // Bind the events to the widgets
             bind: function() {
 
-
+                // Main menubar (From left to right)
+                stormcloud.bind();
                 file.bind();
+                edit.bind();
+                view.bind();
+                navigate.bind();
+                source.bind();
+                refactor.bind();
+                run.bind();
+                debug.bind();
+                window.bind();
+                help.bind();
 
+                // Context menus
+                filesystem.bind();
                 tomcat.bind();
-                
                 project.bind();
                 
-                stormcloud.bind();
-                
-                edit.bind();
-                
-                view.bind();
-
-                navigate.bind();
-
-                source.bind();
-
-                refactor.bind();
-                
-                run.bind();
-                
-                debug.bind();
-                
-                window.bind();
-                
-                help.bind();
-                
-                filesystem.bind();
-                
+                // The Toolbar (Icon menus)                
                 bar.bind();
 
             }

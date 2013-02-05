@@ -31,17 +31,12 @@ define([
         tree,
         xhr){
 
-        // module:
-        //		stormcloud/services/maven
-        // summary:
-        //		Defines the application context
-        // description:
-        //		This module defines the application wide scope contextual variables:
+        //
+        // module   : stormcloud/services/maven
         //		
-        //		- Stormcloud API Base URL
-        //		- Loaded Projects
-        //		- ...
-    
+        // summary  :
+        //		
+        
         var URL = {
       
             MAVEN_EXECUTE : context.getApiUrl() + '/maven/execute',

@@ -25,9 +25,10 @@ define([
         registry,
         MenuItem){
             
-        // module:
-        //		stormcloud/services/filesystem
-        // summary:
+        //
+        // module   : stormcloud/gui/state/files
+        //		
+        // summary  :
         //		
 
 

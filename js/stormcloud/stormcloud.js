@@ -26,9 +26,7 @@ require([
         //
         // module      : stormcloud/stormcloud
         // 
-        // summary     : The initial bootstrap of the stormcloud IDE JS
-        // 
-        // description : This module defines all JS that needs to be intialized,
+        // summary     : This module defines all JS that needs to be intialized,
         //               events that need to be bound, gui related things etc...
         //               
 

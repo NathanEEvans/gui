@@ -24,12 +24,10 @@ define([
         xhr){
 
         //
-        // module      : stormcloud/rest/xhr
+        // module      : stormcloud/rest/request
         // 
         // summary     : 
         // 
-        // description : 
-        //               
 
         return{
 

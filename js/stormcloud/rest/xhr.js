@@ -26,8 +26,6 @@ define([],
         // 
         // summary     : 
         // 
-        // description : 
-        //               
 
         return{
             

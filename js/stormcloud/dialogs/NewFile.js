@@ -41,7 +41,12 @@ define([
         filesystem,
         dialog){
             
-            
+        //
+        // module      : stormcloud/dialogs/NewFile
+        // 
+        // summary     : 
+        //               
+
         var extension;
         var template;
         

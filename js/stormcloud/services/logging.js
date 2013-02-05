@@ -31,9 +31,6 @@ define([
         // module      : stormcloud/services/logging
         // 
         // summary     : 
-        // 
-        // description : 
-        //              
         //               
 
    

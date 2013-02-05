@@ -21,13 +21,11 @@
 define([], 
     function(){
 
+        //
         // module       : stormcloud/gui/statusbar  
         //		
         // summary      : 
-        //		
-        // description  :
-        //		
-        //		
+        //				
     
         return {
             

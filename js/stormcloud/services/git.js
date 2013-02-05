@@ -29,18 +29,11 @@ define([
         tree,
         xhr){
 
-
-        // module:
-        //		stormcloud/services/git
-        // summary:
-        //		Defines the application context
-        // description:
-        //		This module defines the application wide scope contextual variables:
+        //
+        // module   : stormcloud/services/git
         //		
-        //		- Stormcloud API Base URL
-        //		- Loaded Projects
-        //		- ...
-
+        // summary  :
+        //		
 
         var GIT = {
             

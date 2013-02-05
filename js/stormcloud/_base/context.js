@@ -25,7 +25,9 @@ define([],
         // module       : stormcloud/_base/context
         // 
         // summary      : Defines the application context
-        // 
+        //                Containing User settings and
+        //                some convenience methods to retrieve 
+        //                those settings.
         //
         
         SETTING = {  
@@ -39,6 +41,8 @@ define([],
     
         return {
 
+            // The user object retrieved from the server on
+            // succesfull auth verification
             user : null,
             
             // convenience method to get the api url from user settings
