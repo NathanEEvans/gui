@@ -22,12 +22,14 @@ define([
     'stormcloud/_base/context',
     'stormcloud/gui/statusbar',
     'stormcloud/editor/ace',
-    'stormcloud/rest/xhr'], 
+    'stormcloud/rest/xhr',
+    'stormcloud/gui/state/filestate'], 
     function(
         context,
         statusbar,
         editor,
-        xhr){
+        xhr,
+        filestate){
 
 
         // module:
@@ -251,6 +253,9 @@ define([
                     tabs.selectChild(tab);
     
                 }else{
+                    
+                    // add it to the recenttly opened files list
+                    filestate.addOpenedFile(item);
                     
                     var isBinary = false;
                     

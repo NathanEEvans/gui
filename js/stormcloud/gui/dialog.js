@@ -19,7 +19,7 @@
  * 
  */
 define([
-    "dijit/registry"], 
+    'dijit/registry'], 
     function(
         registry){
 
