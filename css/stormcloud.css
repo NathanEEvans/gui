@@ -194,11 +194,50 @@ a:active {
 
 }
 
+.problemEntry {
+
+    float:left;
+    width : 90%;
+    padding-left : 5px;
+    padding-top : 5px;
+
+}
+
+.problemFileName {
+
+    float : left;
+    padding-left : 5px;
+    padding-right: 5px;
+    color : #b5bcc7;
+}
+
+.problemFileName:hover {
+
+    color: #abd6ff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.problemRange{
+
+    float : left;
+    padding-right : 5px;
+    color : #b5bcc7;
+}
 
 
+.problemRange:hover{
 
+    color: #abd6ff;
+    text-decoration: underline;
+    cursor: pointer;
+}
 
+.problemMessage{
 
+    float: left;
+
+}
 
 #footerContainer{
 
@@ -208,3 +247,4 @@ a:active {
     margin:0px !important;
     border: 0px;
 }
+

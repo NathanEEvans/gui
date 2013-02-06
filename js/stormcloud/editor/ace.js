@@ -19,9 +19,11 @@
  * 
  */
 define([
-    'dijit/registry'], 
+    'dijit/registry',
+    'stormcloud/gui/annotations'], 
     function(
-        registry){
+        registry,
+        annotations){
    
         // module      : stormcloud/editor/ace
         // 
@@ -34,7 +36,45 @@ define([
             loadAce : function(item, contents, readonly){
            
                 var editor = ace.edit(item.id);
+                
+                // set the general highlighting theme
                 editor.setTheme("ace/theme/eclipse");
+            
+                // set the file contents
+                // this has to stay here before event binding
+                // otherwise events will already be triggered
+                // like the onchange event.
+                editor.getSession().setValue(contents);
+
+                // set the read/write mode
+                editor.setReadOnly(readonly); 
+
+                // Set the correct language mode
+                this._setMode(editor, item);
+                
+                // Add the editor keyboard bindings (shortcut-keys)
+                this._setKeyBindings(editor, item);
+
+                // set the editor events
+                this._setEvents(editor, item);
+            
+                // set annotations (if any)
+                this._setAnnotations(editor, item);
+                
+                // register the editor in the registry for
+                // future reference
+                editor.id = 'ace_editor_' + item.id;
+                var rEditor = registry.byId('ace_editor_' + item.id);
+
+                if(rEditor == undefined){
+                    registry.add(editor);
+                }                
+            },
+        
+            
+            // determine the editor language mode
+            _setMode: function(editor, item ){
+            
             
                 if(item.type == 'javaFile'){
                     editor.getSession().setMode("ace/mode/java");            
@@ -56,6 +96,7 @@ define([
                     || item.type == 'xsdFile'
                     || item.type == 'xhtmlFile'
                     || item.type == 'tldFile'
+                    || item.type == 'xslFile'
                     ){
                     editor.getSession().setMode("ace/mode/xml");    
                 }
@@ -75,9 +116,10 @@ define([
                 if(item.type == 'cssFile'){
                     editor.getSession().setMode("ace/mode/css");    
                 }
+            },
             
-                editor.getSession().setValue(contents);
-                                
+            _setKeyBindings : function(editor, item){
+                
                 editor.commands.addCommand({
                     name: 'saveCommand',
                     bindKey: {
@@ -111,24 +153,44 @@ define([
                                         
                     }
                 });
+            },
             
-                editor.setReadOnly(readonly); 
-                                
+            
+            _setEvents : function(editor, item){
+                
+                // Change tab to bold when file edited
                 editor.getSession().on('change',function(){
 
                     dijit.byId(item.id).set('title', '<b>'+item.label+'</b>');
                                     
                 });
+                
+                
+            },
             
-                // register the editor in the registry for
-                // future reference
+            
+            _setAnnotations: function(editor, item){
                 
-                editor.id = 'ace_editor_' + item.id;
-                var rEditor = registry.byId('ace_editor_' + item.id);
+                // get error annotations
+                var errors = annotations.getErrors();
                 
-                if(rEditor == undefined){
-                    registry.add(editor);
-                }
+                // loop trough the erros
+                for (var i = 0; i < errors.length; i++) {
+              
+                    // check if this annotation is for this file
+                    if(errors[i].fileId == item.id){
+                       
+                        // when matched, set the annotations in the editor
+                        editor.getSession().setAnnotations(errors[i].annotations);
+                        
+                        // while at it change the tab icon as well
+                        var tab = dijit.byId(errors[i].fileId);
+                        if(tab != undefined){
+                            tab.set('iconClass','problemIcon');    
+                        }    
+                    }
+                }  
             }
+
         }
     });

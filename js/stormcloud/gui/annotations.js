@@ -19,9 +19,13 @@
  * 
  */
 define([
-    'dijit/registry'], 
+    'dojo/on',
+    'dijit/registry',
+    'dojox/html/entities'], 
     function(
-        registry){
+        on,
+        registry,
+        entities){
    
    
         //
@@ -30,11 +34,6 @@ define([
         // summary     : 
         //               
         var errors = new Array();
-            
-        // @todo
-        var warnings;
-        
-        
         
         return{
     
@@ -46,35 +45,68 @@ define([
                 
                 // process the editors
                 this._editors();
+                
+                // process the problem tab
+                this._problemTab();
+                
+                // process the editor tabs
+                this._tabs();
               
             },
             
-            
+            // Takes care of clearing all annotations
+            // including errors on the problem tab
             clear : function(){
                 
-                
+                // Clear the opened editors
                 // loop trough the errors to clear them
                 for (var i = 0; i < errors.length; i++) {
-              
-                    console.info('Check editor ' + errors[i].fileId);
               
                     // get a handle on the editor
                     var editor = registry.byId('ace_editor_' + errors[i].fileId);
                 
                     if(editor != undefined){
-                        
-                        console.info('Found editor.');
-                        
                         // when found, clear the annotations
                         editor.getSession().setAnnotations([]);
                     }
                 }
                 
+                // clear the tab icons
+                for (i = 0; i < errors.length; i++) {
+              
+                    // check to see if it's opened'
+                    var tab = dijit.byId(errors[i].fileId);
+                    
+                    if(tab != undefined){
+                        tab.set('iconClass','');    
+                    }
+                }
+                
+                
+                // Clear the problem Tab
+                var problemWindow = dojo.byId('problemWindow');
+                problemWindow.innerHTML = '';
+
+                // Reset the problem tab title
+                dijit.byId('problemTab').set('title', 'Problems');
+              
+              
+                
+              
+              
                 // clear the previous error annotations array
                 errors = new Array();
-                
             },
             
+            // method for other components to retrieve the 
+            // current annotations
+            getErrors : function(){
+                return errors;
+            },
+            
+            
+            // Takes care of annotating problems in 
+            // opened editors
             _editors : function(){
                 
                 
@@ -93,12 +125,105 @@ define([
                 }  
             },
             
+            // Takes care of reporting the problems in
+            // the problems tab
+            _problemTab : function(){
+              
+                
+                var problemWindow = dojo.byId('problemWindow');
+              
+                var problemCount=0;
+              
+                // loop trough the erros
+                for (var i = 0; i < errors.length; i++) {
+                    
+                    // Add a link for each annotation
+                    for(var i2 = 0; i2 < errors[i].annotations.length; i2++){
+              
+                        // the annoying count out of sync thing
+                        var row = errors[i].annotations[i2].row + 1;
+
+                        // create problem link entry
+                        var problem = 
+                        '<div class="problemIcon"></div>' +
+                        '<div class="problemFileName">' + errors[i].fileId + '</div>' +
+                        '<div class="problemRange">['+ row + ',' + errors[i].annotations[i2].column + ']</div>' + 
+                        '<div class="problemMessage">' + entities.encode(errors[i].annotations[i2].text) + '</div>';
+                        
+                        var div = document.createElement('div');
+                        
+                        // add an onClick event handler
+                        on(div, EVENT.CLICK, function(e) {
+
+                            var fileId;
+                        
+                            // get the fileid from the clicked target
+                            var problem = e.currentTarget;
+                            for (var i = 0; i < problem.childNodes.length; i++) {
+                                if (problem.childNodes[i].className == 'problemFileName') {
+                                    fileId = problem.childNodes[i].innerHTML;
+                                    break;
+                                }        
+                            }
+                            
+                            // Get the fileName from the fileId
+                            // for the item label
+                            var fileName = fileId.substring(fileId.lastIndexOf('/') + 1, fileId.length);
+                        
+                            // create an item entry for click processing
+                            // to open a file
+                            var item = {
+                            
+                                id : fileId,
+                                type : 'javaFile',
+                                label : fileName
+                            }
+              
+                            require(['stormcloud/services/filesystem'], function(filesystem){ 
+                        
+                                filesystem.get(item);
+                            });
+                            
+                        });
+                        
+                        div.className = 'problemEntry';
+                        div.innerHTML = problem;
+                    
+                        // add it in the problem window
+                        problemWindow.appendChild(div);
+                        problemCount++;
+                    }
+                    
+                }
+                
+                // switch to the problem tab
+                var tabs = dijit.byId('logTabs');
+                // get the problem tab
+                var tab = dijit.byId('problemTab');
+                
+                // update the tab title with the amount of errors we found
+                tab.set('title', 'Problems (' + problemCount + ')');
+                // when we found it, set selected in the tab conatiner
+                if(tab != null){
+                    tabs.selectChild(tab);
+                }
+              
+            },
             
+            
+            // annotate the opened editor tabs
             _tabs: function(){
               
+                // loop trough the erros
+                for (var i = 0; i < errors.length; i++) {
               
-              
-              
+                    // check to see if it's opened'
+                    var tab = dijit.byId(errors[i].fileId);
+                    
+                    if(tab != undefined){
+                        tab.set('iconClass','problemIcon');    
+                    }
+                }
             },
             
             _tree : function(){

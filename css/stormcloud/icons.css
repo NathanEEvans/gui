@@ -128,7 +128,7 @@
 
 .continuousIntegrationIcon{
 
-    
+
     background-image : url('/images/services/continuous-integration.png');	
     width            : 16px;
     height           : 16px;
@@ -728,8 +728,6 @@
     background-position: -18px;
 }
 
-
-
 .undoIcon{
 
     background-image: url("/icons/images/editorIconsEnabled.png"); 
@@ -769,6 +767,17 @@
     height           : 18px;
     background-position: -90px;
 }
+
+.problemIcon{
+
+    
+    float: left;
+    background-image: url("/icons/images/commonIconsObjActEnabled.png"); 
+    width            : 18px;
+    height           : 18px;
+    background-position: -495px;
+}
+
 
 .rerunMaven{
 
