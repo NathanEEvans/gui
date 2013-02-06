@@ -21,11 +21,13 @@
 define([
     'stormcloud/_base/context',
     'stormcloud/gui/statusbar',
-    'stormcloud/rest/xhr'], 
+    'stormcloud/rest/xhr',
+    'stormcloud/gui/annotations'], 
     function(
         context,
         statusbar,
-        xhr){
+        xhr,
+        annotations){
    
         //
         // module      : stormcloud/services/logging
@@ -190,30 +192,50 @@ define([
                     url: CONSTANTS.MAVEN_LOG,
                     load: function(data) {
             
+                        // clear any previous annotations
+                        annotations.clear();
+            
                         var logWindow = document.getElementById('mavenLogWindow');
                         
                         logWindow.value = data; 
                         logWindow.scrollTop = logWindow.scrollHeight;
                     
-                    
                         if(failed){
+                    
                             var lines = document.getElementById('mavenLogWindow').value.split('\n');
+
+                            var annotationLines = new Array();
 
                             for(var line in lines){
                         
-                                if(lines[line].lastIndexOf('[ERROR]', 0) === 0){
-                                    alert(lines[line]);
+                                if(lines[line].startsWith('[ERROR]')){
+                                    
+                                    // check for possible source file directives
+                                    if(lines[line].startsWith('[ERROR] ' + context.getProjectFolder())){
+                                    
+                                        var contains = false;
+                                        // put the line in the annotation array
+                                        // when not already in there
+                                        for (var i = 0; i < annotationLines.length; i++) {
+              
+                                            if(annotationLines[i] == lines[line]){
+                                                contains=true;
+                                                break;
+                                            }                              
+                                        }
+                                        
+                                        if(!contains){
+                                            annotationLines.push(lines[line]);
+                                        }
+                                    }
                                 }
                             }
+                            
+                            // process annotations
+                            annotations.process(annotationLines);                              
                         }
-                    
                     }
                 });
-          
             }
-       
         }
-   
-   
-    
     });

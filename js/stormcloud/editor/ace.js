@@ -18,9 +18,10 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([], 
+define([
+    'dijit/registry'], 
     function(
-        ){
+        registry){
    
         // module      : stormcloud/editor/ace
         // 
@@ -89,9 +90,7 @@ define([],
                          
                             filesystem.save(item, editor.getValue());
                                     
-                        });
-                                    
-                                    
+                        });                 
                     }
                 });
             
@@ -120,6 +119,16 @@ define([],
                     dijit.byId(item.id).set('title', '<b>'+item.label+'</b>');
                                     
                 });
+            
+                // register the editor in the registry for
+                // future reference
+                
+                editor.id = 'ace_editor_' + item.id;
+                var rEditor = registry.byId('ace_editor_' + item.id);
+                
+                if(rEditor == undefined){
+                    registry.add(editor);
+                }
             }
         }
     });

@@ -49,21 +49,55 @@ define([
                     dialog.show(DIALOG.NEW_FILE);
                 });
 
+                on(registry.byId('filesystemMenu_open'), EVENT.CLICK, function(e) {
 
+                    alert('Not Implemented');
+                });
 
+                on(registry.byId('filesystemMenu_cut'), EVENT.CLICK, function(e) {
 
+                    alert('Not Implemented');
+                });
 
-            // 
-            // filesystemMenu_open
-            // filesystemMenu_cut
-            // filesystemMenu_copy
-            // filesystemMenu_paste
-            // filesystemMenu_download
-            // filesystemMenu_delete
-            // filesystemMenu_rename
-            // filesystemMenu_move
-            // filesystemMenu_safe_delete
+                on(registry.byId('filesystemMenu_copy'), EVENT.CLICK, function(e) {
 
+                    alert('Not Implemented');
+                });
+
+                on(registry.byId('filesystemMenu_paste'), EVENT.CLICK, function(e) {
+
+                    alert('Not Implemented');
+                });
+
+                on(registry.byId('filesystemMenu_download'), EVENT.CLICK, function(e) {
+
+                    alert('Not Implemented');
+                });
+
+                on(registry.byId('filesystemMenu_delete'), EVENT.CLICK, function(e) {
+
+                
+                    dialog.show(DIALOG.DELETE);
+
+                });
+
+                on(registry.byId('filesystemMenu_rename'), EVENT.CLICK, function(e) {
+
+                    alert('Not Implemented');
+
+                });
+
+                on(registry.byId('filesystemMenu_move'), EVENT.CLICK, function(e) {
+
+                    alert('Not Implemented');
+
+                });
+
+                on(registry.byId('filesystemMenu_safe_delete'), EVENT.CLICK, function(e) {
+
+                    alert('Not Implemented');
+
+                });
 
             }
         };

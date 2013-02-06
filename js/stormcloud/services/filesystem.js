@@ -282,7 +282,16 @@ define([
                                     title    : tabTitle,
                                     closable : true,
                                     id : item.id,
-                                    className : 'editor'
+                                    className : 'editor',
+                                    onClose: function(){
+                                        
+                                        require(['dijit/registry'], function(registry){ 
+                        
+                                            registry.remove('ace_editor_' + item.id);
+                                        });
+                                        
+                                        return true;
+                                    }
                                 });
                                 
                                 tabs.addChild(contentPane); 
@@ -316,8 +325,6 @@ define([
             
                         if(data == '0'){
           
-                            statusbar.infoStatus(item.type +' moved to Trash');
-                            
                             require(['stormcloud/gui/tree'],function(tree){
                 
                                 tree.refresh('projectTree');
@@ -368,20 +375,20 @@ define([
                 deferred.then(
                     function(data){
             
-                        // when succeeded, open it in the editor
-                        require(['stormcloud/services/filesystem'], function(fs){
+                        // when succeeded, (and it's not a folder) 
+                        // open it in the editor
+                        if(item.type != 'folder'){
+                            require(['stormcloud/services/filesystem'], function(fs){
                 
-                            fs.get(item, false);
-                    
-                        });
+                                fs.get(item, false);
+                            });
+                        }
                         
                         // And refresh the project tree so it shows up in there
                         require(['stormcloud/gui/tree'],function(tree){
                 
                             tree.refresh('projectTree');
                         });
-                            
-                        
                     },
 
                     function(error){

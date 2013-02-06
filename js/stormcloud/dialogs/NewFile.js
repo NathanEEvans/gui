@@ -48,6 +48,7 @@ define([
         //               
 
         var extension;
+        var type;
         var template;
         
         return{
@@ -112,8 +113,14 @@ define([
             
             fileNameOnChange : function(newValue){
                 
-                dojo.byId('createdFile').value = newValue + extension;
+                if(type == 'folder'){
+               
+                    dojo.byId('createdFile').value = newValue;
+               
+                }else{
                 
+                    dojo.byId('createdFile').value = newValue + extension;
+                }
             },
             
             comboOnChange: function(newValue){
@@ -128,8 +135,10 @@ define([
                 
                 var regex = /(?:\.([^.]+))?$/;
               
-                extension = '.' + regex.exec(item.label)[1];  
+                extension = '.' + regex.exec(item.label)[1];
                 template = item.id;
+                type = item.type;
+                
             },
             
             
@@ -186,9 +195,16 @@ define([
                 // set the selected path
                 dojo.byId('filePath').value = item.id;
                 
+                
                 // update the created file preview  
-                dojo.byId('createdFile').value = item.id + '/' + dojo.byId('fileName').value + extension;
+                if(type == 'folder'){
+                
+                    dojo.byId('createdFile').value = item.id + '/' + dojo.byId('fileName').value;
+                
+                }else{
                     
+                    dojo.byId('createdFile').value = item.id + '/' + dojo.byId('fileName').value + extension;
+                }
               
                 // destory the folder picker and components
                 dijit.byId('folderPicker').destroyRecursive();
@@ -201,7 +217,7 @@ define([
                     
                     id : dojo.byId('createdFile').value,
                     label : dojo.byId('fileName').value + extension,
-                    type : 'javaFile',
+                    type : type,
                     template : template
                      
                     

@@ -3,13 +3,25 @@
 
     <script>
         require(['stormcloud/dialogs/Delete'], function(dialog){
-       
             dialog.init();
-        }); 
+        });     
+        
+        
+        function cancel(){
+            require(['stormcloud/dialogs/Delete'], function(dialog){
+                dialog.cancel();
+            });     
+        }
+
+        function ok(){
+            require(['stormcloud/dialogs/Delete'], function(dialog){
+                dialog.ok();
+            });     
+        }
     </script>
 
     <p>
-        You are about to remove ... to the Trash. 
+        You are about to move  to the Trash. 
     </p>
     <p>
         Are you sure about this?
@@ -22,26 +34,14 @@
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-
-            require(['stormcloud/gui/dialog'],function(dialog){
-
-            dialog.hide(DIALOG.DELETE);
-
-            });
+            cancel();
         </script>
         No
     </button>
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-
-            require(['stormcloud/services/filesystem','stormcloud/gui/dialog'],function(filesystem,dialog){
-
-            filesystem.del(dijit.byId('projectTree').attr('selectedItem'));
-            dialog.hide(DIALOG.DELETE);
-            
-            });
-
+            ok();
         </script>
         Yes
     </button>

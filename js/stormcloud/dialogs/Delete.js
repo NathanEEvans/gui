@@ -18,8 +18,12 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([], 
-    function(){
+define([
+    'stormcloud/gui/dialog',
+    'stormcloud/services/filesystem'], 
+    function(
+        dialog,
+        filesystem){
         
         //
         // module      : stormcloud/dialogs/Delete
@@ -27,11 +31,35 @@ define([],
         // summary     : 
         //               
 
+        var selected;
+        
         return{
     
+            // initialize th dialog
             init : function(){
                 
+                // get the filename and set it in the dialog
+                selected = dijit.byId('projectTree').attr('selectedItem');
                 
+            },
+            
+            // user cancelled
+            cancel: function(){
+              
+                // no go, hide the dialog
+                dialog.hide(DIALOG.DELETE);
+
+            },
+            
+            
+            // user clicked ok
+            ok : function(){
+                
+                // delete the selected item
+                filesystem.del(selected);
+                
+                // hide the dialog
+                dialog.hide(DIALOG.DELETE);
             }
     
     
