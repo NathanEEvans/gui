@@ -1,0 +1,51 @@
+.stepsBanner{
+    background-color: #abd6ff;
+    background-repeat: repeat-x;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
+    float:left; 
+    width:270px; 
+    height: 100%; 
+    border-right: 1px solid #b5bcc7;
+}
+
+.stepsMidScreen{
+
+    float: left;
+    width:320px; 
+    height: 100%; 
+    border-right: 1px solid #b5bcc7;
+
+}
+
+.projectStepSelect{
+
+    float: left;
+    margin-top: 4px;
+}
+
+.stepsRightScreen{
+
+    float:left;
+    width:280px; 
+    height: 100%;
+}
+
+#templateTree{
+    height: 80%; 
+    padding-top: 15px;
+    padding-left: 10px;
+}
+
+.stepTitle{
+    font-size: 12px; 
+    margin-left: 10px;
+}
+
+.stepDisabled{
+    color:grey;
+}
+
+#editTemplateWizard{
+    width:900px; 
+    height:500px
+}

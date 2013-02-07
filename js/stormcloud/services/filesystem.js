@@ -170,6 +170,7 @@ define([
                             require(['stormcloud/gui/tree'],function(tree){
                 
                                 tree.refresh('projectTree');
+                                tree.refresh('filesystemTree');
                             });
                     
                         }else{

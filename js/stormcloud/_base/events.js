@@ -28,6 +28,7 @@ define([
     'stormcloud/_events/menu/bar/refactor',
     'stormcloud/_events/menu/bar/run',
     'stormcloud/_events/menu/bar/debug',
+    'stormcloud/_events/menu/bar/tools',
     'stormcloud/_events/menu/bar/window',
     'stormcloud/_events/menu/bar/help',
     'stormcloud/_events/menu/context/filesystem',
@@ -44,6 +45,7 @@ define([
         refactor,
         run,
         debug,
+        tools,
         window,
         help,
         filesystem,
@@ -104,6 +106,7 @@ define([
                 refactor.bind();
                 run.bind();
                 debug.bind();
+                tools.bind();
                 window.bind();
                 help.bind();
 

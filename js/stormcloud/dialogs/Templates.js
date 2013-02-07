@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/dialogs/NewFile
+ * Stormcloud IDE - stormcloud/dialogs/Templates
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -23,9 +23,6 @@ define([
     'dojo/data/ObjectStore',
     'dijit/tree/TreeStoreModel',
     'dijit/Tree',
-    'dijit/Dialog',
-    'dijit/form/ComboBox',
-    'dijit/form/ValidationTextBox',
     'stormcloud/_base/context',
     'stormcloud/services/filesystem',
     'stormcloud/gui/dialog'], 
@@ -34,39 +31,34 @@ define([
         ObjectStore,
         TreeStoreModel,
         Tree,
-        Dialog,
-        ComboBox,
-        ValidationTextBox,
         context,
         filesystem,
         dialog){
             
         //
-        // module      : stormcloud/dialogs/NewFile
+        // module      : stormcloud/dialogs/Templates
         // 
         // summary     : 
         //               
 
-        var extension;
-        var type;
-        var template;
+        var selected;
         
         return{
             
             init : function(){
             
                 // populate the templates tree
-                var fileRestStore = new JsonRest({
+                var templateRestStore = new JsonRest({
                 
                     target : context.getApiUrl() + '/filesystem/templates'
               
                 });
                 
-                var fileTreeModel = new TreeStoreModel({
+                var templateTreeModel = new TreeStoreModel({
           
                     store : new ObjectStore({
                     
-                        objectStore : fileRestStore
+                        objectStore : templateRestStore
                     }),
                     
                     mayHaveChildren : this.mayHaveChildren
@@ -74,157 +66,41 @@ define([
        
                 new Tree({
                     
-                    model:fileTreeModel, 
+                    model:templateTreeModel, 
                     
-                    showRoot:false, 
-                    // tree icon function
-                    getIconClass : this.iconClass,
-                    // tree click
-                    onClick : this.fileTreeOnClick
-    
-                }, 'fileTree');
-            
-                var availableProjectStore = new JsonRest({
-                    
-                    target : context.getApiUrl() + '/filesystem/projects/available'
-                });
-                
-                new ComboBox({
-                    
-                    store: availableProjectStore,
-                    searchAttr: 'label',
-                    onChange : this.comboOnChange,
-                    required : true
-                    
-                }, 'projectSelector');
-            
-            
-                new ValidationTextBox({
-            
-                    id: 'fileName',
-                    required : true,
-                    onChange : this.fileNameOnChange
-                    
-                }, 'fileName');
-            
-            },
-            
-            fileNameOnChange : function(newValue){
-                
-                if(type == 'folder'){
-               
-                    dojo.byId('createdFile').value = newValue;
-               
-                }else{
-                
-                    dojo.byId('createdFile').value = newValue + extension;
-                }
-            },
-            
-            comboOnChange: function(newValue){
-                
-                dojo.byId('projectName').value = newValue;
-            },
-            
-            
-            fileTreeOnClick : function(item){
-              
-                dojo.byId('fileDescription').innerHTML = item.description;
-                
-                var regex = /(?:\.([^.]+))?$/;
-              
-                extension = '.' + regex.exec(item.label)[1];
-                template = item.id;
-                type = item.type;
-                
-            },
-            
-            
-            browse : function(){
-                
-                
-                var folderPicker = new Dialog({
-                    
-                    id : 'folderPicker',
-                    title: 'Pick a folder',
-                    content: '<div id="folderPickerTree"></div>',
-                    style: "width: 300px"
-                
-                });
-                
-                var folderPickerRestStore = new JsonRest({
-                
-                    target : context.getApiUrl() + '/filesystem/folderpicker?filePath=' + context.getProjectFolder() + '/' + dojo.byId('projectName').value
-              
-                });
-                
-                var folderPickerTreeModel = new TreeStoreModel({
-          
-                    store : new ObjectStore({
-                    
-                        objectStore : folderPickerRestStore
-                    }),
-                    
-                    mayHaveChildren : this.mayHaveChildren
-                });
-       
-                new Tree({
-                    
-                    model:folderPickerTreeModel, 
                     showRoot:false, 
                     // tree icon function
                     getIconClass : this.iconClass,
                     // tree double click handler
                     onDblClick : this.openItem,
                     // tree click
-                    onClick : this.folderPickerTreeOnClick
+                    onClick : this.templateTreeOnClick
     
-                }, 'folderPickerTree');
+                }, 'templateTree');
             
-                
-                
-                folderPicker.show();    
-              
             },
             
-            // folder has been selected
-            folderPickerTreeOnClick : function(item){
+            
+            templateTreeOnClick : function(item){
               
-                // set the selected path
-                dojo.byId('filePath').value = item.id;
+                selected = item;
+            },
+            
+            
+            openItem : function(item, opened){
                 
                 
-                // update the created file preview  
-                if(type == 'folder'){
+                filesystem.get(item, false);
                 
-                    dojo.byId('createdFile').value = item.id + '/' + dojo.byId('fileName').value;
-                
-                }else{
-                    
-                    dojo.byId('createdFile').value = item.id + '/' + dojo.byId('fileName').value + extension;
-                }
-              
-                // destory the folder picker and components
-                dijit.byId('folderPicker').destroyRecursive();
+                dialog.hide(DIALOG.TEMPLATES);
             },
             
             done : function() {
-            
-                // create the file item
-                var item = {
-                    
-                    id : dojo.byId('createdFile').value,
-                    label : dojo.byId('fileName').value + extension,
-                    type : type,
-                    template : template
-                     
-                    
-                };
                 
-                filesystem.create(item);
+                filesystem.get(selected, false);
                 
                 // hide the dialog
-                dialog.hide(DIALOG.NEW_FILE);
+                dialog.hide(DIALOG.TEMPLATES);
             },
             
             mayHaveChildren : function(item){

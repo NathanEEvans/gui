@@ -49,7 +49,8 @@ define([
             GIT_COMMIT : 'commitDialog',
             DELETE : 'deleteDialog',
             FIND : 'findDialog',
-            DEFECTS_AND_ENHANCEMENTS : 'defectsAndEnhancementsDialog'
+            DEFECTS_AND_ENHANCEMENTS : 'defectsAndEnhancementsDialog',
+            TEMPLATES : 'templatesDialog'
         };
     
         return{

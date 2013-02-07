@@ -21,15 +21,11 @@
 define([
     'dojo/on',
     'dijit/registry',
-    'stormcloud/gui/dialog',
-    'stormcloud/gui/tree',
-    'stormcloud/services/filesystem'],
+    'stormcloud/gui/dialog'],
     function(
         on,
         registry,
-        dialog,
-        tree,
-        filesystem) {
+        dialog) {
 
         //
         // module      : stormcloud/_events/menu/bar/tools
@@ -43,7 +39,10 @@ define([
             // Bind the events to the widgets
             bind: function() {
 
+                on(registry.byId('toolsMenu_templates'), EVENT.CLICK, function(e) {
 
+                    dialog.show(DIALOG.TEMPLATES);
+                });
             }
         };
 
