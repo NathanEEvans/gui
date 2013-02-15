@@ -34,7 +34,8 @@ define([
     'stormcloud/_events/menu/context/filesystem',
     'stormcloud/_events/menu/context/tomcat',
     'stormcloud/_events/menu/context/project',
-    'stormcloud/_events/menu/tool/bar'],
+    'stormcloud/_events/menu/tool/bar',
+    'stormcloud/_events/tab/tool/bar'],
     function(
         stormcloud,
         file,
@@ -51,7 +52,8 @@ define([
         filesystem,
         tomcat,
         project,
-        bar) {
+        bar,
+        tabbar) {
 
         //
         // module      : stormcloud/_base/events
@@ -64,6 +66,8 @@ define([
         EVENT = {
             // “click” - the user clicked a node
             CLICK: 'click',
+            // dblclick - double clicked a node
+            DOUBLE_CLICK : 'dblclick',
             // “focus” - a node received focus
             FOCUS: 'focus',
             //“blur” - a node was ‘blurred’, or otherwise lost focus
@@ -117,6 +121,9 @@ define([
                 
                 // The Toolbar (Icon menus)                
                 bar.bind();
+                
+                // The Tab Toolbar
+                tabbar.bind();
 
             }
         };

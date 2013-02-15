@@ -239,6 +239,40 @@ a:active {
 
 }
 
+
+.searchLine {
+
+    padding-left: 30px;
+    display : none;
+    color : #b5bcc7;
+}
+
+.searchLine:hover{
+
+    color: #abd6ff;
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+
+.searchFile{
+
+    width : 500px !important;
+    padding-left : 20px;
+    padding-top : 2px;
+    background-repeat : no-repeat;
+    cursor : pointer;
+}
+
+.searchEntry img {
+
+    float : left;
+    width : 16px;
+    height : 16px;
+
+}
+
+
 #footerContainer{
 
     height: 14px;
@@ -248,3 +282,28 @@ a:active {
     border: 0px;
 }
 
+.foundLine {
+
+    background: #ff6;
+    position: absolute;
+    z-index: 2;
+
+}
+
+.searchEntry{
+
+    padding-left : 40px;
+
+}
+
+#searchToolBar{
+
+    position : fixed;
+    border-top:1px solid #b5bcc7; 
+
+    width: 30px;
+    height: 80px;
+    bottom : 30px;
+    padding-bottom : 78px;
+
+}

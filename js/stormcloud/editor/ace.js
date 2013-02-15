@@ -20,10 +20,12 @@
  */
 define([
     'dijit/registry',
-    'stormcloud/gui/annotations'], 
+    'stormcloud/gui/annotations',
+    'stormcloud/gui/search'], 
     function(
         registry,
-        annotations){
+        annotations,
+        search){
    
         // module      : stormcloud/editor/ace
         // 
@@ -60,6 +62,12 @@ define([
             
                 // set annotations (if any)
                 this._setAnnotations(editor, item);
+                
+                // set any lines tht need highlighting
+                this._setMarkers(editor, item);
+                
+                // jump to any possibly requested line
+                this._gotoLine(editor, item);
                 
                 // register the editor in the registry for
                 // future reference
@@ -120,6 +128,7 @@ define([
             
             _setKeyBindings : function(editor, item){
                 
+                // save the file contents
                 editor.commands.addCommand({
                     name: 'saveCommand',
                     bindKey: {
@@ -149,8 +158,6 @@ define([
                         for(prop in pos){
                             alert(prop + ' ' + pos[prop]);
                         }
-                     
-                                        
                     }
                 });
             },
@@ -190,6 +197,64 @@ define([
                         }    
                     }
                 }  
+            },
+            
+            
+            _setMarkers : function (editor, item){
+                
+                // get the files from the search
+                var files = search.getFiles();
+                
+                // define ace Range type
+                var Range = ace.require('ace/range').Range
+                
+                // loop trough the files and see if
+                // our file is in there
+                for(var i = 0; i < files.length; i++){
+                    
+                    // when file found process
+                    // the markers
+                    if(files[i].id == item.id){
+                        
+                        var range;
+                        
+                        for(var i2=0; i2<files[i].markers.length; i2++){
+                            
+                            range = new Range(
+                                files[i].markers[i2].startRow-1, 
+                                files[i].markers[i2].startColumn, 
+                                files[i].markers[i2].endRow, 
+                                files[i].markers[i2].endColumn);
+                            
+                            editor.getSession().addMarker(
+                                range, 
+                                files[i].markers[i2].clazz, 
+                                files[i].markers[i2].type, 
+                                files[i].markers[i2].inFront);
+                        }   
+                    }   
+                }        
+            },
+            
+            
+            
+            _gotoLine : function(editor, item){
+                
+                
+                if(item.gotoLine){
+                    
+                    var row = parseInt(item.gotoLine)-1;
+                    
+                    editor.gotoLine(row);
+                    
+                    // one line above
+                    editor.scrollToRow(row-2);
+                    
+                    
+                }
+                
+                
+                
             }
 
         }

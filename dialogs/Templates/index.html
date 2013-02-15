@@ -15,6 +15,14 @@
             });    
         }
         
+        function cancel(){
+            
+            require(['stormcloud/gui/dialog'], function(dialog){
+            
+                dialog.hide(DIALOG.TEMPLATES);
+                
+            });
+        }
     </script>
 
     <div class="floater">
@@ -34,7 +42,7 @@
                 </div>
 
                 <div style="float: left;width:320px; height: 100%; border-right: 1px solid #b5bcc7;">
-                    <span style="font-size: 12px; margin-left: 10px;"><b>Available Projects:</b></span>
+                    <span style="font-size: 12px; margin-left: 10px;"><b>Available Templates:</b></span>
 
                     <div id="templateTree">
                     </div>
@@ -42,10 +50,7 @@
 
             </div>
             <script type="dojo/method" event="cancelFunction">
-
-                require(['stormcloud/gui/dialog'], function(dialog){
-                dialog.hide(DIALOG.TEMPLATES);
-                });            
+                cancel();
             </script>
         </div>
 

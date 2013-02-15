@@ -90,11 +90,6 @@ define([
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('fileMenu_project_properties'), EVENT.CLICK, function(e) {
-
-                    alert('Not Implemented');
-                });
-
                 on(registry.byId('fileMenu_import_project_zip'), EVENT.CLICK, function(e) {
 
                     alert('Not Implemented');

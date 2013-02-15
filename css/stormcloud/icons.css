@@ -770,20 +770,12 @@
 
 .problemIcon{
 
-    
+
     float: left;
     background-image: url("/icons/images/commonIconsObjActEnabled.png"); 
     width            : 18px;
     height           : 18px;
     background-position: -495px;
-}
-
-
-.rerunMaven{
-
-    background-image: url("/images/maven/rerun.png"); 
-    width            : 16px;
-    height           : 16px;
 }
 
 .runMaven{
@@ -796,6 +788,30 @@
 .stop{
 
     background-image: url("/images/maven/stop.png"); 
+    width            : 16px;
+    height           : 16px;
+}
+
+
+.toolbarSearch {
+
+    background-image: url("/images/toolBar/search.png"); 
+    width            : 16px;
+    height           : 16px;
+
+}
+
+
+.toolbarRerun{
+
+    background-image: url("/images/toolBar/rerun.png"); 
+    width            : 16px;
+    height           : 16px;
+}
+
+.toolbarClear{
+
+    background-image: url("/images/toolBar/clear.png"); 
     width            : 16px;
     height           : 16px;
 }

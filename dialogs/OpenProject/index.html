@@ -14,38 +14,50 @@
                 dialog.done();
             }); 
         }
+        
+        function hide(){
+            
+            require(['stormcloud/gui/dialog'], function(dialog){
+               
+                dialog.hide(DIALOG.OPEN_PROJECT);
+            });
+        }
+        
     </script>
 
     <div class="floater">
 
-        <div id="openProjectWizard" data-dojo-type="dojox/widget/Wizard" data-dojo-props="style:'width:900px; height:500px', nextButtonLabel:'Next', doneButtonLabel:'Open Project'">
+        <div id="openProjectWizard" 
+             data-dojo-type="dojox/widget/Wizard" 
+             data-dojo-props="style:'width:900px; height:500px', nextButtonLabel:'Next', doneButtonLabel:'Open Project'">
 
-            <div id="openProjectStep1" data-dojo-type="dojox/widget/WizardPane" data-dojo-props="doneFunction:done">
+            <div id="openProjectStep1" 
+                 data-dojo-type="dojox/widget/WizardPane" 
+                 data-dojo-props="doneFunction:done">
 
-                <div class="stepsBanner" style="float:left; width:270px; height: 100%; border-right: 1px solid #b5bcc7;">
+                <div class="stepsBanner" 
+                     style="float:left; width:270px; height: 100%; border-right: 1px solid #b5bcc7;">
 
                     <span style="font-size: 12px; margin-left: 10px;"><b>Steps:</b></span>
-                    <hr style="color:#b5bcc7">
                     <ol>
                         <li>Choose Project</li>
                     </ol>
                 </div>
 
                 <div style="float: left;width:320px; height: 100%; border-right: 1px solid #b5bcc7;">
-                    <span style="font-size: 12px; margin-left: 10px;"><b>Available Projects:</b></span>
-                    <hr style="color:#b5bcc7">
-                    <div id="closedProjectTree" style="height: 50%; padding-top: 5px;">
 
-                    </div>
+                    <span style="font-size: 12px; margin-left: 10px;"><b>Available Projects:</b></span>
+
+                    <div id="closedProjectTree" style="height: 50%; padding-top: 5px;"></div>
+
                 </div>    
 
             </div>
-            <script type="dojo/method" event="cancelFunction">
 
-                require(['stormcloud/gui/dialog'], function(dialog){
-                dialog.hide(DIALOG.OPEN_PROJECT);
-                });            
+            <script type="dojo/method" event="cancelFunction">
+                hide();
             </script>
+
         </div>
     </div>
 </div>

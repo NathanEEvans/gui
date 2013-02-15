@@ -41,7 +41,7 @@ define([
             process : function(lines){
                
                 // set the new annotations
-                this._setErrorAnnotations(lines);
+                this._setAnnotations(lines);
                 
                 // process the editors
                 this._editors();
@@ -67,7 +67,7 @@ define([
                 
                     if(editor != undefined){
                         // when found, clear the annotations
-                        editor.getSession().setAnnotations([]);
+                        editor.clearAnnotations();
                     }
                 }
                 
@@ -82,17 +82,12 @@ define([
                     }
                 }
                 
-                
                 // Clear the problem Tab
                 var problemWindow = dojo.byId('problemWindow');
                 problemWindow.innerHTML = '';
 
                 // Reset the problem tab title
                 dijit.byId('problemTab').set('title', 'Problems');
-              
-              
-                
-              
               
                 // clear the previous error annotations array
                 errors = new Array();
@@ -234,7 +229,7 @@ define([
     
             
     
-            _setErrorAnnotations : function(lines, type){
+            _setAnnotations : function(lines, type){
             
                 for (var i = 0; i < lines.length; i++) {
               

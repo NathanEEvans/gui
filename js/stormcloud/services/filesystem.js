@@ -54,6 +54,8 @@ define([
             CREATE : context.getApiUrl() + '/filesystem/create',
             // Delete resource service url
             DELETE : context.getApiUrl() + '/filesystem/delete',
+            // Find
+            FIND : context.getApiUrl() + '/filesystem/find',
             // Get resource service url
             GET : context.getApiUrl() + '/filesystem/get',
             //
@@ -250,7 +252,7 @@ define([
     
                 }else{
                     
-                    // add it to the recenttly opened files list
+                    // add it to the recently opened files list
                     filestate.addOpenedFile(item);
                     
                     var isBinary = false;
@@ -428,9 +430,34 @@ define([
                     });
             },
         
-            find: function(){
+            find: function(args){
             
-                alert('find');
+                var xhrArgs = {
+                    url: FILESYSTEM.FIND,
+                    postData: dojo.toJson(args)
+                };
+            
+                var deferred = xhr.post(xhrArgs,'JSON');
+    
+                deferred.then(
+                    function(data){
+            
+                        require(['stormcloud/gui/search'], function(search){
+                
+                            search.process(data);
+                        });
+                        
+                    },
+
+                    function(error){
+            
+            
+                        console.info(error);
+            
+            
+                        statusbar.errorStatus(error);
+                    });
+            
             },
         
             getFile: function(filePath){
@@ -451,7 +478,7 @@ define([
     
                 return fileContents;
             },
-        
+            
             getBinaryFile: function(filePath){
     
                 var fileContents;

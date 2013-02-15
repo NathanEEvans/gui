@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="css/stormcloud.css">
 
         <!-- Load Dojo -->
-        <script type="text/javascript">dojoConfig = {parseOnLoad: true}</script>
+        <script type="text/javascript">dojoConfig = {parseOnLoad: true, async: false}</script>
         <script type="text/javascript" src="js/dojo/dojo.js"></script>
 
         <script>
@@ -150,9 +150,9 @@
                 </div>
             </div>
             <div data-dojo-type="dijit/MenuSeparator"></div>
-            <div data-dojo-type="dijit/MenuItem" id="projectMenu_delete_project" data-dojo-props="iconClass:'projectDeleteIcon'">Delete Project</div>
-            <div data-dojo-type="dijit/MenuSeparator"></div>
             <div data-dojo-type="dijit/MenuItem" id="projectMenu_find">Find...</div>
+            <div data-dojo-type="dijit/MenuSeparator"></div>
+            <div data-dojo-type="dijit/MenuItem" id="projectMenu_delete_project" data-dojo-props="iconClass:'projectDeleteIcon'">Delete Project</div>
             <div data-dojo-type="dijit/MenuSeparator"></div>
             <div data-dojo-type="dijit/MenuItem" id="projectMenu_close_project">Close Project</div>
         </div>
@@ -257,7 +257,6 @@
                                     <div data-dojo-type="dijit/MenuItem" id="fileMenu_new_group">New Group...</div>
                                 </div>
                             </div>
-                            <div data-dojo-type="dijit/MenuItem" id="fileMenu_project_properties" data-dojo-props="iconClass:''">Project Properties</div>
                             <div data-dojo-type="dijit/MenuSeparator"></div>
                             <div data-dojo-type="dijit/PopupMenuItem"><span>Import Project</span>
                                 <div data-dojo-type="dijit/Menu">
@@ -699,7 +698,7 @@
 
             <div data-dojo-type="dijit/layout/TabContainer" id="logTabs" doLayout="false" data-dojo-props="region:'bottom', splitter:false" style="margin-bottom: 20px; height: 200px;">
 
-                <div data-dojo-type="dijit/layout/ContentPane" id="problemTab" data-dojo-props="title:'Problems'" style="overflow: hidden !important;height:161px;">
+                <div data-dojo-type="dijit/layout/ContentPane" id="problemTab" data-dojo-props="title:'Problems'" style="overflow-x: hidden; overflow-y: auto; height:161px;">
 
                     <div id="problemToolBar" data-dojo-type="dijit/Toolbar" style="border-top:1px solid #b5bcc7; float:left;width: 30px;height: 155px;">
                         <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'', showLabel:false"></div>
@@ -711,12 +710,10 @@
 
                 </div>
 
-
-
                 <div data-dojo-type="dijit/layout/ContentPane" id="mavenLogTab" data-dojo-props="title:'Maven'" style="overflow: hidden !important;height:161px;">
 
                     <div id="mavenToolBar" data-dojo-type="dijit/Toolbar" style="border-top:1px solid #b5bcc7; float:left;width: 30px;height: 155px;">
-                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'rerunMaven', showLabel:false"></div>
+                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'toolbarRerun', showLabel:false"></div>
                         <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'runMaven', showLabel:false"></div>
                         <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'stop', showLabel:false"></div>
                     </div>
@@ -728,7 +725,7 @@
                 <div data-dojo-type="dijit/layout/ContentPane" id="gitLogTab" data-dojo-props="title:'Git'" style="overflow: hidden !important;height:161px;">
 
                     <div id="gitToolBar" data-dojo-type="dijit/Toolbar" style="border-top:1px solid #b5bcc7; float:left;width: 30px;height: 155px;">
-                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'rerunMaven', showLabel:false"></div>
+                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'toolbarRerun', showLabel:false"></div>
                         <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'runMaven', showLabel:false"></div>
                         <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'stop', showLabel:false"></div>
                     </div>
@@ -740,7 +737,7 @@
                 <div data-dojo-type="dijit/layout/ContentPane" id="tomcatLogTab" data-dojo-props="title:'Tomcat'" style="overflow: hidden !important;height:161px;">
 
                     <div id="tomcatToolBar" data-dojo-type="dijit/Toolbar" style="border-top:1px solid #b5bcc7; float:left;width: 30px;height: 155px;">
-                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'rerunMaven', showLabel:false"></div>
+                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'toolbarRerun', showLabel:false"></div>
                         <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'runMaven', showLabel:false"></div>
                         <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'stop', showLabel:false"></div>
                     </div>
@@ -748,6 +745,19 @@
                     <textarea id="tomcatLogWindow" style="margin-left:10px; resize: none;width: 96%;float:left;font-family:monospace; margin-top: 10px; border:0;font-size: 11px; color: #293031; height: 150px;"></textarea>
 
                 </div>
+
+                <div data-dojo-type="dijit/layout/ContentPane" id="searchTab" data-dojo-props="title:'Search'" style="overflow-x: hidden; overflow-y: auto;height:161px;">
+
+                    <div id="searchToolBar" data-dojo-type="dijit/Toolbar">
+                        <div data-dojo-type="dijit/form/Button" id="toolbarSearch_redefine" data-dojo-props="iconClass:'toolbarSearch', showLabel:false"></div>
+                        <div data-dojo-type="dijit/form/Button" id="toolbarSearch_rerun" data-dojo-props="iconClass:'toolbarRerun', showLabel:false"></div>
+                        <div data-dojo-type="dijit/form/Button" id="toolbarSearch_clear" data-dojo-props="iconClass:'toolbarClear', showLabel:false"></div>
+                    </div>
+
+                    <div id="searchWindow"></div>
+
+                </div>
+
 
             </div>
 
