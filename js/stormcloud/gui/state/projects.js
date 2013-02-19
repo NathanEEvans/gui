@@ -27,6 +27,10 @@ define([],
         // summary  :
         //		
 
+        var selectedProject;
+        
+        
+
 
         return {
             

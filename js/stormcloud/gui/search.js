@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/gui/state/search
+ * Stormcloud IDE - stormcloud/gui/search
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -29,7 +29,7 @@ define([
             
             
         //
-        // module      : stormcloud/gui/state/search
+        // module      : stormcloud/gui/search
         // 
         // summary     : 
         //               
