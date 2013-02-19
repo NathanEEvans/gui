@@ -173,6 +173,19 @@ define([
                 });
                 
                 
+                editor.on('focus',function(){
+
+
+                    require(['stormcloud/gui/tree'], function(tree){ 
+
+                        tree.select('projectTree', item);
+
+                    });
+                });
+                
+                
+                
+                
             },
             
             

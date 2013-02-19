@@ -157,8 +157,6 @@ define([
 
             bindContextMenus : function(widget){
     
-                console.info('Binding menus');
-    
                 var menus = {
                     tomcat : registry.byId('tomcatMenu'),
                     tomcatWebApps : registry.byId('tomcatWebAppsMenu'),
@@ -171,8 +169,6 @@ define([
                 widget.onOpen = function(item, node) {
 
                     function bindProperMenu(node, item){
-
-                        console.info('Check binding for type '+item.type);
 
                         for(var menu in menus){    
                             menus[menu].unBindDomNode(node);
@@ -276,17 +272,90 @@ define([
             // and growing a new one to have more, but i have
             // spent a long polish night figuring out how to do
             // this other ways, not succesful in the endeavour.
-            refresh : function(item){
+            refresh : function(tree){
             
-                var tree = dijit.byId(item);
+                var selectedTree = dijit.byId(tree);
     
-                if(tree != undefined){
-                    tree.dndController.selectNone();
-                    tree._itemNodesMap = {};
-                    tree.model.root = null;
-                    tree.rootNode.destroyRecursive();
-                    tree._load();
+                if(selectedTree != undefined){
+                    selectedTree.dndController.selectNone();
+                    selectedTree._itemNodesMap = {};
+                    selectedTree.model.root = null;
+                    selectedTree.rootNode.destroyRecursive();
+                    selectedTree._load();
                 }
+            },
+
+
+            select : function(tree, item){
+                
+                var selectedTree = dijit.byId(tree);
+                
+                var path = Array(); 
+                var chop = item.id;
+                
+                // add filesystem root
+                path.push('filesystem');
+                
+                // get the projects folder + project
+                var projectFolder = context.getSetting(SETTING.PROJECT_FOLDER);
+                
+                // remove project folder from the input
+                chop = chop.replace(projectFolder+'/','');
+                
+                // get the project name
+                var projectName = chop.substring(0,chop.indexOf('/')); 
+                    
+                // push the project name
+                path.push(projectFolder + '/' + projectName);
+                
+                // remove the project name from chop
+                chop = chop.replace(projectName,'');
+                
+                // check for /src/main/java, /src/main/resources, /src/main/webapp, 
+                //           /src/test/java, /src/test/resources
+                var sourceFolder;
+                var srcMainJava = '/src/main/java';
+                var srcMainResources = '/src/main/resources';
+                var srcMainWebapp = '/src/main/webapp';
+                var srcTestJava = '/src/test/java';
+                var srcTestResources = '/src/test/resources';
+                
+                if(chop.slice(0, srcMainJava.length) == srcMainJava){
+                    sourceFolder = srcMainJava;
+                }else if(chop.slice(0, srcMainResources.length) == srcMainResources){
+                    sourceFolder = srcMainResources;
+                }else if(chop.slice(0, srcMainWebapp.length) == srcMainWebapp){
+                    sourceFolder = srcMainWebapp;
+                }else if(chop.slice(0, srcTestJava.length) == srcTestJava){
+                    sourceFolder = srcTestJava;
+                }else if(chop.slice(0, srcTestResources.length) == srcTestResources){
+                    sourceFolder = srcTestResources;
+                }else{
+                    
+                // pfff, no idea yet. I think this way of chopping the path is far
+                // from ideal but have to think on how to do this with
+                // the 'fixed' src/main/java etc grouping...
+                }
+                
+                path.push(projectFolder + '/' + projectName + sourceFolder);
+                
+                // remove from the chop
+                chop = chop.replace(sourceFolder+'/','');
+                
+                // from here we loop trough the remaining folders and add them
+                var folderArray = chop.split('/');
+                
+                var folderPath ='';
+                
+                for(var i=0;i<folderArray.length;i++){
+                    
+                    folderPath += '/' + folderArray[i];
+                    path.push(projectFolder + '/' + projectName + sourceFolder + folderPath);    
+                }
+                
+                // set the path in the tree
+                selectedTree.set('paths', [path]);
+                
             },
 
             openItemReadonly : function(item, opened){
