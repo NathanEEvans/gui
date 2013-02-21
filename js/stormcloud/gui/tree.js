@@ -74,7 +74,6 @@ define([
                     getIconClass : this.iconClass,
                     // tree double click handler
                     onDblClick : this.openItem
-    
                 }, 'projectTree');
                 
                 
@@ -355,6 +354,27 @@ define([
                 
                 // set the path in the tree
                 selectedTree.set('paths', [path]);
+                
+            // @issue #47 scroll to the actual selected node
+            // does not work properly now. looks like it
+            // is called multiple times.
+            // maybe because focus event is also picked
+            // up by the ace editor and tries to set
+            // focus again, rsulting in focus event to
+            // be emitted etc...
+            // It also hangs up the editor, no being able to
+            // type anything. 
+            // 
+            // https://github.com/stormcloud-ide/gui/issues/47
+            // 
+            // scroll the file into view
+            //    var node = selectedTree._itemNodesMap[item.id];
+            //    
+            //require([ 'dijit/focus' ], function(focusUtil){
+            //    focusUtil.focus(node[0].domNode);
+            //});
+                
+                
                 
             },
 
