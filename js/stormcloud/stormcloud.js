@@ -32,30 +32,13 @@ require([
 
         ready(function() {
 
-            // @todo do the check if the user is logged in
-            //       when authenticated proceed with loading the code
-            //       otherwise document.location = login.html
-
             // When Dojo is ready we bootstrap everything we initially need.
             require([
-                'stormcloud/_base/context',
                 'stormcloud/_base/events',
                 'stormcloud/_base/gui'
                 ], function(
-                    context,
                     events,
                     gui) {
-
-                    // get user settings from the database
-                    // and set the context values
-                    //
-                    //
-                    // store the provided username & pass
-                    // 
-                    // xhr call window.location.hostname
-                    // context.host.
-
-                    
 
                     // bind all events
                     events.bind();
