@@ -346,6 +346,14 @@ a:active {
     height: 97%;    
 }
 
+#problemToolBar{
+
+    float : left;
+    border-top:1px solid #b5bcc7; 
+    width: 30px;
+    height: 97%;    
+}
+
 
 #searchToolBar{
 
