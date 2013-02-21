@@ -46,13 +46,6 @@ define([
 
                     dialog.show(DIALOG.FIND);
                 });
-
-
-                on(registry.byId('toolbarSearch_rerun'), EVENT.CLICK, function(e) {
-
-                    // tot run with previous provided args
-                    });
-                
                 
                 on(registry.byId('toolbarSearch_clear'), EVENT.CLICK, function(e) {
 
