@@ -18,8 +18,10 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([], 
-    function(){
+define([
+    'stormcloud/_base/context'], 
+    function(
+        context){
             
         //
         // module   : stormcloud/gui/state/projects
@@ -27,14 +29,39 @@ define([],
         // summary  :
         //		
 
-        var selectedProject;
-        
-        
-
 
         return {
+        
+            selected : null,
+        
+        
+            setSelected : function(item){
             
+                // summary : set the currently selected project based on a
+                
+                if(item.type =='project'){
             
+                    this.selected = item;
+                    
+                }else{
+                    
+                    var path = item.id;
+                
+                    // chop off the project folder
+                    var s = path.replace(context.getProjectFolder() + '/','');
+                
+                    var project = context.getProjectFolder() + '/' + s.substring(0,s.indexOf('/'));
+                
+                    var selectedTree = dijit.byId('projectTree');
+                
+                    var node = selectedTree._itemNodesMap[project];
+                
+                    this.selected = node[0].item;                
+                }
+                
+                console.info('Selected Project : ' + this.selected.id);
+                
+            }
         };
         
     });

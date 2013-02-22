@@ -21,11 +21,13 @@
 define([
     'dojo/on',
     'dijit/registry',
-    'dojox/html/entities'], 
+    'dojox/html/entities',
+    'stormcloud/_base/context'], 
     function(
         on,
         registry,
-        entities){
+        entities,
+        context){
    
    
         //
@@ -34,11 +36,14 @@ define([
         // summary     : 
         //               
         var errors = new Array();
+        var tests = new Array();
         
         return{
     
     
             process : function(lines){
+               
+                this.clear();
                
                 // set the new annotations
                 this._setAnnotations(lines);
@@ -48,6 +53,9 @@ define([
                 
                 // process the problem tab
                 this._problemTab();
+                
+                // process the 
+                this._testTab();
                 
                 // process the editor tabs
                 this._tabs();
@@ -65,9 +73,9 @@ define([
                     // get a handle on the editor
                     var editor = registry.byId('ace_editor_' + errors[i].fileId);
                 
-                    if(editor != undefined){
+                    if(editor){
                         // when found, clear the annotations
-                        editor.clearAnnotations();
+                        editor.getSession().setAnnotations([]);
                     }
                 }
                 
@@ -89,8 +97,9 @@ define([
                 // Reset the problem tab title
                 dijit.byId('problemTab').set('title', 'Problems');
               
-                // clear the previous error annotations array
+                // clear the previous error & tests annotations array
                 errors = new Array();
+                tests = new Array();
             },
             
             // method for other components to retrieve the 
@@ -118,6 +127,72 @@ define([
    
                     }
                 }  
+            },
+            
+            
+            _testTab : function(){
+              
+                var testWindow = dojo.byId('testWindow');
+              
+                var testCount=0;
+              
+                // loop trough the tests
+                for (var i = 0; i < tests.length; i++) {
+                
+                
+                    console.info(tests[i]);
+                
+                    var test = 
+                    '<div class="problemIcon"></div>' +
+                    '<div class="problemFileName">' + tests[i].message + '</div>' +
+                    '<input type="hidden" value="' + tests[i].reportFolder + '"/>';
+                        
+                    var div = document.createElement('div');
+                 
+                    on(div, EVENT.CLICK, function(e) {
+
+                        var reportFolder;
+                        
+                        // get the fileid from the clicked target
+                        var problem = e.currentTarget;
+                        for (var i = 0; i < problem.childNodes.length; i++) {
+                            
+                            console.info(problem.childNodes[i]);
+                            
+                            
+                            if (problem.childNodes[i].type == 'hidden') {
+                                reportFolder = problem.childNodes[i].value;
+                                break;
+                            }        
+                        }
+                            
+                        alert(reportFolder);    
+                            
+                    });
+                 
+                 
+                    div.className = 'problemEntry';
+                    div.innerHTML = test;
+                    
+                    // add it in the problem window
+                    testWindow.appendChild(div);
+                    testCount++;
+                }
+              
+                // switch to the test tab
+                var tabs = dijit.byId('logTabs');
+                // get the problem tab
+                var tab = dijit.byId('testTab');
+                
+                // update the tab title with the amount of tests we found
+                tab.set('title', 'Tests (' + testCount + ')');
+                
+                // when we found it, set selected in the tab conatiner
+                if(tab != null){
+                    tabs.selectChild(tab);
+                }
+              
+              
             },
             
             // Takes care of reporting the problems in
@@ -229,57 +304,117 @@ define([
     
             
     
-            _setAnnotations : function(lines, type){
+            _setAnnotations : function(lines){
             
                 for (var i = 0; i < lines.length; i++) {
+               
+                    if(lines[i].indexOf('There are test failures.') !== -1){
               
-                    // long riddle of chopping till we get what we want
-                    var s = lines[i].replace('[ERROR] ','');
-                    var fileId = s.substring(0,s.indexOf(':'));
-                    s = s.replace(fileId,'').replace(':[','');
-                    var lineAndColumn = s.substring(0, s.indexOf(']')).split(',');
-                    var message = s.substring(s.indexOf(']') + 2, s.length);
-                    var lineNumber = lineAndColumn[0];
-                    var columnNumber = lineAndColumn[1];
+                        this._processTestErrors(lines);
+                        break;
+                    }
+                } 
+               
+                for (i = 0; i < lines.length; i++) {
+               
+                    if(lines[i].indexOf('Compilation failure') !== -1){
+                      
+                        // lastly assume it's compile errors
+                        this._processCompileErrors(lines);
+                        
+                    }
+                }
+            },
+            
+            
+            _processTestErrors : function(lines){
+                
+                
+                for (var i = 0; i < lines.length; i++) {
+                
+                    var add = false;
+                
+                    var testAnnotation = {
+                        
+                        message : '',
+                        reportFolder : ''
+                    };
+                
+                    if(lines[i].startsWith('[ERROR] Failed to execute goal')){
                     
-                    var exists = false;
+                        add = true;
+                        var s = lines[i].replace('[ERROR] ' ,'');
+                        testAnnotation.message = s;
+                    }
+                
+                    if(lines[i].startsWith('[ERROR] Please refer to ' + context.getProjectFolder())){
                     
-                    // the -1 on the lineNumber is a bit strange but
-                    // it consequently ends up 1 row lower.
-                    // probably 0 based line count in the editor
-                    var annotation = {                      
-                        text : message,
-                        row : lineNumber-1,
-                        column : columnNumber,
-                        type : 'error'
+                        s = lines[i].replace('[ERROR] Please refer to ','');
+                        s = s.replace(' for the individual test results.','');
+                        
+                        testAnnotation.reportFolder = s;
                     }
                     
-                    // check if this file is already in the array
-                    for (var i2 = 0; i2 < errors.length; i2++) {
+                    if(add){
+                        tests.push(testAnnotation);
+                    }
+                }
+            },
+            
+            _processCompileErrors : function(lines){
+            
+                for (var i = 0; i < lines.length; i++) {
+                    
+                    if(lines[i].startsWith('[ERROR] ' + context.getProjectFolder())){
+                                    
+                        // long riddle of chopping till we get what we want
+                        var s = lines[i].replace('[ERROR] ','');
+                        var fileId = s.substring(0,s.indexOf(':'));
+                        s = s.replace(fileId,'').replace(':[','');
+                        var lineAndColumn = s.substring(0, s.indexOf(']')).split(',');
+                        var message = s.substring(s.indexOf(']') + 2, s.length);
+                        var lineNumber = lineAndColumn[0];
+                        var columnNumber = lineAndColumn[1];
+                    
+                        var exists = false;
+                    
+                        // the -1 on the lineNumber is a bit strange but
+                        // it consequently ends up 1 row lower.
+                        // probably 0 based line count in the editor
+                        var annotation = {                      
+                            text : message,
+                            row : lineNumber-1,
+                            column : columnNumber,
+                            type : 'error'
+                        }
+                    
+                        // check if this file is already in the array
+                        for (var i2 = 0; i2 < errors.length; i2++) {
                        
-                        if(errors[i2].fileId == fileId){
+                            if(errors[i2].fileId == fileId){
                     
-                            // when found push the annotations
-                            errors[i2].annotations.push(annotation);
-                            exists = true;
+                                // when found push the annotations
+                                errors[i2].annotations.push(annotation);
+                                exists = true;
+                            }
                         }
-                    }
                     
-                    if(!exists){
+                        if(!exists){
                     
-                        // if it was not found push the file
-                        var file = {
+                            // if it was not found push the file
+                            var file = {
                         
-                            fileId : fileId,
-                            annotations : [{                      
-                                text : message,
-                                row : lineNumber-1,
-                                column : columnNumber,
-                                type : 'error'
-                            }]    
+                                fileId : fileId,
+                                annotations : [{                      
+                                    text : message,
+                                    row : lineNumber-1,
+                                    column : columnNumber,
+                                    type : 'error'
+                                }]    
+                            }
+                        
+                            errors.push(file);
                         }
-                        
-                        errors.push(file);
                     }
                 }
             }

@@ -22,7 +22,7 @@ define([
     'dojo/on',
     'dijit/registry',
     'stormcloud/gui/dialog',
-    'stormcloud/services/maven',
+    'stormcloud/manager/MavenManager',
     'stormcloud/services/tomcat',
     'stormcloud/services/git',
     'stormcloud/services/filesystem'],
@@ -30,7 +30,7 @@ define([
         on,
         registry,
         dialog,
-        maven,
+        MavenManager,
         tomcat,
         git,
         filesystem) {
@@ -50,17 +50,17 @@ define([
 
                 on(registry.byId('projectMenu_compile_project'), EVENT.CLICK, function(e) {
 
-                    maven.compile(dijit.byId('projectTree').attr('selectedItem'));
+                    MavenManager.compile();
                 });
 
                 on(registry.byId('projectMenu_clean_project'), EVENT.CLICK, function(e) {
 
-                    maven.clean(dijit.byId('projectTree').attr('selectedItem'));
+                    MavenManager.clean();
                 });
 
                 on(registry.byId('projectMenu_install_project'), EVENT.CLICK, function(e) {
 
-                    maven.install(dijit.byId('projectTree').attr('selectedItem'));
+                    MavenManager.install();
                 });
 
                 on(registry.byId('projectMenu_custom_goals'), EVENT.CLICK, function(e) {

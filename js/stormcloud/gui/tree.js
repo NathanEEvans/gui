@@ -25,7 +25,8 @@ define([
     'dijit/tree/TreeStoreModel',
     'dijit/Tree',
     'stormcloud/_base/context',
-    'stormcloud/services/filesystem'], 
+    'stormcloud/services/filesystem',
+    'stormcloud/gui/state/projects'], 
     function(
         registry,
         JsonRest,
@@ -33,7 +34,8 @@ define([
         TreeStoreModel,
         Tree,
         context,
-        filesystem){
+        filesystem,
+        projects){
 
         //
         // module:
@@ -42,6 +44,9 @@ define([
         //		
         
         return{
+
+            selectedProject : '',
+
 
             initialize : function(){
             
@@ -73,7 +78,10 @@ define([
                     // tree icon function
                     getIconClass : this.iconClass,
                     // tree double click handler
-                    onDblClick : this.openItem
+                    onDblClick : this.openItem,
+                    
+                    onClick : this.setProject
+                    
                 }, 'projectTree');
                 
                 
@@ -141,9 +149,6 @@ define([
                 this.bindContextMenus(projectTree);
                 this.bindContextMenus(filesystemTree);    
                 this.bindContextMenus(servicesTree);
-                
-                
-                
             },
 
             mayHaveChildren : function(item){
@@ -201,24 +206,11 @@ define([
                 }
             },
             
-            // @todo revise the following methods.
-            // setSelectedTreeItem 
-            // setCopySource
-            // setMoveSource
-            // setDestination
-            setSelectedTreeItem : function(){
-    
-                // set the selected item
-                context.selectedTreeItem = dijit.byId('projectTree').attr('selectedItem');
-    
-                // set the selected project in which the selected item resides
-                var item = context.selectedTreeItem.id;
-    
-                // @todo bug: this does not always capture the correct project
-                var pattern = /^([/](\w*\s*)*[/](\w*\s*)*[/](\w*\s*)*)/i;
-    
-                context.selectedProject = item.match(pattern)[1];
+            setProject : function(item, opened){
+                
+                projects.setSelected(item);
             },
+            
             
             setCopySource : function(){
                 context.copySource = dijit.byId('projectTree').attr('selectedItem');

@@ -87,38 +87,7 @@ define([],
                 }  
             
                 return undefined;
-            },
-            
-            
-            /**
-             * @todo this is going to move in a treecontext object
-             * of some sort.
-             */
-            // The item currently selected in the tree.
-            selectedTreeItem : null,
-
-            // The project in which the selectedTreeItem resides.
-            selectedProject : null,
-
-            availableProjects : [],
-
-            // contents of a file busy opening.
-            fileContents : null,
-
-            // source and destination for copy action
-            copySource : null,
-            copyDestination : null,
-
-            // source and destination for move action
-            moveSource : null,
-            moveDestination : null,
-
-            // Array holding recently opened projects
-            recentProjects : new Array(),
-
-            // Array holding any changed / edited files
-            changedFiles : new Array()
-    
+            }
         };
 
     });

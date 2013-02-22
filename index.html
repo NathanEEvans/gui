@@ -698,18 +698,6 @@
 
             <div data-dojo-type="dijit/layout/TabContainer" id="logTabs" data-dojo-props="tabPosition:'top', region:'bottom', splitter:true, tabStrip:true">
 
-                <div data-dojo-type="dijit/layout/ContentPane" id="problemTab" data-dojo-props="title:'Problems'">
-
-                    <div id="problemToolBar" data-dojo-type="dijit/Toolbar">
-                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'', showLabel:false"></div>
-                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'', showLabel:false"></div>
-                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'', showLabel:false"></div>
-                    </div>
-
-                    <div id="problemWindow"></div>
-
-                </div>
-
                 <div data-dojo-type="dijit/layout/ContentPane" id="mavenLogTab" data-dojo-props="title:'Maven'">
 
                     <div id="mavenToolBar" data-dojo-type="dijit/Toolbar">
@@ -743,6 +731,31 @@
                     <div id="searchWindow"></div>
 
                 </div>
+
+                <div data-dojo-type="dijit/layout/ContentPane" id="problemTab" data-dojo-props="title:'Problems'">
+
+                    <div id="problemToolBar" data-dojo-type="dijit/Toolbar">
+                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'', showLabel:false"></div>
+                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'', showLabel:false"></div>
+                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'', showLabel:false"></div>
+                    </div>
+
+                    <div id="problemWindow"></div>
+
+                </div>
+
+                <div data-dojo-type="dijit/layout/ContentPane" id="testTab" data-dojo-props="title:'Tests'">
+
+                    <div id="testToolBar" data-dojo-type="dijit/Toolbar">
+                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'', showLabel:false"></div>
+                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'', showLabel:false"></div>
+                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'', showLabel:false"></div>
+                    </div>
+
+                    <div id="testWindow"></div>
+
+                </div>
+
 
             </div>
 

@@ -19,8 +19,10 @@
  * 
  */
 define([
+    'stormcloud/gui/state/projects',
     'stormcloud/services/maven'], 
     function(
+        projects,
         maven){
    
         // module      : stormcloud/manager/MavenManager
@@ -28,25 +30,55 @@ define([
         // summary     :
         //		
         //		
-   
+        
+        var commands = {};
    
         return{
             
-            command : '',
+            lastCommand : '',
             
             run : function(command){
                 
-                this.command = command;
+                this.lastCommand = command;
                 
-                maven.custom(command, dijit.byId('projectTree').attr('selectedItem'));
+                maven.custom(command, projects.selected);
             },
             
             runLastCommand : function(){
                 
-                if(this.command != ''){
-                    maven.custom(this.command, dijit.byId('projectTree').attr('selectedItem'));
+                if(this.lastCommand != ''){
+                    maven.custom(this.lastCommand, projects.selected);
                 }    
+            },
+            
+            
+            compile : function(){
+              
+                this.run('compile');
+                
+            },
+            
+            clean : function(){
+                
+                this.run('clean');
+            },
+            
+            install : function(){
+              
+                this.run('install');
+              
+            },
+            
+            save : function(command, name){
+                
+                this.commands[name] = command;
+            },
+            
+            getSavedCommands : function(){
+                
+                return this.commands;
             }
+            
         }
         
     });

@@ -20,11 +20,9 @@
  */
 define([
     'stormcloud/gui/dialog',
-    'stormcloud/services/maven',
     'stormcloud/manager/MavenManager'], 
     function(
         dialog,
-        maven,
         MavenManager){
         
         //

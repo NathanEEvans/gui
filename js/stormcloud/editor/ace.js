@@ -249,22 +249,15 @@ define([
             
             _gotoLine : function(editor, item){
                 
-                
-            //                if(item.gotoLine){
-            //                    
-            //                    var row = parseInt(item.gotoLine)-1;
-            //                    
-            //                    editor.gotoLine(row);
-            //                    
-            //                    // one line above
-            //                    editor.scrollToRow(row-2);
-            //                    
-            //                    
-            //                }
-            //                
-                
-                
+                if(item.gotoLine){
+                                
+                    var row = parseInt(item.gotoLine)-1;
+                                
+                    editor.gotoLine(row);
+                                
+                    // one line above
+                    editor.scrollToRow(row-2);                
+                }
             }
-
         }
     });

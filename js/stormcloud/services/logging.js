@@ -192,9 +192,6 @@ define([
                     url: CONSTANTS.MAVEN_LOG,
                     load: function(data) {
             
-                        // clear any previous annotations
-                        annotations.clear();
-            
                         var logWindow = document.getElementById('mavenLogWindow');
                         
                         logWindow.value = data; 
@@ -210,23 +207,19 @@ define([
                         
                                 if(lines[line].startsWith('[ERROR]')){
                                     
-                                    // check for possible source file directives
-                                    if(lines[line].startsWith('[ERROR] ' + context.getProjectFolder())){
-                                    
-                                        var contains = false;
-                                        // put the line in the annotation array
-                                        // when not already in there
-                                        for (var i = 0; i < annotationLines.length; i++) {
+                                    var contains = false;
+                                    // put the line in the annotation array
+                                    // when not already in there
+                                    for (var i = 0; i < annotationLines.length; i++) {
               
-                                            if(annotationLines[i] == lines[line]){
-                                                contains=true;
-                                                break;
-                                            }                              
-                                        }
+                                        if(annotationLines[i] == lines[line]){
+                                            contains=true;
+                                            break;
+                                        }                              
+                                    }
                                         
-                                        if(!contains){
-                                            annotationLines.push(lines[line]);
-                                        }
+                                    if(!contains){
+                                        annotationLines.push(lines[line]);
                                     }
                                 }
                             }
