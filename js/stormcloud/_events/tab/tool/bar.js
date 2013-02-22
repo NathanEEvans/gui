@@ -22,12 +22,14 @@ define([
     'dojo/on',
     'dijit/registry',
     'stormcloud/gui/dialog',
-    'stormcloud/gui/search'],
+    'stormcloud/gui/search',
+    'stormcloud/manager/MavenManager'],
     function(
         on,
         registry,
         dialog,
-        search) {
+        search,
+        MavenManager) {
 
         //
         // module      : stormcloud/_events/tab/tool/bar
@@ -51,8 +53,6 @@ define([
 
                     search.clear();
                 });
-            
-    
     
                 on(registry.byId('toolBarMaven_run'), EVENT.CLICK, function(e) {
 
@@ -60,9 +60,9 @@ define([
                 });
                 
                 on(registry.byId('toolBarMaven_rerun'), EVENT.CLICK, function(e) {
-
-
-                    });
+                    
+                    MavenManager.runLastCommand();
+                });
                 
                 
             }

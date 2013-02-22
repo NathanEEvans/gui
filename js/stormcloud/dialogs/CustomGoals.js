@@ -20,10 +20,12 @@
  */
 define([
     'stormcloud/gui/dialog',
-    'stormcloud/services/maven'], 
+    'stormcloud/services/maven',
+    'stormcloud/manager/MavenManager'], 
     function(
         dialog,
-        maven){
+        maven,
+        MavenManager){
         
         //
         // module      : stormcloud/dialogs/CustomGoals
@@ -51,10 +53,10 @@ define([
                 var saveAs = dojo.byId('saveAs').value;
               
                 
-                var command = debug + goals + update + offline + skipTests + properties; 
+                var command = debug + goals + update + offline + skipTests + ' ' + properties; 
               
-                maven.custom(command, dijit.byId('projectTree').attr('selectedItem'));
-              
+                MavenManager.run(command);
+                
                 dialog.hide(DIALOG.CUSTOM_GOALS);
             },
             
