@@ -1,0 +1,88 @@
+<link rel="stylesheet" href="/dialogs/CustomGoals/styles.css">
+<div class="dijitDialogPaneContentArea" style="width: 500px; height: 260px;">
+
+    <script>
+        require(['stormcloud/dialogs/CustomGoals'], function(dialog){
+       
+            dialog.init();
+        }); 
+                
+        function run() {
+            
+            require(['stormcloud/dialogs/CustomGoals'], function(dialog){
+       
+                dialog.run();
+            }); 
+        }
+        
+        function close(){
+            
+            require(['stormcloud/dialogs/CustomGoals'], function(dialog){
+               
+                dialog.close();
+            });
+        }
+    </script>
+
+    <div class="floater">
+
+        <div id="customGoalsWizard" 
+             data-dojo-type="dojox/widget/Wizard" 
+             data-dojo-props="style:'width:500px; height:260px', nextButtonLabel:'Next', doneButtonLabel:'Run'">
+
+            <div id="customGoalsStep1" 
+                 data-dojo-type="dojox/widget/WizardPane" 
+                 data-dojo-props="doneFunction:run">
+
+                <div class="stepsBanner" style="float:left; width: 100%; height: 100%;">
+
+                    <div class="formEntry">
+                        <label for="name">Goals:</label>
+                        <input data-dojo-type="dijit/form/TextBox" id="goals" style="width:300px"/>
+                    </div>
+
+                    <div class="formEntry">
+                        <label for="name">Properties:</label>
+                        <input data-dojo-type="dijit/form/TextBox" id="properties" style="width:300px;"/>     
+                    </div>
+
+                    <div class="optionsBox" style="padding-top:20px;">
+                        <div class="optionsEntry">
+                            <input id="offline" data-dojo-type="dijit/form/CheckBox"/><label for="offline">Build Offline</label>
+                        </div>
+                        <div class="optionsEntry">
+                            <input id="skipTests" data-dojo-type="dijit/form/CheckBox"/><label for="skipTests">Skip Tests</label>
+                        </div>
+                        <div class="optionsEntry">
+                            &nbsp;
+                        </div>
+                    </div>
+
+                    <div class="optionsBox" style="padding-top:20px;">
+                        <div class="optionsEntry">
+                            <input id="update" data-dojo-type="dijit/form/CheckBox"/><label for="update">Update Snapshots</label>
+                        </div>
+                        <div class="optionsEntry">
+                            <input id="debug" data-dojo-type="dijit/form/CheckBox"/><label for="debug">Show Debug Output</label>
+                        </div>
+                        <div class="optionsEntry">
+                            &nbsp;
+                        </div>
+                    </div>
+
+                    <div class="formEntry">
+                        <label for="name">Save as:</label>    
+                        <input data-dojo-type="dijit/form/TextBox" id="saveAs" style="width:300px"/>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <script type="dojo/method" event="cancelFunction">
+                close();
+            </script>
+
+        </div>
+    </div>
+</div>

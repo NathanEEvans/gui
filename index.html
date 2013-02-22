@@ -32,57 +32,6 @@
 
     <body class="claro">
 
-        <!--div data-dojo-type="dojox/layout/FloatingPane" 
-             id="dFloatingPane"
-             title="Chat" 
-             data-dojo-props="resizable:false, dockable:true, closable: false"
-             style="position:absolute;top:20px;left:20px;width: 600px; height: 620px; visibility:hidden;z-index: 99999;">
-
-            <div data-dojo-type="dijit/layout/ContentPane" id="chatroom">
-
-                <div id="chat"></div>
-                <div id="members"></div>
-
-                <div style="clear: both;">
-                    <div class="dijitDialogPaneActionBar" id="join" style="text-align: left;">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <input id="ackEnabled" type="checkbox" />
-                                    </td>
-                                    <td>
-                                        <label for="ackEnabled">Enable ack extension</label>
-                                    </td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>
-                                        Chat Nickname
-                                    </td>
-                                    <td>
-                                        <input id="username" type="text" disabled="true" value="martijn"/>
-                                    </td>
-                                    <td>
-                                        <button data-dojo-type="dijit/form/Button" type="button" id="joinButton">Join</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="dijitDialogPaneActionBar" id="joined" style="text-align: left;">
-                        Chat:
-                        &nbsp;
-                        <input id="phrase" type="text" />
-                        <button data-dojo-type="dijit/form/Button" type="button" id="sendButton">Send</button>
-                        <button data-dojo-type="dijit/form/Button" type="button" id="leaveButton">Leave</button>
-                    </div>
-                </div>
-            </div>
-        </div-->
-
         <div id="loader">
             <div id="loaderInner">Please stick around while we prepare your application ...</div>
         </div>
@@ -90,6 +39,7 @@
         <div data-dojo-type="dojox/widget/DialogSimple" id="aboutDialog" data-dojo-props="href: 'dialogs/AboutDialog/index.html'" title="About Stormcloud IDE"></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="preferencesDialog" data-dojo-props="href: 'dialogs/Preferences/index.html'" title="Preferences ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="myAccountDialog" data-dojo-props="href: 'dialogs/MyAccount/index.html'" title="My Account ..."></div>
+        <div data-dojo-type="dojox/widget/DialogSimple" id="customGoalsDialog" data-dojo-props="href: 'dialogs/CustomGoals/index.html'" title="Run Maven ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="newProjectDialog" data-dojo-props="href: 'dialogs/NewProject/index.html'" title="Create a New Project ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="cloneRemoteDialog" data-dojo-props="href: 'dialogs/CloneRemote/index.html'" title="Clone a Remote Repository ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="newFileDialog" data-dojo-props="href: 'dialogs/NewFile/index.html'" title="New File ..."></div>
@@ -109,8 +59,11 @@
             <div data-dojo-type="dijit/MenuItem" id="projectMenu_compile_project" data-dojo-props="iconClass:'compileCommandIcon'">Compile Project</div>
             <div data-dojo-type="dijit/MenuItem" id="projectMenu_clean_project" data-dojo-props="iconClass:'cleanCommandIcon'  ">Clean Project</div>
             <div data-dojo-type="dijit/MenuItem" id="projectMenu_install_project" data-dojo-props="iconClass:'installCommandIcon'">Install Project</div>
-            <div data-dojo-type="dijit/MenuSeparator"></div>
-            <div data-dojo-type="dijit/MenuItem" id="projectMenu_deploy_project">Deploy</div>
+            <div data-dojo-type="dijit/PopupMenuItem" data-dojo-props="iconClass:'customCommandIcon'"><span>Custom</span>
+                <div data-dojo-type="dijit/Menu">
+                    <div data-dojo-type="dijit/MenuItem" id="projectMenu_custom_goals">Goals...</div>
+                </div>
+            </div>
             <div data-dojo-type="dijit/MenuSeparator"></div>
             <div data-dojo-type="dijit/PopupMenuItem"><span>Git</span>
                 <div data-dojo-type="dijit/Menu">
@@ -225,7 +178,6 @@
                             <div data-dojo-type="dijit/MenuItem" id="stormcloudMenu_preferences">Preferences...</div>
                             <div data-dojo-type="dijit/MenuSeparator"></div>
                             <div data-dojo-type="dijit/MenuItem" id="stormcloudMenu_my_account">My Account</div>
-                            <div data-dojo-type="dijit/MenuItem" id="stormcloudMenu_services">Services</div>
                         </div>
                     </div>
 
@@ -243,7 +195,6 @@
                                     <div data-dojo-type="dijit/MenuItem" id="fileMenu_open_recent_project"></div>
                                 </div>
                             </div>
-                            <div data-dojo-type="dijit/MenuItem" id="fileMenu_close_project" data-dojo-props="iconClass:'closeProjectIcon'">Close Project </div>
                             <div data-dojo-type="dijit/PopupMenuItem"><span>Open Recent File</span>
                                 <div data-dojo-type="dijit/Menu" id="fileMenu_open_recent_file">
 
@@ -273,10 +224,6 @@
                             <div data-dojo-type="dijit/MenuItem" id="fileMenu_save">Save</div>
                             <div data-dojo-type="dijit/MenuItem" id="fileMenu_save_as">Save As...</div>
                             <div data-dojo-type="dijit/MenuItem" id="fileMenu_save_all">Save All</div>
-                            <div data-dojo-type="dijit/MenuSeparator"></div>
-                            <div data-dojo-type="dijit/MenuItem" id="fileMenu_page_setup">Page Setup</div>
-                            <div data-dojo-type="dijit/MenuItem" id="fileMenu_print">Print...</div>
-                            <div data-dojo-type="dijit/MenuItem" id="fileMenu_print_to_html">Print to HTML...</div>
                         </div>
                     </div>
 
@@ -766,12 +713,23 @@
                 <div data-dojo-type="dijit/layout/ContentPane" id="mavenLogTab" data-dojo-props="title:'Maven'">
 
                     <div id="mavenToolBar" data-dojo-type="dijit/Toolbar">
-                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'toolbarRerun', showLabel:false"></div>
-                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'runMaven', showLabel:false"></div>
-                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'stop', showLabel:false"></div>
+                        <div data-dojo-type="dijit/form/Button" id="toolBarMaven_rerun" data-dojo-props="iconClass:'toolbarRerun', showLabel:false"></div>
+                        <div data-dojo-type="dijit/form/Button" id="toolBarMaven_run" data-dojo-props="iconClass:'runMaven', showLabel:false"></div>
                     </div>
 
                     <textarea id="mavenLogWindow"></textarea>
+
+                </div>
+
+                <div data-dojo-type="dijit/layout/ContentPane" id="gitLogTab" data-dojo-props="title:'Git'">
+
+                    <div id="gitToolBar" data-dojo-type="dijit/Toolbar">
+                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'', showLabel:false"></div>
+                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'', showLabel:false"></div>
+                        <div data-dojo-type="dijit/form/Button" id="" data-dojo-props="iconClass:'', showLabel:false"></div>
+                    </div>
+
+                    <textarea id="gitLogWindow"></textarea>
 
                 </div>
 

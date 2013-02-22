@@ -509,11 +509,11 @@ define([
                     
                         if(data == '0'){
                         
-                            toolBarTrash.set('iconClass','trashEmptyIcon');
+                            //dijit.byId('toolBarTrash').set('iconClass','trashEmptyIcon');
                         
                         }else{
                         
-                            toolBarTrash.set('iconClass','trashFullIcon');
+                            //dijit.byId('toolBarTrash').set('iconClass','trashFullIcon');
                         }
                     }
                 });

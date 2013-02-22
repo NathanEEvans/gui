@@ -1,11 +1,19 @@
 <link rel="stylesheet" href="/dialogs/MyAccount/styles.css">
-<div class="dijitDialogPaneContentArea" style="width: 600px;">
+<div class="dijitDialogPaneContentArea" style="height: 500px; width: 600px;">
 
     <script>
         require(['stormcloud/dialogs/MyAccount'], function(dialog){
        
             dialog.init();
         }); 
+        
+        function close(){
+        
+            require(['stormcloud/dialogs/MyAccount'], function(dialog){
+       
+                dialog.close();
+            }); 
+        }
     </script>
 
     My Account
@@ -16,21 +24,21 @@
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            myAccountDialog.hide();
+            close();
         </script>
         Help
     </button>
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            myAccountDialog.hide();
+            close();
         </script>
         Cancel
     </button>
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            myAccountDialog.hide(); 
+            close();
         </script>
         OK
     </button>

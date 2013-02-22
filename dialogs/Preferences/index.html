@@ -1,11 +1,20 @@
 <link rel="stylesheet" href="/dialogs/Preferences/styles.css">
-<div class="dijitDialogPaneContentArea" style="width: 600px;">
+<div class="dijitDialogPaneContentArea" style="height: 500px; width: 600px;">
 
     <script>
         require(['stormcloud/dialogs/Preferences'], function(dialog){
        
             dialog.init();
         }); 
+        
+        function close(){
+            
+            require(['stormcloud/dialogs/Preferences'], function(dialog){
+       
+                dialog.close();
+            }); 
+        }
+        
     </script>
 
 
@@ -14,9 +23,9 @@
         <div data-dojo-type="dijit/layout/ContentPane" title="General">
 
             <div style="float:left; padding-top:40px; padding-left: 40px;">
-                
+
                 <label>Language</label>
-                
+
                 <select data-dojo-type="dijit/form/ComboBox">
                     <option>English</option>
                     <option>Español</option>
@@ -28,8 +37,8 @@
                 </select>
 
             </div>
-            
-            
+
+
 
         </div>
 
@@ -70,34 +79,34 @@
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            preferencesDialog.hide(); 
+            close(); 
         </script>
         Export
     </button>
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            preferencesDialog.hide(); 
+            close();
         </script>
         Import
     </button>
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            preferencesDialog.hide(); 
+            close();
         </script>
         Help
     </button>
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            preferencesDialog.hide(); 
+            close();
         </script>
         Cancel
     </button>
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            preferencesDialog.hide();
+            close();
         </script>
         OK
     </button>

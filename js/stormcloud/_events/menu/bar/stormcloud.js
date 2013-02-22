@@ -55,14 +55,6 @@ define([
 
                     dialog.show(DIALOG.MY_ACCOUNT);
                 });
-
-                on(registry.byId('stormcloudMenu_services'), EVENT.CLICK, function(e) {
-
-                    dialog.show(DIALOG.SERVICES);
-                });
-
-
-
             }
         };
 

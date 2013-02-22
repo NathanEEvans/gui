@@ -69,12 +69,6 @@ define([
                     alert('Not Implemented');
                 });
 
-
-                on(registry.byId('fileMenu_close_project'), EVENT.CLICK, function(e) {
-
-                    filesystem.close(dijit.byId('servicesTree').attr('selectedItem'));
-                });
-
                 on(registry.byId('fileMenu_open_recent_project'), EVENT.CLICK, function(e) {
 
                     alert('Not Implemented');
@@ -116,21 +110,6 @@ define([
                 });
 
                 on(registry.byId('fileMenu_save_all'), EVENT.CLICK, function(e) {
-
-                    alert('Not Implemented');
-                });
-
-                on(registry.byId('fileMenu_page_setup'), EVENT.CLICK, function(e) {
-
-                    alert('Not Implemented');
-                });
-
-                on(registry.byId('fileMenu_print'), EVENT.CLICK, function(e) {
-
-                    alert('Not Implemented');
-                });
-
-                on(registry.byId('fileMenu_print_to_html'), EVENT.CLICK, function(e) {
 
                     alert('Not Implemented');
                 });

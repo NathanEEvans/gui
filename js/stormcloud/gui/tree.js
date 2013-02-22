@@ -142,6 +142,8 @@ define([
                 this.bindContextMenus(filesystemTree);    
                 this.bindContextMenus(servicesTree);
                 
+                
+                
             },
 
             mayHaveChildren : function(item){

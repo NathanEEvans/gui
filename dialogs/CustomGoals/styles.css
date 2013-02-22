@@ -1,0 +1,59 @@
+
+
+.floater{
+ 
+    
+    
+}
+
+
+.formEntry{
+
+    float:left; 
+    width:100%; 
+    padding-top:10px;
+}
+
+.formEntry label{
+    float:left;
+    width:70px;
+}
+
+.optionsBox{
+
+    float : left;
+
+    width : 45%;
+    margin-right : 10px;
+    margin-top : 10px;
+}
+
+.optionsBox label{
+
+    float:left;
+
+}
+
+.optionsBoxLabel{
+    float : left;
+    width : 100%;
+    padding-left : 10px;
+    padding-bottom: 10px;
+    margin-top: -9px;
+    font-weight : bold;
+}
+
+.optionsEntry{
+
+    float : left;
+    width : 90%;
+    padding-left : 10px;
+    padding-bottom: 10px;
+}
+
+.optionsEntry div{
+
+    float : left;
+
+}
+

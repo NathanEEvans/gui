@@ -51,6 +51,20 @@ define([
 
                     search.clear();
                 });
+            
+    
+    
+                on(registry.byId('toolBarMaven_run'), EVENT.CLICK, function(e) {
+
+                    dialog.show(DIALOG.CUSTOM_GOALS);
+                });
+                
+                on(registry.byId('toolBarMaven_rerun'), EVENT.CLICK, function(e) {
+
+
+                    });
+                
+                
             }
         }
     });

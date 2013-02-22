@@ -63,11 +63,9 @@ define([
                     maven.install(dijit.byId('projectTree').attr('selectedItem'));
                 });
 
-                on(registry.byId('projectMenu_deploy_project'), EVENT.CLICK, function(e) {
+                on(registry.byId('projectMenu_custom_goals'), EVENT.CLICK, function(e) {
 
-                    // run application
-                    tomcat.deploy(dijit.byId('projectTree').attr('selectedItem'));
-
+                    dialog.show(DIALOG.CUSTOM_GOALS);
                 });
 
                 on(registry.byId('projectMenu_show_changes'), EVENT.CLICK, function(e) {

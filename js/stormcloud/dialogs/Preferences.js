@@ -18,8 +18,10 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([], 
-    function(){
+define([
+    'stormcloud/gui/dialog'], 
+    function(
+        dialog){
         
         //
         // module      : stormcloud/dialogs/Preferences
@@ -31,10 +33,12 @@ define([],
     
             init : function(){
                 
-                alert('init');
+            },
+            
+            
+            close : function(){
+              
+                dialog.hide(DIALOG.PREFERENCES);
             }
-    
-    
         }
-
     });

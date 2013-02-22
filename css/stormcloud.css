@@ -316,6 +316,21 @@ a:active {
     overflow:hidden;
 }
 
+#gitLogTab{
+
+    overflow:hidden;    
+}
+
+#gitLogWindow{
+
+    float:left;
+    width: 97%; 
+    height: 100%; 
+    border:0;
+    font-family:monospace;
+    font-size: 11px;    
+
+}
 
 #mavenLogWindow{
 
@@ -336,6 +351,14 @@ a:active {
     height: 100%;
     width:97%;
 
+}
+
+#gitToolBar{
+
+    float : left;
+    border-top:1px solid #b5bcc7; 
+    width: 30px;
+    height: 97%;    
 }
 
 #mavenToolBar{

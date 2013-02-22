@@ -53,6 +53,32 @@ define([
 
         return{
         
+            custom: function(command, item){
+              
+                var xhrArgs = {
+                    url: URL.MAVEN_EXECUTE,
+                    content : {
+                        commands : command,
+                        filePath : item.id
+                    }
+                }
+    
+                var deferred = xhr.post(xhrArgs);
+            
+                logging.startMaven();
+            
+                deferred.then(
+                    function(data){
+            
+                        logging.stopMaven(data);
+                    
+                    },
+                    function(error){
+            
+                        statusbar.errorStatus(error);
+                    });
+            },
+        
             compile: function(item){
     
                 var xhrArgs = {

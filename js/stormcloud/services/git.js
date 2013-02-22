@@ -74,7 +74,7 @@ define([
             
                             require(['stormcloud/gui/tree'],function(tree){
                 
-                                tree.refreshTree('projectTree');
+                                tree.refresh('projectTree');
                             });
             
                         }else{

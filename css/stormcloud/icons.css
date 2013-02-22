@@ -680,6 +680,13 @@
     height           : 16px;
 }
 
+.customCommandIcon{
+
+    background-image : url('/images/maven/custom.png');	
+    width            : 16px;
+    height           : 16px;
+}
+
 
 /**
  * Top Menubar Icons

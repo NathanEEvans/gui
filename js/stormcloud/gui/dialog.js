@@ -35,7 +35,7 @@ define([
             ABOUT :  'aboutDialog', 
             PREFERENCES : 'preferencesDialog',         
             MY_ACCOUNT : 'myAccountDialog',
-            SERVICES : 'servicesDialog',
+            CUSTOM_GOALS : 'customGoalsDialog',
             NEW_PROJECT : 'newProjectDialog',
             NEW_FILE : 'newFileDialog',     
             CLONE_REMOTE : 'cloneRemoteDialog',
