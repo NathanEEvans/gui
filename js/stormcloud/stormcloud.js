@@ -35,8 +35,8 @@ require([
             // When Dojo is ready we bootstrap everything we initially need.
             require([
                 'stormcloud/_base/events',
-                'stormcloud/_base/gui'
-                ], function(
+                'stormcloud/_base/gui'], 
+                function(
                     events,
                     gui) {
 

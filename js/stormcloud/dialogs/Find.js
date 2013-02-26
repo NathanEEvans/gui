@@ -20,9 +20,11 @@
  */
 define([
     'stormcloud/manager/DialogManager',
+    'stormcloud/manager/ProjectManager',
     'stormcloud/gui/search'], 
     function(
         DialogManager,
+        ProjectManager,
         search){
         
         //
@@ -51,7 +53,7 @@ define([
                     matchCase : document.getElementById('matchCase').checked == true ? true : false,
                     wholeWords : document.getElementById('wholeWords').checked == true ? true : false,
                     regex : document.getElementById('regularExpression').checked == true ? true : false,
-                    scope : document.getElementById('openProjects').checked ? '' : dijit.byId('projectTree').attr('selectedItem').id
+                    scope : document.getElementById('openProjects').checked ? '' : ProjectManager.selected
                 }
        
                 // send the find request
