@@ -21,11 +21,11 @@
 define([
     'dojo/on',
     'dijit/registry',
-    'stormcloud/gui/dialog'],
+    'stormcloud/manager/DialogManager'],
     function(
         on,
         registry,
-        dialog) {
+        DialogManager) {
 
         //
         // module      : stormcloud/_events/menu/bar/help
@@ -57,7 +57,7 @@ define([
 
                 on(registry.byId('helpMenu_report_issue'), EVENT.CLICK, function(e) {
 
-                    dialog.show(DIALOG.DEFECTS_AND_ENHANCEMENTS);
+                    DialogManager.show(DIALOG.DEFECTS_AND_ENHANCEMENTS);
                 });
 
                 on(registry.byId('helpMenu_start_page'), EVENT.CLICK, function(e) {

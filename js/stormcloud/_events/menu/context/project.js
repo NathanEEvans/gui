@@ -21,7 +21,7 @@
 define([
     'dojo/on',
     'dijit/registry',
-    'stormcloud/gui/dialog',
+    'stormcloud/manager/DialogManager',
     'stormcloud/manager/MavenManager',
     'stormcloud/services/tomcat',
     'stormcloud/services/git',
@@ -29,7 +29,7 @@ define([
     function(
         on,
         registry,
-        dialog,
+        DialogManager,
         MavenManager,
         tomcat,
         git,
@@ -65,7 +65,7 @@ define([
 
                 on(registry.byId('projectMenu_custom_goals'), EVENT.CLICK, function(e) {
 
-                    dialog.show(DIALOG.CUSTOM_GOALS);
+                    DialogManager.show(DIALOG.CUSTOM_GOALS);
                 });
 
                 on(registry.byId('projectMenu_show_changes'), EVENT.CLICK, function(e) {
@@ -80,7 +80,7 @@ define([
 
                 on(registry.byId('projectMenu_commit'), EVENT.CLICK, function(e) {
 
-                    dialog.show(DIALOG.GIT_COMMIT);
+                    DialogManager.show(DIALOG.GIT_COMMIT);
                 });
 
 
@@ -147,13 +147,13 @@ define([
 
                 on(registry.byId('projectMenu_delete_project'), EVENT.CLICK, function(e) {
 
-                    dialog.show(DIALOG.DELETE);
+                    DialogManager.show(DIALOG.DELETE);
                 });
 
 
                 on(registry.byId('projectMenu_find'), EVENT.CLICK, function(e) {
 
-                    dialog.show(DIALOG.FIND);
+                    DialogManager.show(DIALOG.FIND);
                 });
 
                 on(registry.byId('projectMenu_close_project'), EVENT.CLICK, function(e) {

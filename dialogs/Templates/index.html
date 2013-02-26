@@ -17,11 +17,10 @@
         
         function cancel(){
             
-            require(['stormcloud/gui/dialog'], function(dialog){
-            
-                dialog.hide(DIALOG.TEMPLATES);
-                
-            });
+            require(['stormcloud/dialogs/Templates'], function(templates){
+       
+                templates.cancel();
+            });   
         }
     </script>
 

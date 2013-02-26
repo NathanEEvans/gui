@@ -21,13 +21,13 @@
 define([
     'dojo/on',
     'dijit/registry',
-    'stormcloud/gui/dialog',
+    'stormcloud/manager/DialogManager',
     'stormcloud/gui/search',
     'stormcloud/manager/MavenManager'],
     function(
         on,
         registry,
-        dialog,
+        DialogManager,
         search,
         MavenManager) {
 
@@ -46,7 +46,7 @@ define([
                 
                 on(registry.byId('toolbarSearch_redefine'), EVENT.CLICK, function(e) {
 
-                    dialog.show(DIALOG.FIND);
+                    DialogManager.show(DIALOG.FIND);
                 });
                 
                 on(registry.byId('toolbarSearch_clear'), EVENT.CLICK, function(e) {
@@ -56,17 +56,13 @@ define([
     
                 on(registry.byId('toolBarMaven_run'), EVENT.CLICK, function(e) {
 
-                    dialog.show(DIALOG.CUSTOM_GOALS);
+                    DialogManager.show(DIALOG.CUSTOM_GOALS);
                 });
                 
                 on(registry.byId('toolBarMaven_rerun'), EVENT.CLICK, function(e) {
                     
                     MavenManager.runLastCommand();
                 });
-                
-                
             }
         }
     });
-            
-

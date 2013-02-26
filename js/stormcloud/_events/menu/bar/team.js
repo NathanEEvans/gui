@@ -18,18 +18,8 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([
-    'dojo/on',
-    'dijit/registry',
-    'stormcloud/gui/dialog',
-    'stormcloud/gui/tree',
-    'stormcloud/services/filesystem'],
-    function(
-        on,
-        registry,
-        dialog,
-        tree,
-        filesystem) {
+define([],
+    function() {
 
         //
         // module      : stormcloud/_events/menu/bar/team

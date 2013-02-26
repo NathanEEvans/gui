@@ -28,7 +28,7 @@ define([
     'dijit/form/ValidationTextBox',
     'stormcloud/_base/context',
     'stormcloud/services/filesystem',
-    'stormcloud/gui/dialog'], 
+    'stormcloud/manager/DialogManager'], 
     function(
         JsonRest,
         ObjectStore,
@@ -39,7 +39,7 @@ define([
         ValidationTextBox,
         context,
         filesystem,
-        dialog){
+        DialogManager){
             
         //
         // module      : stormcloud/dialogs/NewFile
@@ -224,7 +224,7 @@ define([
                 filesystem.create(item);
                 
                 // hide the dialog
-                dialog.hide(DIALOG.NEW_FILE);
+                DialogManager.hide(DIALOG.NEW_FILE);
             },
             
             mayHaveChildren : function(item){

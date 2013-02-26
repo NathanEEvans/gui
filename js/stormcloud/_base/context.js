@@ -34,6 +34,7 @@ define([],
     
             API_URL : 'API_URL',
             PROJECT_FOLDER : 'PROJECT_FOLDER',
+            CLOSED_PROJECTS_FOLDER : 'CLOSED_PROJECTS_FOLDER',
             TOMCAT_HOME : 'TOMCAT_HOME',
             TOMCAT_MANAGER_URL : 'TOMCAT_MANAGER_URL',
             TOMCAT_VIEW_URL : 'TOMCAT_PRIVATE_URL'

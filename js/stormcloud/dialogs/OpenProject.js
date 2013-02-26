@@ -24,14 +24,16 @@ define([
     'dijit/tree/TreeStoreModel',
     'dijit/Tree',
     'stormcloud/_base/context',
-    'stormcloud/services/filesystem'], 
+    'stormcloud/services/filesystem',
+    'stormcloud/manager/DialogManager'], 
     function(
         JsonRest,
         ObjectStore,
         TreeStoreModel,
         Tree,
         context,
-        filesystem){
+        filesystem,
+        DialogManager){
             
         //
         // module      : stormcloud/dialogs/OpenProject
@@ -74,16 +76,19 @@ define([
             
             },
             
+            
+            cancel : function(){
+                
+                DialogManager.hide(DIALOG.OPEN_PROJECT);
+            },
+            
             done : function() {
             
                 var item = dijit.byId('closedProjectTree').attr('selectedItem');
 
-                require(['stormcloud/gui/dialog','stormcloud/services/filesystem'], function(dialog, filesystem){
+                filesystem.open(item);
                 
-                    filesystem.open(item);
-                    dialog.hide(DIALOG.OPEN_PROJECT);
-            
-                });
+                DialogManager.hide(DIALOG.OPEN_PROJECT);            
             },
             
             mayHaveChildren : function(item){
@@ -94,8 +99,6 @@ define([
 		
                 return "projectIcon";
             }
-        
         }
-            
     });
 

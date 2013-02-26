@@ -146,9 +146,9 @@
 
             <script type="dojo/method" event="cancelFunction">
 
-                require(['stormcloud/gui/dialog'],function(dialog){
+                require(['stormcloud/manager/DialogManager'],function(DialogManager){
 
-                dialog.hide('newFileDialog');
+                DialogManager.hide('newFileDialog');
                 });
 
                 dijit.byId('newFileWizard').selectChild('newFileStep1');

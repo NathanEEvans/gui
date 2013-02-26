@@ -22,12 +22,12 @@ define([
     'stormcloud/_base/context',
     'stormcloud/gui/statusbar',
     'stormcloud/rest/xhr',
-    'stormcloud/gui/annotations'], 
+    'stormcloud/manager/AnnotationManager'],
     function(
         context,
         statusbar,
         xhr,
-        annotations){
+        AnnotationManager){
    
         //
         // module      : stormcloud/services/logging
@@ -126,7 +126,7 @@ define([
                         if(failed){
                             var lines = document.getElementById('tomcatLogWindow').value.split('\n');
 
-                            for(line in lines){
+                            for(var line in lines){
                         
                                 if(lines[line].lastIndexOf('ERROR', 0) === 0){
                                     alert(lines[line]);
@@ -225,7 +225,7 @@ define([
                             }
                             
                             // process annotations
-                            annotations.process(annotationLines);                              
+                            AnnotationManager.process(annotationLines);                              
                         }
                     }
                 });

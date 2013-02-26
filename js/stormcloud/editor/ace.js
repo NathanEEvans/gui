@@ -20,11 +20,13 @@
  */
 define([
     'dijit/registry',
-    'stormcloud/gui/annotations',
+    'stormcloud/manager/ProjectManager',
+    'stormcloud/manager/AnnotationManager',
     'stormcloud/gui/search'], 
     function(
         registry,
-        annotations,
+        ProjectManager,
+        AnnotationManager,
         search){
    
         // module      : stormcloud/editor/ace
@@ -180,6 +182,9 @@ define([
 
                         tree.select('projectTree', item);
                     });
+                    
+                    // select the project this file belongs to
+                    ProjectManager.setSelected(item);
                 });
                 
             },
@@ -188,7 +193,7 @@ define([
             _setAnnotations: function(editor, item){
                 
                 // get error annotations
-                var errors = annotations.getErrors();
+                var errors = AnnotationManager.getErrors();
                 
                 // loop trough the erros
                 for (var i = 0; i < errors.length; i++) {

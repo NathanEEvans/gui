@@ -21,13 +21,13 @@
 define([
     'dojo/on',
     'dijit/registry',
-    'stormcloud/gui/dialog',
+    'stormcloud/manager/DialogManager',
     'stormcloud/gui/tree',
     'stormcloud/services/filesystem'],
     function(
         on,
         registry,
-        dialog,
+        DialogManager,
         tree,
         filesystem) {
 
@@ -44,22 +44,22 @@ define([
 
                 on(registry.byId('fileMenu_new_file'), EVENT.CLICK, function(e) {
 
-                    dialog.show(DIALOG.NEW_FILE);
+                    DialogManager.show(DIALOG.NEW_FILE);
                 });
 
                 on(registry.byId('fileMenu_new_project'), EVENT.CLICK, function(e) {
 
-                    dialog.show(DIALOG.NEW_PROJECT);
+                    DialogManager.show(DIALOG.NEW_PROJECT);
                 });
 
                 on(registry.byId('fileMenu_clone_remote'), EVENT.CLICK, function(e) {
 
-                    dialog.show(DIALOG.CLONE_REMOTE);
+                    DialogManager.show(DIALOG.CLONE_REMOTE);
                 });
 
                 on(registry.byId('fileMenu_open_project'), EVENT.CLICK, function(e) {
 
-                    dialog.show(DIALOG.OPEN_PROJECT);
+                    DialogManager.show(DIALOG.OPEN_PROJECT);
 
                     tree.refresh('closedProjectTree');
                 });

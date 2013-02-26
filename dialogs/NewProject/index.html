@@ -2,11 +2,30 @@
 <div class="dijitDialogPaneContentArea" style="width: 900px; height: 500px;">
 
     <script>
+        
         require(['stormcloud/dialogs/NewProject'], function(dialog){
        
             dialog.init();
         }); 
+        
+        function done() {
+            
+            require(['stormcloud/dialogs/NewProject'], function(dialog){
+       
+                dialog.done();
+            }); 
+        }
+        
+        function cancel(){
+            
+            require(['stormcloud/dialogs/NewProject'], function(dialog){
+       
+                dialog.cancel();
+            });
+        }
+        
     </script>
+
     <style type="text/css">
         .floater {
             float:left;
@@ -20,37 +39,6 @@
             background-image: linear-gradient(rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
         }
     </style>
-
-    <script>
-        	
-        function done() {
-            
-            var data = {
-                archetypeGroupId : dojo.byId('archetypeGroupId').innerHTML,
-                archetypeArtifactId : dojo.byId('archetypeArtifactId').innerHTML,
-                archetypeVersion : dojo.byId('archetypeVersion').innerHTML,
-                projectName : projectName.value,
-                groupId : groupId.value,
-                artifactId : artifactId.value,
-                description : description.value,
-                version : version.value,
-                javaPackage : javaPackage.value
-            };
-            
-            require(['stormcloud/services/maven','stormcloud/gui/dialog','stormcloud/gui/statusbar'],function(maven,dialog,statusbar){
-            
-                maven.create(data);
-            
-                statusbar.infoStatus('Creating Project');
-                statusbar.showProgress();
-            
-                dialog.hide(DIALOG.NEW_PROJECT);
-                dijit.byId('newProjectWizard').selectChild('step1');
-            
-            });    
-    
-        }
-    </script>
 
     <div class="floater">
 
@@ -69,7 +57,7 @@
 
                 <div style="float: left;width:320px; height: 100%; border-right: 1px solid #b5bcc7;">
                     <span style="font-size: 12px; margin-left: 10px;"><b>Maven Archetypes:</b></span>
-               
+
                     <div id="archetypeTree">
                     </div>
                 </div>
@@ -112,7 +100,7 @@
 
                 <div style="float: left;width:320px; height: 100%; border-right: 1px solid #b5bcc7;">
                     <span style="font-size: 12px; margin-left: 10px;"><b>Project Details:</b></span>
-                
+
                     <form data-dojo-type="dijit/form/Form" id="newProjectForm">
                         <table style="margin-left: 10px;">
                             <tr>
@@ -258,12 +246,7 @@
             </div>
 
             <script type="dojo/method" event="cancelFunction">
-                require(['stormcloud/gui/dialog'],function(dialog){
-
-                dialog.hide(DIALOG.NEW_PROJECT);
-                dijit.byId('newProjectWizard').selectChild('step1');
-
-                });
+                cancel();
             </script>
         </div>
 

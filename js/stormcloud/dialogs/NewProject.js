@@ -23,13 +23,15 @@ define([
     'dojo/data/ObjectStore',
     'dijit/tree/TreeStoreModel',
     'dijit/Tree',
-    'stormcloud/_base/context'], 
+    'stormcloud/_base/context',
+    'stormcloud/manager/DialogManager'], 
     function(
         JsonRest,
         ObjectStore,
         TreeStoreModel,
         Tree,
-        context){
+        context,
+        DialogManager){
         
         //
         // module      : stormcloud/dialogs/NewProject
@@ -88,7 +90,35 @@ define([
             
             done : function() {
             
-                alert('save file');
+                var data = {
+                    archetypeGroupId : dojo.byId('archetypeGroupId').innerHTML,
+                    archetypeArtifactId : dojo.byId('archetypeArtifactId').innerHTML,
+                    archetypeVersion : dojo.byId('archetypeVersion').innerHTML,
+                    projectName : projectName.value,
+                    groupId : groupId.value,
+                    artifactId : artifactId.value,
+                    description : description.value,
+                    version : version.value,
+                    javaPackage : javaPackage.value
+                };
+            
+            
+                maven.create(data);
+            
+                statusbar.infoStatus('Creating Project');
+                statusbar.showProgress();
+            
+                DialogManager.hide(DIALOG.NEW_PROJECT);
+                dijit.byId('newProjectWizard').selectChild('step1');
+            
+            },
+            
+            
+            cancel : function(){
+              
+                DialogManager.hide(DIALOG.NEW_PROJECT);
+              
+                dijit.byId('newProjectWizard').selectChild('step1');
             },
             
             mayHaveChildren : function(item){

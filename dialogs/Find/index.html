@@ -2,38 +2,26 @@
 <div class="dijitDialogPaneContentArea" style="width: 600px; height: 250px;">
 
     <script>
+        require(['stormcloud/dialogs/Find'], function(dialog){
+       
+            dialog.init();
+        }); 
         
         function hide(){
         
-            require(['stormcloud/gui/dialog'], function(dialog){
+            require(['stormcloud/dialogs/Find'], function(dialog){
        
-                dialog.hide(DIALOG.FIND);
+                dialog.hide();
             }); 
         }
-        
         
         function find(){
-            
-            require(['stormcloud/gui/dialog','stormcloud/gui/search'], function(dialog, search){
+     
+            require(['stormcloud/dialogs/Find'], function(dialog){
        
-                var args = {
-                    
-                    containingText : document.getElementById('containingText').value,
-                    fileNamePatterns : document.getElementById('filenamePatterns').value,
-                    matchCase : document.getElementById('matchCase').checked == true ? true : false,
-                    wholeWords : document.getElementById('wholeWords').checked == true ? true : false,
-                    regex : document.getElementById('regularExpression').checked == true ? true : false,
-                    scope : document.getElementById('openProjects').checked ? '' : dijit.byId('projectTree').attr('selectedItem').id
-                }
-       
-                // send the find request
-                search.find(args);
-       
-                // hide the dialog
-                dialog.hide(DIALOG.FIND);
-            }); 
+                dialog.find();
+            });       
         }
-        
     </script>
 
     <br>

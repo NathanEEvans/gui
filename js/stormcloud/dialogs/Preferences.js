@@ -19,9 +19,9 @@
  * 
  */
 define([
-    'stormcloud/gui/dialog'], 
+    'stormcloud/manager/DialogManager'], 
     function(
-        dialog){
+        DialogManager){
         
         //
         // module      : stormcloud/dialogs/Preferences
@@ -38,7 +38,7 @@ define([
             
             close : function(){
               
-                dialog.hide(DIALOG.PREFERENCES);
+                DialogManager.hide(DIALOG.PREFERENCES);
             }
         }
     });

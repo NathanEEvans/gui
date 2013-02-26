@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/gui/state/files
+ * Stormcloud IDE - stormcloud/manager/FileManager
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -26,16 +26,43 @@ define([
         MenuItem){
             
         //
-        // module   : stormcloud/gui/state/files
+        // module   : stormcloud/manager/FileManager
         //		
         // summary  :
         //		
+
+        FILE_TYPE = {
+            
+            JAVA : {
+                icon : 'javaFileIcon',
+                extension : 'java'
+            }
+            
+            
+        }
+        
+        
+        FILE_STATE = {
+            
+            UNTRACKED : 'Untracked',
+            MODIFIED  : 'Modified'
+            
+        }
+        
 
 
         return {
             
             // array of last opened files
             opened : new Array(),
+            
+            
+            getIcon : function(item){
+              
+              
+              
+            },
+            
             
             // add a file to the list
             addOpenedFile : function(item){

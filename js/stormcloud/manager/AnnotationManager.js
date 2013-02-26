@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/gui/annotations
+ * Stormcloud IDE - stormcloud/manager/AnnotationManager
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -31,7 +31,7 @@ define([
    
    
         //
-        // module      : stormcloud/gui/annotations
+        // module      : stormcloud/manager/AnnotationManager
         // 
         // summary     : 
         //               
@@ -64,7 +64,7 @@ define([
             
             // Takes care of clearing all annotations
             // including errors on the problem tab
-            clear : function(){
+            clearAll : function(){
                 
                 // Clear the opened editors
                 // loop trough the errors to clear them
@@ -100,6 +100,53 @@ define([
                 // clear the previous error & tests annotations array
                 errors = new Array();
                 tests = new Array();
+            },
+            
+            clear : function(item){
+                
+                // Clear the opened editors
+                // loop trough the errors to clear them
+                for (var i = 0; i < errors.length; i++) {
+              
+                    if(errors[i].fileId.startsWith(item.id)){
+              
+                        // get a handle on the editor
+                        var editor = registry.byId('ace_editor_' + errors[i].fileId);
+                
+                        if(editor){
+                            // when found, clear the annotations
+                            editor.getSession().setAnnotations([]);
+                        }
+                    }   
+                }
+                
+                // clear the tab icons
+                for (i = 0; i < errors.length; i++) {
+              
+                    if(errors[i].fileId.startsWith(item.id)){
+              
+                        // check to see if it's opened'
+                        var tab = dijit.byId(errors[i].fileId);
+                    
+                        if(tab != undefined){
+                            tab.set('iconClass','');    
+                        }
+                    }
+                }
+                
+                // Clear the problem Tab
+                var problemWindow = dojo.byId('problemWindow');
+                problemWindow.innerHTML = '';
+
+                // Reset the problem tab title
+                dijit.byId('problemTab').set('title', 'Problems');
+              
+                // clear the previous error & tests annotations array
+                errors = new Array();
+                tests = new Array();
+                
+                
+                
             },
             
             // method for other components to retrieve the 

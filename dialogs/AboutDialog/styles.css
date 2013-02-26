@@ -1,9 +1,11 @@
 
 #aboutBanner{
 
+
+    text-align: center;
     height:100px;     
     background-color: #abd6ff;
     background-repeat: repeat-x;
     background-image: linear-gradient(rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
-
+    overflow: hidden;
 }

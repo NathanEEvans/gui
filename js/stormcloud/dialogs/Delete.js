@@ -19,10 +19,10 @@
  * 
  */
 define([
-    'stormcloud/gui/dialog',
+    'stormcloud/manager/DialogManager',
     'stormcloud/services/filesystem'], 
     function(
-        dialog,
+        DialogManager,
         filesystem){
         
         //
@@ -47,7 +47,7 @@ define([
             cancel: function(){
               
                 // no go, hide the dialog
-                dialog.hide(DIALOG.DELETE);
+                DialogManager.hide(DIALOG.DELETE);
 
             },
             
@@ -59,10 +59,7 @@ define([
                 filesystem.del(selected);
                 
                 // hide the dialog
-                dialog.hide(DIALOG.DELETE);
+                DialogManager.hide(DIALOG.DELETE);
             }
-    
-    
         }
-
     });

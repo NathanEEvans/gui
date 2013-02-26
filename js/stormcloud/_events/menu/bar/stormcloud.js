@@ -21,11 +21,11 @@
 define([
     'dojo/on',
     'dijit/registry',
-    'stormcloud/gui/dialog'],
+    'stormcloud/manager/DialogManager'],
     function(
         on,
         registry,
-        dialog) {
+        DialogManager) {
 
         //
         // module      : stormcloud/_events/menu/bar/stormcloud
@@ -42,18 +42,18 @@ define([
 
                 on(registry.byId('stormcloudMenu_about'), EVENT.CLICK, function(e) {
 
-                    dialog.show(DIALOG.ABOUT);
+                    DialogManager.show(DIALOG.ABOUT);
 
                 });
 
                 on(registry.byId('stormcloudMenu_preferences'), EVENT.CLICK, function(e) {
 
-                    dialog.show(DIALOG.PREFERENCES);
+                    DialogManager.show(DIALOG.PREFERENCES);
                 });
 
                 on(registry.byId('stormcloudMenu_my_account'), EVENT.CLICK, function(e) {
 
-                    dialog.show(DIALOG.MY_ACCOUNT);
+                    DialogManager.show(DIALOG.MY_ACCOUNT);
                 });
             }
         };

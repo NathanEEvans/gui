@@ -21,13 +21,13 @@
 define([
     'dojo/on',
     'dijit/registry',
-    'stormcloud/gui/dialog',
+    'stormcloud/manager/DialogManager',
     'stormcloud/gui/tree',
     'stormcloud/services/filesystem'],
     function(
         on,
         registry,
-        dialog,
+        DialogManager,
         tree,
         filesystem) {
 
@@ -46,7 +46,7 @@ define([
 
                 on(registry.byId('filesystemMenu_new'), EVENT.CLICK, function(e) {
 
-                    dialog.show(DIALOG.NEW_FILE);
+                    DialogManager.show(DIALOG.NEW_FILE);
                 });
 
                 on(registry.byId('filesystemMenu_open'), EVENT.CLICK, function(e) {
@@ -77,7 +77,7 @@ define([
                 on(registry.byId('filesystemMenu_delete'), EVENT.CLICK, function(e) {
 
                 
-                    dialog.show(DIALOG.DELETE);
+                    DialogManager.show(DIALOG.DELETE);
 
                 });
 

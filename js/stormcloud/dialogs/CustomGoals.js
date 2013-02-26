@@ -19,10 +19,10 @@
  * 
  */
 define([
-    'stormcloud/gui/dialog',
+    'stormcloud/manager/DialogManager',
     'stormcloud/manager/MavenManager'], 
     function(
-        dialog,
+        DialogManager,
         MavenManager){
         
         //
@@ -50,18 +50,23 @@ define([
                 var debug = dojo.byId('debug').checked == true ? ' -X ' : '';
                 var saveAs = dojo.byId('saveAs').value;
               
-                
                 var command = debug + goals + update + offline + skipTests + ' ' + properties; 
+                
+                if(saveAs != ''){
+                
+                // save the command
+              
+                }
               
                 MavenManager.run(command);
                 
-                dialog.hide(DIALOG.CUSTOM_GOALS);
+                DialogManager.hide(DIALOG.CUSTOM_GOALS);
             },
             
             
             close : function(){
               
-                dialog.hide(DIALOG.CUSTOM_GOALS);
+                DialogManager.hide(DIALOG.CUSTOM_GOALS);
             }
         }
 

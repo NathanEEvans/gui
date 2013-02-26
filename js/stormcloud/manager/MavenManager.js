@@ -19,10 +19,12 @@
  * 
  */
 define([
-    'stormcloud/gui/state/projects',
+    'stormcloud/manager/ProjectManager',
+    'stormcloud/manager/AnnotationManager',
     'stormcloud/services/maven'], 
     function(
-        projects,
+        ProjectManager,
+        AnnotationManager,
         maven){
    
         // module      : stormcloud/manager/MavenManager
@@ -31,23 +33,25 @@ define([
         //		
         //		
         
-        var commands = {};
-   
         return{
-            
+        
+            commands : {},
+   
             lastCommand : '',
             
             run : function(command){
                 
+                AnnotationManager.clear(ProjectManager.selected);
+                
                 this.lastCommand = command;
                 
-                maven.custom(command, projects.selected);
+                maven.custom(command, ProjectManager.selected);
             },
             
             runLastCommand : function(){
                 
                 if(this.lastCommand != ''){
-                    maven.custom(this.lastCommand, projects.selected);
+                    maven.custom(this.lastCommand, ProjectManager.selected);
                 }    
             },
             
@@ -71,7 +75,12 @@ define([
             
             save : function(command, name){
                 
+                
+                
+                
                 this.commands[name] = command;
+                
+                
             },
             
             getSavedCommands : function(){

@@ -21,11 +21,11 @@
 define([
     'dojo/on',
     'dijit/registry',
-    'stormcloud/gui/dialog'],
+    'stormcloud/manager/DialogManager'],
     function(
         on,
         registry,
-        dialog) {
+        DialogManager) {
 
         //
         // module      : stormcloud/_events/menu/tool/bar
@@ -41,17 +41,17 @@ define([
                 
                 on(registry.byId('toolBar_new_file'), EVENT.CLICK, function(e) {
 
-                    dialog.show(DIALOG.NEW_FILE);
+                    DialogManager.show(DIALOG.NEW_FILE);
                 });
 
                 on(registry.byId('toolBar_new_project'), EVENT.CLICK, function(e) {
 
-                    dialog.show(DIALOG.NEW_PROJECT);
+                    DialogManager.show(DIALOG.NEW_PROJECT);
                 });
 
                 on(registry.byId('toolBar_open_project'), EVENT.CLICK, function(e) {
 
-                    dialog.show(DIALOG.OPEN_PROJECT);
+                    DialogManager.show(DIALOG.OPEN_PROJECT);
 
                     tree.refresh('closedProjectTree');
                 });

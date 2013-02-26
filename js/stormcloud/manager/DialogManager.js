@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/gui/dialog
+ * Stormcloud IDE - stormcloud/manager/DialogManager
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -24,12 +24,11 @@ define([
         registry){
 
         //
-        // module       : stormcloud/gui/dialog
+        // module       : stormcloud/manager/DialogManager
         // 
         // summary      : 
         //
   
-        // 'Constants' holding the dialog configuration.
         DIALOG = {
         
             ABOUT :  'aboutDialog', 

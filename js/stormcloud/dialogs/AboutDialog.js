@@ -19,9 +19,9 @@
  * 
  */
 define([
-    'stormcloud/gui/dialog'], 
+    'stormcloud/manager/DialogManager'], 
     function(
-        dialog){
+        DialogManager){
         
 
         //
@@ -39,11 +39,7 @@ define([
             
             close : function(){
                 
-                dialog.hide(DIALOG.ABOUT);
-                
+                DialogManager.hide(DIALOG.ABOUT);
             }
-    
-    
         }
-
     });

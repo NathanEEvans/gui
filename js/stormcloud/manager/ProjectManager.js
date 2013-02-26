@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/gui/state/projects
+ * Stormcloud IDE - stormcloud/manager/ProjectManager
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -24,7 +24,7 @@ define([
         context){
             
         //
-        // module   : stormcloud/gui/state/projects
+        // module   : stormcloud/manager/ProjectManager
         //		
         // summary  :
         //		
@@ -37,9 +37,10 @@ define([
         
             setSelected : function(item){
             
-                // summary : set the currently selected project based on a
+                // summary : set the currently selected project based on a 
+                //           selected item in the project tree
                 
-                if(item.type =='project'){
+                if(item.type =='project' || item.type == 'closedProject'){
             
                     this.selected = item;
                     
@@ -58,9 +59,6 @@ define([
                 
                     this.selected = node[0].item;                
                 }
-                
-                console.info('Selected Project : ' + this.selected.id);
-                
             }
         };
         

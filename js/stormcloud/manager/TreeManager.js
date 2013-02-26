@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/gui/tree
+ * Stormcloud IDE - stormcloud/manager/TreeManager
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -39,7 +39,7 @@ define([
 
         //
         // module:
-        //		stormcloud/gui/tree
+        //		stormcloud/manager/TreeManager
         // summary:
         //		
         

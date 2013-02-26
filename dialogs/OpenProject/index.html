@@ -15,11 +15,11 @@
             }); 
         }
         
-        function hide(){
+        function cancel(){
             
-            require(['stormcloud/gui/dialog'], function(dialog){
-               
-                dialog.hide(DIALOG.OPEN_PROJECT);
+            require(['stormcloud/dialogs/OpenProject'], function(dialog){
+       
+                dialog.cancel();
             });
         }
         
@@ -55,7 +55,7 @@
             </div>
 
             <script type="dojo/method" event="cancelFunction">
-                hide();
+                cancel();
             </script>
 
         </div>

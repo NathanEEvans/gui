@@ -23,13 +23,17 @@ define([
     'stormcloud/gui/statusbar',
     'stormcloud/editor/ace',
     'stormcloud/rest/xhr',
-    'stormcloud/gui/state/files'], 
+    'stormcloud/manager/MavenManager',
+    'stormcloud/manager/ProjectManager',
+    'stormcloud/manager/FileManager'], 
     function(
         context,
         statusbar,
         editor,
         xhr,
-        filestate){
+        MavenManager,
+        ProjectManager,
+        FileManager){
 
         //
         // module   : stormcloud/services/filesystem
@@ -171,8 +175,22 @@ define([
                 
                             require(['stormcloud/gui/tree'],function(tree){
                 
+                                // @todo change this into only changing the local tree
                                 tree.refresh('projectTree');
                                 tree.refresh('filesystemTree');
+                                
+                                // we are moving from closed to projects
+                                // so we need to change the path to reflect this
+                                // before calling the compile
+                                item.id = item.id.replace(
+                                    context.getSetting(SETTING.CLOSED_PROJECTS_FOLDER), 
+                                    context.getProjectFolder());
+                                    
+                                ProjectManager.setSelected(item);    
+                                    
+                                // compile the project
+                                MavenManager.compile();
+                                
                             });
                     
                         }else{
@@ -253,7 +271,7 @@ define([
                 }else{
                     
                     // add it to the recently opened files list
-                    filestate.addOpenedFile(item);
+                    FileManager.addOpenedFile(item);
                     
                     var isBinary = false;
                     
@@ -421,7 +439,8 @@ define([
                     function(data){
             
                         dijit.byId(item.id).set('title', item.label);
-            
+                        
+                        MavenManager.compile();
                     },
 
                     function(error){
@@ -509,11 +528,11 @@ define([
                     
                         if(data == '0'){
                         
-                            //dijit.byId('toolBarTrash').set('iconClass','trashEmptyIcon');
+                        //dijit.byId('toolBarTrash').set('iconClass','trashEmptyIcon');
                         
                         }else{
                         
-                            //dijit.byId('toolBarTrash').set('iconClass','trashFullIcon');
+                        //dijit.byId('toolBarTrash').set('iconClass','trashFullIcon');
                         }
                     }
                 });

@@ -25,7 +25,7 @@ define([
     'dijit/Tree',
     'stormcloud/_base/context',
     'stormcloud/services/filesystem',
-    'stormcloud/gui/dialog'], 
+    'stormcloud/manager/DialogManager'], 
     function(
         JsonRest,
         ObjectStore,
@@ -33,7 +33,7 @@ define([
         Tree,
         context,
         filesystem,
-        dialog){
+        DialogManager){
             
         //
         // module      : stormcloud/dialogs/Templates
@@ -81,6 +81,12 @@ define([
             },
             
             
+            cancel : function(){
+              
+                DialogManager.hide(DIALOG.TEMPLATES);
+              
+            },
+            
             templateTreeOnClick : function(item){
               
                 selected = item;
@@ -92,7 +98,7 @@ define([
                 
                 filesystem.get(item, false);
                 
-                dialog.hide(DIALOG.TEMPLATES);
+                DialogManager.hide(DIALOG.TEMPLATES);
             },
             
             done : function() {
@@ -100,7 +106,7 @@ define([
                 filesystem.get(selected, false);
                 
                 // hide the dialog
-                dialog.hide(DIALOG.TEMPLATES);
+                DialogManager.hide(DIALOG.TEMPLATES);
             },
             
             mayHaveChildren : function(item){

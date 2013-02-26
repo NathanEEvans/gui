@@ -19,9 +19,9 @@
  * 
  */
 define([
-    'stormcloud/gui/dialog'], 
+    'stormcloud/manager/DialogManager'], 
     function(
-        dialog){
+        DialogManager){
         
         //
         // module      : stormcloud/dialogs/MyAccount
@@ -38,10 +38,7 @@ define([
             
             close : function(){
               
-                dialog.hide(DIALOG.MY_ACCOUNT);
+                DialogManager.hide(DIALOG.MY_ACCOUNT);
             }
-    
-    
         }
-
     });
