@@ -19,19 +19,15 @@
  * 
  */
 define([
-    'dojo/on',
-    'dijit/registry',
+    'stormcloud/manager/EventManager',
     'stormcloud/manager/DialogManager',
     'stormcloud/manager/MavenManager',
-    'stormcloud/services/tomcat',
     'stormcloud/services/git',
     'stormcloud/services/filesystem'],
     function(
-        on,
-        registry,
+        EventManager,
         DialogManager,
         MavenManager,
-        tomcat,
         git,
         filesystem) {
 
@@ -48,115 +44,115 @@ define([
             bind: function() {
 
 
-                on(registry.byId('projectMenu_compile_project'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_compile_project', function() {
 
                     MavenManager.compile();
                 });
 
-                on(registry.byId('projectMenu_clean_project'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_clean_project', function() {
 
                     MavenManager.clean();
                 });
 
-                on(registry.byId('projectMenu_install_project'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_install_project', function() {
 
                     MavenManager.install();
                 });
 
-                on(registry.byId('projectMenu_custom_goals'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_custom_goals', function() {
 
                     DialogManager.show(DIALOG.CUSTOM_GOALS);
                 });
 
-                on(registry.byId('projectMenu_show_changes'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_show_changes', function() {
 
                     git.showChanges(dijit.byId('projectTree').attr('selectedItem'));
                 });
 
-                on(registry.byId('projectMenu_add'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_add', function() {
 
                     git.add(dijit.byId('projectTree').attr('selectedItem'));
                 });
 
-                on(registry.byId('projectMenu_commit'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_commit', function() {
 
                     DialogManager.show(DIALOG.GIT_COMMIT);
                 });
 
 
-                on(registry.byId('projectMenu_revert_modifications'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_revert_modifications', function() {
 
                     git.revertModifications();
                 });
 
 
-                on(registry.byId('projectMenu_revert_commit'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_revert_commit', function() {
 
                     git.revertCommit();
                 });
 
 
-                on(registry.byId('projectMenu_ignore'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_ignore', function() {
 
                     git.ignore();
                 });
 
-                on(registry.byId('projectMenu_create_branch'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_create_branch', function() {
 
                     git.createBranch();
                 });
 
 
-                on(registry.byId('projectMenu_switch_to_branch'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_switch_to_branch', function() {
 
                     git.switchToBranch();
                 });
 
-                on(registry.byId('projectMenu_create_tag'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_create_tag', function() {
 
                     git.createTag();
                 });
 
 
-                on(registry.byId('projectMenu_manage_tags'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_manage_tags', function() {
 
                     git.manageTags();
                 });
 
-                on(registry.byId('projectMenu_checkout_revision'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_checkout_revision', function() {
 
                     git.checkoutRevision();
                 });
 
 
-                on(registry.byId('projectMenu_checkout_files'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_checkout_files', function() {
 
                     git.checkoutFiles();
                 });
 
-                on(registry.byId('projectMenu_merge_revision'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_merge_revision', function() {
 
                     git.mergeRevision();
                 });
 
 
-                on(registry.byId('projectMenu_show_history'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_show_history', function() {
 
                     git.showHistory();
                 });
 
-                on(registry.byId('projectMenu_delete_project'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_delete_project', function() {
 
                     DialogManager.show(DIALOG.DELETE);
                 });
 
 
-                on(registry.byId('projectMenu_find'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_find', function() {
 
                     DialogManager.show(DIALOG.FIND);
                 });
 
-                on(registry.byId('projectMenu_close_project'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('projectMenu_close_project', function() {
 
                     filesystem.close(dijit.byId('projectTree').attr('selectedItem'));
                 });

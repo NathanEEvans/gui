@@ -19,11 +19,9 @@
  * 
  */
 define([
-    'dojo/on',
-    'dijit/registry'],
+    'stormcloud/manager/EventManager'],
     function(
-        on,
-        registry) {
+        EventManager) {
 
         //
         // module      : stormcloud/_events/menu/bar/navigate
@@ -38,127 +36,127 @@ define([
             bind: function() {
 
 
-                on(registry.byId('navigateMenu_goto_file'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_goto_file', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_goto_type'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_goto_type', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_goto_symbol'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_goto_symbol', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_goto_spring_bean'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_goto_spring_bean', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_goto_test'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_goto_test', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_goto_previous_document'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_goto_previous_document', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_goto_source'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_goto_source', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_goto_declaration'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_goto_declaration', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_goto_super_implementation'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_goto_super_implementation', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_members'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_members', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_file_members'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_file_members', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_hierarchy'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_hierarchy', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_file_hierarchy'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_file_hierarchy', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_last_edit_location'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_last_edit_location', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_back'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_back', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_forward'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_forward', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_goto_line'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_goto_line', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_toggle_bookmarks'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_toggle_bookmarks', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_bookmark_history_popup_next'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_bookmark_history_popup_next', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_bookmark_history_popup_previous'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_bookmark_history_popup_previous', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_next_error'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_next_error', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_previous_error'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_previous_error', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_select_in_projects'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_select_in_projects', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_select_in_files'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_select_in_files', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('navigateMenu_select_in_favorites'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('navigateMenu_select_in_favorites', function() {
 
                     alert('Not Implemented');
                 });

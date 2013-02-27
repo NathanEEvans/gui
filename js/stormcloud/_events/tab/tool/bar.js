@@ -19,16 +19,14 @@
  * 
  */
 define([
-    'dojo/on',
-    'dijit/registry',
+    'stormcloud/manager/EventManager',
     'stormcloud/manager/DialogManager',
-    'stormcloud/gui/search',
+    'stormcloud/manager/SearchManager',
     'stormcloud/manager/MavenManager'],
     function(
-        on,
-        registry,
+        EventManager,
         DialogManager,
-        search,
+        SearchManager,
         MavenManager) {
 
         //
@@ -40,26 +38,26 @@ define([
 
         return{
 
-            // Bind the events to the widgets
+            // Register the events with the EventManager
             bind: function() {
                 
                 
-                on(registry.byId('toolbarSearch_redefine'), EVENT.CLICK, function(e) {
-
+                EventManager.registerClick(TARGET.TOOLBAR_SEARCH_REDEFINE, function() {
+                    
                     DialogManager.show(DIALOG.FIND);
                 });
                 
-                on(registry.byId('toolbarSearch_clear'), EVENT.CLICK, function(e) {
-
-                    search.clear();
+                EventManager.registerClick(TARGET.TOOLBAR_SEARCH_CLEAR, function() {
+                    
+                    SearchManager.clear();
                 });
     
-                on(registry.byId('toolBarMaven_run'), EVENT.CLICK, function(e) {
-
+                EventManager.registerClick(TARGET.TOOLBAR_MAVEN_RUN, function() {
+                    
                     DialogManager.show(DIALOG.CUSTOM_GOALS);
                 });
                 
-                on(registry.byId('toolBarMaven_rerun'), EVENT.CLICK, function(e) {
+                EventManager.registerClick(TARGET.TOOLBAR_MAVEN_RERUN, function() {
                     
                     MavenManager.runLastCommand();
                 });

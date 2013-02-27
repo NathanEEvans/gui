@@ -34,6 +34,14 @@ define([
         
             selected : null,
         
+            close : function(){
+              
+              
+              
+              
+            },
+        
+        
         
             setSelected : function(item){
             

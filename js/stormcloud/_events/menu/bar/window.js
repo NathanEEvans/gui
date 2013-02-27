@@ -19,11 +19,9 @@
  * 
  */
 define([
-    'dojo/on',
-    'dijit/registry'],
+    'stormcloud/manager/EventManager'],
     function(
-        on,
-        registry) {
+        EventManager) {
 
         //
         // module      : stormcloud/_events/menu/bar/window
@@ -37,42 +35,42 @@ define([
             // Bind the events to the widgets
             bind: function() {
 
-                on(registry.byId('windowMenu_projects'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('windowMenu_projects', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('windowMenu_files'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('windowMenu_files', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('windowMenu_favorites'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('windowMenu_favorites', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('windowMenu_services'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('windowMenu_services', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('windowMenu_action_items'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('windowMenu_action_items', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('windowMenu_palette'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('windowMenu_palette', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('windowMenu_properties'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('windowMenu_properties', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('windowMenu_chat'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('windowMenu_chat', function() {
 
                     // dijit.byId('dFloatingPane').show();
                     alert('Not Implemented');

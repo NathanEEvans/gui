@@ -57,9 +57,89 @@ define([
             opened : new Array(),
             
             
+            open : function(){
+                
+                
+            },
+            
+            
+            close : function(){
+              
+              
+              
+            },
+            
+            
             getIcon : function(item){
               
               
+              
+            },
+            
+            
+            getImage : function(item){
+              
+                if(item.type == 'javaFile'){
+			
+                    return "/images/tree/java-file.png";
+		
+                }else if(item.type == 'jspFile'){
+			
+                    return  "/images/tree/jsp-file.png";
+		
+                }else if(item.type == 'xmlFile' 
+                    || item.type == 'xhtmlFile' ){
+			
+                    return "/images/tree/xml-file.png";
+		
+                }else if(item.type == 'htmlFile'){
+			
+                    return "/images/tree/html-file.png";
+		
+                }else if(item.type == 'wsdlFile'){
+			
+                    return "/images/tree/wsdl-file.png";
+		
+                }else if(item.type == 'xsdFile'){
+			
+                    return "/images/tree/xsd-file.png";
+		
+                }else if(item.type == 'textFile'){
+			
+                    return "/images/tree/text-file.png";
+		
+                }else if(item.type == 'cssFile'){
+			
+                    return "/images/tree/css-file.png";
+		
+                }else if(item.type == 'jsFile'){
+			
+                    return "/images/tree/javascript-file.png";
+		
+                }else if(item.type == 'imageFile'){
+			
+                    return "/images/tree/image-file.png";
+		
+                }else if(item.type == 'tldFile'){
+			
+                    return "/images/tree/tld-file.png";
+		
+                }else if(item.type == 'sqlFile'){
+			
+                    return "/images/tree/sql-file.png";
+		    
+                }else if(item.type == 'propertiesFile'){
+		
+                    return "/images/tree/properties-file.png";
+		
+                }else if(item.type == 'jarFile'){
+		
+                    return "/images/tree/jar-file.png";
+			
+                }else{
+                    
+                    return "folderIcon";
+                }  
               
             },
             

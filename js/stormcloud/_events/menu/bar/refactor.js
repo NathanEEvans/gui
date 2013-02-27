@@ -19,11 +19,9 @@
  * 
  */
 define([
-    'dojo/on',
-    'dijit/registry'],
+    'stormcloud/manager/EventManager'],
     function(
-        on,
-        registry) {
+        EventManager) {
 
         //
         // module      : stormcloud/_events/menu/bar/refactor
@@ -37,32 +35,32 @@ define([
             // Bind the events to the widgets
             bind: function() {
 
-                on(registry.byId('refactorMenu_rename'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('refactorMenu_rename', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('refactorMenu_move'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('refactorMenu_move', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('refactorMenu_copy'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('refactorMenu_copy', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('refactorMenu_safely_delete'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('refactorMenu_safely_delete', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('refactorMenu_extract_inline_style'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('refactorMenu_extract_inline_style', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('refactorMenu_inspect_and_transform'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('refactorMenu_inspect_and_transform', function() {
 
                     alert('Not Implemented');
                 });

@@ -19,13 +19,13 @@
  * 
  */
 define([
-    'dojo/on',
-    'dijit/registry',
-    'stormcloud/manager/DialogManager'],
+    'stormcloud/manager/EventManager',
+    'stormcloud/manager/DialogManager',
+    'stormcloud/manager/TreeManager'],
     function(
-        on,
-        registry,
-        DialogManager) {
+        EventManager,
+        DialogManager,
+        TreeManager) {
 
         //
         // module      : stormcloud/_events/menu/tool/bar
@@ -39,69 +39,69 @@ define([
             // Bind the events to the widgets
             bind: function() {
                 
-                on(registry.byId('toolBar_new_file'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('toolBar_new_file', function() {
 
                     DialogManager.show(DIALOG.NEW_FILE);
                 });
 
-                on(registry.byId('toolBar_new_project'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('toolBar_new_project', function() {
 
                     DialogManager.show(DIALOG.NEW_PROJECT);
                 });
 
-                on(registry.byId('toolBar_open_project'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('toolBar_open_project', function() {
 
                     DialogManager.show(DIALOG.OPEN_PROJECT);
 
-                    tree.refresh('closedProjectTree');
+                    TreeManager.refresh('closedProjectTree');
                 });
 
-                on(registry.byId('toolBar_save_all'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('toolBar_save_all', function() {
                     //Filesystem.saveAll();
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('toolBar_cut'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('toolBar_cut', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('toolBar_copy'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('toolBar_copy', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('toolBar_paste'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('toolBar_paste', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('toolBar_undo'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('toolBar_undo', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('toolBar_project_configuration'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('toolBar_project_configuration', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('toolBar_compile'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('toolBar_compile', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('toolBar_clean'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('toolBar_clean', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('toolBar_install'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('toolBar_install', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('toolBar_trash'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('toolBar_trash', function() {
 
                     alert('Not Implemented');
                 });

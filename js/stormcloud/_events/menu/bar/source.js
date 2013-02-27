@@ -19,11 +19,9 @@
  * 
  */
 define([
-    'dojo/on',
-    'dijit/registry'],
+    'stormcloud/manager/EventManager'],
     function(
-        on,
-        registry) {
+        EventManager) {
 
         //
         // module      : stormcloud/_events/menu/bar/source
@@ -37,117 +35,117 @@ define([
             // Bind the events to the widgets
             bind: function() {
 
-                on(registry.byId('sourceMenu_format'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_format', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_remove_trailing_spaces'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_remove_trailing_spaces', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_shift_left'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_shift_left', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_shift_right'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_shift_right', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_move_up'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_move_up', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_move_down'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_move_down', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_move_code_element_up'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_move_code_element_up', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_move_code_element_down'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_move_code_element_down', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_duplicate_up'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_duplicate_up', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_duplicate_down'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_duplicate_down', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_toggle_comment'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_toggle_comment', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_complete_code'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_complete_code', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_insert_code'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_insert_code', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_remove_surrounding_code'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_remove_surrounding_code', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_fix_code'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_fix_code', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_fix_imports'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_fix_imports', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_fix_uses'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_fix_uses', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_show_method_parameters'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_show_method_parameters', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_show_documentation'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_show_documentation', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_insert_next_matching_word'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_insert_next_matching_word', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_insert_previous_matching_word'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_insert_previous_matching_word', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_inspect'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_inspect', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('sourceMenu_scan_for_external_changes'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('sourceMenu_scan_for_external_changes', function() {
 
                     alert('Not Implemented');
                 });

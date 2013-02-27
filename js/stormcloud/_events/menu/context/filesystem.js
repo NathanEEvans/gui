@@ -19,17 +19,11 @@
  * 
  */
 define([
-    'dojo/on',
-    'dijit/registry',
-    'stormcloud/manager/DialogManager',
-    'stormcloud/gui/tree',
-    'stormcloud/services/filesystem'],
+    'stormcloud/manager/EventManager',
+    'stormcloud/manager/DialogManager'],
     function(
-        on,
-        registry,
-        DialogManager,
-        tree,
-        filesystem) {
+        EventManager,
+        DialogManager) {
 
         //
         // module      : stormcloud/_events/menu/context/filesystem
@@ -44,56 +38,56 @@ define([
             bind: function() {
 
 
-                on(registry.byId('filesystemMenu_new'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('filesystemMenu_new', function() {
 
                     DialogManager.show(DIALOG.NEW_FILE);
                 });
 
-                on(registry.byId('filesystemMenu_open'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('filesystemMenu_open', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('filesystemMenu_cut'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('filesystemMenu_cut', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('filesystemMenu_copy'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('filesystemMenu_copy', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('filesystemMenu_paste'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('filesystemMenu_paste', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('filesystemMenu_download'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('filesystemMenu_download', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('filesystemMenu_delete'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('filesystemMenu_delete', function() {
 
                 
                     DialogManager.show(DIALOG.DELETE);
 
                 });
 
-                on(registry.byId('filesystemMenu_rename'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('filesystemMenu_rename', function() {
 
                     alert('Not Implemented');
 
                 });
 
-                on(registry.byId('filesystemMenu_move'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('filesystemMenu_move', function() {
 
                     alert('Not Implemented');
 
                 });
 
-                on(registry.byId('filesystemMenu_safe_delete'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('filesystemMenu_safe_delete', function() {
 
                     alert('Not Implemented');
 

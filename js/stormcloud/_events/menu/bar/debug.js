@@ -19,11 +19,9 @@
  * 
  */
 define([
-    'dojo/on',
-    'dijit/registry'],
+    'stormcloud/manager/EventManager'],
     function(
-        on,
-        registry) {
+        EventManager) {
 
         //
         // module      : stormcloud/_events/menu/bar/debug
@@ -37,122 +35,122 @@ define([
             bind: function() {
 
 
-                on(registry.byId('debugMenu_debug_project'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_debug_project', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_debug_file'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_debug_file', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_debug_test_file'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_debug_test_file', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_attach_debugger'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_attach_debugger', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_finish_debugger_session'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_finish_debugger_session', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_pause'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_pause', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_continue'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_continue', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_step_over'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_step_over', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_step_over_expression'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_step_over_expression', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_step_into'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_step_into', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_step_into_next_method'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_step_into_next_method', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_step_out'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_step_out', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_run_to_cursor'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_run_to_cursor', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_apply_code_changes'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_apply_code_changes', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_take_gui_snapshot'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_take_gui_snapshot', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_set_current_thread'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_set_current_thread', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_make_callee_current'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_make_callee_current', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_make_caller_current'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_make_caller_current', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_pop_topmost_call'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_pop_topmost_call', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_toggle_line_breakpoint'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_toggle_line_breakpoint', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_new_breakpoint'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_new_breakpoint', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_new_watch'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_new_watch', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_evaluate_expression'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_evaluate_expression', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('debugMenu_check_for_deadlocks'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('debugMenu_check_for_deadlocks', function() {
 
                     alert('Not Implemented');
                 });

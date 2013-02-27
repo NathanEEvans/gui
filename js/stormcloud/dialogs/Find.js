@@ -21,11 +21,11 @@
 define([
     'stormcloud/manager/DialogManager',
     'stormcloud/manager/ProjectManager',
-    'stormcloud/gui/search'], 
+    'stormcloud/manager/SearchManager'], 
     function(
         DialogManager,
         ProjectManager,
-        search){
+        SearchManager){
         
         //
         // module      : stormcloud/dialogs/Find
@@ -57,7 +57,7 @@ define([
                 }
        
                 // send the find request
-                search.find(args);
+                SearchManager.find(args);
        
                 // hide the dialog
                 DialogManager.hide(DIALOG.FIND);  

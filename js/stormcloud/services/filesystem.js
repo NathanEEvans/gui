@@ -461,9 +461,9 @@ define([
                 deferred.then(
                     function(data){
             
-                        require(['stormcloud/gui/search'], function(search){
+                        require(['stormcloud/manager/SearchManager'], function(SearchManager){
                 
-                            search.process(data);
+                            SearchManager.process(data);
                         });
                         
                     },

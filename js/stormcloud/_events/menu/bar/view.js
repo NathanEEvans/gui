@@ -19,11 +19,9 @@
  * 
  */
 define([
-    'dojo/on',
-    'dijit/registry'],
+    'stormcloud/manager/EventManager'],
     function(
-        on,
-        registry) {
+        EventManager) {
 
         //
         // module      : stormcloud/_events/menu/bar/view
@@ -38,123 +36,115 @@ define([
             bind: function() {
 
 
-                on(registry.byId('viewMenu_source'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_source', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_history'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_history', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_collapse_fold'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_collapse_fold', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_expand_fold'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_expand_fold', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_collapse_all'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_collapse_all', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_expand_all'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_expand_all', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_ide_log'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_file', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_file'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_clipboard', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_clipboard'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_undo_redo', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_undo_redo'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_run', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_run'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_debug', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_debug'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_memory', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_memory'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_quick_search', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_quick_search'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_small_toolbar_icons', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_small_toolbar_icons'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_reset_toolbars', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_reset_toolbars'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_customize', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_customize'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_show_editor_toolbar', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_show_editor_toolbar'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_show_line_numbers', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_show_line_numbers'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_show_non_printable_characters', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_show_non_printable_characters'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_show_diff_sidebar', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_show_diff_sidebar'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_show_versioning_labels', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('viewMenu_show_versioning_labels'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('viewMenu_synchronize_editor_with_views', function() {
 
                     alert('Not Implemented');
                 });
-
-                on(registry.byId('viewMenu_synchronize_editor_with_views'), EVENT.CLICK, function(e) {
-
-                    alert('Not Implemented');
-                });
-
-
-
             }
         };
 

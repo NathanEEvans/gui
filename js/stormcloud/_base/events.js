@@ -62,39 +62,6 @@ define([
         //               and contains some event globals.
         //               
 
-        // Global events
-        EVENT = {
-            // “click” - the user clicked a node
-            CLICK: 'click',
-            // dblclick - double clicked a node
-            DOUBLE_CLICK : 'dblclick',
-            // “focus” - a node received focus
-            FOCUS: 'focus',
-            //“blur” - a node was ‘blurred’, or otherwise lost focus
-            BLUR: 'blur',
-            //“change” - an input value was changed
-            CHANGE: 'change',
-            //“keypress” - fired when the user presses a key that displays
-            KEYPRESS: 'keypress',
-            //“keydown” - fired for non-printable keys
-            KEYDOWN: 'keydown',
-            //“keyup” - fired when the user releases a key
-            KEYUP: 'keyup',
-            //“mouseover” - a node was hovered (warning: may fire more than you’d like because of bubbling)
-            MOUSEOVER: 'mouseover',
-            //“mouseout” - a node was un-hovered
-            MOUSEOUT: 'mouseout',
-            //submit - a form has been submitted
-            SUBMIT: 'submit'
-
-        /** 
-         * @todo find usable implementation for the dojo mouse events
-         * dojo/mouse#enter - a normalized version of onmouseover that wont fire more than you’d like (only on first enter)    
-         * dojo/mouse#leave - a normalized version of onmouseout that wont fire more than you’d like (only once when leaving)
-         */
-
-        }
-
         return{
             
             // Bind the events to the widgets

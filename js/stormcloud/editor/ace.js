@@ -22,12 +22,12 @@ define([
     'dijit/registry',
     'stormcloud/manager/ProjectManager',
     'stormcloud/manager/AnnotationManager',
-    'stormcloud/gui/search'], 
+    'stormcloud/manager/SearchManager'], 
     function(
         registry,
         ProjectManager,
         AnnotationManager,
-        search){
+        SearchManager){
    
         // module      : stormcloud/editor/ace
         // 
@@ -217,7 +217,7 @@ define([
             _setMarkers : function (editor, item){
                 
                 // get the files from the search
-                var files = search.getFiles();
+                var files = SearchManager.getFiles();
                 
                 // define ace Range type
                 var Range = ace.require('ace/range').Range

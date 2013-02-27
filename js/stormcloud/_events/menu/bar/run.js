@@ -19,11 +19,9 @@
  * 
  */
 define([
-    'dojo/on',
-    'dijit/registry'],
+    'stormcloud/manager/EventManager'],
     function(
-        on,
-        registry) {
+        EventManager) {
 
         //
         // module      : stormcloud/_events/menu/bar/run
@@ -37,82 +35,82 @@ define([
             // Bind the events to the widgets
             bind: function() {
 
-                on(registry.byId('runMenu_run_project'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('runMenu_run_project', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('runMenu_test_project'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('runMenu_test_project', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('runMenu_build_project'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('runMenu_build_project', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('runMenu_clean_and_build_project'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('runMenu_clean_and_build_project', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('runMenu_default'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('runMenu_default', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('runMenu_customize'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('runMenu_customize', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('runMenu_none'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('runMenu_none', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('runMenu_select'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('runMenu_select', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('runMenu_generate_javadoc'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('runMenu_generate_javadoc', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('runMenu_run_file'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('runMenu_run_file', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('runMenu_test_file'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('runMenu_test_file', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('runMenu_compile_file'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('runMenu_compile_file', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('runMenu_check_xml'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('runMenu_check_xml', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('runMenu_validate_xml'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('runMenu_validate_xml', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('runMenu_repeat_buil_run'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('runMenu_repeat_buil_run', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('runMenu_stop_build_run'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('runMenu_stop_build_run', function() {
 
                     alert('Not Implemented');
                 });

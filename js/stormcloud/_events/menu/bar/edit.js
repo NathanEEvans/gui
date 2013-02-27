@@ -19,11 +19,9 @@
  * 
  */
 define([
-    'dojo/on',
-    'dijit/registry'],
+    'stormcloud/manager/EventManager'],
     function(
-        on,
-        registry) {
+        EventManager) {
 
         //
         // module      : stormcloud/_events/menu/bar/edit
@@ -37,87 +35,87 @@ define([
             // Bind the events to the widgets
             bind: function() {
 
-                on(registry.byId('editMenu_undo'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('editMenu_undo', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('editMenu_redo'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('editMenu_redo', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('editMenu_cut'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('editMenu_cut', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('editMenu_copy'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('editMenu_copy', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('editMenu_paste'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('editMenu_paste', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('editMenu_paste_formatted'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('editMenu_paste_formatted', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('editMenu_delete'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('editMenu_delete', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('editMenu_select_all'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('editMenu_select_all', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('editMenu_select_identifier'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('editMenu_select_identifier', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('editMenu_find_selection'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('editMenu_find_selection', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('editMenu_find_next'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('editMenu_find_next', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('editMenu_find_previous'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('editMenu_find_previous', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('editMenu_find'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('editMenu_find', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('editMenu_replace'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('editMenu_replace', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('editMenu_find_usages'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('editMenu_find_usages', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('editMenu_find_in_projects'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('editMenu_find_in_projects', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('editMenu_replace_in_projects'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('editMenu_replace_in_projects', function() {
 
                     alert('Not Implemented');
                 });

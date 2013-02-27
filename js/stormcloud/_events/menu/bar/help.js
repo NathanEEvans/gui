@@ -19,12 +19,10 @@
  * 
  */
 define([
-    'dojo/on',
-    'dijit/registry',
+    'stormcloud/manager/EventManager',
     'stormcloud/manager/DialogManager'],
     function(
-        on,
-        registry,
+        EventManager,
         DialogManager) {
 
         //
@@ -40,27 +38,27 @@ define([
             bind: function() {
 
 
-                on(registry.byId('helpMenu_search'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('helpMenu_search', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('helpMenu_help_contents'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('helpMenu_help_contents', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('helpMenu_online_docs_and_support'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('helpMenu_online_docs_and_support', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('helpMenu_report_issue'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('helpMenu_report_issue', function() {
 
                     DialogManager.show(DIALOG.DEFECTS_AND_ENHANCEMENTS);
                 });
 
-                on(registry.byId('helpMenu_start_page'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('helpMenu_start_page', function() {
 
                     alert('Not Implemented');
                 });

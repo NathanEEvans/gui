@@ -19,12 +19,10 @@
  * 
  */
 define([
-    'dojo/on',
-    'dijit/registry',
+    'stormcloud/manager/EventManager',
     'stormcloud/services/tomcat'],
     function(
-        on,
-        registry,
+        EventManager,
         tomcat) {
 
         //
@@ -40,33 +38,30 @@ define([
             bind: function() {
 
 
-                on(registry.byId('tomcatAppMenu_view'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('tomcatAppMenu_view', function() {
 
                     tomcat.view(dijit.byId('servicesTree').attr('selectedItem'));
                 });
                 
-                on(registry.byId('tomcatAppMenu_stop'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('tomcatAppMenu_stop', function() {
 
                     tomcat.stopApplication(dijit.byId('servicesTree').attr('selectedItem'));
                 });
                 
-                on(registry.byId('tomcatAppMenu_start'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('tomcatAppMenu_start', function() {
 
                     tomcat.startApplication(dijit.byId('servicesTree').attr('selectedItem'));
                 });
                 
-                on(registry.byId('tomcatAppMenu_reload'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('tomcatAppMenu_reload', function() {
 
                     tomcat.reload(dijit.byId('servicesTree').attr('selectedItem'));
                 });
                 
-                on(registry.byId('tomcatAppMenu_undeploy'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('tomcatAppMenu_undeploy', function() {
 
                     tomcat.undeploy(dijit.byId('servicesTree').attr('selectedItem'));
                 });
-                
-
             }
         };
-
     });

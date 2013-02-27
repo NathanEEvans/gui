@@ -19,14 +19,12 @@
  * 
  */
 define([
-    'dojo/on',
-    'dijit/registry',
+    'stormcloud/manager/EventManager',
     'stormcloud/manager/DialogManager',
     'stormcloud/gui/tree',
     'stormcloud/services/filesystem'],
     function(
-        on,
-        registry,
+        EventManager,
         DialogManager,
         tree,
         filesystem) {
@@ -42,74 +40,74 @@ define([
             // Bind the events to the widgets
             bind: function() {
 
-                on(registry.byId('fileMenu_new_file'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('fileMenu_new_file', function() {
 
                     DialogManager.show(DIALOG.NEW_FILE);
                 });
 
-                on(registry.byId('fileMenu_new_project'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('fileMenu_new_project', function() {
 
                     DialogManager.show(DIALOG.NEW_PROJECT);
                 });
 
-                on(registry.byId('fileMenu_clone_remote'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('fileMenu_clone_remote', function() {
 
                     DialogManager.show(DIALOG.CLONE_REMOTE);
                 });
 
-                on(registry.byId('fileMenu_open_project'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('fileMenu_open_project', function() {
 
                     DialogManager.show(DIALOG.OPEN_PROJECT);
 
                     tree.refresh('closedProjectTree');
                 });
 
-                on(registry.byId('fileMenu_open_recent_file'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('fileMenu_open_recent_file', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('fileMenu_open_recent_project'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('fileMenu_open_recent_project', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('fileMenu_select_group'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('fileMenu_select_group', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('fileMenu_new_group'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('fileMenu_new_group', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('fileMenu_import_project_zip'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('fileMenu_import_project_zip', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('fileMenu_import_project_folder'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('fileMenu_import_project_folder', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('fileMenu_export_to_zip'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('fileMenu_export_to_zip', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('fileMenu_save'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('fileMenu_save', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('fileMenu_save_as'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('fileMenu_save_as', function() {
 
                     alert('Not Implemented');
                 });
 
-                on(registry.byId('fileMenu_save_all'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('fileMenu_save_all', function() {
 
                     alert('Not Implemented');
                 });

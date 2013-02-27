@@ -19,12 +19,10 @@
  * 
  */
 define([
-    'dojo/on',
-    'dijit/registry',
+    'stormcloud/manager/EventManager',
     'stormcloud/manager/DialogManager'],
     function(
-        on,
-        registry,
+        EventManager,
         DialogManager) {
 
         //
@@ -39,7 +37,7 @@ define([
             // Bind the events to the widgets
             bind: function() {
 
-                on(registry.byId('toolsMenu_templates'), EVENT.CLICK, function(e) {
+                EventManager.registerClick('toolsMenu_templates', function() {
 
                     DialogManager.show(DIALOG.TEMPLATES);
                 });
