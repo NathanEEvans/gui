@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/services/logging
+ * Stormcloud IDE - stormcloud/service/LogService
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -30,7 +30,7 @@ define([
         AnnotationManager){
    
         //
-        // module      : stormcloud/services/logging
+        // module      : stormcloud/service/LogService
         // 
         // summary     : 
         //               

@@ -198,11 +198,11 @@ define([
                             iconClass : '',
                             onClick : function(event){
                          
-                                require(['stormcloud/services/filesystem'], function(filesystem){
+                                require(['stormcloud/service/FilesystemService'], function(FilesystemService){
              
                                     var item = registry.getEnclosingWidget(event.target);
                     
-                                    filesystem.get(item.get('file'), false);
+                                    FilesystemService.get(item.get('file'), false);
                     
                                 });                        
                             } 

@@ -25,7 +25,7 @@ define([
     'dijit/tree/TreeStoreModel',
     'dijit/Tree',
     'stormcloud/manager/SettingsManager',
-    'stormcloud/services/filesystem',
+    'stormcloud/service/FilesystemService',
     'stormcloud/manager/ProjectManager'], 
     function(
         registry,
@@ -34,7 +34,7 @@ define([
         TreeStoreModel,
         Tree,
         SettingsManager,
-        filesystem,
+        FilesystemService,
         ProjectManager){
 
         //
@@ -234,7 +234,7 @@ define([
             
                     }else{
             
-                        filesystem.rename(context.moveSource.id, context.moveDestination.id);
+                        FilesystemService.rename(context.moveSource.id, context.moveDestination.id);
                     }
         
                 }else{
@@ -247,7 +247,7 @@ define([
             
                     }else{
             
-                        filesystem.copy(context.copySource.id, context.copyDestination.id);
+                        FilesystemService.copy(context.copySource.id, context.copyDestination.id);
                     }
                 }
     
@@ -374,19 +374,18 @@ define([
 
             openItemReadonly : function(item, opened){
               
-                require(['stormcloud/services/filesystem'], function(fs){
+                require(['stormcloud/service/FilesystemService'], function(FilesystemService){
                 
-                    fs.get(item, true);
-                    
+                    FilesystemService.get(item, true);
                 });
             },
 
 
             openItem : function(item, opened){
                 
-                require(['stormcloud/services/filesystem'], function(fs){
+                require(['stormcloud/service/FilesystemService'], function(FilesystemService){
                 
-                    fs.get(item, false);
+                    FilesystemService.get(item, false);
                     
                 });
                 

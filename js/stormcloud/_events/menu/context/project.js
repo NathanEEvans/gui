@@ -22,14 +22,16 @@ define([
     'stormcloud/manager/EventManager',
     'stormcloud/manager/DialogManager',
     'stormcloud/manager/MavenManager',
-    'stormcloud/services/git',
-    'stormcloud/services/filesystem'],
+    'stormcloud/manager/ProjectManager',
+    'stormcloud/service/GitService',
+    'stormcloud/service/FilesystemService'],
     function(
         EventManager,
         DialogManager,
         MavenManager,
-        git,
-        filesystem) {
+        ProjectManager,
+        GitService,
+        FilesystemService) {
 
         //
         // module      : stormcloud/_events/menu/context/project
@@ -66,12 +68,12 @@ define([
 
                 EventManager.registerClick('projectMenu_show_changes', function() {
 
-                    git.showChanges(dijit.byId('projectTree').attr('selectedItem'));
+                    GitService.showChanges(dijit.byId('projectTree').attr('selectedItem'));
                 });
 
                 EventManager.registerClick('projectMenu_add', function() {
 
-                    git.add(dijit.byId('projectTree').attr('selectedItem'));
+                    GitService.add(dijit.byId('projectTree').attr('selectedItem'));
                 });
 
                 EventManager.registerClick('projectMenu_commit', function() {
@@ -82,63 +84,63 @@ define([
 
                 EventManager.registerClick('projectMenu_revert_modifications', function() {
 
-                    git.revertModifications();
+                    GitService.revertModifications();
                 });
 
 
                 EventManager.registerClick('projectMenu_revert_commit', function() {
 
-                    git.revertCommit();
+                    GitService.revertCommit();
                 });
 
 
                 EventManager.registerClick('projectMenu_ignore', function() {
 
-                    git.ignore();
+                    GitService.ignore();
                 });
 
                 EventManager.registerClick('projectMenu_create_branch', function() {
 
-                    git.createBranch();
+                    GitService.createBranch();
                 });
 
 
                 EventManager.registerClick('projectMenu_switch_to_branch', function() {
 
-                    git.switchToBranch();
+                    GitService.switchToBranch();
                 });
 
                 EventManager.registerClick('projectMenu_create_tag', function() {
 
-                    git.createTag();
+                    GitService.createTag();
                 });
 
 
                 EventManager.registerClick('projectMenu_manage_tags', function() {
 
-                    git.manageTags();
+                    GitService.manageTags();
                 });
 
                 EventManager.registerClick('projectMenu_checkout_revision', function() {
 
-                    git.checkoutRevision();
+                    GitService.checkoutRevision();
                 });
 
 
                 EventManager.registerClick('projectMenu_checkout_files', function() {
 
-                    git.checkoutFiles();
+                    GitService.checkoutFiles();
                 });
 
                 EventManager.registerClick('projectMenu_merge_revision', function() {
 
-                    git.mergeRevision();
+                    GitService.mergeRevision();
                 });
 
 
                 EventManager.registerClick('projectMenu_show_history', function() {
 
-                    git.showHistory();
+                    GitService.showHistory();
                 });
 
                 EventManager.registerClick('projectMenu_delete_project', function() {
@@ -154,11 +156,8 @@ define([
 
                 EventManager.registerClick('projectMenu_close_project', function() {
 
-                    filesystem.close(dijit.byId('projectTree').attr('selectedItem'));
+                    FilesystemService.close(ProjectManager.selected);
                 });
-
-
-
             }
         };
 

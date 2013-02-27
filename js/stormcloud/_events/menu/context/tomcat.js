@@ -20,10 +20,10 @@
  */
 define([
     'stormcloud/manager/EventManager',
-    'stormcloud/services/tomcat'],
+    'stormcloud/service/TomcatService'],
     function(
         EventManager,
-        tomcat) {
+        TomcatService) {
 
         //
         // module      : stormcloud/_events/menu/context/tomcat
@@ -40,27 +40,27 @@ define([
 
                 EventManager.registerClick('tomcatAppMenu_view', function() {
 
-                    tomcat.view(dijit.byId('servicesTree').attr('selectedItem'));
+                    TomcatService.view(dijit.byId('servicesTree').attr('selectedItem'));
                 });
                 
                 EventManager.registerClick('tomcatAppMenu_stop', function() {
 
-                    tomcat.stopApplication(dijit.byId('servicesTree').attr('selectedItem'));
+                    TomcatService.stopApplication(dijit.byId('servicesTree').attr('selectedItem'));
                 });
                 
                 EventManager.registerClick('tomcatAppMenu_start', function() {
 
-                    tomcat.startApplication(dijit.byId('servicesTree').attr('selectedItem'));
+                    TomcatService.startApplication(dijit.byId('servicesTree').attr('selectedItem'));
                 });
                 
                 EventManager.registerClick('tomcatAppMenu_reload', function() {
 
-                    tomcat.reload(dijit.byId('servicesTree').attr('selectedItem'));
+                    TomcatService.reload(dijit.byId('servicesTree').attr('selectedItem'));
                 });
                 
                 EventManager.registerClick('tomcatAppMenu_undeploy', function() {
 
-                    tomcat.undeploy(dijit.byId('servicesTree').attr('selectedItem'));
+                    TomcatService.undeploy(dijit.byId('servicesTree').attr('selectedItem'));
                 });
             }
         };

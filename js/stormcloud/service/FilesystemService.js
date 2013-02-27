@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/services/filesystem
+ * Stormcloud IDE - stormcloud/service/FilesystemService
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -36,7 +36,7 @@ define([
         FileManager){
 
         //
-        // module   : stormcloud/services/filesystem
+        // module   : stormcloud/service/FilesystemService
         //		
         // summary  :
         //		

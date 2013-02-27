@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/services/git
+ * Stormcloud IDE - stormcloud/service/GitService
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -28,7 +28,7 @@ define([
         xhr){
 
         //
-        // module   : stormcloud/services/git
+        // module   : stormcloud/service/GitService
         //		
         // summary  :
         //		

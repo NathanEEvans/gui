@@ -70,16 +70,6 @@ define([
                     alert('Not Implemented');
                 });
 
-                EventManager.registerClick('fileMenu_select_group', function() {
-
-                    alert('Not Implemented');
-                });
-
-                EventManager.registerClick('fileMenu_new_group', function() {
-
-                    alert('Not Implemented');
-                });
-
                 EventManager.registerClick('fileMenu_import_project_zip', function() {
 
                     alert('Not Implemented');

@@ -52,9 +52,9 @@ define([
                 //          place it in the define of the module it keeps
                 //          telling my filesystem.find is not a function
                 //          grrrrr...
-                require(['stormcloud/services/filesystem'], function(filesystem){
+                require(['stormcloud/service/FilesystemService'], function(FilesystemService){
        
-                    filesystem.find(args);         
+                    FilesystemService.find(args);         
                 });
               
             },
@@ -202,9 +202,9 @@ define([
                                 
                             }
                         
-                            require(['stormcloud/services/filesystem'], function(filesystem){ 
+                            require(['stormcloud/service/FilesystemService'], function(FilesystemService){ 
                         
-                                filesystem.get(item);
+                                FilesystemService.get(item);
                             });
                         });
                     

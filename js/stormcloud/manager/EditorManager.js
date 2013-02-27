@@ -139,9 +139,9 @@ define([
                     },
                     exec: function(editor) {
                          
-                        require(['stormcloud/services/filesystem'], function(filesystem){ 
+                        require(['stormcloud/service/FilesystemService'], function(FilesystemService){ 
                          
-                            filesystem.save(item, editor.getValue());
+                            FilesystemService.save(item, editor.getValue());
                                     
                         });                 
                     }

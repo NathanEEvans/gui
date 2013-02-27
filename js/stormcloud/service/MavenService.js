@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/services/maven
+ * Stormcloud IDE - stormcloud/service/MavenService
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -20,19 +20,19 @@
  */
 define([
     'stormcloud/manager/SettingsManager',
-    'stormcloud/services/logging',
+    'stormcloud/service/LogService',
     'stormcloud/manager/StatusManager',
     'stormcloud/manager/TreeManager',
     'stormcloud/rest/xhr'], 
     function(
         SettingsManager,
-        logging,
+        LogService,
         StatusManager,
         TreeManager,
         xhr){
 
         //
-        // module   : stormcloud/services/maven
+        // module   : stormcloud/service/MavenService
         //		
         // summary  :
         //		
@@ -65,12 +65,12 @@ define([
     
                 var deferred = xhr.post(xhrArgs);
             
-                logging.startMaven();
+                LogService.startMaven();
             
                 deferred.then(
                     function(data){
             
-                        logging.stopMaven(data);
+                        LogService.stopMaven(data);
                     
                     },
                     function(error){
@@ -91,12 +91,12 @@ define([
     
                 var deferred = xhr.post(xhrArgs);
             
-                logging.startMaven();
+                LogService.startMaven();
             
                 deferred.then(
                     function(data){
             
-                        logging.stopMaven(data);
+                        LogService.stopMaven(data);
                     
                     },
                     function(error){
@@ -117,12 +117,12 @@ define([
     
                 var deferred = xhr.post(xhrArgs);
             
-                logging.startMaven();
+                LogService.startMaven();
             
                 deferred.then(
                     function(data){
             
-                        logging.stopMaven(data);
+                        LogService.stopMaven(data);
                     
                     },
                     function(error){
@@ -143,12 +143,12 @@ define([
     
                 var deferred = xhr.post(xhrArgs);
             
-                logging.startMaven();
+                LogService.startMaven();
             
                 deferred.then(
                     function(data){
             
-                        logging.stopMaven(data);
+                        LogService.stopMaven(data);
                     
                     },
                     function(error){
@@ -170,12 +170,12 @@ define([
     
                 var deferred = xhr.post(xhrArgs,'JSON');
             
-                logging.startMaven();
+                LogService.startMaven();
             
                 deferred.then(
                     function(data){
             
-                        logging.stopMaven(data);
+                        LogService.stopMaven(data);
             
                         if(data == '0'){
             

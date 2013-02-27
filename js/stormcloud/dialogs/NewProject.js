@@ -23,7 +23,7 @@ define([
     'dojo/data/ObjectStore',
     'dijit/tree/TreeStoreModel',
     'dijit/Tree',
-    'stormcloud/services/maven',
+    'stormcloud/service/MavenService',
     'stormcloud/manager/SettingsManager',
     'stormcloud/manager/DialogManager',
     'stormcloud/manager/StatusManager'], 
@@ -32,7 +32,7 @@ define([
         ObjectStore,
         TreeStoreModel,
         Tree,
-        maven,
+        MavenService,
         SettingsManager,
         DialogManager,
         StatusManager){
@@ -107,7 +107,7 @@ define([
                 };
             
             
-                maven.create(data);
+                MavenService.create(data);
             
                 StatusManager.infoStatus('Creating Project');
                 StatusManager.showProgress();

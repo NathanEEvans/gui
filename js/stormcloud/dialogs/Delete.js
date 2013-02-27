@@ -20,10 +20,10 @@
  */
 define([
     'stormcloud/manager/DialogManager',
-    'stormcloud/services/filesystem'], 
+    'stormcloud/service/FilesystemService'], 
     function(
         DialogManager,
-        filesystem){
+        FilesystemService){
         
         //
         // module      : stormcloud/dialogs/Delete
@@ -56,7 +56,7 @@ define([
             ok : function(){
                 
                 // delete the selected item
-                filesystem.del(selected);
+                FilesystemService.del(selected);
                 
                 // hide the dialog
                 DialogManager.hide(DIALOG.DELETE);

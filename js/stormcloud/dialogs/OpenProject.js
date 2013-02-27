@@ -24,7 +24,7 @@ define([
     'dijit/tree/TreeStoreModel',
     'dijit/Tree',
     'stormcloud/manager/SettingsManager',
-    'stormcloud/services/filesystem',
+    'stormcloud/service/FilesystemService',
     'stormcloud/manager/DialogManager'], 
     function(
         JsonRest,
@@ -32,7 +32,7 @@ define([
         TreeStoreModel,
         Tree,
         SettingsManager,
-        filesystem,
+        FilesystemService,
         DialogManager){
             
         //
@@ -86,7 +86,7 @@ define([
             
                 var item = dijit.byId('closedProjectTree').attr('selectedItem');
 
-                filesystem.open(item);
+                FilesystemService.open(item);
                 
                 DialogManager.hide(DIALOG.OPEN_PROJECT);            
             },
