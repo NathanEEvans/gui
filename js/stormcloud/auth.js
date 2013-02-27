@@ -20,10 +20,10 @@
  */
 define([
     'stormcloud/rest/xhr',
-    'stormcloud/_base/context'], 
+    'stormcloud/manager/SettingsManager'], 
     function(
         xhr,
-        context){
+        SettingsManager){
 
         //
         // module   : stormcloud/auth
@@ -87,7 +87,7 @@ define([
                         if(code == 200){
                         
                             // success, set the user in context
-                            context.user = JSON.parse(data);
+                            SettingsManager.user = JSON.parse(data);
                             
                         }else{
                             

@@ -19,11 +19,11 @@
  * 
  */
 define([
-    'stormcloud/_base/context',
+    'stormcloud/manager/SettingsManager',
     'stormcloud/manager/StatusManager',
     'stormcloud/rest/xhr'], 
     function(
-        context,
+        SettingsManager,
         StatusManager,
         xhr){
 
@@ -35,10 +35,10 @@ define([
 
         var GIT = {
             
-            ADD : context.getApiUrl() + '/git/add',
-            COMMIT : context.getApiUrl() + '/git/commit',
-            STATUS : context.getApiUrl() + '/git/status',
-            CLONE_REMOTE : context.getApiUrl() + '/git/clone-remote'
+            ADD : SettingsManager.getApiUrl() + '/git/add',
+            COMMIT : SettingsManager.getApiUrl() + '/git/commit',
+            STATUS : SettingsManager.getApiUrl() + '/git/status',
+            CLONE_REMOTE : SettingsManager.getApiUrl() + '/git/clone-remote'
         
         };
 

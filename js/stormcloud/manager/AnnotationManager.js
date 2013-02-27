@@ -22,12 +22,12 @@ define([
     'dojo/on',
     'dijit/registry',
     'dojox/html/entities',
-    'stormcloud/_base/context'], 
+    'stormcloud/manager/SettingsManager'], 
     function(
         on,
         registry,
         entities,
-        context){
+        SettingsManager){
    
    
         //
@@ -394,7 +394,7 @@ define([
                         testAnnotation.message = s;
                     }
                 
-                    if(lines[i].startsWith('[ERROR] Please refer to ' + context.getProjectFolder())){
+                    if(lines[i].startsWith('[ERROR] Please refer to ' + SettingsManager.getProjectFolder())){
                     
                         s = lines[i].replace('[ERROR] Please refer to ','');
                         s = s.replace(' for the individual test results.','');
@@ -412,7 +412,7 @@ define([
             
                 for (var i = 0; i < lines.length; i++) {
                     
-                    if(lines[i].startsWith('[ERROR] ' + context.getProjectFolder())){
+                    if(lines[i].startsWith('[ERROR] ' + SettingsManager.getProjectFolder())){
                                     
                         // long riddle of chopping till we get what we want
                         var s = lines[i].replace('[ERROR] ','');

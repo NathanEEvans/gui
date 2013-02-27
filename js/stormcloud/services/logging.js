@@ -19,12 +19,12 @@
  * 
  */
 define([
-    'stormcloud/_base/context',
+    'stormcloud/manager/SettingsManager',
     'stormcloud/manager/StatusManager',
     'stormcloud/rest/xhr',
     'stormcloud/manager/AnnotationManager'],
     function(
-        context,
+        SettingsManager,
         StatusManager,
         xhr,
         AnnotationManager){
@@ -38,8 +38,8 @@ define([
    
         var CONSTANTS = {
    
-            MAVEN_LOG : context.getApiUrl() + '/log/maven',
-            TOMCAT_LOG : context.getApiUrl() + '/log/tomcat'
+            MAVEN_LOG : SettingsManager.getApiUrl() + '/log/maven',
+            TOMCAT_LOG : SettingsManager.getApiUrl() + '/log/tomcat'
             
         }
    
@@ -103,7 +103,7 @@ define([
                 p.stop();
           
                 StatusManager.hideProgress();
-                StatusManager.clearStatus();
+                StatusManager.clear();
             
                 var failed = false
             
@@ -178,7 +178,7 @@ define([
                 p.stop();
           
                 StatusManager.hideProgress();
-                StatusManager.clearStatus();
+                StatusManager.clear();
             
                 var failed = false
             

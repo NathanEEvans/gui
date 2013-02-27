@@ -26,7 +26,7 @@ define([
     'dijit/Dialog',
     'dijit/form/ComboBox',
     'dijit/form/ValidationTextBox',
-    'stormcloud/_base/context',
+    'stormcloud/manager/SettingsManager',
     'stormcloud/services/filesystem',
     'stormcloud/manager/DialogManager'], 
     function(
@@ -37,7 +37,7 @@ define([
         Dialog,
         ComboBox,
         ValidationTextBox,
-        context,
+        SettingsManager,
         filesystem,
         DialogManager){
             
@@ -58,7 +58,7 @@ define([
                 // populate the templates tree
                 var fileRestStore = new JsonRest({
                 
-                    target : context.getApiUrl() + '/filesystem/templates'
+                    target : SettingsManager.getApiUrl() + '/filesystem/templates'
               
                 });
                 
@@ -86,7 +86,7 @@ define([
             
                 var availableProjectStore = new JsonRest({
                     
-                    target : context.getApiUrl() + '/filesystem/projects/available'
+                    target : SettingsManager.getApiUrl() + '/filesystem/projects/available'
                 });
                 
                 new ComboBox({
@@ -154,7 +154,7 @@ define([
                 
                 var folderPickerRestStore = new JsonRest({
                 
-                    target : context.getApiUrl() + '/filesystem/folderpicker?filePath=' + context.getProjectFolder() + '/' + dojo.byId('projectName').value
+                    target : SettingsManager.getApiUrl() + '/filesystem/folderpicker?filePath=' + SettingsManager.getProjectFolder() + '/' + dojo.byId('projectName').value
               
                 });
                 

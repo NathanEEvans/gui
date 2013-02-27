@@ -19,11 +19,11 @@
  * 
  */
 define([
-    'stormcloud/_base/context',
+    'stormcloud/manager/SettingsManager',
     'stormcloud/rest/xhr',
     'stormcloud/manager/StatusManager'],
     function(
-        context,
+        SettingsManager,
         xhr,
         StatusManager) {
 
@@ -42,19 +42,19 @@ define([
 
         var TOMCAT = {
             
-            LIST : context.getTomcatManagerUrl() + '/list',
+            LIST : SettingsManager.getTomcatManagerUrl() + '/list',
             
-            VIEW : context.getTomcatViewUrl() + "/",
+            VIEW : SettingsManager.getTomcatViewUrl() + "/",
             
-            STOP_APPLICATION: context.getTomcatManagerUrl() + 'stop?path=/',
+            STOP_APPLICATION: SettingsManager.getTomcatManagerUrl() + 'stop?path=/',
             
-            START_APPLICATION: context.getTomcatManagerUrl() + 'start?path=/',
+            START_APPLICATION: SettingsManager.getTomcatManagerUrl() + 'start?path=/',
             
-            RELOAD_APPLICATION: context.getTomcatManagerUrl() + 'reload?path=/',
+            RELOAD_APPLICATION: SettingsManager.getTomcatManagerUrl() + 'reload?path=/',
             
-            DEPLOY_APPLICATION: context.getTomcatManagerUrl() + 'deploy?path=/',
+            DEPLOY_APPLICATION: SettingsManager.getTomcatManagerUrl() + 'deploy?path=/',
             
-            UNDEPLOY_APPLICATION: context.getTomcatManagerUrl() + 'undeploy?path=/',
+            UNDEPLOY_APPLICATION: SettingsManager.getTomcatManagerUrl() + 'undeploy?path=/',
             
             
             STOP_CONTAINER: '',
@@ -185,10 +185,10 @@ define([
             // constructs the url to call
             _construct: function(args) {
 
-                return context.protocol
-                + context.host
+                return SettingsManager.protocol
+                + SettingsManager.host
                 + ":"
-                + context.port
+                + SettingsManager.port
                 + args.action.command
                 + args.application;
             }

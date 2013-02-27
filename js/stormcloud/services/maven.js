@@ -19,13 +19,13 @@
  * 
  */
 define([
-    'stormcloud/_base/context',
+    'stormcloud/manager/SettingsManager',
     'stormcloud/services/logging',
     'stormcloud/manager/StatusManager',
     'stormcloud/manager/TreeManager',
     'stormcloud/rest/xhr'], 
     function(
-        context,
+        SettingsManager,
         logging,
         StatusManager,
         TreeManager,
@@ -39,8 +39,8 @@ define([
         
         var URL = {
       
-            MAVEN_EXECUTE : context.getApiUrl() + '/maven/execute',
-            MAVEN_CREATE : context.getApiUrl() + '/maven/create'
+            MAVEN_EXECUTE : SettingsManager.getApiUrl() + '/maven/execute',
+            MAVEN_CREATE : SettingsManager.getApiUrl() + '/maven/create'
         };
     
     

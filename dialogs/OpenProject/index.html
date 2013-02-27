@@ -2,25 +2,17 @@
 <div class="dijitDialogPaneContentArea" style="width: 900px; height: 500px;">
 
     <script>
-        require(['stormcloud/dialogs/OpenProject'], function(dialog){
+        require(['stormcloud/dialogs/OpenProject'], function(OpenProject){
        
-            dialog.init();
+            OpenProject.init();
         }); 
                 
         function done() {
             
-            require(['stormcloud/dialogs/OpenProject'], function(dialog){
+            require(['stormcloud/dialogs/OpenProject'], function(OpenProject){
        
-                dialog.done();
+                OpenProject.done();
             }); 
-        }
-        
-        function cancel(){
-            
-            require(['stormcloud/dialogs/OpenProject'], function(dialog){
-       
-                dialog.cancel();
-            });
         }
         
     </script>
@@ -55,7 +47,10 @@
             </div>
 
             <script type="dojo/method" event="cancelFunction">
-                cancel();
+                require(['stormcloud/dialogs/OpenProject'], function(OpenProject){
+
+                OpenProject.cancel();
+                });
             </script>
 
         </div>

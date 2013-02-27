@@ -19,9 +19,9 @@
  * 
  */
 define([
-    'stormcloud/_base/context'], 
+    'stormcloud/manager/SettingsManager'], 
     function(
-        context){
+        SettingsManager){
             
         //
         // module   : stormcloud/manager/ProjectManager
@@ -57,9 +57,9 @@ define([
                     var path = item.id;
                 
                     // chop off the project folder
-                    var s = path.replace(context.getProjectFolder() + '/','');
+                    var s = path.replace(SettingsManager.getProjectFolder() + '/','');
                 
-                    var project = context.getProjectFolder() + '/' + s.substring(0,s.indexOf('/'));
+                    var project = SettingsManager.getProjectFolder() + '/' + s.substring(0,s.indexOf('/'));
                 
                     var selectedTree = dijit.byId('projectTree');
                 

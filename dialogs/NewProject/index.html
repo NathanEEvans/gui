@@ -3,25 +3,17 @@
 
     <script>
         
-        require(['stormcloud/dialogs/NewProject'], function(dialog){
+        require(['stormcloud/dialogs/NewProject'], function(NewProject){
        
-            dialog.init();
+            NewProject.init();
         }); 
         
         function done() {
             
-            require(['stormcloud/dialogs/NewProject'], function(dialog){
+            require(['stormcloud/dialogs/NewProject'], function(NewProject){
        
-                dialog.done();
+                NewProject.done();
             }); 
-        }
-        
-        function cancel(){
-            
-            require(['stormcloud/dialogs/NewProject'], function(dialog){
-       
-                dialog.cancel();
-            });
         }
         
     </script>
@@ -246,7 +238,10 @@
             </div>
 
             <script type="dojo/method" event="cancelFunction">
-                cancel();
+                require(['stormcloud/dialogs/NewProject'], function(NewProject){
+
+                NewProject.cancel();
+                });
             </script>
         </div>
 

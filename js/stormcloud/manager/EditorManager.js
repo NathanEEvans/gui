@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/editor/ace
+ * Stormcloud IDE - stormcloud/manager/EditorManager
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -29,7 +29,7 @@ define([
         AnnotationManager,
         SearchManager){
    
-        // module      : stormcloud/editor/ace
+        // module      : stormcloud/manager/EditorManager
         // 
         // summary     :
         //		
@@ -37,7 +37,7 @@ define([
    
         return{
        
-            loadAce : function(item, contents, readonly){
+            load : function(item, contents, readonly){
            
                 var editor = ace.edit(item.id);
                 

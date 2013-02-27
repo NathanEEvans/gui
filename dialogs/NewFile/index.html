@@ -2,24 +2,24 @@
 <div class="dijitDialogPaneContentArea">
 
     <script>
-        require(['stormcloud/dialogs/NewFile'], function(newFile){
+        require(['stormcloud/dialogs/NewFile'], function(NewFile){
        
-            newFile.init();
+            NewFile.init();
         }); 
             
         function done() {
             
-            require(['stormcloud/dialogs/NewFile'], function(newFile){
+            require(['stormcloud/dialogs/NewFile'], function(NewFile){
        
-                newFile.done();
+                NewFile.done();
             });    
         }
         
         function browse() {
             
-            require(['stormcloud/dialogs/NewFile'], function(newFile){
+            require(['stormcloud/dialogs/NewFile'], function(NewFile){
        
-                newFile.browse();
+                NewFile.browse();
             });    
         }
         

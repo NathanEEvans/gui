@@ -19,17 +19,17 @@
  * 
  */
 define([
-    'stormcloud/_base/context',
+    'stormcloud/manager/SettingsManager',
     'stormcloud/manager/StatusManager',
-    'stormcloud/editor/ace',
+    'stormcloud/manager/EditorManager',
     'stormcloud/rest/xhr',
     'stormcloud/manager/MavenManager',
     'stormcloud/manager/ProjectManager',
     'stormcloud/manager/FileManager'], 
     function(
-        context,
+        SettingsManager,
         StatusManager,
-        editor,
+        EditorManager,
         xhr,
         MavenManager,
         ProjectManager,
@@ -45,27 +45,27 @@ define([
         var FILESYSTEM = {  
         
             // Open project service url.
-            OPEN : context.getApiUrl() + '/filesystem/open',
+            OPEN : SettingsManager.getApiUrl() + '/filesystem/open',
             // Close project service url.
-            CLOSE : context.getApiUrl() + '/filesystem/close',
+            CLOSE : SettingsManager.getApiUrl() + '/filesystem/close',
             // Move/Rename service url
-            MOVE : context.getApiUrl() + '/filesystem/move',
+            MOVE : SettingsManager.getApiUrl() + '/filesystem/move',
             // Copy service url
-            COPY : context.getApiUrl() + '/filesystem/copy',
+            COPY : SettingsManager.getApiUrl() + '/filesystem/copy',
             // Save resource service url
-            SAVE : context.getApiUrl() + '/filesystem/save',
+            SAVE : SettingsManager.getApiUrl() + '/filesystem/save',
             // Create
-            CREATE : context.getApiUrl() + '/filesystem/create',
+            CREATE : SettingsManager.getApiUrl() + '/filesystem/create',
             // Delete resource service url
-            DELETE : context.getApiUrl() + '/filesystem/delete',
+            DELETE : SettingsManager.getApiUrl() + '/filesystem/delete',
             // Find
-            FIND : context.getApiUrl() + '/filesystem/find',
+            FIND : SettingsManager.getApiUrl() + '/filesystem/find',
             // Get resource service url
-            GET : context.getApiUrl() + '/filesystem/get',
+            GET : SettingsManager.getApiUrl() + '/filesystem/get',
             //
-            GET_BINARY : context.getApiUrl() + '/filesystem/getBinary',
+            GET_BINARY : SettingsManager.getApiUrl() + '/filesystem/getBinary',
             // Check if there is things in the trash bin
-            HAS_TRASH : context.getApiUrl() + '/filesystem/hasTrash'
+            HAS_TRASH : SettingsManager.getApiUrl() + '/filesystem/hasTrash'
         
         };
     
@@ -183,8 +183,8 @@ define([
                                 // so we need to change the path to reflect this
                                 // before calling the compile
                                 item.id = item.id.replace(
-                                    context.getSetting(SETTING.CLOSED_PROJECTS_FOLDER), 
-                                    context.getProjectFolder());
+                                    SettingsManager.getSetting(SETTING.CLOSED_PROJECTS_FOLDER), 
+                                    SettingsManager.getProjectFolder());
                                     
                                 ProjectManager.setSelected(item);    
                                     
@@ -321,7 +321,7 @@ define([
                                 if(isBinary){
                                     contentPane.set('content','<img src="data:image/png;base64,' + imageBin + '">');
                                 }else{
-                                    contentPane.connect(contentPane,'onLoad',editor.loadAce(item, fileContents, readonly));    
+                                    contentPane.connect(contentPane,'onLoad',EditorManager.load(item, fileContents, readonly));    
                                 }
                             });
                         });

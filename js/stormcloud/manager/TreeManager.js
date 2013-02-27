@@ -24,7 +24,7 @@ define([
     'dojo/data/ObjectStore',
     'dijit/tree/TreeStoreModel',
     'dijit/Tree',
-    'stormcloud/_base/context',
+    'stormcloud/manager/SettingsManager',
     'stormcloud/services/filesystem',
     'stormcloud/manager/ProjectManager'], 
     function(
@@ -33,7 +33,7 @@ define([
         ObjectStore,
         TreeStoreModel,
         Tree,
-        context,
+        SettingsManager,
         filesystem,
         ProjectManager){
 
@@ -54,7 +54,7 @@ define([
                 // create project tree
                 var projectRestStore = new JsonRest({
                 
-                    target : context.getApiUrl() + '/filesystem/opened'
+                    target : SettingsManager.getApiUrl() + '/filesystem/opened'
                 });
                     
                 
@@ -88,7 +88,7 @@ define([
                 // create filesystem tree
                 var filesystemRestStore = new JsonRest({
                 
-                    target : context.getApiUrl() + '/filesystem/bare'
+                    target : SettingsManager.getApiUrl() + '/filesystem/bare'
                 });
                     
                 
@@ -119,7 +119,7 @@ define([
                 // create services tree
                 var servicesRestStore = new JsonRest({
                 
-                    target : context.getApiUrl() + '/services'
+                    target : SettingsManager.getApiUrl() + '/services'
                 });
                    
                 var servicesTreeModel = new TreeStoreModel({
@@ -290,7 +290,7 @@ define([
                 path.push('filesystem');
                 
                 // get the projects folder + project
-                var projectFolder = context.getSetting(SETTING.PROJECT_FOLDER);
+                var projectFolder = SettingsManager.getSetting(SETTING.PROJECT_FOLDER);
                 
                 // remove project folder from the input
                 chop = chop.replace(projectFolder+'/','');

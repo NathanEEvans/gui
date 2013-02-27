@@ -23,7 +23,7 @@ define([
     'dojo/data/ObjectStore',
     'dijit/tree/TreeStoreModel',
     'dijit/Tree',
-    'stormcloud/_base/context',
+    'stormcloud/manager/SettingsManager',
     'stormcloud/services/filesystem',
     'stormcloud/manager/DialogManager'], 
     function(
@@ -31,7 +31,7 @@ define([
         ObjectStore,
         TreeStoreModel,
         Tree,
-        context,
+        SettingsManager,
         filesystem,
         DialogManager){
             
@@ -47,7 +47,7 @@ define([
             
                 var closedProjectRestStore = new JsonRest({
                 
-                    target : context.getApiUrl() + '/filesystem/closed'
+                    target : SettingsManager.getApiUrl() + '/filesystem/closed'
                 });
                     
                 
