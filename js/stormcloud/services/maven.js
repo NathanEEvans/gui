@@ -22,13 +22,13 @@ define([
     'stormcloud/_base/context',
     'stormcloud/services/logging',
     'stormcloud/gui/statusbar',
-    'stormcloud/gui/tree',
+    'stormcloud/manager/TreeManager',
     'stormcloud/rest/xhr'], 
     function(
         context,
         logging,
         statusbar,
-        tree,
+        TreeManager,
         xhr){
 
         //
@@ -182,7 +182,7 @@ define([
                             statusbar.hideProgress();
                             statusbar.clearStatus();
                         
-                            tree.refresh('projectTree');
+                            TreeManager.refresh('projectTree');
                 
                         }else{
             

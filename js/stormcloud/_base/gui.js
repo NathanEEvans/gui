@@ -20,16 +20,12 @@
  */
 define([
     'stormcloud/gui/tooltips',
-    'stormcloud/gui/tree',
-    'stormcloud/chat/manager',
-    'stormcloud/services/filesystem',
-    'stormcloud/services/logging'], 
+    'stormcloud/manager/TreeManager',
+    'stormcloud/services/filesystem'], 
     function(
         tooltips,
-        tree,
-        manager,
-        filesystem,
-        logging){
+        TreeManager,
+        filesystem){
 
         //
         // module      : stormcloud/_base/gui
@@ -45,7 +41,7 @@ define([
                 tooltips.bind();
                 
                 // create the trees
-                tree.initialize();
+                TreeManager.initialize();
             
                 // check for trash
                 filesystem.checkTrash();

@@ -31,7 +31,7 @@ define([
         // summary      : 
         //
 
-        var EVENT = {
+        EVENT = {
             // “click” - the user clicked a node
             CLICK: 'click',
             // dblclick - double clicked a node

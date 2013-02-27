@@ -178,9 +178,9 @@ define([
                 // select the file in the tree when focus received
                 editor.on('focus',function(){
 
-                    require(['stormcloud/gui/tree'], function(tree){ 
+                    require(['stormcloud/manager/TreeManager'], function(TreeManager){ 
 
-                        tree.select('projectTree', item);
+                        TreeManager.select('projectTree', item);
                     });
                     
                     // select the project this file belongs to

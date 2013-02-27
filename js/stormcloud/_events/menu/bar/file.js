@@ -21,13 +21,11 @@
 define([
     'stormcloud/manager/EventManager',
     'stormcloud/manager/DialogManager',
-    'stormcloud/gui/tree',
-    'stormcloud/services/filesystem'],
+    'stormcloud/manager/TreeManager'],
     function(
         EventManager,
         DialogManager,
-        tree,
-        filesystem) {
+        TreeManager) {
 
         //
         // module      : stormcloud/_events/menu/bar/file
@@ -59,7 +57,7 @@ define([
 
                     DialogManager.show(DIALOG.OPEN_PROJECT);
 
-                    tree.refresh('closedProjectTree');
+                    TreeManager.refresh('closedProjectTree');
                 });
 
                 EventManager.registerClick('fileMenu_open_recent_file', function() {

@@ -21,12 +21,10 @@
 define([
     'stormcloud/_base/context',
     'stormcloud/gui/statusbar',
-    'stormcloud/gui/tree',
     'stormcloud/rest/xhr'], 
     function(
         context,
         statusbar,
-        tree,
         xhr){
 
         //
@@ -72,9 +70,9 @@ define([
                             statusbar.hideProgress();
                             statusbar.infoStatus('Repository Cloned.');
             
-                            require(['stormcloud/gui/tree'],function(tree){
+                            require(['stormcloud/manager/TreeManager'],function(TreeManager){
                 
-                                tree.refresh('projectTree');
+                                TreeManager.refresh('projectTree');
                             });
             
                         }else{

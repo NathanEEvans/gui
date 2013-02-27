@@ -53,7 +53,7 @@ define([
                     matchCase : document.getElementById('matchCase').checked == true ? true : false,
                     wholeWords : document.getElementById('wholeWords').checked == true ? true : false,
                     regex : document.getElementById('regularExpression').checked == true ? true : false,
-                    scope : document.getElementById('openProjects').checked ? '' : ProjectManager.selected
+                    scope : document.getElementById('openProjects').checked ? '' : ProjectManager.selected.id
                 }
        
                 // send the find request

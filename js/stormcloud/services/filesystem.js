@@ -89,9 +89,9 @@ define([
             
                         if(data == '0'){
                 
-                            require(['stormcloud/gui/tree'],function(tree){
+                            require(['stormcloud/manager/TreeManager'],function(TreeManager){
                 
-                                tree.refresh('projectTree');
+                                TreeManager.refresh('projectTree');
                             });
                             
                         }else{
@@ -136,9 +136,9 @@ define([
             
                         if(data == '0'){
                 
-                            require(['stormcloud/gui/tree'],function(tree){
+                            require(['stormcloud/manager/TreeManager'],function(TreeManager){
                 
-                                tree.refresh('projectTree');
+                                TreeManager.refresh('projectTree');
                             });
                             
                         }else{
@@ -173,11 +173,11 @@ define([
             
                         if(data == '0'){
                 
-                            require(['stormcloud/gui/tree'],function(tree){
-                
+                            require(['stormcloud/manager/TreeManager'],function(TreeManager){
+                            
                                 // @todo change this into only changing the local tree
-                                tree.refresh('projectTree');
-                                tree.refresh('filesystemTree');
+                                TreeManager.refresh('projectTree');
+                                TreeManager.refresh('filesystemTree');
                                 
                                 // we are moving from closed to projects
                                 // so we need to change the path to reflect this
@@ -225,9 +225,9 @@ define([
             
                         if(data == '0'){
                 
-                            require(['stormcloud/gui/tree'],function(tree){
+                            require(['stormcloud/manager/TreeManager'],function(TreeManager){
                 
-                                tree.refresh('projectTree');
+                                TreeManager.refresh('projectTree');
                             });
                 
                         }else{
@@ -346,9 +346,9 @@ define([
             
                         if(data == '0'){
           
-                            require(['stormcloud/gui/tree'],function(tree){
-                
-                                tree.refresh('projectTree');
+                            require(['stormcloud/manager/TreeManager'],function(TreeManager){
+                                
+                                TreeManager.refresh('projectTree');
                             });
                             
                         }else{
@@ -406,9 +406,9 @@ define([
                         }
                         
                         // And refresh the project tree so it shows up in there
-                        require(['stormcloud/gui/tree'],function(tree){
+                        require(['stormcloud/manager/TreeManager'],function(TreeManager){
                 
-                            tree.refresh('projectTree');
+                            TreeManager.refresh('projectTree');
                         });
                     },
 
