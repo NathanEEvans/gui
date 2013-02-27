@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/gui/statusbar
+ * Stormcloud IDE - stormcloud/manager/StatusManager
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -22,35 +22,35 @@ define([],
     function(){
 
         //
-        // module       : stormcloud/gui/statusbar  
+        // module       : stormcloud/manager/StatusManager
         //		
         // summary      : 
         //				
     
         return {
             
-            infoStatus : function(message){
+            info : function(message){
     
                 var statusBar = document.getElementById('statusBarMessage');
                 statusBar.style.color = 'black';
                 statusBar.innerHTML = message;
             },
             
-            errorStatus : function(message){
+            error : function(message){
     
                 var statusBar = document.getElementById('statusBarMessage');
                 statusBar.style.color = 'red';
                 statusBar.innerHTML = message;
             },
             
-            warnStatus : function(message){
+            warn : function(message){
     
                 var statusBar = document.getElementById('statusBarMessage');
                 statusBar.style.color = 'yellow';
                 statusBar.innerHTML = message;
             },
             
-            clearStatus : function(){
+            clear : function(){
                 var statusBar = document.getElementById('statusBarMessage');
                 statusBar.innerHTML = '';
             },

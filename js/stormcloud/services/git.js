@@ -20,11 +20,11 @@
  */
 define([
     'stormcloud/_base/context',
-    'stormcloud/gui/statusbar',
+    'stormcloud/manager/StatusManager',
     'stormcloud/rest/xhr'], 
     function(
         context,
-        statusbar,
+        StatusManager,
         xhr){
 
         //
@@ -47,8 +47,8 @@ define([
             
             clone : function(uri){
               
-                statusbar.showProgress();
-                statusbar.infoStatus('Git Clone Running');
+                StatusManager.showProgress();
+                StatusManager.info('Git Clone Running');
            
                 var data = {
         
@@ -67,8 +67,8 @@ define([
             
                         if(data == '0'){
                 
-                            statusbar.hideProgress();
-                            statusbar.infoStatus('Repository Cloned.');
+                            StatusManager.hideProgress();
+                            StatusManager.info('Repository Cloned.');
             
                             require(['stormcloud/manager/TreeManager'],function(TreeManager){
                 
@@ -77,7 +77,7 @@ define([
             
                         }else{
             
-                            statusbar.errorStatus(
+                            StatusManager.error(
                                 'Failed to Clone.'+
                                 ' Please review the <a href=\"javascript:alert'
                                 +'(\'Open logfile window\');">log</a>');
@@ -86,7 +86,7 @@ define([
 
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
                 
             },
@@ -127,13 +127,11 @@ define([
             
                         if(data == '0'){
                 
-                            statusbar.infoStatus();
-                        
                             UI.refreshTree('projectTree');
                         
                         }else{
             
-                            statusbar.errorStatus(
+                            StatusManager.error(
                                 'Failed to add sources.'+
                                 ' Please review the <a href=\"javascript:alert'
                                 +'(\'Open logfile window\');">log</a>');
@@ -142,7 +140,7 @@ define([
 
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
             },
     
@@ -177,7 +175,7 @@ define([
                         
                         }else{
             
-                            statusbar.errorStatus(
+                            StatusManager.error(
                                 'Failed to add sources.'+
                                 ' Please review the <a href=\"javascript:alert'
                                 +'(\'Open logfile window\');">log</a>');
@@ -186,7 +184,7 @@ define([
 
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
             },
     

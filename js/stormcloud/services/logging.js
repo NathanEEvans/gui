@@ -20,12 +20,12 @@
  */
 define([
     'stormcloud/_base/context',
-    'stormcloud/gui/statusbar',
+    'stormcloud/manager/StatusManager',
     'stormcloud/rest/xhr',
     'stormcloud/manager/AnnotationManager'],
     function(
         context,
-        statusbar,
+        StatusManager,
         xhr,
         AnnotationManager){
    
@@ -69,8 +69,8 @@ define([
        
             startTomcatDeploy : function(){
               
-                statusbar.showProgress();
-                statusbar.infoStatus('Deploying Project');
+                StatusManager.showProgress();
+                StatusManager.info('Deploying Project');
            
                 // switch to tomcat window
                 // get handle on the correct tab
@@ -102,8 +102,8 @@ define([
            
                 p.stop();
           
-                statusbar.hideProgress();
-                statusbar.clearStatus();
+                StatusManager.hideProgress();
+                StatusManager.clearStatus();
             
                 var failed = false
             
@@ -144,8 +144,8 @@ define([
        
             startMaven : function(){
            
-                statusbar.showProgress();
-                statusbar.infoStatus('Maven Running');
+                StatusManager.showProgress();
+                StatusManager.info('Maven Running');
        
                 // get handle on the correct tab
                 var tabs = dijit.byId('logTabs');
@@ -177,8 +177,8 @@ define([
            
                 p.stop();
           
-                statusbar.hideProgress();
-                statusbar.clearStatus();
+                StatusManager.hideProgress();
+                StatusManager.clearStatus();
             
                 var failed = false
             

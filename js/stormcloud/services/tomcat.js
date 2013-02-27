@@ -21,15 +21,11 @@
 define([
     'stormcloud/_base/context',
     'stormcloud/rest/xhr',
-    'stormcloud/rest/request',
-    'stormcloud/services/logging',
-    'stormcloud/gui/statusbar',],
+    'stormcloud/manager/StatusManager'],
     function(
         context,
         xhr,
-        request,
-        logging,
-        statusbar) {
+        StatusManager) {
 
         //
         // module      : stormcloud/tomcat/manager
@@ -86,12 +82,12 @@ define([
                 deferred.then(
                     function(data){
             
-                        statusbar.infoStatus(data);
+                        StatusManager.info(data);
                         
                     },
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
             
                 
@@ -109,12 +105,12 @@ define([
                 deferred.then(
                     function(data){
             
-                        statusbar.infoStatus(data);
+                        StatusManager.info(data);
                         
                     },
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
             },
             
@@ -130,12 +126,12 @@ define([
                 deferred.then(
                     function(data){
             
-                        statusbar.infoStatus(data);
+                        StatusManager.info(data);
                         
                     },
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
 
             },
@@ -152,12 +148,12 @@ define([
                 deferred.then(
                     function(data){
             
-                        statusbar.infoStatus(data);
+                        StatusManager.info(data);
                         
                     },
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
             },
             
@@ -173,12 +169,12 @@ define([
                 deferred.then(
                     function(data){
             
-                        statusbar.infoStatus(data);
+                        StatusManager.info(data);
                         
                     },
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
 
             },

@@ -21,13 +21,13 @@
 define([
     'stormcloud/_base/context',
     'stormcloud/services/logging',
-    'stormcloud/gui/statusbar',
+    'stormcloud/manager/StatusManager',
     'stormcloud/manager/TreeManager',
     'stormcloud/rest/xhr'], 
     function(
         context,
         logging,
-        statusbar,
+        StatusManager,
         TreeManager,
         xhr){
 
@@ -75,7 +75,7 @@ define([
                     },
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
             },
         
@@ -101,7 +101,7 @@ define([
                     },
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
             },
     
@@ -127,7 +127,7 @@ define([
                     },
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
             },
     
@@ -153,7 +153,7 @@ define([
                     },
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
             
             
@@ -179,14 +179,14 @@ define([
             
                         if(data == '0'){
             
-                            statusbar.hideProgress();
-                            statusbar.clearStatus();
+                            StatusManager.hideProgress();
+                            StatusManager.clearStatus();
                         
                             TreeManager.refresh('projectTree');
                 
                         }else{
             
-                            statusbar.errorStatus('Failed to create your project. Please review the <a href=\"javascript:alert(\'Open logfile window\');">log</a>');
+                            StatusManager.error('Failed to create your project. Please review the <a href=\"javascript:alert(\'Open logfile window\');">log</a>');
                         }
             
                         hideProgress();
@@ -205,7 +205,7 @@ define([
 
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
             }
         

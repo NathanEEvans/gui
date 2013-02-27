@@ -20,7 +20,7 @@
  */
 define([
     'stormcloud/_base/context',
-    'stormcloud/gui/statusbar',
+    'stormcloud/manager/StatusManager',
     'stormcloud/editor/ace',
     'stormcloud/rest/xhr',
     'stormcloud/manager/MavenManager',
@@ -28,7 +28,7 @@ define([
     'stormcloud/manager/FileManager'], 
     function(
         context,
-        statusbar,
+        StatusManager,
         editor,
         xhr,
         MavenManager,
@@ -96,7 +96,7 @@ define([
                             
                         }else{
             
-                            statusbar.errorStatus(
+                            StatusManager.error(
                                 'Failed to open your project.'+
                                 ' Please review the <a href=\"javascript:alert'
                                 +'(\'Open logfile window\');">log</a>');
@@ -105,7 +105,7 @@ define([
 
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
             },
         
@@ -143,7 +143,7 @@ define([
                             
                         }else{
             
-                            statusbar.errorStatus(
+                            StatusManager.error(
                                 'Failed to copy item.'+
                                 ' Please review the <a href=\"javascript:alert'
                                 +'(\'Open logfile window\');">log</a>');
@@ -152,7 +152,7 @@ define([
 
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
             },
         
@@ -195,7 +195,7 @@ define([
                     
                         }else{
             
-                            statusbar.errorStatus(
+                            StatusManager.error(
                                 'Failed to open your project.'+
                                 ' Please review the <a href=\"javascript:alert'
                                 +'(\'Open logfile window\');">log</a>');
@@ -204,7 +204,7 @@ define([
 
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
             },
         
@@ -232,7 +232,7 @@ define([
                 
                         }else{
                 
-                            statusbar.errorStatus(
+                            StatusManager.error(
                                 'Failed to close your project.'
                                 +' Please review the <a href=\"javascript:alert'
                                 +'(\'Open logfile window\');">log</a>');
@@ -241,7 +241,7 @@ define([
 
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
             },
         
@@ -353,7 +353,7 @@ define([
                             
                         }else{
             
-                            statusbar.errorStatus(
+                            StatusManager.error(
                                 'Failed to delete ' 
                                 + item.type +
                                 ' Please review the <a href=\"javascript:alert'
@@ -364,7 +364,7 @@ define([
 
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });  
             },
     
@@ -414,7 +414,7 @@ define([
 
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
             },
     
@@ -445,7 +445,7 @@ define([
 
                     function(error){
             
-                        statusbar.errorStatus(error);
+                        StatusManager.error(error);
                     });
             },
         
@@ -469,12 +469,8 @@ define([
                     },
 
                     function(error){
-            
-            
-                        console.info(error);
-            
-            
-                        statusbar.errorStatus(error);
+           
+                        StatusManager.error(error);
                     });
             
             },
