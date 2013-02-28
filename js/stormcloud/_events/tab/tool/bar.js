@@ -42,25 +42,7 @@ define([
             bind: function() {
                 
                 
-                EventManager.registerClick(TARGET.TOOLBAR_SEARCH_REDEFINE, function() {
-                    
-                    DialogManager.show(DIALOG.FIND);
-                });
                 
-                EventManager.registerClick(TARGET.TOOLBAR_SEARCH_CLEAR, function() {
-                    
-                    SearchManager.clear();
-                });
-    
-                EventManager.registerClick(TARGET.TOOLBAR_MAVEN_RUN, function() {
-                    
-                    DialogManager.show(DIALOG.CUSTOM_GOALS);
-                });
-                
-                EventManager.registerClick(TARGET.TOOLBAR_MAVEN_RERUN, function() {
-                    
-                    MavenManager.runLastCommand();
-                });
             }
         }
     });

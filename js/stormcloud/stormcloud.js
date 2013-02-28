@@ -34,14 +34,14 @@ require([
 
             // When Dojo is ready we bootstrap everything we initially need.
             require([
-                'stormcloud/_base/events',
+                'stormcloud/manager/EventManager',
                 'stormcloud/_base/gui'], 
                 function(
-                    events,
+                    EventManager,
                     gui) {
 
                     // bind all events
-                    events.bind();
+                    EventManager.bindEvents();
 
                     // bootstrap all gui activity
                     gui.bootstrap();

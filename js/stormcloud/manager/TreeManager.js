@@ -25,7 +25,7 @@ define([
     'dijit/tree/TreeStoreModel',
     'dijit/Tree',
     'stormcloud/manager/SettingsManager',
-    'stormcloud/service/FilesystemService',
+    'stormcloud/manager/FileManager',
     'stormcloud/manager/ProjectManager'], 
     function(
         registry,
@@ -34,7 +34,7 @@ define([
         TreeStoreModel,
         Tree,
         SettingsManager,
-        FilesystemService,
+        FileManager,
         ProjectManager){
 
         //
@@ -44,9 +44,6 @@ define([
         //		
         
         return{
-
-            selectedProject : '',
-
 
             initialize : function(){
             
@@ -168,6 +165,9 @@ define([
                     tomcatWebApps : registry.byId('tomcatWebAppsMenu'),
                     tomcatApp : registry.byId('tomcatAppMenu'),
                     folder : registry.byId('filesystemMenu'),
+                    sources : registry.byId('filesystemMenu'),
+                    resources : registry.byId('filesystemMenu'),
+                    webapp : registry.byId('filesystemMenu'),
                     project : registry.byId('projectMenu')
                 };
 
@@ -209,54 +209,6 @@ define([
             setProject : function(item, opened){
                 
                 ProjectManager.setSelected(item);
-            },
-            
-            
-            setCopySource : function(){
-                context.copySource = dijit.byId('projectTree').attr('selectedItem');
-                dijit.byId('paste').attr('disabled',false);
-            },
-            
-            setMoveSource : function(){
-                context.moveSource = dijit.byId('projectTree').attr('selectedItem');
-                dijit.byId('paste').attr('disabled',false);
-            },
-            
-            setDestination : function(){
-    
-                if(context.copySource == null){
-    
-                    context.moveDestination = dijit.byId('projectTree').attr('selectedItem');
-        
-                    if(context.moveSource.id == context.moveDestination.id){
-            
-                        alert('Source and Destination cannot be the same');
-            
-                    }else{
-            
-                        FilesystemService.rename(context.moveSource.id, context.moveDestination.id);
-                    }
-        
-                }else{
-    
-                    context.copyDestination = dijit.byId('projectTree').attr('selectedItem');
-
-                    if(context.copySource.id == context.copyDestination.id){
-            
-                        alert('Source and Destination cannot be the same');
-            
-                    }else{
-            
-                        FilesystemService.copy(context.copySource.id, context.copyDestination.id);
-                    }
-                }
-    
-                context.copySource = null;
-                context.copyDestination = null;
-                context.moveSource = null;
-                context.moveDestination = null;
-
-                dijit.byId('sourcesMenu_paste').attr('disabled',true);
             },
             
             // @author martijn
@@ -374,18 +326,18 @@ define([
 
             openItemReadonly : function(item, opened){
               
-                require(['stormcloud/service/FilesystemService'], function(FilesystemService){
+                require(['stormcloud/manager/FileManager'], function(FileManager){
                 
-                    FilesystemService.get(item, true);
+                    FileManager.get(item, true);
                 });
             },
 
 
             openItem : function(item, opened){
                 
-                require(['stormcloud/service/FilesystemService'], function(FilesystemService){
+                require(['stormcloud/manager/FileManager'], function(FileManager){
                 
-                    FilesystemService.get(item, false);
+                    FileManager.get(item, false);
                     
                 });
                 

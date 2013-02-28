@@ -41,8 +41,6 @@ define([
               
             },
         
-        
-        
             setSelected : function(item){
             
                 // summary : set the currently selected project based on a 

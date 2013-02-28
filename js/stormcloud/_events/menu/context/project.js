@@ -24,14 +24,14 @@ define([
     'stormcloud/manager/MavenManager',
     'stormcloud/manager/ProjectManager',
     'stormcloud/service/GitService',
-    'stormcloud/service/FilesystemService'],
+    'stormcloud/manager/FileManager'],
     function(
         EventManager,
         DialogManager,
         MavenManager,
         ProjectManager,
         GitService,
-        FilesystemService) {
+        FileManager) {
 
         //
         // module      : stormcloud/_events/menu/context/project
@@ -45,26 +45,6 @@ define([
             // Bind the events to the widgets
             bind: function() {
 
-
-                EventManager.registerClick('projectMenu_compile_project', function() {
-
-                    MavenManager.compile();
-                });
-
-                EventManager.registerClick('projectMenu_clean_project', function() {
-
-                    MavenManager.clean();
-                });
-
-                EventManager.registerClick('projectMenu_install_project', function() {
-
-                    MavenManager.install();
-                });
-
-                EventManager.registerClick('projectMenu_custom_goals', function() {
-
-                    DialogManager.show(DIALOG.CUSTOM_GOALS);
-                });
 
                 EventManager.registerClick('projectMenu_show_changes', function() {
 
@@ -156,7 +136,7 @@ define([
 
                 EventManager.registerClick('projectMenu_close_project', function() {
 
-                    FilesystemService.close(ProjectManager.selected);
+                    FileManager.close(ProjectManager.selected);
                 });
             }
         };

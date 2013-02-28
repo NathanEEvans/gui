@@ -20,10 +20,10 @@
  */
 define([
     'stormcloud/manager/DialogManager',
-    'stormcloud/service/FilesystemService'], 
+    'stormcloud/manager/FileManager'], 
     function(
         DialogManager,
-        FilesystemService){
+        FileManager){
         
         //
         // module      : stormcloud/dialogs/Delete
@@ -31,16 +31,15 @@ define([
         // summary     : 
         //               
 
-        var selected;
-        
         return{
-    
+
+            selected : null,
+        
             // initialize th dialog
             init : function(){
                 
                 // get the filename and set it in the dialog
-                selected = dijit.byId('projectTree').attr('selectedItem');
-                
+                this.selected = dijit.byId('projectTree').attr('selectedItem');
             },
             
             // user cancelled
@@ -48,15 +47,13 @@ define([
               
                 // no go, hide the dialog
                 DialogManager.hide(DIALOG.DELETE);
-
             },
-            
             
             // user clicked ok
             ok : function(){
                 
                 // delete the selected item
-                FilesystemService.del(selected);
+                FileManager.del(this.selected);
                 
                 // hide the dialog
                 DialogManager.hide(DIALOG.DELETE);

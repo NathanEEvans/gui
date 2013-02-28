@@ -24,16 +24,14 @@ define([
     'stormcloud/manager/EditorManager',
     'stormcloud/rest/xhr',
     'stormcloud/manager/MavenManager',
-    'stormcloud/manager/ProjectManager',
-    'stormcloud/manager/FileManager'], 
+    'stormcloud/manager/ProjectManager'], 
     function(
         SettingsManager,
         StatusManager,
         EditorManager,
         xhr,
         MavenManager,
-        ProjectManager,
-        FileManager){
+        ProjectManager){
 
         //
         // module   : stormcloud/service/FilesystemService
@@ -110,7 +108,7 @@ define([
             },
         
             // Copy a filesystem resource.
-            copy: function(source, destination){
+            copy : function(source, destination){
             
             
                 /**
@@ -269,9 +267,6 @@ define([
                     tabs.selectChild(tab);
     
                 }else{
-                    
-                    // add it to the recently opened files list
-                    FileManager.addOpenedFile(item);
                     
                     var isBinary = false;
                     

@@ -24,7 +24,7 @@ define([
     'dijit/tree/TreeStoreModel',
     'dijit/Tree',
     'stormcloud/manager/SettingsManager',
-    'stormcloud/service/FilesystemService',
+    'stormcloud/manager/FileManager',
     'stormcloud/manager/DialogManager'], 
     function(
         JsonRest,
@@ -32,7 +32,7 @@ define([
         TreeStoreModel,
         Tree,
         SettingsManager,
-        FilesystemService,
+        FileManager,
         DialogManager){
             
         //
@@ -96,14 +96,14 @@ define([
             openItem : function(item, opened){
                 
                 
-                FilesystemService.get(item, false);
+                FileManager.get(item, false);
                 
                 DialogManager.hide(DIALOG.TEMPLATES);
             },
             
             done : function() {
                 
-                FilesystemService.get(selected, false);
+                FileManager.get(selected, false);
                 
                 // hide the dialog
                 DialogManager.hide(DIALOG.TEMPLATES);

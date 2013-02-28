@@ -1,0 +1,75 @@
+<link rel="stylesheet" href="/dialogs/Replace/styles.css">
+<div class="dijitDialogPaneContentArea" style="width: 600px; height: 250px;">
+
+    <script>
+        require(['stormcloud/dialogs/Replace'], function(dialog){
+       
+            dialog.init();
+        });
+    </script>
+
+    <br>
+
+    <div class="formInput">
+        <label for="containingText">Containing Text:</label>
+        <input type="text" data-dojo-type="dijit/form/TextBox" id="containingText"/>
+        <span>(* = Any String, ? = Any Character, \ = Escape for *?)</span>
+    </div>
+
+    <div class="formInput">
+        <label for="filenamePatterns">Filename Patterns:</label>
+        <input type="text" data-dojo-type="dijit/form/TextBox" id="filenamePatterns" />
+        <span>(Example: *.java, *Manager.*, Test?.jsp)</span>
+    </div>
+
+    <div class="optionsBox">
+        <div class="optionsBoxLabel">Options</div>
+        <div class="optionsEntry">
+            <input id="matchCase" data-dojo-type="dijit/form/CheckBox"/><label for="matchCase">Match Case</label>
+        </div>
+        <div class="optionsEntry">
+            <input id="wholeWords" data-dojo-type="dijit/form/CheckBox"/><label for="wholeWOrds">Whole Words</label>
+        </div>
+        <div class="optionsEntry">
+            <input id="regularExpression" data-dojo-type="dijit/form/CheckBox"/><label for="regularExpression">Regular Expression</label>
+        </div>
+    </div>
+
+
+    <div class="optionsBox">
+        <div class="optionsBoxLabel">Scope</div>
+        <div class="optionsEntry">
+            <input data-dojo-type="dijit/form/RadioButton" name="scope" id="openProjects"/><label for="openProjects">Open Projects</label>
+        </div>
+        <div class="optionsEntry">
+            <input data-dojo-type="dijit/form/RadioButton" name="scope" checked/> <label for="currentProject">Current Project</label>
+        </div>
+    </div>
+
+</div>
+
+<div>
+    <div class="dijitDialogPaneActionBar">
+
+        <button data-dojo-type="dijit/form/Button" type="button">
+            <script type="dojo/connect" data-dojo-event="onClick">
+                require(['stormcloud/dialogs/Replace'], function(dialog){
+
+                dialog.hide();
+                });
+            </script>
+            Close
+        </button>
+
+        <button data-dojo-type="dijit/form/Button" type="button">
+            <script type="dojo/connect" data-dojo-event="onClick">
+                require(['stormcloud/dialogs/Replace'], function(dialog){
+
+                dialog.replace();
+                });
+            </script>
+            Replace
+        </button>
+
+    </div>
+</div>

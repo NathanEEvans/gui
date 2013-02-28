@@ -27,7 +27,7 @@ define([
     'dijit/form/ComboBox',
     'dijit/form/ValidationTextBox',
     'stormcloud/manager/SettingsManager',
-    'stormcloud/service/FilesystemService',
+    'stormcloud/manager/FileManager',
     'stormcloud/manager/DialogManager'], 
     function(
         JsonRest,
@@ -38,7 +38,7 @@ define([
         ComboBox,
         ValidationTextBox,
         SettingsManager,
-        FilesystemService,
+        FileManager,
         DialogManager){
             
         //
@@ -221,7 +221,7 @@ define([
                     
                 };
                 
-                FilesystemService.create(item);
+                FileManager.create(item);
                 
                 // hide the dialog
                 DialogManager.hide(DIALOG.NEW_FILE);

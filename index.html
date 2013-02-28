@@ -46,11 +46,12 @@
         <div data-dojo-type="dojox/widget/DialogSimple" id="openProjectDialog" data-dojo-props="href: 'dialogs/OpenProject/index.html'" title="Open Project ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="projectPropertiesDialog" data-dojo-props="href: 'dialogs/ProjectProperties/index.html'" title="Project Properties ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="importProjectDialog" data-dojo-props="href: 'dialogs/ImportProject/index.html'" title="Import Project From ZIP File ..."></div>
-        <div data-dojo-type="dojox/widget/DialogSimple" id="exportProjectZipDialog" data-dojo-props="href: 'dialogs/ExportProject/index.html'" title="Export Project To ZIP File ..."></div>
+        <div data-dojo-type="dojox/widget/DialogSimple" id="exportProjectDialog" data-dojo-props="href: 'dialogs/ExportProject/index.html'" title="Export Project To ZIP File ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="showGitHistoryDialog" data-dojo-props="href: 'dialogs/GitHistory/index.html'" title="Git History"></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="commitDialog" data-dojo-props="href: 'dialogs/Commit/index.html'" title="Commit Changes"></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="deleteDialog" data-dojo-props="href: 'dialogs/Delete/index.html'" title="Delete Item ..."></div>
-        <div data-dojo-type="dojox/widget/DialogSimple" id="findDialog" data-dojo-props="href: 'dialogs/Find/index.html'" title="Find ..."></div>
+        <div data-dojo-type="dojox/widget/DialogSimple" id="findDialog" data-dojo-props="href: 'dialogs/Find/index.html'" title="Find in Projects ..."></div>
+        <div data-dojo-type="dojox/widget/DialogSimple" id="replaceDialog" data-dojo-props="href: 'dialogs/Replace/index.html'" title="Replace in Projects ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="defects" data-dojo-props="href: 'dialogs/Defects/index.html'" title="Defects &amp; Enhancements ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="templatesDialog" data-dojo-props="href: 'dialogs/Templates/index.html'" title="Select Template ..."></div>
 
@@ -189,101 +190,26 @@
                             <div data-dojo-type="dijit/MenuSeparator"></div>
                             <div data-dojo-type="dijit/MenuItem" id="fileMenu_open_project" data-dojo-props="iconClass:'openProjectIcon'">Open Project...</div>
                             <div data-dojo-type="dijit/PopupMenuItem"><span>Open Recent Project</span>
-                                <div data-dojo-type="dijit/Menu">
-                                    <!--@todo add recent opened projects list-->
-                                    <div data-dojo-type="dijit/MenuItem" id="fileMenu_open_recent_project"></div>
+                                <div data-dojo-type="dijit/Menu" id="fileMenu_open_recent_project">
                                 </div>
                             </div>
                             <div data-dojo-type="dijit/PopupMenuItem"><span>Open Recent File</span>
                                 <div data-dojo-type="dijit/Menu" id="fileMenu_open_recent_file">
-
                                 </div>
                             </div>
                             <div data-dojo-type="dijit/MenuSeparator"></div>
-                            <div data-dojo-type="dijit/PopupMenuItem"><span>Import Project</span>
-                                <div data-dojo-type="dijit/Menu">
-                                    <div data-dojo-type="dijit/MenuItem" id="fileMenu_import_project_zip">From ZIP</div>
-                                    <div data-dojo-type="dijit/MenuItem" id="fileMenu_import_project_folder">Maven Project Folder</div>
-                                </div>
-                            </div>
-                            <div data-dojo-type="dijit/PopupMenuItem"><span>Export Project</span>
-                                <div data-dojo-type="dijit/Menu">
-                                    <div data-dojo-type="dijit/MenuItem" id="fileMenu_export_to_zip">To ZIP</div>
-                                </div>
-                            </div>
+                            <div data-dojo-type="dijit/MenuItem" id="fileMenu_import_project">Import Project</div>
+                            <div data-dojo-type="dijit/MenuItem" id="fileMenu_export_project">Export Project</div>
                             <div data-dojo-type="dijit/MenuSeparator"></div>
-                            <div data-dojo-type="dijit/MenuItem" id="fileMenu_save">Save</div>
-                            <div data-dojo-type="dijit/MenuItem" id="fileMenu_save_as">Save As...</div>
                             <div data-dojo-type="dijit/MenuItem" id="fileMenu_save_all">Save All</div>
                         </div>
                     </div>
 
                     <div data-dojo-type="dijit/PopupMenuBarItem"><span>Edit</span>
                         <div data-dojo-type="dijit/DropDownMenu" id="editMenu">
-                            <div data-dojo-type="dijit/MenuItem" id="editMenu_undo">Undo</div>
-                            <div data-dojo-type="dijit/MenuItem" id="editMenu_redo">Redo</div>
-                            <div data-dojo-type="dijit/MenuSeparator"></div>
-                            <div data-dojo-type="dijit/MenuItem" id="editMenu_cut">Cut</div>
-                            <div data-dojo-type="dijit/MenuItem" id="editMenu_copy">Copy</div>
-                            <div data-dojo-type="dijit/MenuItem" id="editMenu_paste">Paste</div>
-                            <div data-dojo-type="dijit/MenuItem" id="editMenu_paste_formatted">Paste Formatted</div>
-                            <div data-dojo-type="dijit/MenuItem" id="editMenu_delete">Delete</div>
-                            <div data-dojo-type="dijit/MenuItem" id="editMenu_select_all">Select All</div>
-                            <div data-dojo-type="dijit/MenuItem" id="editMenu_select_identifier">Select Identifier</div>
-                            <div data-dojo-type="dijit/MenuSeparator"></div>
-                            <div data-dojo-type="dijit/MenuItem" id="editMenu_find_selection">Find Selection</div>
-                            <div data-dojo-type="dijit/MenuItem" id="editMenu_find_next">Find Next</div>
-                            <div data-dojo-type="dijit/MenuItem" id="editMenu_find_previous">Find Previous</div>
-                            <div data-dojo-type="dijit/MenuSeparator"></div>
-                            <div data-dojo-type="dijit/MenuItem" id="editMenu_find">Find...</div>
-                            <div data-dojo-type="dijit/MenuItem" id="editMenu_replace">Replace...</div>
-                            <div data-dojo-type="dijit/MenuItem" id="editMenu_find_usages">Find Usages</div>
                             <div data-dojo-type="dijit/MenuSeparator"></div>
                             <div data-dojo-type="dijit/MenuItem" id="editMenu_find_in_projects">Find in Projects</div>
                             <div data-dojo-type="dijit/MenuItem" id="editMenu_replace_in_projects">Replace in Projects</div>
-                        </div>
-                    </div>
-
-                    <div data-dojo-type="dijit/PopupMenuBarItem"><span>View</span>
-                        <div data-dojo-type="dijit/DropDownMenu" id="viewMenu">
-                            <div data-dojo-type="dijit/PopupMenuItem"><span>Editors</span>
-                                <div data-dojo-type="dijit/Menu">
-                                    <div data-dojo-type="dijit/MenuItem" id="viewMenu_source">√ Source</div>
-                                    <div data-dojo-type="dijit/MenuItem" id="viewMenu_history">History</div>
-                                </div>
-                            </div>
-                            <div data-dojo-type="dijit/PopupMenuItem"><span>Code Folds</span>
-                                <div data-dojo-type="dijit/Menu">
-                                    <div data-dojo-type="dijit/MenuItem" id="viewMenu_collapse_fold">Collapse Fold</div>
-                                    <div data-dojo-type="dijit/MenuItem" id="viewMenu_expand_fold">Expand Fold</div>
-                                    <div data-dojo-type="dijit/MenuSeparator"></div>
-                                    <div data-dojo-type="dijit/MenuItem" id="viewMenu_collapse_all">Collapse All</div>
-                                    <div data-dojo-type="dijit/MenuItem" id="viewMenu_expand_all">Expand All</div>
-                                </div>
-                            </div>
-                            <div data-dojo-type="dijit/MenuSeparator"></div>
-                            <div data-dojo-type="dijit/PopupMenuItem"><span>Toolbars</span>
-                                <div data-dojo-type="dijit/Menu">
-                                    <div data-dojo-type="dijit/MenuItem" id="viewMenu_file">√ File</div>
-                                    <div data-dojo-type="dijit/MenuItem" id="viewMenu_clipboard">Clipboard</div>
-                                    <div data-dojo-type="dijit/MenuItem" id="viewMenu_undo_redo">√ Undo/Redo</div>
-                                    <div data-dojo-type="dijit/MenuItem" id="viewMenu_run">Run</div>
-                                    <div data-dojo-type="dijit/MenuItem" id="viewMenu_debug">Debug</div>
-                                    <div data-dojo-type="dijit/MenuItem" id="viewMenu_memory">Memory</div>
-                                    <div data-dojo-type="dijit/MenuItem" id="viewMenu_quick_search">√ Quick Search</div>
-                                    <div data-dojo-type="dijit/MenuSeparator"></div>
-                                    <div data-dojo-type="dijit/MenuItem" id="viewMenu_small_toolbar_icons">√ Small Toolbar Icons</div>
-                                    <div data-dojo-type="dijit/MenuSeparator"></div>
-                                    <div data-dojo-type="dijit/MenuItem" id="viewMenu_reset_toolbars">Reset Toolbars</div>
-                                    <div data-dojo-type="dijit/MenuItem" id="viewMenu_customize">Customize</div>
-                                </div>
-                            </div>
-                            <div data-dojo-type="dijit/MenuItem" id="viewMenu_show_editor_toolbar">√ Show Editor Toolbar</div>
-                            <div data-dojo-type="dijit/MenuItem" id="viewMenu_show_line_numbers">√ Show Line Numbers</div>
-                            <div data-dojo-type="dijit/MenuItem" id="viewMenu_show_non_printable_characters">Show Non-printable Characters</div>
-                            <div data-dojo-type="dijit/MenuItem" id="viewMenu_show_diff_sidebar">Show Diff Sidebar</div>
-                            <div data-dojo-type="dijit/MenuItem" id="viewMenu_show_versioning_labels">√ Show Versioning Labels</div>
-                            <div data-dojo-type="dijit/MenuItem" id="viewMenu_synchronize_editor_with_views">Synchronize Editor with Views</div>
                         </div>
                     </div>
 
@@ -447,26 +373,9 @@
                         </div>
                     </div>
 
-                    <div data-dojo-type="dijit/PopupMenuBarItem"><span>Team</span>
-                        <div data-dojo-type="dijit/DropDownMenu" id="teamMenu"></div>
-                    </div>
-
                     <div data-dojo-type="dijit/PopupMenuBarItem"><span>Tools</span>
                         <div data-dojo-type="dijit/DropDownMenu" id="toolsMenu">
                             <div data-dojo-type="dijit/MenuItem" id="toolsMenu_templates">Templates</div>
-                        </div>
-                    </div>
-
-                    <div data-dojo-type="dijit/PopupMenuBarItem"><span>Window</span>
-                        <div data-dojo-type="dijit/DropDownMenu" id="windowMenu">
-                            <div data-dojo-type="dijit/MenuItem" id="windowMenu_projects">Projects</div>
-                            <div data-dojo-type="dijit/MenuItem" id="windowMenu_files">Files</div>
-                            <div data-dojo-type="dijit/MenuItem" id="windowMenu_favorites">Favorites</div>
-                            <div data-dojo-type="dijit/MenuItem" id="windowMenu_services">Services</div>
-                            <div data-dojo-type="dijit/MenuItem" id="windowMenu_action_items">Action Items</div>
-                            <div data-dojo-type="dijit/MenuItem" id="windowMenu_palette">Palette</div>
-                            <div data-dojo-type="dijit/MenuItem" id="windowMenu_properties">Properties</div>
-                            <div data-dojo-type="dijit/MenuItem" id="windowMenu_chat">Chat</div>
                         </div>
                     </div>
 
@@ -541,11 +450,10 @@
 
                     <div data-dojo-type="dijit/layout/BorderContainer" style="width: 100%; height: 100%">
 
-                        <div data-dojo-type="dijit/layout/ContentPane" id="welcomeBanner" data-dojo-props="region:'top'" style="border:0px; height: 100px;">
+                        <div data-dojo-type="dijit/layout/ContentPane" id="welcomeBanner" data-dojo-props="region:'top'" style="border:0px; height: 125px;">
 
                             <img src="images/logo/logo-trimmed.png"/>
-                            <span style="font-size:11px; width: 100%; float:left; padding-left:5px;"><b>Unleash the power of Coding in the Cloud</b></span>
-
+                            <span style="text-align: right;font-size:38px; width: 100%; float:left; padding-left:5px; color: #FFFFFF;"><b>Welcome</b></span>
                         </div>
 
                         <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'" style="overflow: hidden; border:0px;">

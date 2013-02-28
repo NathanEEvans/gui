@@ -21,13 +21,11 @@
 define([
     'dojo/on',
     'dijit/registry',
-    'dojox/html/entities',
-    'stormcloud/manager/FileManager'], 
+    'dojox/html/entities'], 
     function(
         on,
         registry,
-        entities,
-        FileManager){
+        entities){
             
             
         //
@@ -52,9 +50,9 @@ define([
                 //          place it in the define of the module it keeps
                 //          telling my filesystem.find is not a function
                 //          grrrrr...
-                require(['stormcloud/service/FilesystemService'], function(FilesystemService){
+                require(['stormcloud/manager/FileManager'], function(FileManager){
        
-                    FilesystemService.find(args);         
+                    FileManager.find(args);         
                 });
               
             },
@@ -165,8 +163,13 @@ define([
                     divSearchFile.innerHTML =  files[i].label + ' (' + files[i].markers.length + ')';
                     
                     var image = document.createElement('img');
-                    image.src = FileManager.getImage(files[i]);
                     
+                    require(['stormcloud/manager/FileManager'], function(FileManager){
+       
+                        image.src = FileManager.getImage(files[i]);
+       
+                    });
+       
                     divSearchEntry.appendChild(image);
                     
                     // loop trough the markers in the file
@@ -202,9 +205,9 @@ define([
                                 
                             }
                         
-                            require(['stormcloud/service/FilesystemService'], function(FilesystemService){ 
+                            require(['stormcloud/manager/FileManager'], function(FileManager){ 
                         
-                                FilesystemService.get(item);
+                                FileManager.get(item, false);
                             });
                         });
                     

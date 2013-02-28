@@ -20,10 +20,18 @@
  */
 define([
     'dojo/on',
-    'dijit/registry'],
+    'dijit/registry',
+    'stormcloud/manager/TreeManager',
+    'stormcloud/manager/DialogManager',
+    'stormcloud/manager/MavenManager',
+    'stormcloud/manager/FileManager'],
     function(
         on,
-        registry){
+        registry,
+        TreeManager,
+        DialogManager,
+        MavenManager,
+        FileManager){
 
         //
         // module       : stormcloud/manager/EventManager
@@ -64,14 +72,87 @@ define([
         }
         
         
-        TARGET = {
+        
+        MENU = {
             
-            TOOLBAR_SEARCH_REDEFINE : 'toolbarSearch_redefine',
-            TOOLBAR_SEARCH_CLEAR : 'toolbarSearch_clear',
-            TOOLBAR_MAVEN_RUN : 'toolBarMaven_run',
-            TOOLBAR_MAVEN_RERUN : 'toolBarMaven_rerun'
+            STORMCLOUD : {
+                
+                ABOUT : 'stormcloudMenu_about',
+                PREFERENCES : 'stormcloudMenu_preferences',
+                MY_ACCOUNT : 'stormcloudMenu_my_account'
+            },
+            
+            FILE : {
+                
+                NEW_FILE : 'fileMenu_new_file',
+                NEW_PROJECT : 'fileMenu_new_project',
+                CLONE_REMOTE : 'fileMenu_clone_remote',
+                OPEN_PROJECT : 'fileMenu_open_project',
+                IMPORT_PROJECT : 'fileMenu_import_project',
+                EXPORT_PROJECT : 'fileMenu_export_project',
+                SAVE_ALL : 'fileMenu_save_all'
+            },
+            
+            EDIT : {
+                
+                FIND : 'editMenu_find_in_projects',
+                REPLACE : 'editMenu_replace_in_projects'
+            },
+            
+            
+            TOOLS : {
+                
+                TEMPLATES : 'toolsMenu_templates'
+            }
         }
         
+        
+        CONTEXT_MENU = {
+            
+            PROJECT : {
+                
+                COMPILE : 'projectMenu_compile_project',
+                CLEAN : 'projectMenu_clean_project',
+                INSTALL : 'projectMenu_install_project',
+                CUSTOM : 'projectMenu_custom_goals'
+                
+            },
+            
+            FILESYSTEM : {
+                
+                NEW : 'filesystemMenu_new',
+                OPEN : 'filesystemMenu_open'
+                
+            }
+            
+            
+        }
+        
+        
+        TABS = {
+            
+            SEARCH : {
+                
+                REDEFINE : 'toolbarSearch_redefine',
+                CLEAR : 'toolbarSearch_clear'
+            },
+            
+            MAVEN : {
+                
+                RERUN : 'toolBarMaven_rerun',
+                RUN : 'toolBarMaven_run'
+            }
+            
+            
+            
+        }
+        
+        
+        
+        TREE = {
+            
+            CLOSED_PROJECTS : 'closedProjectTree'
+        }
         
 
         return {
@@ -81,6 +162,206 @@ define([
                 
                 on(registry.byId(node), EVENT.CLICK, listener);
                 
+            },
+            
+            
+            
+            bindEvents : function(){
+                
+                
+                
+                //
+                // Stormcloud Menu
+                //
+                this.registerClick(MENU.STORMCLOUD.ABOUT, function() {
+
+                    DialogManager.show(DIALOG.ABOUT);
+                });
+
+                this.registerClick(MENU.STORMCLOUD.PREFERENCES, function() {
+
+                    DialogManager.show(DIALOG.PREFERENCES);
+                });
+
+                this.registerClick(MENU.STORMCLOUD.MY_ACCOUNT, function() {
+
+                    DialogManager.show(DIALOG.MY_ACCOUNT);
+                });
+                
+                
+                
+                //
+                // File Menu
+                //
+                this.registerClick(MENU.FILE.NEW_FILE, function() {
+
+                    DialogManager.show(DIALOG.NEW_FILE);
+                });
+
+                this.registerClick(MENU.FILE.NEW_PROJECT, function() {
+
+                    DialogManager.show(DIALOG.NEW_PROJECT);
+                });
+
+                this.registerClick(MENU.FILE.CLONE_REMOTE, function() {
+
+                    DialogManager.show(DIALOG.CLONE_REMOTE);
+                });
+
+                this.registerClick(MENU.FILE.OPEN_PROJECT, function() {
+
+                    DialogManager.show(DIALOG.OPEN_PROJECT);
+
+                    TreeManager.refresh(TREE.CLOSED_PROJECTS);
+                });
+
+                this.registerClick(MENU.FILE.IMPORT_PROJECT, function() {
+
+                    DialogManager.show(DIALOG.IMPORT_PROJECT);
+                });
+
+                this.registerClick(MENU.FILE.EXPORT_PROJECT, function() {
+
+                    DialogManager.show(DIALOG.EXPORT_PROJECT);
+                });
+
+                this.registerClick(MENU.FILE.SAVE_ALL, function() {
+
+                    alert('Not yet Implemented');
+                });
+                
+                
+                //
+                // Edit Menu
+                // 
+                this.registerClick(MENU.EDIT.FIND, function() {
+
+                    DialogManager.show(DIALOG.FIND);
+                });
+
+                this.registerClick(MENU.EDIT.REPLACE, function() {
+
+                    alert('Not yet Implemented');
+                });
+
+
+                //
+                // Tools Menu
+                //
+                this.registerClick(MENU.TOOLS.TEMPLATES, function() {
+
+                    DialogManager.show(DIALOG.TEMPLATES);
+                });
+
+
+                //
+                // Project Context Menu
+                //
+                this.registerClick(CONTEXT_MENU.PROJECT.COMPILE, function() {
+
+                    MavenManager.compile();
+                });
+
+                this.registerClick(CONTEXT_MENU.PROJECT.CLEAN, function() {
+
+                    MavenManager.clean();
+                });
+
+                this.registerClick(CONTEXT_MENU.PROJECT.INSTALL, function() {
+
+                    MavenManager.install();
+                });
+
+                this.registerClick(CONTEXT_MENU.PROJECT.CUSTOM, function() {
+
+                    DialogManager.show(DIALOG.CUSTOM_GOALS);
+                });
+
+
+
+                //
+                // Filesystem Context menu
+                //
+                this.registerClick(CONTEXT_MENU.FILESYSTEM.NEW, function() {
+
+                    DialogManager.show(DIALOG.NEW_FILE);
+                });
+
+                this.registerClick(CONTEXT_MENU.FILESYSTEM.OPEN, function() {
+ 
+                    FileManager.get(dijit.byId('projectTree').attr('selectedItem'), false);
+                });
+
+                this.registerClick('filesystemMenu_cut', function() {
+
+                    FileManager.setMoveSource();
+                });
+
+                this.registerClick('filesystemMenu_copy', function() {
+
+                    FileManager.setCopySource();
+                });
+
+                this.registerClick('filesystemMenu_paste', function() {
+
+                    FileManager.setDestination();       
+                });
+
+                this.registerClick('filesystemMenu_download', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('filesystemMenu_delete', function() {
+
+                
+                    DialogManager.show(DIALOG.DELETE);
+
+                });
+
+                this.registerClick('filesystemMenu_rename', function() {
+
+                    alert('Not Implemented');
+
+                });
+
+                this.registerClick('filesystemMenu_move', function() {
+
+                    alert('Not Implemented');
+
+                });
+
+                this.registerClick('filesystemMenu_safe_delete', function() {
+
+                    alert('Not Implemented');
+
+                });
+
+
+
+                //
+                // Tab Toolbars
+                //
+                this.registerClick(TABS.SEARCH.REDEFINE, function() {
+                    
+                    DialogManager.show(DIALOG.FIND);
+                });
+                
+                this.registerClick(TABS.SEARCH.CLEAR, function() {
+                    
+                    SearchManager.clear();
+                });
+    
+                this.registerClick(TABS.MAVEN.RUN, function() {
+                    
+                    DialogManager.show(DIALOG.CUSTOM_GOALS);
+                });
+                
+                this.registerClick(TABS.MAVEN.RERUN, function() {
+                    
+                    MavenManager.runLastCommand();
+                });
+
             }
 
         };

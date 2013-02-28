@@ -1,0 +1,71 @@
+
+
+.formInput{
+
+
+    height: 30px;
+}
+
+
+.formInput label{
+
+    float:left;
+    width : 150px !important;
+    height : 20px;
+    padding-top : 3px;
+}
+
+
+
+
+.formInput span{
+
+    float :left;
+    width : 100%;
+    padding-left : 150px;
+    padding-bottom: 10px;
+    color:grey;
+
+}
+
+
+.optionsBox{
+
+    float : left;
+    border : 1px solid lightgrey; 
+    width : 45%;
+    margin-right : 10px;
+    margin-top : 20px;
+}
+
+.optionsBox label{
+
+    float:left;
+
+}
+
+.optionsBoxLabel{
+    float : left;
+    width : 100%;
+    padding-left : 10px;
+    padding-bottom: 10px;
+    margin-top: -9px;
+    font-weight : bold;
+}
+
+.optionsEntry{
+
+    float : left;
+    width : 90%;
+    padding-left : 10px;
+    padding-bottom: 10px;
+}
+
+.optionsEntry div{
+
+    float : left;
+
+}
+
+
+

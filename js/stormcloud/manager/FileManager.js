@@ -20,10 +20,12 @@
  */
 define([
     'dijit/registry',
-    'dijit/MenuItem'], 
+    'dijit/MenuItem',
+    'stormcloud/service/FilesystemService'], 
     function(
         registry,
-        MenuItem){
+        MenuItem,
+        FilesystemService){
             
         //
         // module   : stormcloud/manager/FileManager
@@ -31,42 +33,106 @@ define([
         // summary  :
         //		
 
-        FILE_TYPE = {
-            
-            JAVA : {
-                icon : 'javaFileIcon',
-                extension : 'java'
-            }
-            
-            
-        }
-        
-        
-        FILE_STATE = {
-            
-            UNTRACKED : 'Untracked',
-            MODIFIED  : 'Modified'
-            
-        }
-        
-
-
         return {
+            
+            
+            copySource : null,
+            moveSource : null,
+            copyDestination : null,
+            moveDestination : null,
             
             // array of last opened files
             opened : new Array(),
             
             
-            open : function(){
+            open : function(item){
+              
+                FilesystemService.open(item);  
+            },
+            
+            close : function(item){
+            
+                FilesystemService.close(item);
+            },
+            
+            get : function(item, readOnly){
+              
+                FilesystemService.get(item, readOnly);
+            },
+            
+            del : function(item){
                 
-                
+                FilesystemService.del(item);
+            },
+            
+            save : function(item, editor){
+              
+                FilesystemService.save(item, editor.getValue());
             },
             
             
-            close : function(){
+            create : function(item){
+                
+                FilesystemService.create(item);
+            },
+            
+            checkTrash : function(){
               
-              
-              
+                FilesystemService.checkTrash();
+            },
+            
+            find : function(args){
+                
+                FilesystemService.find(args);
+                
+            },
+            
+            setCopySource : function(){
+                this.copySource = dijit.byId('projectTree').attr('selectedItem');
+                dijit.byId('filesystemMenu_paste').attr('disabled',false);
+            },
+            
+            setMoveSource : function(){
+                this.moveSource = dijit.byId('projectTree').attr('selectedItem');
+                dijit.byId('filesystemMenu_paste').attr('disabled',false);
+            },
+            
+            setDestination : function(){
+    
+                if(this.copySource == null){
+    
+                    this.moveDestination = dijit.byId('projectTree').attr('selectedItem');
+        
+                    if(this.moveSource.id == this.moveDestination.id){
+            
+                        alert('Source and Destination cannot be the same');
+            
+                    }else{
+            
+                        FilesystemService.rename(this.moveSource.id, this.moveDestination.id);
+                    }
+        
+                }else{
+    
+                    this.copyDestination = dijit.byId('projectTree').attr('selectedItem');
+
+                    if(this.copySource.id == this.copyDestination.id){
+            
+                        alert('Source and Destination cannot be the same');
+            
+                    }else{
+            
+                        FilesystemService.copy(this.copySource.id, this.copyDestination.id);
+                    }
+                }
+    
+                this.copySource = null;
+                this.copyDestination = null;
+                this.moveSource = null;
+                this.moveDestination = null;
+
+                dijit.byId('filesystemMenu_paste').attr('disabled',true);
+            
             },
             
             

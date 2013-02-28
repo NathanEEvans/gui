@@ -21,11 +21,11 @@
 define([
     'stormcloud/gui/tooltips',
     'stormcloud/manager/TreeManager',
-    'stormcloud/service/FilesystemService'], 
+    'stormcloud/manager/FileManager'], 
     function(
         tooltips,
         TreeManager,
-        FilesystemService){
+        FileManager){
 
         //
         // module      : stormcloud/_base/gui
@@ -44,12 +44,8 @@ define([
                 TreeManager.initialize();
             
                 // check for trash
-                FilesystemService.checkTrash();
-                
+                FileManager.checkTrash();
             }
-    
         }
-
-
     });
 

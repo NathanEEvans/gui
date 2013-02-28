@@ -296,9 +296,9 @@ define([
                                 label : fileName
                             }
               
-                            require(['stormcloud/service/FilesystemService'], function(FilesystemService){ 
+                            require(['stormcloud/manager/FileManager'], function(FileManager){ 
                         
-                                FilesystemService.get(item);
+                                FileManager.get(item, false);
                             });
                             
                         });
