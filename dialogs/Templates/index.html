@@ -6,22 +6,6 @@
        
             templates.init();
         }); 
-            
-        function done() {
-            
-            require(['stormcloud/dialogs/Templates'], function(templates){
-       
-                templates.done();
-            });    
-        }
-        
-        function cancel(){
-            
-            require(['stormcloud/dialogs/Templates'], function(templates){
-       
-                templates.cancel();
-            });   
-        }
     </script>
 
     <div class="floater">
@@ -29,7 +13,9 @@
 
         <div id="editTemplateWizard" data-dojo-type="dojox/widget/Wizard" data-dojo-props="style:'width:900px; height:500px', nextButtonLabel:'Next', doneButtonLabel:'Open Template'">
 
-            <div id="editTemplateStep1" data-dojo-type="dojox/widget/WizardPane" data-dojo-props="doneFunction:done">
+            <div id="editTemplateStep1" 
+                 data-dojo-type="dojox/widget/WizardPane" 
+                 data-dojo-props="doneFunction: function done(){require(['stormcloud/dialogs/Templates'], function(templates){templates.done();});}">
 
                 <div class="stepsBanner" style="float:left; width:270px; height: 100%; border-right: 1px solid #b5bcc7;">
 
@@ -49,7 +35,7 @@
 
             </div>
             <script type="dojo/method" event="cancelFunction">
-                cancel();
+                dialogManager.hide(DIALOG.TEMPLATES);
             </script>
         </div>
 

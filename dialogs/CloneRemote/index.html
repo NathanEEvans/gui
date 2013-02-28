@@ -6,22 +6,6 @@
        
             dialog.init();
         }); 
-        
-        function cancel(){
-        
-            require(['stormcloud/dialogs/CloneRemote'], function(dialog){
-       
-                dialog.cancel();
-            }); 
-        }
-        
-        function clone(){
-        
-            require(['stormcloud/dialogs/CloneRemote'], function(dialog){
-       
-                dialog.clone();
-            }); 
-        }
     </script>
 
     <table>
@@ -38,14 +22,17 @@
 
         <button data-dojo-type="dijit/form/Button" type="button">
             <script type="dojo/connect" data-dojo-event="onClick">
-                cancel();
+                dialogManager.hide(DIALOG.CLONE_REMOTE);
             </script>
             Cancel
         </button>
 
         <button data-dojo-type="dijit/form/Button" type="button">
             <script type="dojo/connect" data-dojo-event="onClick">
-                clone();
+                require(['stormcloud/dialogs/CloneRemote'], function(dialog){
+
+                dialog.clone();
+                });
             </script>
             Clone
         </button>

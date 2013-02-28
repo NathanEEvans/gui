@@ -635,6 +635,13 @@
     height           : 16px;
 }
 
+.unknownIcon {
+
+    background-image : url('/images/tree/unknown.png');	
+    width            : 16px;
+    height           : 16px;
+}
+
 .folderUntrackedIcon {
 
     background-image : url('/images/tree/folder-untracked.png');	

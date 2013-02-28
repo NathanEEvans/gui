@@ -53,10 +53,7 @@
 
         <button data-dojo-type="dijit/form/Button" type="button">
             <script type="dojo/connect" data-dojo-event="onClick">
-                require(['stormcloud/dialogs/Replace'], function(dialog){
-
-                dialog.hide();
-                });
+                dialogManager.hide(DIALOG.REPLACE);
             </script>
             Close
         </button>

@@ -6,22 +6,6 @@
        
             dialog.init();
         }); 
-        
-        function hide(){
-        
-            require(['stormcloud/dialogs/Find'], function(dialog){
-       
-                dialog.hide();
-            }); 
-        }
-        
-        function find(){
-     
-            require(['stormcloud/dialogs/Find'], function(dialog){
-       
-                dialog.find();
-            });       
-        }
     </script>
 
     <br>
@@ -69,14 +53,17 @@
 
         <button data-dojo-type="dijit/form/Button" type="button">
             <script type="dojo/connect" data-dojo-event="onClick">
-                hide();
+                dialogManager.hide(DIALOG.FIND);
             </script>
             Close
         </button>
 
         <button data-dojo-type="dijit/form/Button" type="button">
             <script type="dojo/connect" data-dojo-event="onClick">
-                find();
+                require(['stormcloud/dialogs/Find'], function(dialog){
+
+                dialog.find();
+                });  
             </script>
             Find
         </button>

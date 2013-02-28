@@ -8,8 +8,6 @@
         }); 
     </script>
 
-
-
 </div>
 
 <div>
@@ -17,7 +15,7 @@
 
         <button data-dojo-type="dijit/form/Button" type="button">
             <script type="dojo/connect" data-dojo-event="onClick">
-                Dialog.hide(DIALOG.COMMIT);
+                dialogManager.hide(DIALOG.COMMIT);
             </script>
             Cancel
         </button>

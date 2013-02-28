@@ -6,16 +6,7 @@
         require(['stormcloud/dialogs/NewProject'], function(NewProject){
        
             NewProject.init();
-        }); 
-        
-        function done() {
-            
-            require(['stormcloud/dialogs/NewProject'], function(NewProject){
-       
-                NewProject.done();
-            }); 
-        }
-        
+        });
     </script>
 
     <style type="text/css">
@@ -79,7 +70,8 @@
 
             </div>
 
-            <div data-dojo-type="dojox/widget/WizardPane" data-dojo-props='doneFunction:done'>
+            <div data-dojo-type="dojox/widget/WizardPane" 
+                 data-dojo-props="doneFunction: function done() {require(['stormcloud/dialogs/NewProject'], function(NewProject){NewProject.done();});}">
 
                 <div class="stepsBanner" style="float:left; width:270px; height: 100%; border-right: 1px solid #b5bcc7;">
 

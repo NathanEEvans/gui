@@ -6,17 +6,7 @@
        
             dialog.init();
         }); 
-        
-        function close(){
-            
-            require(['stormcloud/dialogs/Preferences'], function(dialog){
-       
-                dialog.close();
-            }); 
-        }
-        
     </script>
-
 
     <div data-dojo-type="dijit/layout/TabContainer" style="height:100%">
 
@@ -79,34 +69,34 @@
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            close(); 
+            dialogManager.hide(DIALOG.PREFERENCES);
         </script>
         Export
     </button>
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            close();
+            dialogManager.hide(DIALOG.PREFERENCES);
         </script>
         Import
     </button>
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            close();
+            dialogManager.hide(DIALOG.PREFERENCES);
         </script>
         Help
     </button>
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            close();
+            dialogManager.hide(DIALOG.PREFERENCES);
         </script>
         Cancel
     </button>
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            close();
+            dialogManager.hide(DIALOG.PREFERENCES);
         </script>
         OK
     </button>

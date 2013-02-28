@@ -5,16 +5,7 @@
         require(['stormcloud/dialogs/OpenProject'], function(OpenProject){
        
             OpenProject.init();
-        }); 
-                
-        function done() {
-            
-            require(['stormcloud/dialogs/OpenProject'], function(OpenProject){
-       
-                OpenProject.done();
-            }); 
-        }
-        
+        });
     </script>
 
     <div class="floater">
@@ -25,7 +16,7 @@
 
             <div id="openProjectStep1" 
                  data-dojo-type="dojox/widget/WizardPane" 
-                 data-dojo-props="doneFunction:done">
+                 data-dojo-props="doneFunction: function done() {require(['stormcloud/dialogs/OpenProject'], function(OpenProject){OpenProject.done();});}">
 
                 <div class="stepsBanner" 
                      style="float:left; width:270px; height: 100%; border-right: 1px solid #b5bcc7;">
@@ -47,10 +38,7 @@
             </div>
 
             <script type="dojo/method" event="cancelFunction">
-                require(['stormcloud/dialogs/OpenProject'], function(OpenProject){
-
-                OpenProject.cancel();
-                });
+                dialogManager.hide(DIALOG.OPEN_PROJECT);
             </script>
 
         </div>

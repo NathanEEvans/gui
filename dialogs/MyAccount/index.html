@@ -5,15 +5,7 @@
         require(['stormcloud/dialogs/MyAccount'], function(dialog){
        
             dialog.init();
-        }); 
-        
-        function close(){
-        
-            require(['stormcloud/dialogs/MyAccount'], function(dialog){
-       
-                dialog.close();
-            }); 
-        }
+        });
     </script>
 
     My Account
@@ -24,21 +16,30 @@
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            close();
+            require(['stormcloud/dialogs/MyAccount'], function(dialog){
+
+            dialog.close();
+            });
         </script>
         Help
     </button>
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            close();
+            require(['stormcloud/dialogs/MyAccount'], function(dialog){
+
+            dialog.close();
+            });
         </script>
         Cancel
     </button>
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            close();
+            require(['stormcloud/dialogs/MyAccount'], function(dialog){
+
+            dialog.close();
+            });
         </script>
         OK
     </button>

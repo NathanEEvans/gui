@@ -6,24 +6,6 @@
        
             NewFile.init();
         }); 
-            
-        function done() {
-            
-            require(['stormcloud/dialogs/NewFile'], function(NewFile){
-       
-                NewFile.done();
-            });    
-        }
-        
-        function browse() {
-            
-            require(['stormcloud/dialogs/NewFile'], function(NewFile){
-       
-                NewFile.browse();
-            });    
-        }
-        
-        
     </script>
 
     <div class="floater">
@@ -65,7 +47,10 @@
 
             </div>
 
-            <div id="newFileStep2" data-dojo-id="newFileStep2" data-dojo-type="dojox/widget/WizardPane" data-dojo-props='doneFunction:done'>
+            <div id="newFileStep2" 
+                 data-dojo-id="newFileStep2" 
+                 data-dojo-type="dojox/widget/WizardPane" 
+                 data-dojo-props="doneFunction: function done() {require(['stormcloud/dialogs/NewFile'], function(NewFile){NewFile.done();});}">
 
                 <div class="stepsBanner">
 
@@ -110,7 +95,9 @@
                                            data-dojo-type="dijit/form/TextBox" readonly="true"/>
                                     <button data-dojo-type="dijit/form/Button" type="button" id="browseButton">
                                         <script type="dojo/connect" data-dojo-event="onClick">
-                                            browse();
+                                            require(['stormcloud/dialogs/NewFile'], function(NewFile){
+                                            NewFile.browse();
+                                            });
                                         </script>
                                         Browse
                                     </button>
@@ -146,7 +133,7 @@
 
             <script type="dojo/method" event="cancelFunction">
 
-                dialogManager.hide('newFileDialog');
+                dialogManager.hide(DIALOG.NEW_FILE);
 
                 dijit.byId('newFileWizard').selectChild('newFileStep1');
 

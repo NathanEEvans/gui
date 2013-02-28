@@ -11,7 +11,7 @@
     <div data-dojo-type="dijit/layout/ContentPane" id="aboutBanner" data-dojo-props="region:'top'">
 
         <img src="../../images/logo/logo-trimmed.png"/>
-        <span style="font-size:11px; width: 100%; float:left;"><b>Unleash the power of Coding in the Cloud</b></span>
+        <span style="font-size:11px; width: 100%; float:left; color: #FFFFFF;"><b>Unleash the power of Coding in the Cloud</b></span>
 
     </div>
 
@@ -52,10 +52,7 @@
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            require(['stormcloud/dialogs/AboutDialog'], function(dialog){
-
-            dialog.close();
-            });
+            dialogManager.hide(DIALOG.ABOUT);
         </script>
         Close
     </button>
