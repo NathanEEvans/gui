@@ -19,19 +19,9 @@
  * 
  */
 define([
-    'stormcloud/manager/SettingsManager',
-    'stormcloud/manager/StatusManager',
-    'stormcloud/manager/EditorManager',
-    'stormcloud/rest/xhr',
-    'stormcloud/manager/MavenManager',
-    'stormcloud/manager/ProjectManager'], 
+    'stormcloud/rest/xhr'], 
     function(
-        SettingsManager,
-        StatusManager,
-        EditorManager,
-        xhr,
-        MavenManager,
-        ProjectManager){
+        xhr){
 
         //
         // module   : stormcloud/service/FilesystemService
@@ -43,27 +33,27 @@ define([
         var FILESYSTEM = {  
         
             // Open project service url.
-            OPEN : SettingsManager.getApiUrl() + '/filesystem/open',
+            OPEN : settingsManager.getApiUrl() + '/filesystem/open',
             // Close project service url.
-            CLOSE : SettingsManager.getApiUrl() + '/filesystem/close',
+            CLOSE : settingsManager.getApiUrl() + '/filesystem/close',
             // Move/Rename service url
-            MOVE : SettingsManager.getApiUrl() + '/filesystem/move',
+            MOVE : settingsManager.getApiUrl() + '/filesystem/move',
             // Copy service url
-            COPY : SettingsManager.getApiUrl() + '/filesystem/copy',
+            COPY : settingsManager.getApiUrl() + '/filesystem/copy',
             // Save resource service url
-            SAVE : SettingsManager.getApiUrl() + '/filesystem/save',
+            SAVE : settingsManager.getApiUrl() + '/filesystem/save',
             // Create
-            CREATE : SettingsManager.getApiUrl() + '/filesystem/create',
+            CREATE : settingsManager.getApiUrl() + '/filesystem/create',
             // Delete resource service url
-            DELETE : SettingsManager.getApiUrl() + '/filesystem/delete',
+            DELETE : settingsManager.getApiUrl() + '/filesystem/delete',
             // Find
-            FIND : SettingsManager.getApiUrl() + '/filesystem/find',
+            FIND : settingsManager.getApiUrl() + '/filesystem/find',
             // Get resource service url
-            GET : SettingsManager.getApiUrl() + '/filesystem/get',
+            GET : settingsManager.getApiUrl() + '/filesystem/get',
             //
-            GET_BINARY : SettingsManager.getApiUrl() + '/filesystem/getBinary',
+            GET_BINARY : settingsManager.getApiUrl() + '/filesystem/getBinary',
             // Check if there is things in the trash bin
-            HAS_TRASH : SettingsManager.getApiUrl() + '/filesystem/hasTrash'
+            HAS_TRASH : settingsManager.getApiUrl() + '/filesystem/hasTrash'
         
         };
     
@@ -87,14 +77,11 @@ define([
             
                         if(data == '0'){
                 
-                            require(['stormcloud/manager/TreeManager'],function(TreeManager){
-                
-                                TreeManager.refresh('projectTree');
-                            });
+                            treeManager.refresh('projectTree');
                             
                         }else{
             
-                            StatusManager.error(
+                            statusManager.error(
                                 'Failed to open your project.'+
                                 ' Please review the <a href=\"javascript:alert'
                                 +'(\'Open logfile window\');">log</a>');
@@ -103,7 +90,7 @@ define([
 
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
             },
         
@@ -134,14 +121,11 @@ define([
             
                         if(data == '0'){
                 
-                            require(['stormcloud/manager/TreeManager'],function(TreeManager){
-                
-                                TreeManager.refresh('projectTree');
-                            });
+                            treeManager.refresh('projectTree');
                             
                         }else{
             
-                            StatusManager.error(
+                            statusManager.error(
                                 'Failed to copy item.'+
                                 ' Please review the <a href=\"javascript:alert'
                                 +'(\'Open logfile window\');">log</a>');
@@ -150,7 +134,7 @@ define([
 
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
             },
         
@@ -171,29 +155,24 @@ define([
             
                         if(data == '0'){
                 
-                            require(['stormcloud/manager/TreeManager'],function(TreeManager){
-                            
-                                // @todo change this into only changing the local tree
-                                TreeManager.refresh('projectTree');
-                                TreeManager.refresh('filesystemTree');
+                            treeManager.refresh('projectTree');
+                            treeManager.refresh('filesystemTree');
                                 
-                                // we are moving from closed to projects
-                                // so we need to change the path to reflect this
-                                // before calling the compile
-                                item.id = item.id.replace(
-                                    SettingsManager.getSetting(SETTING.CLOSED_PROJECTS_FOLDER), 
-                                    SettingsManager.getProjectFolder());
+                            // we are moving from closed to projects
+                            // so we need to change the path to reflect this
+                            // before calling the compile
+                            item.id = item.id.replace(
+                                settingsManager.getSetting(SETTING.CLOSED_PROJECTS_FOLDER), 
+                                settingsManager.getProjectFolder());
                                     
-                                ProjectManager.setSelected(item);    
+                            projectManager.setSelected(item);    
                                     
-                                // compile the project
-                                MavenManager.compile();
-                                
-                            });
-                    
+                            // compile the project
+                            mavenManager.compile();
+                             
                         }else{
             
-                            StatusManager.error(
+                            statusManager.error(
                                 'Failed to open your project.'+
                                 ' Please review the <a href=\"javascript:alert'
                                 +'(\'Open logfile window\');">log</a>');
@@ -202,7 +181,7 @@ define([
 
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
             },
         
@@ -223,14 +202,12 @@ define([
             
                         if(data == '0'){
                 
-                            require(['stormcloud/manager/TreeManager'],function(TreeManager){
-                
-                                TreeManager.refresh('projectTree');
-                            });
-                
+                        
+                            treeManager.refresh('projectTree');
+                        
                         }else{
                 
-                            StatusManager.error(
+                            statusManager.error(
                                 'Failed to close your project.'
                                 +' Please review the <a href=\"javascript:alert'
                                 +'(\'Open logfile window\');">log</a>');
@@ -239,7 +216,7 @@ define([
 
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
             },
         
@@ -316,7 +293,7 @@ define([
                                 if(isBinary){
                                     contentPane.set('content','<img src="data:image/png;base64,' + imageBin + '">');
                                 }else{
-                                    contentPane.connect(contentPane,'onLoad',EditorManager.load(item, fileContents, readonly));    
+                                    contentPane.connect(contentPane,'onLoad',editorManager.load(item, fileContents, readonly));    
                                 }
                             });
                         });
@@ -340,15 +317,12 @@ define([
                     function(data){
             
                         if(data == '0'){
-          
-                            require(['stormcloud/manager/TreeManager'],function(TreeManager){
-                                
-                                TreeManager.refresh('projectTree');
-                            });
+             
+                            treeManager.refresh('projectTree');
                             
                         }else{
             
-                            StatusManager.error(
+                            statusManager.error(
                                 'Failed to delete ' 
                                 + item.type +
                                 ' Please review the <a href=\"javascript:alert'
@@ -359,7 +333,7 @@ define([
 
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });  
             },
     
@@ -394,22 +368,16 @@ define([
                         // when succeeded, (and it's not a folder) 
                         // open it in the editor
                         if(item.type != 'folder'){
-                            require(['stormcloud/services/filesystem'], function(fs){
-                
-                                fs.get(item, false);
-                            });
+                            
+                            fileManager.get(item, false);   
                         }
                         
-                        // And refresh the project tree so it shows up in there
-                        require(['stormcloud/manager/TreeManager'],function(TreeManager){
-                
-                            TreeManager.refresh('projectTree');
-                        });
+                        treeManager.refresh('projectTree');
                     },
 
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
             },
     
@@ -435,12 +403,12 @@ define([
             
                         dijit.byId(item.id).set('title', item.label);
                         
-                        MavenManager.compile();
+                        mavenManager.compile();
                     },
 
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
             },
         
@@ -456,16 +424,12 @@ define([
                 deferred.then(
                     function(data){
             
-                        require(['stormcloud/manager/SearchManager'], function(SearchManager){
-                
-                            SearchManager.process(data);
-                        });
-                        
+                        searchManager.process(data);            
                     },
 
                     function(error){
            
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
             
             },

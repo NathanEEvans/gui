@@ -18,12 +18,8 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([
-    'stormcloud/manager/DialogManager',
-    'stormcloud/manager/MavenManager'], 
-    function(
-        DialogManager,
-        MavenManager){
+define([], 
+    function(){
         
         //
         // module      : stormcloud/dialogs/CustomGoals
@@ -58,15 +54,15 @@ define([
               
                 }
               
-                MavenManager.run(command);
+                mavenManager.run(command);
                 
-                DialogManager.hide(DIALOG.CUSTOM_GOALS);
+                dialogManager.hide(DIALOG.CUSTOM_GOALS);
             },
             
             
             close : function(){
               
-                DialogManager.hide(DIALOG.CUSTOM_GOALS);
+                dialogManager.hide(DIALOG.CUSTOM_GOALS);
             }
         }
 

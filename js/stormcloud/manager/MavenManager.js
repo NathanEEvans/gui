@@ -19,12 +19,8 @@
  * 
  */
 define([
-    'stormcloud/manager/ProjectManager',
-    'stormcloud/manager/AnnotationManager',
     'stormcloud/service/MavenService'], 
     function(
-        ProjectManager,
-        AnnotationManager,
         MavenService){
    
         // module      : stormcloud/manager/MavenManager
@@ -41,17 +37,17 @@ define([
             
             run : function(command){
                 
-                AnnotationManager.clear(ProjectManager.selected);
+                annotationManager.clear(projectManager.selected);
                 
                 this.lastCommand = command;
                 
-                MavenService.custom(command, ProjectManager.selected);
+                MavenService.custom(command, projectManager.selected);
             },
             
             runLastCommand : function(){
                 
                 if(this.lastCommand != ''){
-                    MavenService.custom(this.lastCommand, ProjectManager.selected);
+                    MavenService.custom(this.lastCommand, projectManager.selected);
                 }    
             },
             

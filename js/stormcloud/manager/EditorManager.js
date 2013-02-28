@@ -19,15 +19,9 @@
  * 
  */
 define([
-    'dijit/registry',
-    'stormcloud/manager/ProjectManager',
-    'stormcloud/manager/AnnotationManager',
-    'stormcloud/manager/SearchManager'], 
+    'dijit/registry'], 
     function(
-        registry,
-        ProjectManager,
-        AnnotationManager,
-        SearchManager){
+        registry){
    
         // module      : stormcloud/manager/EditorManager
         // 
@@ -74,9 +68,9 @@ define([
                 // register the editor in the registry for
                 // future reference
                 editor.id = 'ace_editor_' + item.id;
-                var rEditor = registry.byId('ace_editor_' + item.id);
+                var registeredEditor = registry.byId('ace_editor_' + item.id);
 
-                if(rEditor == undefined){
+                if(registeredEditor == undefined){
                     registry.add(editor);
                 }                
             },
@@ -139,10 +133,7 @@ define([
                     },
                     exec: function(editor) {
                          
-                        require(['stormcloud/manager/FileManager'], function(FileManager){ 
-                         
-                            FileManager.save(item, editor.getValue());
-                        });                 
+                        fileManager.save(item, editor.getValue());
                     }
                 });
             
@@ -177,13 +168,10 @@ define([
                 // select the file in the tree when focus received
                 editor.on('focus',function(){
 
-                    require(['stormcloud/manager/TreeManager'], function(TreeManager){ 
-
-                        TreeManager.select('projectTree', item);
-                    });
+                    treeManager.select('projectTree', item);
                     
                     // select the project this file belongs to
-                    ProjectManager.setSelected(item);
+                    projectManager.setSelected(item);
                 });
                 
             },
@@ -192,7 +180,7 @@ define([
             _setAnnotations: function(editor, item){
                 
                 // get error annotations
-                var errors = AnnotationManager.getErrors();
+                var errors = annotationManager.getErrors();
                 
                 // loop trough the erros
                 for (var i = 0; i < errors.length; i++) {
@@ -216,7 +204,7 @@ define([
             _setMarkers : function (editor, item){
                 
                 // get the files from the search
-                var files = SearchManager.getFiles();
+                var files = searchManager.getFiles();
                 
                 // define ace Range type
                 var Range = ace.require('ace/range').Range

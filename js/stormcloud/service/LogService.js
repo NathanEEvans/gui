@@ -19,15 +19,9 @@
  * 
  */
 define([
-    'stormcloud/manager/SettingsManager',
-    'stormcloud/manager/StatusManager',
-    'stormcloud/rest/xhr',
-    'stormcloud/manager/AnnotationManager'],
+    'stormcloud/rest/xhr'],
     function(
-        SettingsManager,
-        StatusManager,
-        xhr,
-        AnnotationManager){
+        xhr){
    
         //
         // module      : stormcloud/service/LogService
@@ -38,8 +32,8 @@ define([
    
         var CONSTANTS = {
    
-            MAVEN_LOG : SettingsManager.getApiUrl() + '/log/maven',
-            TOMCAT_LOG : SettingsManager.getApiUrl() + '/log/tomcat'
+            MAVEN_LOG : settingsManager.getApiUrl() + '/log/maven',
+            TOMCAT_LOG : settingsManager.getApiUrl() + '/log/tomcat'
             
         }
    
@@ -69,8 +63,8 @@ define([
        
             startTomcatDeploy : function(){
               
-                StatusManager.showProgress();
-                StatusManager.info('Deploying Project');
+                statusManager.showProgress();
+                statusManager.info('Deploying Project');
            
                 // switch to tomcat window
                 // get handle on the correct tab
@@ -102,8 +96,8 @@ define([
            
                 p.stop();
           
-                StatusManager.hideProgress();
-                StatusManager.clear();
+                statusManager.hideProgress();
+                statusManager.clear();
             
                 var failed = false
             
@@ -144,8 +138,8 @@ define([
        
             startMaven : function(){
            
-                StatusManager.showProgress();
-                StatusManager.info('Maven Running');
+                statusManager.showProgress();
+                statusManager.info('Maven Running');
        
                 // get handle on the correct tab
                 var tabs = dijit.byId('logTabs');
@@ -177,8 +171,8 @@ define([
            
                 p.stop();
           
-                StatusManager.hideProgress();
-                StatusManager.clear();
+                statusManager.hideProgress();
+                statusManager.clear();
             
                 var failed = false
             
@@ -225,7 +219,7 @@ define([
                             }
                             
                             // process annotations
-                            AnnotationManager.process(annotationLines);                              
+                            annotationManager.process(annotationLines);                              
                         }
                     }
                 });

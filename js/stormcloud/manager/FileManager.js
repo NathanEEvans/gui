@@ -65,9 +65,9 @@ define([
                 FilesystemService.del(item);
             },
             
-            save : function(item, editor){
+            save : function(item, contents){
               
-                FilesystemService.save(item, editor.getValue());
+                FilesystemService.save(item, contents);
             },
             
             
@@ -87,17 +87,17 @@ define([
                 
             },
             
-            setCopySource : function(){
+            copy : function(){
                 this.copySource = dijit.byId('projectTree').attr('selectedItem');
                 dijit.byId('filesystemMenu_paste').attr('disabled',false);
             },
             
-            setMoveSource : function(){
+            cut : function(){
                 this.moveSource = dijit.byId('projectTree').attr('selectedItem');
                 dijit.byId('filesystemMenu_paste').attr('disabled',false);
             },
             
-            setDestination : function(){
+            paste : function(){
     
                 if(this.copySource == null){
     

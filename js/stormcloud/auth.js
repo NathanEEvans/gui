@@ -33,6 +33,7 @@ define([
     
         return{
     
+    
             send: function(user, pass){
         
                 dojo.require('dojox.encoding.base64');
@@ -77,6 +78,9 @@ define([
             //
             verify : function(){
                 
+                // declare the settingsManager global
+                settingsManager = SettingsManager;
+                
                 xhr.get({
                     url: 'http://' + window.location.host + '/stormcloud/api/user',
                     sync: true,
@@ -87,7 +91,7 @@ define([
                         if(code == 200){
                         
                             // success, set the user in context
-                            SettingsManager.user = JSON.parse(data);
+                            settingsManager.user = JSON.parse(data);
                             
                         }else{
                             

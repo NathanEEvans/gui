@@ -22,18 +22,12 @@ define([
     'dojo/store/JsonRest',
     'dojo/data/ObjectStore',
     'dijit/tree/TreeStoreModel',
-    'dijit/Tree',
-    'stormcloud/manager/SettingsManager',
-    'stormcloud/manager/FileManager',
-    'stormcloud/manager/DialogManager'], 
+    'dijit/Tree'], 
     function(
         JsonRest,
         ObjectStore,
         TreeStoreModel,
-        Tree,
-        SettingsManager,
-        FileManager,
-        DialogManager){
+        Tree){
             
         //
         // module      : stormcloud/dialogs/Templates
@@ -50,7 +44,7 @@ define([
                 // populate the templates tree
                 var templateRestStore = new JsonRest({
                 
-                    target : SettingsManager.getApiUrl() + '/filesystem/templates'
+                    target : settingsManager.getApiUrl() + '/filesystem/templates'
               
                 });
                 
@@ -83,7 +77,7 @@ define([
             
             cancel : function(){
               
-                DialogManager.hide(DIALOG.TEMPLATES);
+                dialogManager.hide(DIALOG.TEMPLATES);
               
             },
             
@@ -96,17 +90,17 @@ define([
             openItem : function(item, opened){
                 
                 
-                FileManager.get(item, false);
+                fileManager.get(item, false);
                 
-                DialogManager.hide(DIALOG.TEMPLATES);
+                dialogManager.hide(DIALOG.TEMPLATES);
             },
             
             done : function() {
                 
-                FileManager.get(selected, false);
+                fileManager.get(selected, false);
                 
                 // hide the dialog
-                DialogManager.hide(DIALOG.TEMPLATES);
+                dialogManager.hide(DIALOG.TEMPLATES);
             },
             
             mayHaveChildren : function(item){

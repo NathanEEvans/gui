@@ -18,10 +18,8 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([
-    'stormcloud/manager/DialogManager'], 
-    function(
-        DialogManager){
+define([], 
+    function(){
         
         //
         // module      : stormcloud/dialogs/MyAccount
@@ -38,7 +36,7 @@ define([
             
             close : function(){
               
-                DialogManager.hide(DIALOG.MY_ACCOUNT);
+                dialogManager.hide(DIALOG.MY_ACCOUNT);
             }
         }
     });

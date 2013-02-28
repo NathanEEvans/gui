@@ -22,18 +22,12 @@ define([
     'dojo/store/JsonRest',
     'dojo/data/ObjectStore',
     'dijit/tree/TreeStoreModel',
-    'dijit/Tree',
-    'stormcloud/manager/SettingsManager',
-    'stormcloud/manager/FileManager',
-    'stormcloud/manager/DialogManager'], 
+    'dijit/Tree'], 
     function(
         JsonRest,
         ObjectStore,
         TreeStoreModel,
-        Tree,
-        SettingsManager,
-        FileManager,
-        DialogManager){
+        Tree){
             
         //
         // module      : stormcloud/dialogs/OpenProject
@@ -47,7 +41,7 @@ define([
             
                 var closedProjectRestStore = new JsonRest({
                 
-                    target : SettingsManager.getApiUrl() + '/filesystem/closed'
+                    target : settingsManager.getApiUrl() + '/filesystem/closed'
                 });
                     
                 
@@ -79,7 +73,7 @@ define([
             
             cancel : function(){
                 
-                DialogManager.hide(DIALOG.OPEN_PROJECT);
+                dialogManager.hide(DIALOG.OPEN_PROJECT);
             },
             
             done : function() {
@@ -87,9 +81,9 @@ define([
                 var item = dijit.byId('closedProjectTree').attr('selectedItem');
 
                 // @todo move this to the ProjectManager
-                FileManager.open(item);
+                fileManager.open(item);
                 
-                DialogManager.hide(DIALOG.OPEN_PROJECT);            
+                dialogManager.hide(DIALOG.OPEN_PROJECT);            
             },
             
             mayHaveChildren : function(item){

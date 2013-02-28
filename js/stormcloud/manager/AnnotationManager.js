@@ -21,13 +21,11 @@
 define([
     'dojo/on',
     'dijit/registry',
-    'dojox/html/entities',
-    'stormcloud/manager/SettingsManager'], 
+    'dojox/html/entities'], 
     function(
         on,
         registry,
-        entities,
-        SettingsManager){
+        entities){
    
    
         //
@@ -296,11 +294,7 @@ define([
                                 label : fileName
                             }
               
-                            require(['stormcloud/manager/FileManager'], function(FileManager){ 
-                        
-                                FileManager.get(item, false);
-                            });
-                            
+                            fileManager.get(item, false);
                         });
                         
                         div.className = 'problemEntry';
@@ -394,7 +388,7 @@ define([
                         testAnnotation.message = s;
                     }
                 
-                    if(lines[i].startsWith('[ERROR] Please refer to ' + SettingsManager.getProjectFolder())){
+                    if(lines[i].startsWith('[ERROR] Please refer to ' + settingsManager.getProjectFolder())){
                     
                         s = lines[i].replace('[ERROR] Please refer to ','');
                         s = s.replace(' for the individual test results.','');
@@ -412,7 +406,7 @@ define([
             
                 for (var i = 0; i < lines.length; i++) {
                     
-                    if(lines[i].startsWith('[ERROR] ' + SettingsManager.getProjectFolder())){
+                    if(lines[i].startsWith('[ERROR] ' + settingsManager.getProjectFolder())){
                                     
                         // long riddle of chopping till we get what we want
                         var s = lines[i].replace('[ERROR] ','');

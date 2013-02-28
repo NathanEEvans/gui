@@ -29,28 +29,6 @@ define([
         // summary      : 
         //
   
-        DIALOG = {
-        
-            ABOUT :  'aboutDialog', 
-            PREFERENCES : 'preferencesDialog',         
-            MY_ACCOUNT : 'myAccountDialog',
-            CUSTOM_GOALS : 'customGoalsDialog',
-            NEW_PROJECT : 'newProjectDialog',
-            NEW_FILE : 'newFileDialog',     
-            CLONE_REMOTE : 'cloneRemoteDialog',
-            OPEN_PROJECT : 'openProjectDialog',
-            NEW_GROUP : 'newGroupDialog',
-            PROJECT_PROPERTIES : 'projectPropertiesDialog',
-            IMPORT_PROJECT : 'importProjectDialog',
-            EXPORT_PROJECT : 'exportProjectDialog',
-            GIT_HISTORY : 'showGitHistoryDialog',
-            GIT_COMMIT : 'commitDialog',
-            DELETE : 'deleteDialog',
-            FIND : 'findDialog',
-            DEFECTS_AND_ENHANCEMENTS : 'defectsAndEnhancementsDialog',
-            TEMPLATES : 'templatesDialog'
-        };
-    
         return{
         
             // Find a dialog in the registry and show it
@@ -63,6 +41,15 @@ define([
             hide : function(dialog){
             
                 registry.byId(dialog).hide();
+            },
+            
+            destroy : function(dialog){
+                
+            },
+            
+            init : function(dialog){
+                
+                
             }
         };
     });

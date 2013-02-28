@@ -18,10 +18,8 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([
-    'stormcloud/manager/SettingsManager'], 
-    function(
-        SettingsManager){
+define([], 
+    function(){
             
         //
         // module   : stormcloud/manager/ProjectManager
@@ -55,9 +53,9 @@ define([
                     var path = item.id;
                 
                     // chop off the project folder
-                    var s = path.replace(SettingsManager.getProjectFolder() + '/','');
+                    var s = path.replace(settingsManager.getProjectFolder() + '/','');
                 
-                    var project = SettingsManager.getProjectFolder() + '/' + s.substring(0,s.indexOf('/'));
+                    var project = settingsManager.getProjectFolder() + '/' + s.substring(0,s.indexOf('/'));
                 
                     var selectedTree = dijit.byId('projectTree');
                 

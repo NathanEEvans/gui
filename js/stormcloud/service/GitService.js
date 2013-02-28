@@ -19,12 +19,8 @@
  * 
  */
 define([
-    'stormcloud/manager/SettingsManager',
-    'stormcloud/manager/StatusManager',
     'stormcloud/rest/xhr'], 
     function(
-        SettingsManager,
-        StatusManager,
         xhr){
 
         //
@@ -35,10 +31,10 @@ define([
 
         var GIT = {
             
-            ADD : SettingsManager.getApiUrl() + '/git/add',
-            COMMIT : SettingsManager.getApiUrl() + '/git/commit',
-            STATUS : SettingsManager.getApiUrl() + '/git/status',
-            CLONE_REMOTE : SettingsManager.getApiUrl() + '/git/clone-remote'
+            ADD : settingsManager.getApiUrl() + '/git/add',
+            COMMIT : settingsManager.getApiUrl() + '/git/commit',
+            STATUS : settingsManager.getApiUrl() + '/git/status',
+            CLONE_REMOTE : settingsManager.getApiUrl() + '/git/clone-remote'
         
         };
 
@@ -47,8 +43,8 @@ define([
             
             clone : function(uri){
               
-                StatusManager.showProgress();
-                StatusManager.info('Git Clone Running');
+                statusManager.showProgress();
+                statusManager.info('Git Clone Running');
            
                 var data = {
         
@@ -67,17 +63,14 @@ define([
             
                         if(data == '0'){
                 
-                            StatusManager.hideProgress();
-                            StatusManager.info('Repository Cloned.');
+                            statusManager.hideProgress();
+                            statusManager.info('Repository Cloned.');
             
-                            require(['stormcloud/manager/TreeManager'],function(TreeManager){
-                
-                                TreeManager.refresh('projectTree');
-                            });
-            
+                            treeManager.refresh('projectTree');
+                            
                         }else{
             
-                            StatusManager.error(
+                            statusManager.error(
                                 'Failed to Clone.'+
                                 ' Please review the <a href=\"javascript:alert'
                                 +'(\'Open logfile window\');">log</a>');
@@ -86,7 +79,7 @@ define([
 
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
                 
             },
@@ -127,11 +120,11 @@ define([
             
                         if(data == '0'){
                 
-                            UI.refreshTree('projectTree');
+                            treeManager.refresh('projectTree');
                         
                         }else{
             
-                            StatusManager.error(
+                            statusManager.error(
                                 'Failed to add sources.'+
                                 ' Please review the <a href=\"javascript:alert'
                                 +'(\'Open logfile window\');">log</a>');
@@ -140,7 +133,7 @@ define([
 
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
             },
     
@@ -171,11 +164,11 @@ define([
             
                         if(data == '0'){
                 
-                            UI.refreshTree('projectTree');
+                            treeManager.refresh('projectTree');
                         
                         }else{
             
-                            StatusManager.error(
+                            statusManager.error(
                                 'Failed to add sources.'+
                                 ' Please review the <a href=\"javascript:alert'
                                 +'(\'Open logfile window\');">log</a>');
@@ -184,7 +177,7 @@ define([
 
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
             },
     

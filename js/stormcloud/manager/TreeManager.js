@@ -23,19 +23,13 @@ define([
     'dojo/store/JsonRest',
     'dojo/data/ObjectStore',
     'dijit/tree/TreeStoreModel',
-    'dijit/Tree',
-    'stormcloud/manager/SettingsManager',
-    'stormcloud/manager/FileManager',
-    'stormcloud/manager/ProjectManager'], 
+    'dijit/Tree'], 
     function(
         registry,
         JsonRest,
         ObjectStore,
         TreeStoreModel,
-        Tree,
-        SettingsManager,
-        FileManager,
-        ProjectManager){
+        Tree){
 
         //
         // module:
@@ -51,7 +45,7 @@ define([
                 // create project tree
                 var projectRestStore = new JsonRest({
                 
-                    target : SettingsManager.getApiUrl() + '/filesystem/opened'
+                    target : settingsManager.getApiUrl() + '/filesystem/opened'
                 });
                     
                 
@@ -85,7 +79,7 @@ define([
                 // create filesystem tree
                 var filesystemRestStore = new JsonRest({
                 
-                    target : SettingsManager.getApiUrl() + '/filesystem/bare'
+                    target : settingsManager.getApiUrl() + '/filesystem/bare'
                 });
                     
                 
@@ -116,7 +110,7 @@ define([
                 // create services tree
                 var servicesRestStore = new JsonRest({
                 
-                    target : SettingsManager.getApiUrl() + '/services'
+                    target : settingsManager.getApiUrl() + '/services'
                 });
                    
                 var servicesTreeModel = new TreeStoreModel({
@@ -208,7 +202,7 @@ define([
             
             setProject : function(item, opened){
                 
-                ProjectManager.setSelected(item);
+                projectManager.setSelected(item);
             },
             
             // @author martijn
@@ -242,7 +236,7 @@ define([
                 path.push('filesystem');
                 
                 // get the projects folder + project
-                var projectFolder = SettingsManager.getSetting(SETTING.PROJECT_FOLDER);
+                var projectFolder = settingsManager.getSetting(SETTING.PROJECT_FOLDER);
                 
                 // remove project folder from the input
                 chop = chop.replace(projectFolder+'/','');
@@ -326,21 +320,15 @@ define([
 
             openItemReadonly : function(item, opened){
               
-                require(['stormcloud/manager/FileManager'], function(FileManager){
                 
-                    FileManager.get(item, true);
-                });
+                fileManager.get(item, true);
             },
 
 
             openItem : function(item, opened){
                 
-                require(['stormcloud/manager/FileManager'], function(FileManager){
                 
-                    FileManager.get(item, false);
-                    
-                });
-                
+                fileManager.get(item, false);
             },
             
             getTarget : function(target){

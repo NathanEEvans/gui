@@ -18,14 +18,8 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([
-    'stormcloud/manager/DialogManager',
-    'stormcloud/manager/ProjectManager',
-    'stormcloud/manager/SearchManager'], 
-    function(
-        DialogManager,
-        ProjectManager,
-        SearchManager){
+define([], 
+    function(){
         
         //
         // module      : stormcloud/dialogs/Find
@@ -41,7 +35,7 @@ define([
             
             hide : function(){
                 
-                DialogManager.hide(DIALOG.FIND);
+                dialogManager.hide(DIALOG.FIND);
             },
             
             find : function(){
@@ -53,14 +47,14 @@ define([
                     matchCase : document.getElementById('matchCase').checked == true ? true : false,
                     wholeWords : document.getElementById('wholeWords').checked == true ? true : false,
                     regex : document.getElementById('regularExpression').checked == true ? true : false,
-                    scope : document.getElementById('openProjects').checked ? '' : ProjectManager.selected.id
+                    scope : document.getElementById('openProjects').checked ? '' : projectManager.selected.id
                 }
        
                 // send the find request
-                SearchManager.find(args);
+                searchManager.find(args);
        
                 // hide the dialog
-                DialogManager.hide(DIALOG.FIND);  
+                dialogManager.hide(DIALOG.FIND);  
             }
         }
 

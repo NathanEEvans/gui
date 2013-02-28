@@ -19,16 +19,10 @@
  * 
  */
 define([
-    'stormcloud/manager/SettingsManager',
     'stormcloud/service/LogService',
-    'stormcloud/manager/StatusManager',
-    'stormcloud/manager/TreeManager',
     'stormcloud/rest/xhr'], 
     function(
-        SettingsManager,
         LogService,
-        StatusManager,
-        TreeManager,
         xhr){
 
         //
@@ -39,8 +33,8 @@ define([
         
         var URL = {
       
-            MAVEN_EXECUTE : SettingsManager.getApiUrl() + '/maven/execute',
-            MAVEN_CREATE : SettingsManager.getApiUrl() + '/maven/create'
+            MAVEN_EXECUTE : settingsManager.getApiUrl() + '/maven/execute',
+            MAVEN_CREATE : settingsManager.getApiUrl() + '/maven/create'
         };
     
     
@@ -75,7 +69,7 @@ define([
                     },
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
             },
         
@@ -101,7 +95,7 @@ define([
                     },
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
             },
     
@@ -127,7 +121,7 @@ define([
                     },
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
             },
     
@@ -153,7 +147,7 @@ define([
                     },
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
             
             
@@ -179,14 +173,14 @@ define([
             
                         if(data == '0'){
             
-                            StatusManager.hideProgress();
-                            StatusManager.clearStatus();
+                            statusManager.hideProgress();
+                            statusManager.clearStatus();
                         
-                            TreeManager.refresh('projectTree');
+                            treeManager.refresh('projectTree');
                 
                         }else{
             
-                            StatusManager.error('Failed to create your project. Please review the <a href=\"javascript:alert(\'Open logfile window\');">log</a>');
+                            statusManager.error('Failed to create your project. Please review the <a href=\"javascript:alert(\'Open logfile window\');">log</a>');
                         }
             
                         hideProgress();
@@ -205,7 +199,7 @@ define([
 
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
             }
         

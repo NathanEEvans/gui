@@ -19,13 +19,9 @@
  * 
  */
 define([
-    'stormcloud/manager/SettingsManager',
-    'stormcloud/rest/xhr',
-    'stormcloud/manager/StatusManager'],
+    'stormcloud/rest/xhr'],
     function(
-        SettingsManager,
-        xhr,
-        StatusManager) {
+        xhr) {
 
         //
         // module      : stormcloud/tomcat/manager
@@ -42,19 +38,19 @@ define([
 
         var TOMCAT = {
             
-            LIST : SettingsManager.getTomcatManagerUrl() + '/list',
+            LIST : settingsManager.getTomcatManagerUrl() + '/list',
             
-            VIEW : SettingsManager.getTomcatViewUrl() + "/",
+            VIEW : settingsManager.getTomcatViewUrl() + "/",
             
-            STOP_APPLICATION: SettingsManager.getTomcatManagerUrl() + 'stop?path=/',
+            STOP_APPLICATION: settingsManager.getTomcatManagerUrl() + 'stop?path=/',
             
-            START_APPLICATION: SettingsManager.getTomcatManagerUrl() + 'start?path=/',
+            START_APPLICATION: settingsManager.getTomcatManagerUrl() + 'start?path=/',
             
-            RELOAD_APPLICATION: SettingsManager.getTomcatManagerUrl() + 'reload?path=/',
+            RELOAD_APPLICATION: settingsManager.getTomcatManagerUrl() + 'reload?path=/',
             
-            DEPLOY_APPLICATION: SettingsManager.getTomcatManagerUrl() + 'deploy?path=/',
+            DEPLOY_APPLICATION: settingsManager.getTomcatManagerUrl() + 'deploy?path=/',
             
-            UNDEPLOY_APPLICATION: SettingsManager.getTomcatManagerUrl() + 'undeploy?path=/',
+            UNDEPLOY_APPLICATION: settingsManager.getTomcatManagerUrl() + 'undeploy?path=/',
             
             
             STOP_CONTAINER: '',
@@ -82,12 +78,12 @@ define([
                 deferred.then(
                     function(data){
             
-                        StatusManager.info(data);
+                        statusManager.info(data);
                         
                     },
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
             
                 
@@ -105,12 +101,12 @@ define([
                 deferred.then(
                     function(data){
             
-                        StatusManager.info(data);
+                        statusManager.info(data);
                         
                     },
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
             },
             
@@ -126,12 +122,12 @@ define([
                 deferred.then(
                     function(data){
             
-                        StatusManager.info(data);
+                        statusManager.info(data);
                         
                     },
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
 
             },
@@ -148,12 +144,12 @@ define([
                 deferred.then(
                     function(data){
             
-                        StatusManager.info(data);
+                        statusManager.info(data);
                         
                     },
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
             },
             
@@ -169,12 +165,12 @@ define([
                 deferred.then(
                     function(data){
             
-                        StatusManager.info(data);
+                        statusManager.info(data);
                         
                     },
                     function(error){
             
-                        StatusManager.error(error);
+                        statusManager.error(error);
                     });
 
             },
@@ -185,10 +181,10 @@ define([
             // constructs the url to call
             _construct: function(args) {
 
-                return SettingsManager.protocol
-                + SettingsManager.host
+                return settingsManager.protocol
+                + settingsManager.host
                 + ":"
-                + SettingsManager.port
+                + settingsManager.port
                 + args.action.command
                 + args.application;
             }

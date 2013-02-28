@@ -19,10 +19,8 @@
  * 
  */
 define([
-    'stormcloud/manager/DialogManager',
     'stormcloud/service/GitService'], 
     function(
-        DialogManager,
         GitService){
         
         //
@@ -41,14 +39,14 @@ define([
             
             cancel : function(){
                 
-                DialogManager.hide(DIALOG.CLONE_REMOTE);
+                dialogManager.hide(DIALOG.CLONE_REMOTE);
             },
             
             
             clone : function(){
                 
                 GitService.clone(dojo.byId('url').value);
-                DialogManager.hide(DIALOG.CLONE_REMOTE);     
+                dialogManager.hide(DIALOG.CLONE_REMOTE);     
             }
     
     

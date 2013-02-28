@@ -25,10 +25,7 @@ define([
     'dijit/Tree',
     'dijit/Dialog',
     'dijit/form/ComboBox',
-    'dijit/form/ValidationTextBox',
-    'stormcloud/manager/SettingsManager',
-    'stormcloud/manager/FileManager',
-    'stormcloud/manager/DialogManager'], 
+    'dijit/form/ValidationTextBox'], 
     function(
         JsonRest,
         ObjectStore,
@@ -36,10 +33,7 @@ define([
         Tree,
         Dialog,
         ComboBox,
-        ValidationTextBox,
-        SettingsManager,
-        FileManager,
-        DialogManager){
+        ValidationTextBox){
             
         //
         // module      : stormcloud/dialogs/NewFile
@@ -58,7 +52,7 @@ define([
                 // populate the templates tree
                 var fileRestStore = new JsonRest({
                 
-                    target : SettingsManager.getApiUrl() + '/filesystem/templates'
+                    target : settingsManager.getApiUrl() + '/filesystem/templates'
               
                 });
                 
@@ -86,7 +80,7 @@ define([
             
                 var availableProjectStore = new JsonRest({
                     
-                    target : SettingsManager.getApiUrl() + '/filesystem/projects/available'
+                    target : settingsManager.getApiUrl() + '/filesystem/projects/available'
                 });
                 
                 new ComboBox({
@@ -154,7 +148,7 @@ define([
                 
                 var folderPickerRestStore = new JsonRest({
                 
-                    target : SettingsManager.getApiUrl() + '/filesystem/folderpicker?filePath=' + SettingsManager.getProjectFolder() + '/' + dojo.byId('projectName').value
+                    target : settingsManager.getApiUrl() + '/filesystem/folderpicker?filePath=' + settingsManager.getProjectFolder() + '/' + dojo.byId('projectName').value
               
                 });
                 
@@ -221,10 +215,10 @@ define([
                     
                 };
                 
-                FileManager.create(item);
+                fileManager.create(item);
                 
                 // hide the dialog
-                DialogManager.hide(DIALOG.NEW_FILE);
+                dialogManager.hide(DIALOG.NEW_FILE);
             },
             
             mayHaveChildren : function(item){

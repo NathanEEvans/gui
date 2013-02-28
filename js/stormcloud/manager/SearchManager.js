@@ -45,16 +45,7 @@ define([
                 // clear any previous search
                 this.clear();
                 
-                // send request to the filesystem service
-                // @remark: i have placed the require here because when i
-                //          place it in the define of the module it keeps
-                //          telling my filesystem.find is not a function
-                //          grrrrr...
-                require(['stormcloud/manager/FileManager'], function(FileManager){
-       
-                    FileManager.find(args);         
-                });
-              
+                fileManager.find(args);         
             },
              
             process: function(data){
@@ -162,13 +153,8 @@ define([
                     divSearchFile.className = 'searchFile';
                     divSearchFile.innerHTML =  files[i].label + ' (' + files[i].markers.length + ')';
                     
-                    var image = document.createElement('img');
-                    
-                    require(['stormcloud/manager/FileManager'], function(FileManager){
-       
-                        image.src = FileManager.getImage(files[i]);
-       
-                    });
+                    var image = document.createElement('img');             
+                    image.src = fileManager.getImage(files[i]);
        
                     divSearchEntry.appendChild(image);
                     
@@ -205,10 +191,7 @@ define([
                                 
                             }
                         
-                            require(['stormcloud/manager/FileManager'], function(FileManager){ 
-                        
-                                FileManager.get(item, false);
-                            });
+                            fileManager.get(item, false);
                         });
                     
                     

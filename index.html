@@ -10,6 +10,12 @@
         <script type="text/javascript">dojoConfig = {parseOnLoad: true, async: false}</script>
         <script type="text/javascript" src="js/dojo/dojo.js"></script>
 
+        <!-- Load Ace -->
+        <script type="text/javascript" src="js/ace/src-noconflict/ace.js"></script>
+
+        <!-- Load Stormcloud -->
+        <script type="text/javascript" src="js/stormcloud/stormcloud.js"></script>
+
         <script>
             
             require(['stormcloud/auth'], function(auth) {
@@ -21,12 +27,6 @@
             
             });
         </script>
-
-        <!-- Load Ace -->
-        <script type="text/javascript" src="js/ace/src-noconflict/ace.js"></script>
-
-        <!-- Load Stormcloud -->
-        <script type="text/javascript" src="js/stormcloud/stormcloud.js"></script>
 
     </head>
 
@@ -165,6 +165,11 @@
             <div data-dojo-type="dijit/MenuSeparator"></div>
             <div data-dojo-type="dijit/MenuItem" id="tomcatAppMenu_undeploy">Undeploy Application</div>
         </div>
+
+        <div data-dojo-type="dijit/Menu" id="editorMenu" style="display: none;">
+            <div data-dojo-type="dijit/MenuItem" id="editorMenu_save">Save</div>
+        </div>
+
 
 
         <div data-dojo-type="dijit/layout/BorderContainer" id="borderContainer" data-dojo-props="gutters:true, liveSplitters:false">

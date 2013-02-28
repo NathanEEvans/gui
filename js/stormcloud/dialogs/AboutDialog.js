@@ -18,10 +18,8 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([
-    'stormcloud/manager/DialogManager'], 
-    function(
-        DialogManager){
+define([], 
+    function(){
         
 
         //
@@ -39,7 +37,7 @@ define([
             
             close : function(){
                 
-                DialogManager.hide(DIALOG.ABOUT);
+                dialogManager.hide(DIALOG.ABOUT);
             }
         }
     });

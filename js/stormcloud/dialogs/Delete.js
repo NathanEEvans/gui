@@ -18,12 +18,8 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([
-    'stormcloud/manager/DialogManager',
-    'stormcloud/manager/FileManager'], 
-    function(
-        DialogManager,
-        FileManager){
+define([], 
+    function(){
         
         //
         // module      : stormcloud/dialogs/Delete
@@ -42,17 +38,17 @@ define([
             cancel: function(){
               
                 // no go, hide the dialog
-                DialogManager.hide(DIALOG.DELETE);
+                dialogManager.hide(DIALOG.DELETE);
             },
             
             // user clicked ok
             ok : function(){
                 
                 // delete the selected item
-                FileManager.del(dijit.byId('projectTree').attr('selectedItem'));
+                fileManager.del(dijit.byId('projectTree').attr('selectedItem'));
                 
                 // hide the dialog
-                DialogManager.hide(DIALOG.DELETE);
+                dialogManager.hide(DIALOG.DELETE);
             }
         }
     });

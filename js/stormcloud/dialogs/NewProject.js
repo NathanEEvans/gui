@@ -23,19 +23,13 @@ define([
     'dojo/data/ObjectStore',
     'dijit/tree/TreeStoreModel',
     'dijit/Tree',
-    'stormcloud/service/MavenService',
-    'stormcloud/manager/SettingsManager',
-    'stormcloud/manager/DialogManager',
-    'stormcloud/manager/StatusManager'], 
+    'stormcloud/service/MavenService'], 
     function(
         JsonRest,
         ObjectStore,
         TreeStoreModel,
         Tree,
-        MavenService,
-        SettingsManager,
-        DialogManager,
-        StatusManager){
+        MavenService){
         
         //
         // module      : stormcloud/dialogs/NewProject
@@ -50,7 +44,7 @@ define([
                
                 var archetypeRestStore = new JsonRest({
                 
-                    target : SettingsManager.getApiUrl() + '/maven/archetypes'
+                    target : settingsManager.getApiUrl() + '/maven/archetypes'
                 });
                 
                 var archetypeTreeModel = new TreeStoreModel({
@@ -109,10 +103,10 @@ define([
             
                 MavenService.create(data);
             
-                StatusManager.infoStatus('Creating Project');
-                StatusManager.showProgress();
+                statusManager.infoStatus('Creating Project');
+                statusManager.showProgress();
             
-                DialogManager.hide(DIALOG.NEW_PROJECT);
+                dialogManager.hide(DIALOG.NEW_PROJECT);
                 dijit.byId('newProjectWizard').selectChild('step1');
             
             },
@@ -120,7 +114,7 @@ define([
             
             cancel : function(){
               
-                DialogManager.hide(DIALOG.NEW_PROJECT);
+                dialogManager.hide(DIALOG.NEW_PROJECT);
               
                 dijit.byId('newProjectWizard').selectChild('step1');
             },

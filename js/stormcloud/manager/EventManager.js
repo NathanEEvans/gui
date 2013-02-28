@@ -20,18 +20,10 @@
  */
 define([
     'dojo/on',
-    'dijit/registry',
-    'stormcloud/manager/TreeManager',
-    'stormcloud/manager/DialogManager',
-    'stormcloud/manager/MavenManager',
-    'stormcloud/manager/FileManager'],
+    'dijit/registry'],
     function(
         on,
-        registry,
-        TreeManager,
-        DialogManager,
-        MavenManager,
-        FileManager){
+        registry){
 
         //
         // module       : stormcloud/manager/EventManager
@@ -71,124 +63,86 @@ define([
 
         }
         
-        
-        
-        MENU = {
-            
-            STORMCLOUD : {
-                
-                ABOUT : 'stormcloudMenu_about',
-                PREFERENCES : 'stormcloudMenu_preferences',
-                MY_ACCOUNT : 'stormcloudMenu_my_account'
-            },
-            
-            FILE : {
-                
-                NEW_FILE : 'fileMenu_new_file',
-                NEW_PROJECT : 'fileMenu_new_project',
-                CLONE_REMOTE : 'fileMenu_clone_remote',
-                OPEN_PROJECT : 'fileMenu_open_project',
-                IMPORT_PROJECT : 'fileMenu_import_project',
-                EXPORT_PROJECT : 'fileMenu_export_project',
-                SAVE_ALL : 'fileMenu_save_all'
-            },
-            
-            EDIT : {
-                
-                FIND : 'editMenu_find_in_projects',
-                REPLACE : 'editMenu_replace_in_projects'
-            },
-            
-            
-            TOOLS : {
-                
-                TEMPLATES : 'toolsMenu_templates'
-            }
-        }
-        
-        
-        CONTEXT_MENU = {
-            
-            PROJECT : {
-                
-                COMPILE : 'projectMenu_compile_project',
-                CLEAN : 'projectMenu_clean_project',
-                INSTALL : 'projectMenu_install_project',
-                CUSTOM : 'projectMenu_custom_goals',
-                DELETE : 'projectMenu_delete_project',
-                FIND : 'projectMenu_find',
-                CLOSE : 'projectMenu_close_project'
-                
-            },
-            
-            FILESYSTEM : {
-                
-                NEW : 'filesystemMenu_new',
-                OPEN : 'filesystemMenu_open'
-                
-            }
-            
-            
-        }
-        
-        
-        TABS = {
-            
-            SEARCH : {
-                
-                REDEFINE : 'toolbarSearch_redefine',
-                CLEAR : 'toolbarSearch_clear'
-            },
-            
-            MAVEN : {
-                
-                RERUN : 'toolBarMaven_rerun',
-                RUN : 'toolBarMaven_run'
-            }
-            
-            
-            
-        }
-        
-        
-        
-        TREE = {
-            
-            CLOSED_PROJECTS : 'closedProjectTree'
-        }
-        
-
         return {
 
+            register : function(node, type, listener){
+                
+                on(registry.byId(node), type, listener);
+            },
 
             registerClick : function(node, listener){
                 
                 on(registry.byId(node), EVENT.CLICK, listener);
-                
             },
             
+            registerDoubleClick : function(node, listener){
+              
+                on(registry.byId(node), EVENT.DOUBLE_CLICK, listener);
+            },
             
+            registerFocus : function(node, listener){
+              
+                on(registry.byId(node), EVENT.FOCUS, listener);
+            },
             
-            bindEvents : function(){
+            registerBlur : function(node, listener){
+              
+                on(registry.byId(node), EVENT.BLUR, listener);
+            },
+
+            registerChange : function(node, listener){
+              
+                on(registry.byId(node), EVENT.CHANGE, listener);
+            },
+            
+            registerKeyPress : function(node, listener){
+              
+                on(registry.byId(node), EVENT.KEYPRESS, listener);
+            },
+            
+            registerKeyDown : function(node, listener){
+              
+                on(registry.byId(node), EVENT.KEYDOWN, listener);
+            },
+
+            registerKeyUp : function(node, listener){
+              
+                on(registry.byId(node), EVENT.KEYUP, listener);
+            },
+
+            registerMouseOver : function(node, listener){
                 
-                
+                on(registry.byId(node), EVENT.MOUSEOVER, listener);
+            },
+
+            registerMouseOut : function(node, listener){
+              
+                on(registry.byId(node), EVENT.MOUSEOUT, listener);
+            },
+            
+            registerSubmit : function(node, listener){
+              
+                on(registry.byId(node), EVENT.SUBMIT, listener);
+            },
+
+            bind : function(){
                 
                 //
                 // Stormcloud Menu
                 //
                 this.registerClick(MENU.STORMCLOUD.ABOUT, function() {
 
-                    DialogManager.show(DIALOG.ABOUT);
+                    dialogManager.show(DIALOG.ABOUT);
                 });
 
                 this.registerClick(MENU.STORMCLOUD.PREFERENCES, function() {
 
-                    DialogManager.show(DIALOG.PREFERENCES);
+                    dialogManager.show(DIALOG.PREFERENCES);
                 });
 
                 this.registerClick(MENU.STORMCLOUD.MY_ACCOUNT, function() {
 
-                    DialogManager.show(DIALOG.MY_ACCOUNT);
+                    dialogManager.show(DIALOG.MY_ACCOUNT);
                 });
                 
                 
@@ -198,34 +152,34 @@ define([
                 //
                 this.registerClick(MENU.FILE.NEW_FILE, function() {
 
-                    DialogManager.show(DIALOG.NEW_FILE);
+                    dialogManager.show(DIALOG.NEW_FILE);
                 });
 
                 this.registerClick(MENU.FILE.NEW_PROJECT, function() {
 
-                    DialogManager.show(DIALOG.NEW_PROJECT);
+                    dialogManager.show(DIALOG.NEW_PROJECT);
                 });
 
                 this.registerClick(MENU.FILE.CLONE_REMOTE, function() {
 
-                    DialogManager.show(DIALOG.CLONE_REMOTE);
+                    dialogManager.show(DIALOG.CLONE_REMOTE);
                 });
 
                 this.registerClick(MENU.FILE.OPEN_PROJECT, function() {
 
-                    DialogManager.show(DIALOG.OPEN_PROJECT);
+                    dialogManager.show(DIALOG.OPEN_PROJECT);
 
-                    TreeManager.refresh(TREE.CLOSED_PROJECTS);
+                    treeManager.refresh(TREE.CLOSED_PROJECTS);
                 });
 
                 this.registerClick(MENU.FILE.IMPORT_PROJECT, function() {
 
-                    DialogManager.show(DIALOG.IMPORT_PROJECT);
+                    dialogManager.show(DIALOG.IMPORT_PROJECT);
                 });
 
                 this.registerClick(MENU.FILE.EXPORT_PROJECT, function() {
 
-                    DialogManager.show(DIALOG.EXPORT_PROJECT);
+                    dialogManager.show(DIALOG.EXPORT_PROJECT);
                 });
 
                 this.registerClick(MENU.FILE.SAVE_ALL, function() {
@@ -239,13 +193,506 @@ define([
                 // 
                 this.registerClick(MENU.EDIT.FIND, function() {
 
-                    DialogManager.show(DIALOG.FIND);
+                    dialogManager.show(DIALOG.FIND);
                 });
 
                 this.registerClick(MENU.EDIT.REPLACE, function() {
 
                     alert('Not yet Implemented');
                 });
+                
+                
+                //
+                // Navigate Menu
+                //
+                this.registerClick('navigateMenu_goto_file', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_goto_type', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_goto_symbol', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_goto_spring_bean', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_goto_test', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_goto_previous_document', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_goto_source', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_goto_declaration', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_goto_super_implementation', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_members', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_file_members', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_hierarchy', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_file_hierarchy', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_last_edit_location', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_back', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_forward', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_goto_line', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_toggle_bookmarks', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_bookmark_history_popup_next', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_bookmark_history_popup_previous', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_next_error', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_previous_error', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_select_in_projects', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_select_in_files', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('navigateMenu_select_in_favorites', function() {
+
+                    alert('Not Implemented');
+                });
+
+                
+                //
+                // Source Menu
+                //
+                this.registerClick('sourceMenu_format', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_remove_trailing_spaces', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_shift_left', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_shift_right', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_move_up', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_move_down', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_move_code_element_up', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_move_code_element_down', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_duplicate_up', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_duplicate_down', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_toggle_comment', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_complete_code', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_insert_code', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_remove_surrounding_code', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_fix_code', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_fix_imports', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_fix_uses', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_show_method_parameters', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_show_documentation', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_insert_next_matching_word', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_insert_previous_matching_word', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_inspect', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('sourceMenu_scan_for_external_changes', function() {
+
+                    alert('Not Implemented');
+                });
+
+                
+                //
+                // Refactor Menu
+                //
+                this.registerClick('refactorMenu_rename', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('refactorMenu_move', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('refactorMenu_copy', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('refactorMenu_safely_delete', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('refactorMenu_extract_inline_style', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('refactorMenu_inspect_and_transform', function() {
+
+                    alert('Not Implemented');
+                });
+                
+                
+                
+                //
+                // Run Menu
+                //
+                this.registerClick('runMenu_run_project', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('runMenu_test_project', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('runMenu_build_project', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('runMenu_clean_and_build_project', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('runMenu_default', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('runMenu_customize', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('runMenu_none', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('runMenu_select', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('runMenu_generate_javadoc', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('runMenu_run_file', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('runMenu_test_file', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('runMenu_compile_file', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('runMenu_check_xml', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('runMenu_validate_xml', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('runMenu_repeat_buil_run', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('runMenu_stop_build_run', function() {
+
+                    alert('Not Implemented');
+                });
+
+                
+                
+                //
+                // Debug Menu
+                //
+                this.registerClick('debugMenu_debug_project', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_debug_file', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_debug_test_file', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_attach_debugger', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_finish_debugger_session', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_pause', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_continue', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_step_over', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_step_over_expression', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_step_into', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_step_into_next_method', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_step_out', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_run_to_cursor', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_apply_code_changes', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_take_gui_snapshot', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_set_current_thread', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_make_callee_current', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_make_caller_current', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_pop_topmost_call', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_toggle_line_breakpoint', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_new_breakpoint', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_new_watch', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_evaluate_expression', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('debugMenu_check_for_deadlocks', function() {
+
+                    alert('Not Implemented');
+                });
+
 
 
                 //
@@ -253,46 +700,223 @@ define([
                 //
                 this.registerClick(MENU.TOOLS.TEMPLATES, function() {
 
-                    DialogManager.show(DIALOG.TEMPLATES);
+                    dialogManager.show(DIALOG.TEMPLATES);
                 });
 
+
+                //
+                // Help Menu
+                //
+                this.registerClick('helpMenu_search', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('helpMenu_help_contents', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('helpMenu_online_docs_and_support', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('helpMenu_report_issue', function() {
+
+                    dialogManager.show(DIALOG.DEFECTS_AND_ENHANCEMENTS);
+                });
+
+                this.registerClick('helpMenu_start_page', function() {
+
+                    alert('Not Implemented');
+                });
+                
+
+                //
+                // Toolbar Menu (Icon menubar)
+                //
+                this.registerClick('toolBar_new_file', function() {
+
+                    dialogManager.show(DIALOG.NEW_FILE);
+                });
+
+                this.registerClick('toolBar_new_project', function() {
+
+                    dialogManager.show(DIALOG.NEW_PROJECT);
+                });
+
+                this.registerClick('toolBar_open_project', function() {
+
+                    dialogManager.show(DIALOG.OPEN_PROJECT);
+
+                    treeManager.refresh('closedProjectTree');
+                });
+
+                this.registerClick('toolBar_save_all', function() {
+                    //Filesystem.saveAll();
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('toolBar_cut', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('toolBar_copy', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('toolBar_paste', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('toolBar_undo', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('toolBar_project_configuration', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('toolBar_compile', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('toolBar_clean', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('toolBar_install', function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick('toolBar_trash', function() {
+
+                    alert('Not Implemented');
+                });
+                
+                
 
                 //
                 // Project Context Menu
                 //
                 this.registerClick(CONTEXT_MENU.PROJECT.COMPILE, function() {
 
-                    MavenManager.compile();
+                    mavenManager.compile();
                 });
 
                 this.registerClick(CONTEXT_MENU.PROJECT.CLEAN, function() {
 
-                    MavenManager.clean();
+                    mavenManager.clean();
                 });
 
                 this.registerClick(CONTEXT_MENU.PROJECT.INSTALL, function() {
 
-                    MavenManager.install();
+                    mavenManager.install();
                 });
 
                 this.registerClick(CONTEXT_MENU.PROJECT.CUSTOM, function() {
 
-                    DialogManager.show(DIALOG.CUSTOM_GOALS);
+                    dialogManager.show(DIALOG.CUSTOM_GOALS);
                 });
 
                 this.registerClick(CONTEXT_MENU.PROJECT.DELETE, function() {
 
-                    DialogManager.show(DIALOG.DELETE);
+                    dialogManager.show(DIALOG.DELETE);
                 });
 
                 this.registerClick(CONTEXT_MENU.PROJECT.FIND, function() {
 
-                    DialogManager.show(DIALOG.FIND);
+                    dialogManager.show(DIALOG.FIND);
                 });
 
                 this.registerClick(CONTEXT_MENU.PROJECT.CLOSE, function() {
 
-                    FileManager.close(ProjectManager.selected);
+                    fileManager.close(projectManager.selected);
+                });
+                
+                this.registerClick('projectMenu_show_changes', function() {
+
+                    GitService.showChanges(dijit.byId('projectTree').attr('selectedItem'));
+                });
+
+                this.registerClick('projectMenu_add', function() {
+
+                    GitService.add(dijit.byId('projectTree').attr('selectedItem'));
+                });
+
+                this.registerClick('projectMenu_commit', function() {
+
+                    dialogManager.show(DIALOG.GIT_COMMIT);
+                });
+
+
+                this.registerClick('projectMenu_revert_modifications', function() {
+
+                    GitService.revertModifications();
+                });
+
+
+                this.registerClick('projectMenu_revert_commit', function() {
+
+                    GitService.revertCommit();
+                });
+
+
+                this.registerClick('projectMenu_ignore', function() {
+
+                    GitService.ignore();
+                });
+
+                this.registerClick('projectMenu_create_branch', function() {
+
+                    GitService.createBranch();
+                });
+
+
+                this.registerClick('projectMenu_switch_to_branch', function() {
+
+                    GitService.switchToBranch();
+                });
+
+                this.registerClick('projectMenu_create_tag', function() {
+
+                    GitService.createTag();
+                });
+
+
+                this.registerClick('projectMenu_manage_tags', function() {
+
+                    GitService.manageTags();
+                });
+
+                this.registerClick('projectMenu_checkout_revision', function() {
+
+                    GitService.checkoutRevision();
+                });
+
+
+                this.registerClick('projectMenu_checkout_files', function() {
+
+                    GitService.checkoutFiles();
+                });
+
+                this.registerClick('projectMenu_merge_revision', function() {
+
+                    GitService.mergeRevision();
+                });
+
+                this.registerClick('projectMenu_show_history', function() {
+
+                    GitService.showHistory();
                 });
 
 
@@ -301,59 +925,82 @@ define([
                 //
                 this.registerClick(CONTEXT_MENU.FILESYSTEM.NEW, function() {
 
-                    DialogManager.show(DIALOG.NEW_FILE);
+                    dialogManager.show(DIALOG.NEW_FILE);
                 });
 
                 this.registerClick(CONTEXT_MENU.FILESYSTEM.OPEN, function() {
  
-                    FileManager.get(dijit.byId('projectTree').attr('selectedItem'), false);
+                    fileManager.get(dijit.byId('projectTree').attr('selectedItem'), false);
                 });
 
-                this.registerClick('filesystemMenu_cut', function() {
+                this.registerClick(CONTEXT_MENU.FILESYSTEM.CUT, function() {
 
-                    FileManager.setMoveSource();
+                    fileManager.cut();
                 });
 
-                this.registerClick('filesystemMenu_copy', function() {
+                this.registerClick(CONTEXT_MENU.FILESYSTEM.COPY, function() {
 
-                    FileManager.setCopySource();
+                    fileManager.copy();
                 });
 
-                this.registerClick('filesystemMenu_paste', function() {
+                this.registerClick(CONTEXT_MENU.FILESYSTEM.PASTE, function() {
 
-                    FileManager.setDestination();       
+                    fileManager.paste();       
                 });
 
-                this.registerClick('filesystemMenu_download', function() {
+                this.registerClick(CONTEXT_MENU.FILESYSTEM.DOWNLOAD, function() {
 
                     alert('Not Implemented');
                 });
 
-                this.registerClick('filesystemMenu_delete', function() {
+                this.registerClick(CONTEXT_MENU.FILESYSTEM.DELETE, function() {
 
+                    dialogManager.show(DIALOG.DELETE);
+                });
+
+                this.registerClick(CONTEXT_MENU.FILESYSTEM.RENAME, function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick(CONTEXT_MENU.FILESYSTEM.MOVE, function() {
+
+                    alert('Not Implemented');
+                });
+
+                this.registerClick(CONTEXT_MENU.FILESYSTEM.SAFE_DELETE, function() {
+
+                    alert('Not Implemented');
+                });
+
+
+                //
+                // Tomcat Context Menu
+                //
+                this.registerClick('tomcatAppMenu_view', function() {
+
+                    TomcatService.view(dijit.byId('servicesTree').attr('selectedItem'));
+                });
                 
-                    DialogManager.show(DIALOG.DELETE);
+                this.registerClick('tomcatAppMenu_stop', function() {
 
+                    TomcatService.stopApplication(dijit.byId('servicesTree').attr('selectedItem'));
                 });
+                
+                this.registerClick('tomcatAppMenu_start', function() {
 
-                this.registerClick('filesystemMenu_rename', function() {
-
-                    alert('Not Implemented');
-
+                    TomcatService.startApplication(dijit.byId('servicesTree').attr('selectedItem'));
                 });
+                
+                this.registerClick('tomcatAppMenu_reload', function() {
 
-                this.registerClick('filesystemMenu_move', function() {
-
-                    alert('Not Implemented');
-
+                    TomcatService.reload(dijit.byId('servicesTree').attr('selectedItem'));
                 });
+                
+                this.registerClick('tomcatAppMenu_undeploy', function() {
 
-                this.registerClick('filesystemMenu_safe_delete', function() {
-
-                    alert('Not Implemented');
-
+                    TomcatService.undeploy(dijit.byId('servicesTree').attr('selectedItem'));
                 });
-
 
 
                 //
@@ -361,22 +1008,22 @@ define([
                 //
                 this.registerClick(TABS.SEARCH.REDEFINE, function() {
                     
-                    DialogManager.show(DIALOG.FIND);
+                    dialogManager.show(DIALOG.FIND);
                 });
                 
                 this.registerClick(TABS.SEARCH.CLEAR, function() {
                     
-                    SearchManager.clear();
+                    searchManager.clear();
                 });
     
                 this.registerClick(TABS.MAVEN.RUN, function() {
                     
-                    DialogManager.show(DIALOG.CUSTOM_GOALS);
+                    dialogManager.show(DIALOG.CUSTOM_GOALS);
                 });
                 
                 this.registerClick(TABS.MAVEN.RERUN, function() {
                     
-                    MavenManager.runLastCommand();
+                    mavenManager.runLastCommand();
                 });
 
             }
