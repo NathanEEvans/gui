@@ -4,20 +4,7 @@
     <script>
         require(['stormcloud/dialogs/Delete'], function(dialog){
             dialog.init();
-        });     
-        
-        
-        function cancel(){
-            require(['stormcloud/dialogs/Delete'], function(dialog){
-                dialog.cancel();
-            });     
-        }
-
-        function ok(){
-            require(['stormcloud/dialogs/Delete'], function(dialog){
-                dialog.ok();
-            });     
-        }
+        });
     </script>
 
     <p>
@@ -34,14 +21,18 @@
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            cancel();
+            require(['stormcloud/dialogs/Delete'], function(dialog){
+            dialog.cancel();
+            });   
         </script>
         No
     </button>
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">
-            ok();
+            require(['stormcloud/dialogs/Delete'], function(dialog){
+            dialog.ok();
+            });     
         </script>
         Yes
     </button>

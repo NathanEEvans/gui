@@ -33,13 +33,9 @@ define([
 
         return{
 
-            selected : null,
-        
             // initialize th dialog
             init : function(){
                 
-                // get the filename and set it in the dialog
-                this.selected = dijit.byId('projectTree').attr('selectedItem');
             },
             
             // user cancelled
@@ -53,7 +49,7 @@ define([
             ok : function(){
                 
                 // delete the selected item
-                FileManager.del(this.selected);
+                FileManager.del(dijit.byId('projectTree').attr('selectedItem'));
                 
                 // hide the dialog
                 DialogManager.hide(DIALOG.DELETE);

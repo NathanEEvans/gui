@@ -114,7 +114,10 @@ define([
                 COMPILE : 'projectMenu_compile_project',
                 CLEAN : 'projectMenu_clean_project',
                 INSTALL : 'projectMenu_install_project',
-                CUSTOM : 'projectMenu_custom_goals'
+                CUSTOM : 'projectMenu_custom_goals',
+                DELETE : 'projectMenu_delete_project',
+                FIND : 'projectMenu_find',
+                CLOSE : 'projectMenu_close_project'
                 
             },
             
@@ -277,6 +280,20 @@ define([
                     DialogManager.show(DIALOG.CUSTOM_GOALS);
                 });
 
+                this.registerClick(CONTEXT_MENU.PROJECT.DELETE, function() {
+
+                    DialogManager.show(DIALOG.DELETE);
+                });
+
+                this.registerClick(CONTEXT_MENU.PROJECT.FIND, function() {
+
+                    DialogManager.show(DIALOG.FIND);
+                });
+
+                this.registerClick(CONTEXT_MENU.PROJECT.CLOSE, function() {
+
+                    FileManager.close(ProjectManager.selected);
+                });
 
 
                 //

@@ -123,21 +123,6 @@ define([
                     GitService.showHistory();
                 });
 
-                EventManager.registerClick('projectMenu_delete_project', function() {
-
-                    DialogManager.show(DIALOG.DELETE);
-                });
-
-
-                EventManager.registerClick('projectMenu_find', function() {
-
-                    DialogManager.show(DIALOG.FIND);
-                });
-
-                EventManager.registerClick('projectMenu_close_project', function() {
-
-                    FileManager.close(ProjectManager.selected);
-                });
             }
         };
 
