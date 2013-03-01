@@ -18,10 +18,8 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([
-    'stormcloud/service/GitService'], 
-    function(
-        GitService){
+define([], 
+    function(){
         
         //
         // module      : stormcloud/dialogs/CloneRemote
@@ -45,7 +43,7 @@ define([
             
             clone : function(){
                 
-                GitService.clone(dojo.byId('url').value);
+                gitManager.clone(dojo.byId('url').value);
                 dialogManager.hide(DIALOG.CLONE_REMOTE);     
             }
     

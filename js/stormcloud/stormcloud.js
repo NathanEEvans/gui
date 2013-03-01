@@ -32,9 +32,10 @@ require([
 
         ready(function() {
 
-            // When Dojo is ready we bootstrap everything we initially need.
+            // When Dojo is ready we declare all managers.
             require([
                 'stormcloud/manager/AnnotationManager',
+                'stormcloud/manager/CookieManager',
                 'stormcloud/manager/DialogManager',
                 'stormcloud/manager/DomManager',
                 'stormcloud/manager/EditorManager',
@@ -50,6 +51,7 @@ require([
                 'stormcloud/manager/TreeManager'], 
                 function(
                     AnnotationManager,
+                    CookieManager,
                     DialogManager,
                     DomManager,
                     EditorManager,
@@ -67,6 +69,7 @@ require([
                     // declare all managers globally
                     
                     annotationManager = AnnotationManager;
+                    cookieManager = CookieManager;
                     dialogManager = DialogManager;
                     domManager = DomManager;
                     editorManager = EditorManager;
@@ -83,15 +86,15 @@ require([
 
                     // do the things needed to end up in the 'started state''
 
+                    // create the trees
+                    treeManager.initialize();
+            
                     // bind all events
                     eventManager.bind();
                     
                     // bind the tooltips
                     tooltipManager.bind();
-                
-                    // create the trees
-                    treeManager.initialize();
-            
+                    
                     // check for trash
                     fileManager.checkTrash();
 
@@ -99,6 +102,7 @@ require([
                     // hide the loader
                     // @todo tuck this away in a module
                     document.getElementById('loader').style.visibility = 'hidden';
+            
                 });
         });
     });

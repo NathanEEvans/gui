@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/manager/ContextManager
+ * Stormcloud IDE - stormcloud/manager/SettingsManager
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -19,15 +19,12 @@
  * 
  */
 define([], 
-    function(
-        ){
+    function(){
     
-        // module       : stormcloud/manager/ContextManager
+        //
+        // module       : stormcloud/manager/SettingsManager
         // 
-        // summary      : Defines the application context
-        //                Containing User settings and
-        //                some convenience methods to retrieve 
-        //                those settings.
+        // summary      : 
         //
         
         SETTING = {  

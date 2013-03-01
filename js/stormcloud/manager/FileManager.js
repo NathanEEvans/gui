@@ -25,7 +25,7 @@ define([
     function(
         registry,
         MenuItem,
-        FilesystemService){
+        filesystemService){
             
         //
         // module   : stormcloud/manager/FileManager
@@ -41,49 +41,48 @@ define([
             copyDestination : null,
             moveDestination : null,
             
-            // array of last opened files
-            opened : new Array(),
-            
-            
-            open : function(item){
-              
-                FilesystemService.open(item);  
-            },
-            
-            close : function(item){
-            
-                FilesystemService.close(item);
-            },
+            // array of last (recent) opened files
+            // will contain max 10 last opened files
+            recentlyOpened : new Array(),
             
             get : function(item, readOnly){
               
-                FilesystemService.get(item, readOnly);
+                // summary : Get a file from the filesystem
+                //           and open it in the editor
+                //           This file is also added to the recent 
+                //           file list on the file menu
+              
+                // open the file
+                filesystemService.get(item, readOnly);
+                
+                // add the file to the recent files list
+                this.addRecentlyOpenedFile(item);
             },
             
             del : function(item){
                 
-                FilesystemService.del(item);
+                filesystemService.del(item);
             },
             
             save : function(item, contents){
               
-                FilesystemService.save(item, contents);
+                filesystemService.save(item, contents);
             },
             
             
             create : function(item){
                 
-                FilesystemService.create(item);
+                filesystemService.create(item);
             },
             
             checkTrash : function(){
               
-                FilesystemService.checkTrash();
+                filesystemService.checkTrash();
             },
             
             find : function(args){
                 
-                FilesystemService.find(args);
+                filesystemService.find(args);
                 
             },
             
@@ -109,7 +108,7 @@ define([
             
                     }else{
             
-                        FilesystemService.rename(this.moveSource.id, this.moveDestination.id);
+                        filesystemService.rename(this.moveSource.id, this.moveDestination.id);
                     }
         
                 }else{
@@ -122,7 +121,7 @@ define([
             
                     }else{
             
-                        FilesystemService.copy(this.copySource.id, this.copyDestination.id);
+                        filesystemService.copy(this.copySource.id, this.copyDestination.id);
                     }
                 }
     
@@ -620,14 +619,15 @@ define([
             },
             
             
-            // add a file to the list
-            addOpenedFile : function(item){
-                
+            addRecentlyOpenedFile : function(item){
+            
+                // summary :
+            
                 
                 // check if it's already in the array
-                var i = this.opened.length;
+                var i = this.recentlyOpened.length;
                 while (i--) {
-                    if (this.opened[i] == item) {
+                    if (this.recentlyOpened[i] == item) {
                         // it's already in there, return ziltsj
                         return;
                     }
@@ -635,21 +635,21 @@ define([
                 
                 // add file to the array, at the top as it was selected last
                 // and should show up in the menu that way
-                this.opened.unshift(item);
+                this.recentlyOpened.unshift(item);
                 
                 // pop the last item in the array to only contain the last 10 items
                 // when more than 10 are in there
-                if(this.opened.length > 10){
-                    this.opened.pop();
+                if(this.recentlyOpened.length > 10){
+                    this.recentlyOpened.pop();
                 }
                 
                 
                 // update the menu
-                this.updateOpenedFiles();
+                this._updateOpenedFiles();
             },
             
             // update the 'file -> open recent file'
-            updateOpenedFiles : function(){
+            _updateOpenedFiles : function(){
                 
                 // get handle on the menu
                 var menu = dijit.byId('fileMenu_open_recent_file');
@@ -660,12 +660,12 @@ define([
                 var file;
                 
                 // create the refreshed list
-                for (var i = 0; i < this.opened.length; i++) {
+                for (var i = 0; i < this.recentlyOpened.length; i++) {
                     
                     // if there is actually an item in the slot
-                    if(this.opened[i] != undefined){
+                    if(this.recentlyOpened[i] != undefined){
                         
-                        file = this.opened[i];
+                        file = this.recentlyOpened[i];
                     
                         var menuItem = new MenuItem({
                             
@@ -674,13 +674,9 @@ define([
                             iconClass : '',
                             onClick : function(event){
                          
-                                require(['stormcloud/service/FilesystemService'], function(FilesystemService){
-             
-                                    var item = registry.getEnclosingWidget(event.target);
+                                var item = registry.getEnclosingWidget(event.target);
                     
-                                    FilesystemService.get(item.get('file'), false);
-                    
-                                });                        
+                                fileManager.get(item.get('file'), false);
                             } 
                         })
                     

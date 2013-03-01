@@ -93,6 +93,7 @@ define([],
                 CUSTOM : 'projectMenu_custom_goals',
                 DELETE : 'projectMenu_delete_project',
                 FIND : 'projectMenu_find',
+                SET_MAIN : 'projectMenu_setMain',
                 CLOSE : 'projectMenu_close_project'
                 
             },

@@ -18,23 +18,99 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([], 
-    function(){
+define([
+    'stormcloud/service/FilesystemService'], 
+    function(
+        filesystemService){
             
         //
         // module   : stormcloud/manager/ProjectManager
         //		
-        // summary  :
+        // summary  : Manager for Project handling
         //		
 
 
         return {
         
+            // the currently selected project
             selected : null,
+            mainProject : null,
         
-            close : function(){
+            init : function(){
               
+                // summary : Get the initial selected project from cookie
+                //           and set it as selected
+            
+                // check if there is a project marked as main project
+                var id = cookieManager.get('mainProject');
+            
+                if(id){
+            
+                    // get the node from the tree
+                    var node = treeManager.getNode('projectTree', id);
+                    
+                    if(node){
+                        
+                        // if found set it as selected project
+                        this.selected = node[0].item;
+                        
+                        // and mark it as main project in the tree
+                        treeManager.markMain('projectTree', node[0].item);
+                        
+                        // and set it as main project
+                        this.mainProject = this.selected;
+                    }
+                    
+                }else{
+                    
+                // no known main project, take the first in the tree, if any,
+                // as the selected project
+                    
+                }
+            
+            
               
+            },
+        
+            setMainProject : function(){
+              
+                // summary : Mark the currently selected project as mainProject
+              
+                // check if there is a current main project
+                if(this.mainProject){
+                    // unmark it
+                    treeManager.unmarkMain('projectTree', this.mainProject);
+                }
+              
+                // set the currently selected as main 
+                this.mainProject = this.selected;
+              
+                // set a cookie for future reference
+                cookieManager.set('mainProject', this.selected.id);
+                
+                // mark it main in the tree
+                treeManager.markMain('projectTree', this.selected);
+            },
+        
+            open : function(item){
+            
+                // summary : Open a project if the item represents
+                //           an actually closed project    
+            
+                if(item.type == 'closedProject'){
+            
+                    filesystemService.open(item);
+                }
+            },
+            
+            close : function(item){
+            
+                //
+            
+                if(item.type=='project'){
+                  
+                    filesystemService.close(item);
+                }
               
               
             },

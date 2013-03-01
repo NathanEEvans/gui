@@ -201,7 +201,6 @@ define([
                     function(data){
             
                         if(data == '0'){
-                
                         
                             treeManager.refresh('projectTree');
                         

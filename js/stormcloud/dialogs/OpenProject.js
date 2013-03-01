@@ -80,8 +80,7 @@ define([
             
                 var item = dijit.byId('closedProjectTree').attr('selectedItem');
 
-                // @todo move this to the ProjectManager
-                fileManager.open(item);
+                projectManager.open(item);
                 
                 dialogManager.hide(DIALOG.OPEN_PROJECT);            
             },

@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/manager/LogManager
+ * Stormcloud IDE - stormcloud/manager/CookieManager
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -18,16 +18,45 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([], 
-    function(){
+define([
+    'dojo/cookie'], 
+    function(
+        cookie){
             
         //
-        // module   : stormcloud/manager/LogManager
+        // module   : stormcloud/manager/CookieManager
         //		
         // summary  :
         //		
 
         return {
+
+
+            set : function(name, value){
+
+                // summary : Set a cookie with default expiry
+                //           of 30 days
+                
+                cookie(name, value, {
+                    expires : 30
+                });
+            },
+            
+            get : function(name){
+
+                // summary : Retrieve a cookie value
+                
+                return cookie(name);
+            },
+            
+            
+            destroy : function(name){
+                
+                cookie(name, null, {
+                    expires: -1
+                });
+            }
+            
+            
         }
-        
     });

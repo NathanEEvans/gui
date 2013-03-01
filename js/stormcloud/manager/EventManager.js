@@ -837,10 +837,15 @@ define([
 
                     dialogManager.show(DIALOG.FIND);
                 });
+                
+                this.registerClick(CONTEXT_MENU.PROJECT.SET_MAIN, function() {
 
+                    projectManager.setMainProject();
+                });
+                
                 this.registerClick(CONTEXT_MENU.PROJECT.CLOSE, function() {
 
-                    fileManager.close(projectManager.selected);
+                    projectManager.close(projectManager.selected);
                 });
                 
                 this.registerClick('projectMenu_show_changes', function() {

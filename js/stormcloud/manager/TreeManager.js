@@ -70,10 +70,20 @@ define([
                     getIconClass : fileManager.getIcon,
                     // tree double click handler
                     onDblClick : this.openItem,
-                    
                     onClick : this.setProject
                     
                 }, 'projectTree');
+                
+                
+                // Initialize the project manager as soon as the tree
+                // finished loading
+                projectTree.onLoadDeferred.then(function(){
+                    
+                    // dojo.disconnect(projectTree);
+
+                    projectManager.init();
+                });
+
                 
                 
                 // create filesystem tree
@@ -316,6 +326,52 @@ define([
                 
                 
                 
+            },
+
+            getNode : function(tree, id){
+              
+                // summary : Get a tree (widget) node from the tree based on id
+              
+                var targetTree = dijit.byId(tree);
+              
+                var node  = targetTree._itemNodesMap[id];
+                
+                return node;
+            },
+
+            markMain : function(tree, item){
+              
+                // summary : Get the given item from the tree and mark it as
+                //           main project.
+              
+                var selectedTree = dijit.byId(tree);
+                
+                
+                if(selectedTree){
+                    var node = selectedTree._itemNodesMap[item.id];
+                
+                    console.info(node);
+                }
+                
+                if(node){
+                    node[0].labelNode.className = 'mainProject';
+                }    
+            },
+
+            unmarkMain : function(tree, item){
+                
+                // summary : Get the given item from the tree and mark it as
+                //           a 'normal' project (as in not the main project)
+                
+                var selectedTree = dijit.byId(tree);
+                
+                if(selectedTree){
+                    var node = selectedTree._itemNodesMap[item.id];
+                }
+                
+                if(node){
+                    node[0].labelNode.className = 'dijitTreeLabel';
+                }    
             },
 
             openItemReadonly : function(item, opened){

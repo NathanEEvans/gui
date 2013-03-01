@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/gui/tooltips
+ * Stormcloud IDE - stormcloud/manager/TooltipManager
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -23,7 +23,7 @@ define([],
 
 
         //
-        // module       : stormcloud/gui/tooltips
+        // module       : stormcloud/manager/TooltipManager
         //		
         // summary      : 
         //	
