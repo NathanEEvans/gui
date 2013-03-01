@@ -21,10 +21,12 @@
 define([
     'dijit/registry',
     'dijit/MenuItem',
+    'dojo/json',
     'stormcloud/service/FilesystemService'], 
     function(
         registry,
         MenuItem,
+        json,
         filesystemService){
             
         //
@@ -44,6 +46,32 @@ define([
             // array of last (recent) opened files
             // will contain max 10 last opened files
             recentlyOpened : new Array(),
+            
+            
+            init : function(){
+              
+                // summary : Get the recentFiles cookie and 
+                //           add the contained files in the menu
+                //           if it exists
+              
+                var recentFilesString = cookieManager.get('recentFiles');
+              
+                if(recentFilesString){
+              
+                    var recentFiles = json.parse(recentFilesString);
+                }
+                
+                if(recentFiles){
+                  
+                    this.recentlyOpened = recentFiles;
+                  
+                    this._updateOpenedFiles();
+                  
+                }
+              
+              
+            },
+            
             
             get : function(item, readOnly){
               
@@ -643,6 +671,9 @@ define([
                     this.recentlyOpened.pop();
                 }
                 
+                
+                // add the updated list to the cookie
+                cookieManager.set('recentFiles', json.stringify(this.recentlyOpened));
                 
                 // update the menu
                 this._updateOpenedFiles();

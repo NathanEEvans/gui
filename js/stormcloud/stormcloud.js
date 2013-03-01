@@ -95,8 +95,8 @@ require([
                     // bind the tooltips
                     tooltipManager.bind();
                     
-                    // check for trash
-                    fileManager.checkTrash();
+                    // Initialize the file manager
+                    fileManager.init();
 
                     // When all is done, hide the loader
                     // hide the loader
