@@ -80,6 +80,27 @@ define([
                 //           This file is also added to the recent 
                 //           file list on the file menu
               
+                // check if the project is opened
+                var project = projectManager.getProjectNodeFromFile(item);
+                
+                if(project.type == 'closedProject'){
+                    
+                    // the project is closed
+                    var projectName = projectManager.getProjectNameFromFile(item);
+                    
+                    // ask to open the project
+                    var open = confirm("This file belongs to the " + projectName + " Project.\nDo you want to open it?");
+                    
+                    if (open == true){
+                        
+                        projectManager.open(project);
+                        
+                    }else{
+                        return;
+                    }
+                    
+                }
+              
                 // open the file
                 filesystemService.get(item, readOnly);
                 

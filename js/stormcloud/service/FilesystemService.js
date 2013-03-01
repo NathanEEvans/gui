@@ -143,6 +143,7 @@ define([
           
                 var xhrArgs = {
                     url: FILESYSTEM.OPEN,
+                    sync: true,
                     content: {
                         filePath: item.id
                     }    

@@ -78,9 +78,7 @@ define([
                 // Initialize the project manager as soon as the tree
                 // finished loading
                 projectTree.onLoadDeferred.then(function(){
-                    
-                    // dojo.disconnect(projectTree);
-
+          
                     projectManager.init();
                 });
 
@@ -215,23 +213,23 @@ define([
                 projectManager.setSelected(item);
             },
             
-            // @author martijn
-            // This is quite a brute force refresh of the tree. 
-            // It's like chopping down the tree to get the apples 
-            // and growing a new one to have more, but i have
-            // spent a long polish night figuring out how to do
-            // this other ways, not succesful in the endeavour.
             refresh : function(tree){
             
                 var selectedTree = dijit.byId(tree);
     
                 if(selectedTree != undefined){
+                    
                     selectedTree.dndController.selectNone();
                     selectedTree._itemNodesMap = {};
                     selectedTree.model.root = null;
                     selectedTree.rootNode.destroyRecursive();
                     selectedTree._load();
-                }
+            
+                    if(tree == 'projectTree'){
+                        projectManager.init();
+                    }
+                    
+                }    
             },
 
 
@@ -349,8 +347,6 @@ define([
                 
                 if(selectedTree){
                     var node = selectedTree._itemNodesMap[item.id];
-                
-                    console.info(node);
                 }
                 
                 if(node){

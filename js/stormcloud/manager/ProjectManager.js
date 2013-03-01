@@ -115,30 +115,105 @@ define([
               
             },
         
-            setSelected : function(item){
             
-                // summary : set the currently selected project based on a 
-                //           selected item in the project tree
+            getProjectNodeFromFile : function(item){
+              
+                // summary : figure out the project node the given file belongs to
                 
                 if(item.type =='project' || item.type == 'closedProject'){
-            
-                    this.selected = item;
-                    
+                
+                    // if it's a project type we were given, just return it
+                    return item;
+                
                 }else{
+                    
+                    // otherwise get the project from the file path
+                    
+                    var path = item.id;
+                
+                    // chop off the project folder
+                    var s = path.replace(settingsManager.getProjectFolder() + '/','');
+                    var project = settingsManager.getProjectFolder() + '/' + s.substring(0,s.indexOf('/'));
+                
+                    // first check if it's opened in the project tree
+                    var selectedTree = dijit.byId('projectTree');
+                    var node = selectedTree._itemNodesMap[project];
+                
+                    if(node){
+                    
+                        // if found return
+                        return node[0].item;
+                    
+                    }else{
+                    
+                        // create a closed project item
+                        var item = {
+                            
+                            id : project,
+                            type : 'closedProject'
+                            
+                        }
+                    
+                        return item;
+                    }                   
+                }
+            },
+            
+            
+            getProjectIdFromFile : function(item){
+              
+                if(item.type =='project' || item.type == 'closedProject'){
+                
+                    // if it's a project type we were given, just return it
+                    return item.id;
+                
+                }else{
+                    
+                    // otherwise get the project from the file path
                     
                     var path = item.id;
                 
                     // chop off the project folder
                     var s = path.replace(settingsManager.getProjectFolder() + '/','');
                 
-                    var project = settingsManager.getProjectFolder() + '/' + s.substring(0,s.indexOf('/'));
+                    var projectId = settingsManager.getProjectFolder() + '/' + s.substring(0,s.indexOf('/'));
                 
-                    var selectedTree = dijit.byId('projectTree');
-                
-                    var node = selectedTree._itemNodesMap[project];
-                
-                    this.selected = node[0].item;                
+                    return projectId;                   
                 }
+              
+            },
+            
+            
+            getProjectNameFromFile : function(item){
+              
+              
+                if(item.type =='project' || item.type == 'closedProject'){
+                
+                    // if it's a project type we were given, just return it
+                    return item.label;
+                
+                }else{
+                    
+                    // otherwise get the project from the file path
+                    
+                    var path = item.id;
+                
+                    // chop off the project folder
+                    var s = path.replace(settingsManager.getProjectFolder() + '/','');
+                
+                    var projectName = s.substring(0,s.indexOf('/'));
+                
+                    return projectName;                   
+                }
+              
+            },
+        
+            setSelected : function(item){
+            
+                // summary : set the currently selected project based on a 
+                //           selected item in the project tree
+                
+                this.selected = this.getProjectNodeFromFile(item);
             }
         };
         
