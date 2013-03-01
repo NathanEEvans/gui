@@ -19,8 +19,10 @@
  * 
  */
 define([
+    'dijit/registry',
     'stormcloud/rest/xhr'], 
     function(
+        registry,
         xhr){
 
         //
@@ -297,6 +299,11 @@ define([
                                 }
                             });
                         });
+                      
+                    // bind the editor context menu
+                    var menu = registry.byId('editorMenu');
+                    menu.bindDomNode(contentPane.domNode);
+                    
                 }	   
             },
         

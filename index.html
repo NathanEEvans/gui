@@ -169,7 +169,18 @@
         </div>
 
         <div data-dojo-type="dijit/Menu" id="editorMenu" style="display: none;">
-            <div data-dojo-type="dijit/MenuItem" id="editorMenu_save">Save</div>
+            <div data-dojo-type="dijit/MenuItem" id="editorMenu_save">Save Ctrl+S</div>
+            <div data-dojo-type="dijit/MenuItem" id="editorMenu_insert">Insert Code Ctrl+I</div>
+            <div data-dojo-type="dijit/MenuItem" id="editorMenu_fix_imports">Fix Imports Shift+Ctrl+I</div>
+            <div data-dojo-type="dijit/MenuSeparator"></div>
+            <div data-dojo-type="dijit/MenuItem" id="editorMenu_breakpoint">Toggle Breakpoint</div>
+            <div data-dojo-type="dijit/MenuSeparator"></div>
+            <div data-dojo-type="dijit/MenuItem" id="editorMenu_cut">Cut</div>
+            <div data-dojo-type="dijit/MenuItem" id="editorMenu_copy">Copy</div>
+            <div data-dojo-type="dijit/MenuItem" id="editorMenu_paste" data-dojo-props="disabled:true">Paste</div>
+            <div data-dojo-type="dijit/MenuSeparator"></div>
+            <div data-dojo-type="dijit/MenuItem" id="editorMenu_select">Select in Project</div>
+
         </div>
 
 
@@ -214,9 +225,14 @@
 
                     <div data-dojo-type="dijit/PopupMenuBarItem"><span>Edit</span>
                         <div data-dojo-type="dijit/DropDownMenu" id="editMenu">
-                            <div data-dojo-type="dijit/MenuSeparator"></div>
                             <div data-dojo-type="dijit/MenuItem" id="editMenu_find_in_projects">Find in Projects</div>
                             <div data-dojo-type="dijit/MenuItem" id="editMenu_replace_in_projects">Replace in Projects</div>
+                        </div>
+                    </div>
+
+                    <div data-dojo-type="dijit/PopupMenuBarItem"><span>View</span>
+                        <div data-dojo-type="dijit/DropDownMenu" id="viewMenu">
+                            <div data-dojo-type="dijit/MenuItem" id="viewMenu_sync_editor_views">Synchronize Editor with Views</div>
                         </div>
                     </div>
 
