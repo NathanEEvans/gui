@@ -36,6 +36,12 @@ define([],
             TOMCAT_MANAGER_URL : 'TOMCAT_MANAGER_URL',
             TOMCAT_VIEW_URL : 'TOMCAT_PRIVATE_URL'
         }
+        
+        PREFERENCE = {
+            
+            SYNC_EDITOR_VIEWS : 'SYNC_EDITOR_VIEWS'
+            
+        }
     
         return {
 
@@ -69,9 +75,28 @@ define([],
                 return this.getSetting(SETTING.TOMCAT_MANAGER_URL);
             },
             
-            // generic method to get a user setting based on a
-            // SETTING key
+            getPreference : function(key){
+                
+                // summary : Get a User preference based on the given key
+                
+                for(var preference in this.user.preferences){
+                    
+                    for(var x in this.user.preferences[preference]){
+                    
+                        if(x == 'key' && this.user.preferences[preference][x] == key){
+                            
+                            return this.user.preferences[preference].value;
+                        }
+                    }   
+                }  
+            
+                return undefined;
+              
+            },
+            
             getSetting : function(key){
+              
+                // summary : Get a User setting based on the given key
               
                 for(var setting in this.user.settings){
                     
@@ -85,7 +110,15 @@ define([],
                 }  
             
                 return undefined;
+            },
+            
+            savePreference : function(key, value){
+                
+                
+                
+                
             }
+            
         };
 
     });

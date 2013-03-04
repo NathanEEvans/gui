@@ -180,10 +180,7 @@
             <div data-dojo-type="dijit/MenuItem" id="editorMenu_paste" data-dojo-props="disabled:true">Paste</div>
             <div data-dojo-type="dijit/MenuSeparator"></div>
             <div data-dojo-type="dijit/MenuItem" id="editorMenu_select">Select in Project</div>
-
         </div>
-
-
 
         <div data-dojo-type="dijit/layout/BorderContainer" id="borderContainer" data-dojo-props="gutters:true, liveSplitters:false">
             <div data-dojo-type="dijit/layout/ContentPane" id="pageTop" data-dojo-props="region:'top', splitter:false" style="border: none;">
@@ -232,7 +229,8 @@
 
                     <div data-dojo-type="dijit/PopupMenuBarItem"><span>View</span>
                         <div data-dojo-type="dijit/DropDownMenu" id="viewMenu">
-                            <div data-dojo-type="dijit/MenuItem" id="viewMenu_sync_editor_views">Synchronize Editor with Views</div>
+                            <div data-dojo-type="dijit/CheckedMenuItem" 
+                                 id="viewMenu_sync_editor_views">Synchronize Editor with Views</div>
                         </div>
                     </div>
 

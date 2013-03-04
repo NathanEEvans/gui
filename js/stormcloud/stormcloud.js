@@ -19,9 +19,11 @@
  * 
  */
 require([
-    'dojo/ready'],
+    'dojo/ready',
+    'dojo/parser'],
     function(
-        ready) {
+        ready,
+        parser) {
 
         //
         // module      : stormcloud/stormcloud
@@ -102,6 +104,9 @@ require([
                     // hide the loader
                     // @todo tuck this away in a module
                     document.getElementById('loader').style.visibility = 'hidden';
+                    
+                    
+                    domManager.init();
             
                 });
         });

@@ -203,6 +203,15 @@ define([
                 
                 
                 //
+                // View Menu
+                //
+                this.registerClick(MENU.VIEW.SYNC_EDITOR, function() {
+
+
+                    });
+
+                
+                //
                 // Navigate Menu
                 //
                 this.registerClick('navigateMenu_goto_file', function() {

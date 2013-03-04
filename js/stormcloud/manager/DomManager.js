@@ -18,8 +18,10 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([], 
-    function(){
+define([
+    'dijit/registry'], 
+    function(
+        registry){
 
         //
         // module       : stormcloud/manager/DomManager
@@ -76,6 +78,11 @@ define([],
                 REPLACE : 'editMenu_replace_in_projects'
             },
             
+            VIEW : {
+              
+                SYNC_EDITOR : 'viewMenu_sync_editor_views'
+                
+            },
             
             TOOLS : {
                 
@@ -143,10 +150,25 @@ define([],
         return{
         
         
-            byId : function(node){
+            init : function(){
+              
+                // summary : Takes care of all initial gui state(s)
+              
+              
+                var checked = settingsManager.getPreference(PREFERENCE.SYNC_EDITOR_VIEWS);
                 
+                console.info('we want ' + checked);
                 
-            }
-        
+                var menu = dijit.byId(MENU.VIEW.SYNC_EDITOR);
+                
+                console.info('its now : ' + menu.get('checked'));
+                
+                menu.set('checked', checked);
+                
+                console.info('and now its ' + menu.get('checked'));
+                
+              
+              
+            }      
         };
     });
