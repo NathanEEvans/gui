@@ -70,7 +70,7 @@ define([
                     getIconClass : fileManager.getIcon,
                     // tree double click handler
                     onDblClick : this.openItem,
-                    onClick : this.setProject
+                    onClick : this.setSelected
                     
                 }, 'projectTree');
                 
@@ -208,9 +208,13 @@ define([
                 }
             },
             
-            setProject : function(item, opened){
+            setSelected : function(item, opened){
                 
+                // set the selected project
                 projectManager.setSelected(item);
+                
+                // set selected file
+                fileManager.setSelected(item);
             },
             
             refresh : function(tree){
@@ -234,7 +238,9 @@ define([
 
 
             select : function(tree, item){
-                
+               
+                // summary : select the item in the given tree
+               
                 var selectedTree = dijit.byId(tree);
                 
                 var path = Array(); 
@@ -268,26 +274,98 @@ define([
                 var srcTestResources = '/src/test/resources';
                 
                 if(chop.slice(0, srcMainJava.length) == srcMainJava){
-                    sourceFolder = srcMainJava;
-                }else if(chop.slice(0, srcMainResources.length) == srcMainResources){
-                    sourceFolder = srcMainResources;
-                }else if(chop.slice(0, srcMainWebapp.length) == srcMainWebapp){
-                    sourceFolder = srcMainWebapp;
-                }else if(chop.slice(0, srcTestJava.length) == srcTestJava){
-                    sourceFolder = srcTestJava;
-                }else if(chop.slice(0, srcTestResources.length) == srcTestResources){
-                    sourceFolder = srcTestResources;
-                }else{
                     
-                // pfff, no idea yet. I think this way of chopping the path is far
-                // from ideal but have to think on how to do this with
-                // the 'fixed' src/main/java etc grouping...
+                    sourceFolder = srcMainJava;
+                    path.push(projectFolder + '/' + projectName + sourceFolder);
+                    chop = chop.replace(sourceFolder+'/','');
+                
+                }else if(chop.slice(0, srcMainResources.length) == srcMainResources){
+                    
+                    sourceFolder = srcMainResources;
+                    path.push(projectFolder + '/' + projectName + sourceFolder);
+                    chop = chop.replace(sourceFolder+'/','');
+                
+                }else if(chop.slice(0, srcMainWebapp.length) == srcMainWebapp){
+                
+                    sourceFolder = srcMainWebapp;
+                    path.push(projectFolder + '/' + projectName + sourceFolder);
+                    chop = chop.replace(sourceFolder+'/','');
+                
+                }else if(chop.slice(0, srcTestJava.length) == srcTestJava){
+                
+                    sourceFolder = srcTestJava;
+                    path.push(projectFolder + '/' + projectName + sourceFolder);
+                    chop = chop.replace(sourceFolder+'/','');
+                
+                }else if(chop.slice(0, srcTestResources.length) == srcTestResources){
+   
+                    sourceFolder = srcTestResources;
+                    path.push(projectFolder + '/' + projectName + sourceFolder);
+                    chop = chop.replace(sourceFolder+'/','');
+                 
+                }else{
+                   
+                    // if we came here we might have to deal with the fact
+                    // that it's a module. test it
+                
+                    chop = chop.substring(1, chop.length); 
+    
+                    var module = chop.substring(0,chop.indexOf('/')); 
+                    
+                    // remove module
+                    chop = chop.replace(module,'');
+                    
+                    var isModule = false;
+                    
+                    if(chop.slice(0, srcMainJava.length) == srcMainJava){
+                        
+                        isModule=true;
+                        sourceFolder = srcMainJava;
+                        path.push(projectFolder + '/' + projectName + '/' + module);
+                        path.push(projectFolder + '/' + projectName + '/' + module + sourceFolder);
+                        chop = chop.replace(sourceFolder+'/','');
+                    
+                    }else if(chop.slice(0, srcMainResources.length) == srcMainResources){
+                        
+                        isModule=true;
+                        sourceFolder = srcMainResources;
+                        path.push(projectFolder + '/' + projectName + '/' + module);
+                        path.push(projectFolder + '/' + projectName + '/' + module + sourceFolder);
+                        chop = chop.replace(sourceFolder+'/','');
+                    
+                    }else if(chop.slice(0, srcMainWebapp.length) == srcMainWebapp){
+                        
+                        isModule=true;
+                        sourceFolder = srcMainWebapp;
+                        path.push(projectFolder + '/' + projectName + '/' + module);
+                        path.push(projectFolder + '/' + projectName + '/' + module + sourceFolder);
+                        chop = chop.replace(sourceFolder+'/','');
+                        
+                    }else if(chop.slice(0, srcTestJava.length) == srcTestJava){
+            
+                        isModule=true;
+                        sourceFolder = srcTestJava;
+                        path.push(projectFolder + '/' + projectName + '/' + module);
+                        path.push(projectFolder + '/' + projectName + '/' + module + sourceFolder);
+                        chop = chop.replace(sourceFolder+'/','');
+                                    
+                    }else if(chop.slice(0, srcTestResources.length) == srcTestResources){
+                    
+                        isModule=true;
+                        sourceFolder = srcTestResources;
+                        path.push(projectFolder + '/' + projectName + '/' + module);
+                        path.push(projectFolder + '/' + projectName + '/' + module + sourceFolder);
+                        chop = chop.replace(sourceFolder+'/','');
+                        
+                    }else{
+                        
+                    // pfff, no idea yet. I think this way of chopping the path is far
+                    // from ideal but have to think on how to do this with
+                    // the 'fixed' src/main/java etc grouping...
+                 
+                    }
+                    
                 }
-                
-                path.push(projectFolder + '/' + projectName + sourceFolder);
-                
-                // remove from the chop
-                chop = chop.replace(sourceFolder+'/','');
                 
                 // from here we loop trough the remaining folders and add them
                 var folderArray = chop.split('/');
@@ -297,7 +375,12 @@ define([
                 for(var i=0;i<folderArray.length;i++){
                     
                     folderPath += '/' + folderArray[i];
-                    path.push(projectFolder + '/' + projectName + sourceFolder + folderPath);    
+                    
+                    if(isModule){
+                        path.push(projectFolder + '/' + projectName + '/' + module + sourceFolder + folderPath);    
+                    }else{
+                        path.push(projectFolder + '/' + projectName + sourceFolder + folderPath);    
+                    }
                 }
                 
                 // set the path in the tree
@@ -310,8 +393,8 @@ define([
             // up by the ace editor and tries to set
             // focus again, rsulting in focus event to
             // be emitted etc...
-            // It also hangs up the editor, no being able to
-            // type anything. 
+            // It also hangs up the editor, not being able to
+            // type anything. Looks like some race condition.
             // 
             // https://github.com/stormcloud-ide/gui/issues/47
             // 

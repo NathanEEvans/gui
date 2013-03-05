@@ -1,0 +1,11 @@
+.floater {
+    float:left;
+    margin-right:15px;
+    margin-bottom:8px;
+}
+
+.stepsBanner{
+    background-color: #abd6ff;
+    background-repeat: repeat-x;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
+}

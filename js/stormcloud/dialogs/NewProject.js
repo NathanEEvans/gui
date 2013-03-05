@@ -103,7 +103,7 @@ define([
             
                 MavenService.create(data);
             
-                statusManager.infoStatus('Creating Project');
+                statusManager.info('Creating Project');
                 statusManager.showProgress();
             
                 dialogManager.hide(DIALOG.NEW_PROJECT);

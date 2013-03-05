@@ -76,6 +76,20 @@ define([
             },
         
             
+            getEditorContents : function(item){
+              
+                // summary : get the contents of an editor based on the item
+              
+                var editor = registry.byId('ace_editor_' + item.id);
+              
+                if(editor){
+                    return editor.getValue();
+                }
+              
+                return undefined;
+            },
+            
+            
             // determine the editor language mode
             _setMode: function(editor, item ){
             
@@ -133,7 +147,7 @@ define([
                     },
                     exec: function(editor) {
                          
-                        fileManager.save(item, editor.getValue());
+                        fileManager.save();
                     }
                 });
             
@@ -172,6 +186,9 @@ define([
                     
                     // select the project this file belongs to
                     projectManager.setSelected(item);
+                    
+                    // set the file that was selected
+                    fileManager.setSelected(item);
                 });
                 
             },
@@ -237,8 +254,6 @@ define([
                 }        
             },
             
-            
-            
             _gotoLine : function(editor, item){
                 
                 if(item.gotoLine){
@@ -250,6 +265,16 @@ define([
                     // one line above
                     editor.scrollToRow(row-2);                
                 }
+            },
+            
+            toggleBreakpoint : function(){
+                
+            // summary : set or remove breakpoint in editor on the
+            //           currently selected line
+                
+                
+                
+                
             }
         }
     });

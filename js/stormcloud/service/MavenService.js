@@ -174,7 +174,7 @@ define([
                         if(data == '0'){
             
                             statusManager.hideProgress();
-                            statusManager.clearStatus();
+                            statusManager.clear();
                         
                             treeManager.refresh('projectTree');
                 

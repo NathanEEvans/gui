@@ -48,7 +48,8 @@ define([
             DELETE : 'deleteDialog',
             FIND : 'findDialog',
             DEFECTS_AND_ENHANCEMENTS : 'defectsAndEnhancementsDialog',
-            TEMPLATES : 'templatesDialog'
+            TEMPLATES : 'templatesDialog',
+            OPEN_TRASH : 'openTrashDialog'
         };
     
     
@@ -117,8 +118,19 @@ define([
                 RENAME : 'filesystemMenu_rename',
                 MOVE : 'filesystemMenu_move',
                 SAFE_DELETE : 'filesystemMenu_safe_delete' 
-            }
+            },
             
+            EDITOR : {
+            
+                SAVE : 'editorMenu_save',
+                INSERT : 'editorMenu_insert',
+                FIX_IMPORTS : 'editorMenu_fix_imports',
+                BREAKPOINT : 'editorMenu_breakpoint',
+                CUT : 'editorMenu_cut',
+                COPY : 'editorMenu_copy',
+                PASTE : 'editorMenu_paste',
+                SELECT : 'editorMenu_select'
+            }
             
         };
         

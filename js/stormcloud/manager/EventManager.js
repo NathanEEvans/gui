@@ -809,7 +809,9 @@ define([
 
                 this.registerClick('toolBar_trash', function() {
 
-                    alert('Not Implemented');
+                    dialogManager.show(DIALOG.OPEN_TRASH);
+                    
+                    treeManager.refresh('trashTree');
                 });
                 
                 
@@ -1015,6 +1017,48 @@ define([
 
                     TomcatService.undeploy(dijit.byId('servicesTree').attr('selectedItem'));
                 });
+
+
+                //
+                // Editor Context Menu
+                //
+                this.registerClick(CONTEXT_MENU.EDITOR.SAVE, function() {
+                    
+                    // save the editor contents
+                    fileManager.save();
+                });
+                    
+                this.registerClick(CONTEXT_MENU.EDITOR.INSERT, function() {
+                    
+                    });
+                
+                this.registerClick(CONTEXT_MENU.EDITOR.FIX_IMPORTS, function() {
+                    
+                    });
+                
+                this.registerClick(CONTEXT_MENU.EDITOR.BREAKPOINT, function() {
+                    
+                    });
+                
+                this.registerClick(CONTEXT_MENU.EDITOR.CUT, function() {
+                    
+                    });
+                
+                this.registerClick(CONTEXT_MENU.EDITOR.COPY, function() {
+                    
+                    });
+                
+                this.registerClick(CONTEXT_MENU.EDITOR.PASTE, function() {
+                    
+                    });
+                
+                this.registerClick(CONTEXT_MENU.EDITOR.SELECT, function() {
+                    
+                    
+                    
+                    
+                    });
+                
 
 
                 //

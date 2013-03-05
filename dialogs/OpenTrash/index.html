@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="/dialogs/OpenTrash/styles.css">
+<div class="dijitDialogPaneContentArea" style="width: 900px; height: 500px;">
+
+    <script>
+        require(['stormcloud/dialogs/OpenTrash'], function(dialog){
+       
+            dialog.init();
+        });
+    </script>
+
+    <div class="floater">
+
+        <div id="openTrashWizard" 
+             data-dojo-type="dojox/widget/Wizard" 
+             data-dojo-props="style:'width:900px; height:500px', nextButtonLabel:'Next', doneButtonLabel:'Empty Trash'">
+
+            <div id="openTrashStep1" 
+                 data-dojo-type="dojox/widget/WizardPane" 
+                 data-dojo-props="doneFunction: function done() {require(['stormcloud/dialogs/OpenTrash'], function(dialog){dialog.empty();});}">
+
+                <div class="stepsBanner" 
+                     style="float:left; width:270px; height: 100%; border-right: 1px solid #b5bcc7;">
+
+                </div>
+
+                <div style="float: left;width:320px; height: 100%; border-right: 1px solid #b5bcc7;">
+
+                    <span style="font-size: 12px; margin-left: 10px;"><b>Trash Contents:</b></span>
+
+                    <div id="trashTree" style="height: 50%; padding-top: 5px;"></div>
+
+                </div>    
+
+            </div>
+
+            <script type="dojo/method" event="cancelFunction">
+                dialogManager.hide(DIALOG.OPEN_TRASH);
+            </script>
+
+        </div>
+    </div>
+</div>

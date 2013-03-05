@@ -37,7 +37,7 @@ define([
 
         return {
             
-            
+            selected : null,
             copySource : null,
             moveSource : null,
             copyDestination : null,
@@ -69,9 +69,17 @@ define([
                   
                 }
               
+                // check for trash
+                this.checkTrash();
               
             },
             
+            setSelected : function(item){
+              
+                if(item.type != 'project'){
+                    this.selected = item;
+                }
+            },
             
             get : function(item, readOnly){
               
@@ -113,9 +121,16 @@ define([
                 filesystemService.del(item);
             },
             
-            save : function(item, contents){
+            save : function(){
               
-                filesystemService.save(item, contents);
+                // summary : save the editor contents of the 
+                //           currently selected item
+              
+                // get editor contents
+                var contents = editorManager.getEditorContents(this.selected);
+              
+                // save it
+                filesystemService.save(this.selected, contents);
             },
             
             
@@ -127,6 +142,13 @@ define([
             checkTrash : function(){
               
                 filesystemService.checkTrash();
+            },
+            
+            
+            emptyTrash : function(){
+              
+                filesystemService.emptyTrash();
+              
             },
             
             find : function(args){

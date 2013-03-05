@@ -35,12 +35,15 @@ define([
         //               
             
         var files = new Array();
-        
+        var currentArgs = null;
             
         return {
          
             // perform the search
             find: function(args){
+                
+                // set the search arguments for future reference
+                this.currentArgs = args;
                 
                 // clear any previous search
                 this.clear();

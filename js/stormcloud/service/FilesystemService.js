@@ -55,7 +55,9 @@ define([
             //
             GET_BINARY : settingsManager.getApiUrl() + '/filesystem/getBinary',
             // Check if there is things in the trash bin
-            HAS_TRASH : settingsManager.getApiUrl() + '/filesystem/hasTrash'
+            HAS_TRASH : settingsManager.getApiUrl() + '/filesystem/hasTrash',
+            // empty the trash folder
+            EMPTY_TRASH : settingsManager.getApiUrl() + '/filesystem/emptyTrash'
         
         };
     
@@ -327,6 +329,8 @@ define([
              
                             treeManager.refresh('projectTree');
                             
+                            fileManager.checkTrash();
+                            
                         }else{
             
                             statusManager.error(
@@ -485,16 +489,35 @@ define([
             
                 xhr.get({
                     url: FILESYSTEM.HAS_TRASH,
-                    sync: true,
                     load: function(data){
                     
                         if(data == '0'){
                         
-                        //dijit.byId('toolBarTrash').set('iconClass','trashEmptyIcon');
+                            dijit.byId('toolBar_trash').set('iconClass','trashEmptyIcon');
                         
                         }else{
                         
-                        //dijit.byId('toolBarTrash').set('iconClass','trashFullIcon');
+                            dijit.byId('toolBar_trash').set('iconClass','trashFullIcon');
+                        }
+                    }
+                });
+            },
+            
+            emptyTrash: function(){
+            
+                xhr.post({
+                    url: FILESYSTEM.EMPTY_TRASH,
+                    load: function(data){
+                    
+                        if(data == '0'){
+                        
+                            // check the trash and update icon
+                            fileManager.checkTrash();
+                            
+                        }else{
+                            
+                            // set error
+                            statusManager.error(error);
                         }
                     }
                 });
