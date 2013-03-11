@@ -49,7 +49,8 @@ define([
             FIND : 'findDialog',
             DEFECTS_AND_ENHANCEMENTS : 'defectsAndEnhancementsDialog',
             TEMPLATES : 'templatesDialog',
-            OPEN_TRASH : 'openTrashDialog'
+            OPEN_TRASH : 'openTrashDialog',
+            GITHUB_ACCOUNT : 'gitHubAccountDialog'
         };
     
     
@@ -87,7 +88,8 @@ define([
             
             TOOLS : {
                 
-                TEMPLATES : 'toolsMenu_templates'
+                TEMPLATES : 'toolsMenu_templates',
+                GITHUB : 'toolsMenu_gitHub'
             }
         };
         
@@ -166,7 +168,9 @@ define([
               
                 // summary : Takes care of all initial gui state(s)
               
-              
+                // @todo figure out why the UI (editor sync checkbox) is not updating correctly
+                // https://github.com/stormcloud-ide/gui/issues/54
+                    
                 var checked = settingsManager.getPreference(PREFERENCE.SYNC_EDITOR_VIEWS);
                 
                 console.info('we want ' + checked);

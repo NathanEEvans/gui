@@ -1,0 +1,114 @@
+
+
+#gitHubUserFullName{
+
+    font-size: 15px; 
+    font-weight: bold; 
+    margin-bottom: 2px;
+
+}
+
+#gitHubUserName{
+
+    margin-bottom: 2px;
+
+}
+
+#gitHubOrganisation{
+
+    margin-bottom: 2px;
+}
+
+
+#gitHubLocation{
+
+    margin-bottom: 2px;    
+}
+
+
+#gitHubEmail{
+
+    margin-bottom: 2px;
+}
+
+
+#gitHubBlog{
+
+    margin-bottom: 2px;
+}
+
+
+#gitHubJoined{
+
+    margin-bottom: 2px;
+}
+
+#gitHubFollowers{
+
+    font-size: 15px; 
+    font-weight: bold; 
+    float:left; 
+    width:100px;
+
+}
+
+#gitHubStarred{
+
+    font-size: 15px; 
+    font-weight: bold; 
+    float:left; 
+    width:100px;    
+}
+
+#gitHubFollowing{
+
+    font-size: 15px; 
+    font-weight: bold; 
+    float:left; 
+    width:100px;
+}
+
+.gitHubStatsLabel{
+
+    float:left; 
+    width:100px; 
+    font-size: 10px;
+}
+
+
+#gitHubRepositories{
+
+
+    margin-bottom: 2px;
+
+}
+
+.repoList{
+
+    float : left;
+    width : 95%;
+    padding-top : 10px;
+    padding-left : 15px
+
+}
+
+.repoName{
+
+    font-weight : bold;
+    font-size : 14px;
+}
+
+.repoName span{
+
+    font-weight : normal;
+    font-size : 10px;
+}
+
+.repoClone{
+
+    float :left;
+}
+
+.repoDelete{
+    float : left;
+}

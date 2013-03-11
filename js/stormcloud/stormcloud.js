@@ -43,6 +43,7 @@ require([
                 'stormcloud/manager/EditorManager',
                 'stormcloud/manager/EventManager',
                 'stormcloud/manager/FileManager',
+                'stormcloud/manager/GitHubManager',
                 'stormcloud/manager/GitManager',
                 'stormcloud/manager/LogManager',
                 'stormcloud/manager/MavenManager',
@@ -59,6 +60,7 @@ require([
                     EditorManager,
                     EventManager,
                     FileManager,
+                    GitHubManager,
                     GitManager,
                     LogManager,
                     MavenManager,
@@ -77,6 +79,7 @@ require([
                     editorManager = EditorManager;
                     eventManager = EventManager;
                     fileManager = FileManager;
+                    gitHubManager = GitHubManager;
                     gitManager = GitManager;
                     logManager = LogManager;
                     mavenManager = MavenManager;
@@ -100,11 +103,13 @@ require([
                     // Initialize the file manager
                     fileManager.init();
 
+                    // init git data
+                    gitHubManager.init();
+                    
                     // When all is done, hide the loader
                     // hide the loader
                     // @todo tuck this away in a module
                     document.getElementById('loader').style.visibility = 'hidden';
-                    
                     
                     domManager.init();
             

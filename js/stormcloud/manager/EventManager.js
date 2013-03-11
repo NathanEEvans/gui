@@ -712,6 +712,13 @@ define([
                     dialogManager.show(DIALOG.TEMPLATES);
                 });
 
+                this.registerClick(MENU.TOOLS.GITHUB, function() {
+
+                    dialogManager.show(DIALOG.GITHUB_ACCOUNT);
+                });
+
+
+
 
                 //
                 // Help Menu

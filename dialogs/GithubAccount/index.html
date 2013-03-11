@@ -1,0 +1,132 @@
+<link rel="stylesheet" href="/dialogs/GitHubAccount/styles.css">
+<div class="dijitDialogPaneContentArea" style="height: 600px; width: 900px;">
+
+    <script>
+        require(['stormcloud/dialogs/GitHubAccount'], function(dialog){
+       
+            dialog.init();
+        }); 
+    </script>
+
+    <div data-dojo-type="dijit/layout/TabContainer" style="height:100%">
+
+        <div data-dojo-type="dijit/layout/ContentPane" title="User">
+
+            <div style="float:left; padding-top:40px; padding-left: 40px; width: 750px;">
+
+
+                <div style="float: left; width : 300px;">
+
+                    <div id="gitHubAccountMessage"></div>
+
+                    <img id="gitHubAvatar"/>
+                    <div id="gitHubUserFullName"></div>
+                    <div id="gitHubUserName"></div>
+
+                    <div style="border-bottom: 1px solid #b5bcc7; padding-top: 5px; margin-bottom: 5px;"></div>
+
+                    <div id="gitHubOrganisation"></div>
+                    <div id="gitHubLocation"></div>
+                    <div id="gitHubEmail"></div>
+                    <div id="gitHubBlog"></div>
+                    <div id="gitHubJoined"></div>
+
+                    <div style="border-bottom: 1px solid #b5bcc7; padding-top: 5px; margin-bottom: 5px;"></div>
+
+                    <div id="gitHubFollowers"></div>
+                    <div id="gitHubStarred"></div>
+                    <div id="gitHubFollowing"></div>
+                    <br>
+                    <div class="gitHubStatsLabel">followers</div>
+                    <div class="gitHubStatsLabel">starred</div>
+                    <div class="gitHubStatsLabel">following</div>
+
+                    <br>
+
+                    <div style="border-bottom: 1px solid #b5bcc7; padding-top: 5px; margin-bottom: 5px;"></div>
+
+                    <div style="font-weight: bold;">Organizations</div>
+
+                    <div id="gitHubOrganisations"></div>
+
+                </div>
+
+                <div style="float: left; width : 400px;">
+
+                    <div style="float:left; width:100%;">
+                        <div id="gitHubPrivateRepositories" style="font-size: 15px; font-weight: bold; float:left; width:20px;"></div>
+                        <div style="float:left; width:100px; font-size: 10px;">private repositories</div>
+                    </div>
+
+                    <div style="float:left; width:100%;">
+                        <div id="gitHubPublicRepositories" style="font-size: 15px; font-weight: bold; float:left; width:20px;"></div>
+                        <div style="float:left; width:100px; font-size: 10px;">public repositories</div>
+                    </div>
+
+                    <div style="float:left; width:100%;">
+                        <div id="gitHubIssues" style="font-size: 15px; font-weight: bold; float:left; width:20px;"></div>
+                        <div style="float:left; width:100px; font-size: 10px;">issues</div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div data-dojo-type="dijit/layout/ContentPane" title="Repositories">
+
+
+            <div style="font-weight: bold;">Your Forks &amp; Repositories</div>
+
+            <div id="gitHubRepositories"></div>
+
+
+        </div>
+
+        <div data-dojo-type="dijit/layout/ContentPane" title="Organisations">
+
+        </div>
+
+        <div data-dojo-type="dijit/layout/ContentPane" title="Pull Requests">
+
+        </div>
+
+        <div data-dojo-type="dijit/layout/ContentPane" title="Issues">
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+</div>
+
+<div class="dijitDialogPaneActionBar">
+
+    <button data-dojo-type="dijit/form/Button" type="button">
+        <script type="dojo/connect" data-dojo-event="onClick">
+            dialogManager.hide(DIALOG.GITHUB_ACCOUNT);
+        </script>
+        Help
+    </button>
+
+    <button data-dojo-type="dijit/form/Button" type="button">
+        <script type="dojo/connect" data-dojo-event="onClick">
+            dialogManager.hide(DIALOG.GITHUB_ACCOUNT);
+        </script>
+        Cancel
+    </button>
+
+    <button data-dojo-type="dijit/form/Button" type="button">
+        <script type="dojo/connect" data-dojo-event="onClick">
+            dialogManager.hide(DIALOG.GITHUB_ACCOUNT);
+        </script>
+        OK
+    </button>
+
+</div>

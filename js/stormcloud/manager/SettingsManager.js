@@ -30,6 +30,7 @@ define([],
         SETTING = {  
     
             API_URL : 'API_URL',
+            GITHUB_API_URL : 'GITHUB_API_URL', 
             PROJECT_FOLDER : 'PROJECT_FOLDER',
             CLOSED_PROJECTS_FOLDER : 'CLOSED_PROJECTS_FOLDER',
             TOMCAT_HOME : 'TOMCAT_HOME',
@@ -39,7 +40,9 @@ define([],
         
         PREFERENCE = {
             
-            SYNC_EDITOR_VIEWS : 'SYNC_EDITOR_VIEWS'
+            SYNC_EDITOR_VIEWS : 'SYNC_EDITOR_VIEWS',
+            GITHUB_USER : 'GITHUB_USER',
+            GITHUB_PASSWORD : 'GITHUB_PASSWORD'
             
         }
     
@@ -73,6 +76,22 @@ define([],
             getTomcatManagerUrl : function(){
                 
                 return this.getSetting(SETTING.TOMCAT_MANAGER_URL);
+            },
+            
+            getGitHubApiUrl : function(){
+              
+                return this.getSetting(SETTING.GITHUB_API_URL);    
+            },
+            
+            getGitHubUser : function(){
+                
+                return this.getPreference(PREFERENCE.GITHUB_USER);
+            },
+            
+            
+            getGitHubPassword : function(){
+              
+                return this.getPreference(PREFERENCE.GITHUB_PASSWORD);
             },
             
             getPreference : function(key){

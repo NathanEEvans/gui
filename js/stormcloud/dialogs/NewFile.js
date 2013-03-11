@@ -165,6 +165,7 @@ define([
                 new Tree({
                     
                     model:folderPickerTreeModel, 
+                    persist : false,
                     showRoot:false, 
                     // tree icon function
                     getIconClass : fileManager.getIcon,
