@@ -19,9 +19,9 @@
  * 
  */
 define([
-    'dijit/registry'], 
+    'dojo/ready'], 
     function(
-        registry){
+        ready){
 
         //
         // module       : stormcloud/manager/DomManager
@@ -166,24 +166,28 @@ define([
         
             init : function(){
               
-                // summary : Takes care of all initial gui state(s)
               
-                // @todo figure out why the UI (editor sync checkbox) is not updating correctly
-                // https://github.com/stormcloud-ide/gui/issues/54
+                ready(function() {
+
+              
+                    // summary : Takes care of all initial gui state(s)
+              
+                    // @todo figure out why the UI (editor sync checkbox) is not updating correctly
+                    // https://github.com/stormcloud-ide/gui/issues/54
                     
-                var checked = settingsManager.getPreference(PREFERENCE.SYNC_EDITOR_VIEWS);
+                    var checked = settingsManager.getPreference(PREFERENCE.SYNC_EDITOR_VIEWS);
                 
-                console.info('we want ' + checked);
+                    console.info('we want ' + checked);
                 
-                var menu = dijit.byId(MENU.VIEW.SYNC_EDITOR);
+                    var menu = dijit.byId(MENU.VIEW.SYNC_EDITOR);
                 
-                console.info('its now : ' + menu.get('checked'));
+                    console.info('its now : ' + menu.get('checked'));
                 
-                menu.set('checked', checked);
+                    menu.set('checked', checked);
                 
-                console.info('and now its ' + menu.get('checked'));
+                    console.info('and now its ' + menu.get('checked'));
                 
-              
+                });
               
             }      
         };

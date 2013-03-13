@@ -18,8 +18,10 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([], 
-    function(){
+define([
+    'dojox/encoding/base64'], 
+    function(
+        base64){
 
         //
         // module      : stormcloud/rest/GitHubRequest
@@ -34,8 +36,6 @@ define([],
                 var userName = settingsManager.getGitHubUser();
                 var password = settingsManager.getGitHubPassword();
               
-                dojo.require('dojox.encoding.base64');
-        
                 var str = userName + ':' + password;
             
                 var bytes = [];
@@ -44,7 +44,7 @@ define([],
                     bytes.push(str.charCodeAt(i));
                 }
         
-                var enc = dojox.encoding.base64.encode(bytes);
+                var enc = base64.encode(bytes);
                 
                 args.headers = {
                     Authorization: "Basic " + enc
@@ -73,8 +73,6 @@ define([],
                 var userName = settingsManager.getGitHubUser();
                 var password = settingsManager.getGitHubPassword();
               
-                dojo.require('dojox.encoding.base64');
-        
                 var str = userName + ':' + password;
             
                 var bytes = [];
@@ -83,7 +81,7 @@ define([],
                     bytes.push(str.charCodeAt(i));
                 }
         
-                var enc = dojox.encoding.base64.encode(bytes);
+                var enc = base64.encode(bytes);
                 
                 args.headers = {
                     Authorization: "Basic " + enc,

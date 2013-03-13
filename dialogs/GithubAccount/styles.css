@@ -1,5 +1,3 @@
-
-
 #gitHubUserFullName{
 
     font-size: 15px; 
@@ -88,8 +86,9 @@
     float : left;
     width : 95%;
     padding-top : 10px;
-    padding-left : 15px
-
+    padding-left : 15px;
+    padding-bottom : 10px;
+    border-bottom : 1px solid #b5bcc7;
 }
 
 .repoName{

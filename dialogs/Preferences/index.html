@@ -32,13 +32,33 @@
 
         <div data-dojo-type="dijit/layout/ContentPane" title="GitHub">
 
-            <label>GitHub Credentials</label>
-            <label>GitHub Username:</label>
-            <input data-dojo-type="dijit/form/TextBox" id="gitHubUserName"/>
-            <label>GitHub Password</label>
-            <input type="password" data-dojo-type="dijit/form/TextBox" id="gitHubPassword"/>
+            <div id="gitHubCredentials">
 
-            
+                <div id="gitHubCredentialsTitle">GitHub Credentials</div>
+
+                <div class="gitHubCredentialsField">
+                    <label>Username:</label>
+                    <input type="text" data-dojo-type="dijit/form/TextBox" id="gitHubSettingsUserName"/>
+                </div>
+
+                <div class="gitHubCredentialsField">
+                    <label>Password</label>
+                    <input type="password" data-dojo-type="dijit/form/TextBox" id="gitHubSettingsPassword"/>
+                </div>
+
+                <div id="gitHubCredentialsSubmit">
+                    <button data-dojo-type="dijit/form/Button" type="button">
+                        <script type="dojo/connect" data-dojo-event="onClick">
+                            require(['stormcloud/dialogs/Preferences'], function(dialog){
+
+                            dialog.verifyGitHubCredentials();
+                            }); 
+                        </script>
+                        Verify Credentials
+                    </button>
+                </div>
+            </div>
+
 
         </div>
 

@@ -20,9 +20,13 @@
  */
 define([
     'dojo/json',
+    'dojox/encoding/base64',
+    'stormcloud/rest/xhr',
     'stormcloud/rest/GitHubRequest'], 
     function(
         json,
+        base64,
+        xhr,
         GitHubRequest){
 
         //
@@ -69,6 +73,47 @@ define([
                     this.getRepositories();
                 }
             },
+            
+            
+            verify : function(credentials){
+            
+                // summary : verify the user credentials
+                //           store them on success
+            
+                var args = {
+                    
+                    url: GITHUB.USER,
+                    sync : true
+                }
+            
+                var str = credentials.user + ':' + credentials.pass;
+            
+                var bytes = [];
+
+                for (var i = 0; i < str.length; ++i){
+                    bytes.push(str.charCodeAt(i));
+                }
+        
+                var enc = base64.encode(bytes);
+                
+                args.headers = {
+                    Authorization: "Basic " + enc
+                };
+        
+                var deferred = xhr.get(args);
+                
+                deferred.then(
+                    function(data){
+            
+                        alert('GitHub Account logon succeeded!');
+                    },
+
+                    function(error){
+            
+                        alert('GitHub Account logon failed!');
+                    });
+            },
+            
             
             getUser : function(){
            

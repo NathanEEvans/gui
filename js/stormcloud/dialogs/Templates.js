@@ -90,16 +90,15 @@ define([
             openItem : function(item, opened){
                 
                 
-                fileManager.get(item, false);
+                fileManager.getTemplate(item);
                 
                 dialogManager.hide(DIALOG.TEMPLATES);
             },
             
             done : function() {
                 
-                fileManager.get(selected, false);
+                fileManager.getTemplate(selected);
                 
-                // hide the dialog
                 dialogManager.hide(DIALOG.TEMPLATES);
             },
             

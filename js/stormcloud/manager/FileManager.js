@@ -81,6 +81,12 @@ define([
                 }
             },
             
+            getTemplate : function(item){
+              
+                // open the template file
+                filesystemService.get(item, false);
+            },
+            
             get : function(item, readOnly){
               
                 // summary : Get a file from the filesystem

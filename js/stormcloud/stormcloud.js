@@ -20,7 +20,8 @@
  */
 require([
     'dojo/ready',
-    'dojo/parser'],
+    'dojo/parser',
+    'dojo/domReady!'],
     function(
         ready,
         parser) {
@@ -32,9 +33,19 @@ require([
         //               events that need to be bound, gui related things etc...
         //               
 
+        parser.parse();
+        
+        
         ready(function() {
 
-            // When Dojo is ready we declare all managers.
+            require(['stormcloud/auth'], function(auth) {
+        
+                // get user info
+                // when not found we redirect to the login page
+                auth.verify();
+            });
+
+            // Declare all managers.
             require([
                 'stormcloud/manager/AnnotationManager',
                 'stormcloud/manager/CookieManager',
@@ -106,12 +117,10 @@ require([
                     // init git data
                     gitHubManager.init();
                     
-                    // When all is done, hide the loader
-                    // hide the loader
-                    // @todo tuck this away in a module
+                    domManager.init();
+            
                     document.getElementById('loader').style.visibility = 'hidden';
                     
-                    domManager.init();
             
                 });
         });

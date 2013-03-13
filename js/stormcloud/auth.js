@@ -19,9 +19,11 @@
  * 
  */
 define([
+    'dojox/encoding/base64',
     'stormcloud/rest/xhr',
     'stormcloud/manager/SettingsManager'], 
     function(
+        base64,
         xhr,
         SettingsManager){
 
@@ -36,8 +38,6 @@ define([
     
             send: function(user, pass){
         
-                dojo.require('dojox.encoding.base64');
-        
                 var str = user + ':' + pass;
             
                 var bytes = [];
@@ -46,7 +46,7 @@ define([
                     bytes.push(str.charCodeAt(i));
                 }
         
-                var enc = dojox.encoding.base64.encode(bytes);
+                var enc = base64.encode(bytes);
                 
                 var xhrArgs = {
                 

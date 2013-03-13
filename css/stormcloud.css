@@ -330,6 +330,7 @@ a:active {
 #gitLogWindow{
 
     float:left;
+    resize:none;
     width: 97%; 
     height: 100%; 
     border:0;
@@ -341,6 +342,7 @@ a:active {
 #mavenLogWindow{
 
     float:left;
+    resize:none;
     width: 97%; 
     height: 100%; 
     border:0;

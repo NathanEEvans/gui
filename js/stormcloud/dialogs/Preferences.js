@@ -18,8 +18,10 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([], 
-    function(){
+define([
+    'dojo/ready'], 
+    function(
+        ready){
         
         //
         // module      : stormcloud/dialogs/Preferences
@@ -31,8 +33,26 @@ define([],
     
             init : function(){
                 
+                ready(function() {
+
+                    dojo.byId('gitHubSettingsUserName').value = settingsManager.getGitHubUser();                
+                    dojo.byId('gitHubSettingsPassword').value = settingsManager.getGitHubPassword();
+                });
+                
             },
             
+            
+            verifyGitHubCredentials : function(){
+              
+                var credentials = {
+                  
+                    user : dojo.byId('gitHubSettingsUserName').value,
+                    pass : dojo.byId('gitHubSettingsPassword').value    
+                }
+              
+                gitHubManager.verify(credentials);
+              
+            },
             
             close : function(){
               

@@ -6,28 +6,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/stormcloud.css">
 
-        <!-- Load Dojo -->
-        <script type="text/javascript">dojoConfig = {parseOnLoad: true, async: false}</script>
-        <script type="text/javascript" src="js/dojo/dojo.js"></script>
-
-        <!-- Load Ace -->
-        <script type="text/javascript" src="js/ace/src-noconflict/ace.js"></script>
-
-        <!-- Load Stormcloud -->
-        <script type="text/javascript" src="js/stormcloud/stormcloud.js"></script>
-
-        <script>
-            
-            require(['stormcloud/auth'], function(auth) {
-        
-                // get user info
-                // when not found we redirect to the login page
-
-                auth.verify();
-            
-            });
-        </script>
-
     </head>
 
     <body class="claro">
@@ -36,8 +14,8 @@
             <div id="loaderInner">Please stick around while we prepare your application ...</div>
         </div>
 
-        <div data-dojo-type="dojox/widget/DialogSimple" id="aboutDialog" data-dojo-props="href: 'dialogs/AboutDialog/index.html'" title="About Stormcloud IDE"></div>
-        <div data-dojo-type="dojox/widget/DialogSimple" id="preferencesDialog" data-dojo-props="href: 'dialogs/Preferences/index.html'" title="Preferences ..."></div>
+        <div data-dojo-type="dojox/widget/DialogSimple" id="aboutDialog" data-dojo-props="href: 'dialogs/AboutDialog/index.html', loadingMessage:'Preparing ...'" title="About Stormcloud IDE"></div>
+        <div data-dojo-type="dojox/widget/DialogSimple" id="preferencesDialog" data-dojo-props="href: 'dialogs/Preferences/index.html', loadingMessage:'Preparing ...'" title="Preferences ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="myAccountDialog" data-dojo-props="href: 'dialogs/MyAccount/index.html'" title="My Account ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="customGoalsDialog" data-dojo-props="href: 'dialogs/CustomGoals/index.html'" title="Run Maven ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="newProjectDialog" data-dojo-props="href: 'dialogs/NewProject/index.html'" title="Create a New Project ..."></div>
@@ -55,7 +33,7 @@
         <div data-dojo-type="dojox/widget/DialogSimple" id="defects" data-dojo-props="href: 'dialogs/Defects/index.html'" title="Defects &amp; Enhancements ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="templatesDialog" data-dojo-props="href: 'dialogs/Templates/index.html'" title="Select Template ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="openTrashDialog" data-dojo-props="href: 'dialogs/OpenTrash/index.html'" title="View Trash ..."></div>
-        <div data-dojo-type="dojox/widget/DialogSimple" id="gitHubAccountDialog" data-dojo-props="href: 'dialogs/GitHubAccount/index.html'" title="GitHub Account ..."></div>
+        <div data-dojo-type="dojox/widget/DialogSimple" id="gitHubAccountDialog" data-dojo-props="href: 'dialogs/GitHubAccount/index.html', loadingMessage:'Preparing ...'" title="GitHub Account ..."></div>
 
         <div data-dojo-type="dijit/Menu" id="projectMenu" data-dojo-props="contextMenuForWindow:false" style="display: none;">
             <div data-dojo-type="dijit/MenuItem" id="projectMenu_compile_project" data-dojo-props="iconClass:'compileCommandIcon'">Compile Project</div>
@@ -627,6 +605,24 @@
             </div>
 
         </div>
+
+
+        <!-- Set the Dojo configuration -->
+        <script type="text/javascript">
+            dojoConfig = {
+                
+                async: true
+            }
+        </script>
+
+        <!-- Load Dojo -->
+        <script type="text/javascript" src="js/dojo/dojo.js"></script>
+
+        <!-- Load Ace -->
+        <script type="text/javascript" src="js/ace/src-noconflict/ace.js"></script>
+
+        <!-- Load Stormcloud -->
+        <script type="text/javascript" src="js/stormcloud/stormcloud.js"></script>
 
     </body>
 </html>

@@ -1,0 +1,35 @@
+
+#gitHubCredentials{
+
+    margin-left : 20px;
+    margin-top: 20px;
+    border: 1px solid #b5bcc7;
+    width : 400px;
+}
+
+#gitHubCredentialsTitle{
+
+    font-weight : bold;
+    padding-top: 10px;
+    padding-left:10px;
+
+}
+
+.gitHubCredentialsField{
+
+    padding-top: 10px;
+    padding-left : 10px;
+}
+
+.gitHubCredentialsField label{
+
+    float : left;
+    width : 150px;
+}
+
+#gitHubCredentialsSubmit{
+
+    padding-top: 10px;
+    padding-left : 158px;
+    padding-bottom: 10px;
+}
