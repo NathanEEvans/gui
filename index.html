@@ -6,6 +6,33 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/stormcloud.css">
 
+        <!-- Set the Dojo configuration -->
+        <script type="text/javascript">
+            dojoConfig = {
+                
+                async: true
+            }
+        </script>
+
+        <!-- Load Dojo -->
+        <script type="text/javascript" src="js/dojo/dojo.js"></script>
+
+        <!-- Load Ace -->
+        <script type="text/javascript" src="js/ace/src-noconflict/ace.js"></script>
+
+        <!-- Load Stormcloud -->
+        <script type="text/javascript" src="js/stormcloud/stormcloud.js"></script>
+
+        <script type="text/javascript">
+
+            require(['stormcloud/auth'], function(auth) {
+        
+                // get user info
+                // when not found we redirect to the login page
+                auth.verify();
+            });
+        </script>        
+
     </head>
 
     <body class="claro">
@@ -605,24 +632,6 @@
             </div>
 
         </div>
-
-
-        <!-- Set the Dojo configuration -->
-        <script type="text/javascript">
-            dojoConfig = {
-                
-                async: true
-            }
-        </script>
-
-        <!-- Load Dojo -->
-        <script type="text/javascript" src="js/dojo/dojo.js"></script>
-
-        <!-- Load Ace -->
-        <script type="text/javascript" src="js/ace/src-noconflict/ace.js"></script>
-
-        <!-- Load Stormcloud -->
-        <script type="text/javascript" src="js/stormcloud/stormcloud.js"></script>
 
     </body>
 </html>

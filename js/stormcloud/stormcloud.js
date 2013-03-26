@@ -38,13 +38,6 @@ require([
         
         ready(function() {
 
-            require(['stormcloud/auth'], function(auth) {
-        
-                // get user info
-                // when not found we redirect to the login page
-                auth.verify();
-            });
-
             // Declare all managers.
             require([
                 'stormcloud/manager/AnnotationManager',
