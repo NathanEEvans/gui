@@ -38,10 +38,24 @@ require([
         
         ready(function() {
 
-            // Declare all managers.
             require([
                 'stormcloud/auth',
-                'stormcloud/manager/SettingsManager',
+                'stormcloud/manager/SettingsManager'], 
+                function(
+                    auth,
+                    SettingsManager) {
+        
+        
+                    settingsManager = SettingsManager;
+        
+                    // get user info
+                    // when not found we redirect to the login page
+                    auth.verify(settingsManager);
+                
+                });
+
+            // Declare all managers.
+            require([
                 'stormcloud/manager/AnnotationManager',
                 'stormcloud/manager/CookieManager',
                 'stormcloud/manager/DialogManager',
@@ -59,8 +73,6 @@ require([
                 'stormcloud/manager/TooltipManager',
                 'stormcloud/manager/TreeManager'], 
                 function(
-                    auth,
-                    SettingsManager,
                     AnnotationManager,
                     CookieManager,
                     DialogManager,
@@ -78,8 +90,7 @@ require([
                     TooltipManager,
                     TreeManager) {
 
-                    settingsManager = SettingsManager;
-                    auth.verify(settingsManager);
+                    // declare all managers globally
                     
                     annotationManager = AnnotationManager;
                     cookieManager = CookieManager;
