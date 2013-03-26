@@ -20,12 +20,10 @@
  */
 define([
     'dojox/encoding/base64',
-    'stormcloud/rest/xhr',
-    'stormcloud/manager/SettingsManager'], 
+    'stormcloud/rest/xhr'], 
     function(
         base64,
-        xhr,
-        SettingsManager){
+        xhr){
 
         //
         // module   : stormcloud/auth
@@ -76,10 +74,7 @@ define([
         
             // Make a call to get the user
             //
-            verify : function(){
-                
-                // declare the settingsManager global
-                settingsManager = SettingsManager;
+            verify : function(settingsManager){
                 
                 xhr.get({
                     url: 'http://' + window.location.host + '/stormcloud/api/user',

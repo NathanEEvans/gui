@@ -67,7 +67,9 @@ define([
                             statusManager.info('Repository Cloned.');
             
                             treeManager.refresh('projectTree');
-                            
+            
+                            mavenManager.compile();
+            
                         }else{
             
                             statusManager.error(
