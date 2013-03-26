@@ -38,21 +38,12 @@ require([
         
         ready(function() {
 
-            require([
-                'stormcloud/auth',
-                'stormcloud/manager/SettingsManager'], 
-                function(
-                    auth,
-                    SettingsManager) {
+            require(['stormcloud/auth'], function(auth) {
         
-        
-                    settingsManager = SettingsManager;
-        
-                    // get user info
-                    // when not found we redirect to the login page
-                    auth.verify(settingsManager);
-                
-                });
+                // get user info
+                // when not found we redirect to the login page
+                auth.verify();
+            });
 
             // Declare all managers.
             require([
@@ -124,7 +115,7 @@ require([
                     fileManager.init();
 
                     // init git data
-                    // gitHubManager.init();
+                    gitHubManager.init();
                     
                     domManager.init();
             
