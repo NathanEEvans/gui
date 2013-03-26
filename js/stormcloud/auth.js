@@ -73,7 +73,6 @@ define([
             },
         
             // Make a call to get the user
-            //
             verify : function(settingsManager){
                 
                 xhr.get({
