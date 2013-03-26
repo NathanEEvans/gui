@@ -55,7 +55,7 @@ define([],
             // convenience method to get the api url from user settings
             getApiUrl : function(){
             
-                return this.getSetting(SETTING.API_URL);
+                return 'http://' + window.location.host + this.getSetting(SETTING.API_URL);
             },
             
             // convenience method to get the users project folder
