@@ -34,7 +34,7 @@
 .dijitFolderOpened,
 .dijitIconFolderOpen,
 .dijitIconError {
-	background-image: url("../../icons/images/commonIconsObjActEnabled.png"); 
+	background-image: url("/images/icons/images/commonIconsObjActEnabled.png"); 
 	width: 16px;
 	height: 16px;
 }
@@ -73,7 +73,7 @@
 .dj_ie6 .dijitFolderOpened,
 .dj_ie6 .dijitIconFolderOpen,
 .dj_ie6 .dijitIconError {
-	background-image: url("../../icons/images/commonIconsObjActEnabled8bit.png");
+	background-image: url("/images/icons/images/commonIconsObjActEnabled8bit.png");
 }
 .dijitDisabled .dijitIconSave,
 .dijitDisabled .dijitIconPrint,
@@ -110,7 +110,7 @@
 .dijitDisabled .dijitFolderOpened,
 .dijitDisabled .dijitIconFolderOpen,
 .dijitDisabled .dijitIconError {
-	background-image: url("../../icons/images/commonIconsObjActDisabled.png"); 
+	background-image: url("/images/icons/images/commonIconsObjActDisabled.png"); 
 }
 .dijitIconSave { background-position: 0; }
 .dijitIconPrint { background-position: -16px; }
@@ -145,7 +145,7 @@
 .dijitIconFolderClosed, .dijitFolderClosed { background-position: -464px; }
 .dijitIconFolderOpen, .dijitFolderOpened { background-position: -480px; }
 .dijitIconLoading {
-	background:url("../../icons/images/loadingAnimation_rtl.gif") no-repeat;
+	background:url("/images/icons/images/loadingAnimation_rtl.gif") no-repeat;
 	height: 20px;
 	width: 20px;
 }
@@ -2454,7 +2454,7 @@
 }
 .claro .dijitToolbarSeparator {
   
-  background-image: url("../../icons/images/editorIconsEnabled.png");
+  background-image: url("/images/icons/images/editorIconsEnabled.png");
 }
 .claro .dijitDisabled .dijitToolbar {
   background: none;

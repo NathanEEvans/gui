@@ -8,65 +8,6 @@
         }); 
     </script>
 
-    <div data-dojo-type="dijit/layout/TabContainer" style="height:100%">
-
-        <div data-dojo-type="dijit/layout/ContentPane" title="General">
-
-            <div style="float:left; padding-top:40px; padding-left: 40px;">
-
-                <label>Language</label>
-
-                <select data-dojo-type="dijit/form/ComboBox">
-                    <option>English</option>
-                    <option>Español</option>
-                    <option>Français</option>
-                    <option>Italiano</option>
-                    <option>Nederlands</option>
-                    <option>Deutsch</option>
-                    <option>Dansk</option>
-                </select>
-
-            </div>
-
-        </div>
-
-        <div data-dojo-type="dijit/layout/ContentPane" title="GitHub">
-
-            <div id="gitHubCredentials">
-
-                <div id="gitHubCredentialsTitle">GitHub Credentials</div>
-
-                <div class="gitHubCredentialsField">
-                    <label>Username:</label>
-                    <input type="text" data-dojo-type="dijit/form/TextBox" id="gitHubSettingsUserName"/>
-                </div>
-
-                <div class="gitHubCredentialsField">
-                    <label>Password</label>
-                    <input type="password" data-dojo-type="dijit/form/TextBox" id="gitHubSettingsPassword"/>
-                </div>
-
-                <div id="gitHubCredentialsSubmit">
-                    <button data-dojo-type="dijit/form/Button" type="button">
-                        <script type="dojo/connect" data-dojo-event="onClick">
-                            require(['stormcloud/dialogs/Preferences'], function(dialog){
-
-                            dialog.verifyGitHubCredentials();
-                            }); 
-                        </script>
-                        Verify Credentials
-                    </button>
-                </div>
-            </div>
-
-
-        </div>
-
-    </div>
-
-
-
-
 </div>
 
 <div class="dijitDialogPaneActionBar">
