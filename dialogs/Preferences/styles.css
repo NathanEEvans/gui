@@ -1,35 +1,84 @@
 
-#gitHubCredentials{
-
-    margin-left : 20px;
-    margin-top: 20px;
-    border: 1px solid #b5bcc7;
-    width : 400px;
-}
-
-#gitHubCredentialsTitle{
-
-    font-weight : bold;
-    padding-top: 10px;
-    padding-left:10px;
-
-}
-
-.gitHubCredentialsField{
-
-    padding-top: 10px;
-    padding-left : 10px;
-}
-
-.gitHubCredentialsField label{
+.preferencesTitle{
 
     float : left;
-    width : 150px;
+    padding-top : 20px;
+    padding-bottom : 20px;
+    width : 95%;
+    font-size : 18px;
+    padding-left : 20px;
 }
 
-#gitHubCredentialsSubmit{
+label {
+    float : left;
+    width : 100px;
+    padding-left : 20px;
+}
 
-    padding-top: 10px;
-    padding-left : 158px;
-    padding-bottom: 10px;
+#preferencesAvatarContainer{
+
+    float : left;
+    text-align : center;
+}
+
+#preferencesAvatarTitle{
+
+    float : left;
+    text-align : left;
+    width : 95%;
+    font-weight : bold;
+    padding-bottom : 10px;
+    padding-top : 20px;
+    padding-left : 20px;
+}
+
+#preferencesAvatarExplain {
+
+    float : left;
+    width : 250px;
+    font-size : 10px;
+    text-align : justify;
+    padding-left : 20px;
+}
+
+#preferencesFullName{
+
+    float : left;
+    width : 200px;
+}
+
+#preferencesUserName{
+
+    color : lightgrey;
+}
+
+#preferencesEmail{
+
+    float : left;
+    width : 200px;
+
+}
+
+#preferencesCity{
+
+    float : left;
+    width : 200px;
+
+}
+
+#preferencesCountry{
+
+    float : left;
+    width : 200px;
+
+}
+
+
+#preferencesActionBar{
+
+    float : left;
+    width : 365px;
+    text-align : left;
+    margin-top : 40px;
+    padding-left : 24px;
 }

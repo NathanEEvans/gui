@@ -127,25 +127,6 @@ define([
 
             bind : function(){
                 
-                //
-                // Stormcloud Menu
-                //
-                this.registerClick(MENU.STORMCLOUD.ABOUT, function() {
-
-                    dialogManager.show(DIALOG.ABOUT);
-                });
-
-                this.registerClick(MENU.STORMCLOUD.PREFERENCES, function() {
-
-                    dialogManager.show(DIALOG.PREFERENCES);
-                });
-
-                this.registerClick(MENU.STORMCLOUD.MY_ACCOUNT, function() {
-
-                    dialogManager.show(DIALOG.MY_ACCOUNT);
-                });
-                
-                
                 
                 //
                 // File Menu
@@ -199,9 +180,23 @@ define([
 
 
                 //
+                // Help Menu
+                //
+                this.registerClick(MENU.HELP.ABOUT, function() {
+
+                    dialogManager.show(DIALOG.ABOUT);
+                });
+
+
+                //
                 // User Menu
                 //
-                this.registerClick('userMenu_logout', function() {
+                this.registerClick(MENU.USER.PREFERENCES, function() {
+
+                    dialogManager.show(DIALOG.PREFERENCES);
+                });
+
+                this.registerClick(MENU.USER.LOGOUT, function() {
 
 
                     cookieManager.destroy('stormcloud-key');

@@ -179,16 +179,6 @@
             <div data-dojo-type="dijit/layout/ContentPane" id="pageTop" data-dojo-props="region:'top', splitter:false" style="border: none;">
                 <div data-dojo-type="dijit/MenuBar">
 
-                    <div data-dojo-type="dijit/PopupMenuBarItem"><span><b>Stormcloud</b></span>
-                        <div data-dojo-type="dijit/DropDownMenu" id="stormcloudMenu">
-                            <div data-dojo-type="dijit/MenuItem" id="stormcloudMenu_about">About Stormcloud IDE</div>
-                            <div data-dojo-type="dijit/MenuSeparator"></div>
-                            <div data-dojo-type="dijit/MenuItem" id="stormcloudMenu_preferences">Preferences...</div>
-                            <div data-dojo-type="dijit/MenuSeparator"></div>
-                            <div data-dojo-type="dijit/MenuItem" id="stormcloudMenu_my_account">My Account</div>
-                        </div>
-                    </div>
-
                     <div data-dojo-type="dijit/PopupMenuBarItem"><span>File</span>
                         <div data-dojo-type="dijit/DropDownMenu" id="fileMenu">
                             <div data-dojo-type="dijit/MenuItem" id="fileMenu_new_file" data-dojo-props="iconClass:'newFileIcon'">New File...</div>
@@ -228,9 +218,20 @@
                         </div>
                     </div>
 
+                    <div data-dojo-type="dijit/PopupMenuBarItem"><span>Help</span>
+                        <div data-dojo-type="dijit/DropDownMenu" id="helpMenu"></div>
+                        <div data-dojo-type="dijit/MenuItem" id="helpMenu_about">About Stormcloud IDE</div>
+                    </div>
+
+                    <div style="float:right;padding-top: 2px; padding-right: 2px;">
+                        <img id="userImage" width="22px" height="22px">
+                    </div>
+
                     <div data-dojo-type="dijit/PopupMenuBarItem" id="userMenu">
-                        <span>Test</span>
+                        <span></span>
                         <div data-dojo-type="dijit/DropDownMenu">
+                            <div data-dojo-type="dijit/MenuItem" id="userMenu_preferences">Preferences</div>
+                            <div data-dojo-type="dijit/MenuSeparator"></div>
                             <div data-dojo-type="dijit/MenuItem" id="userMenu_logout">Logout</div>
                         </div>
                     </div>

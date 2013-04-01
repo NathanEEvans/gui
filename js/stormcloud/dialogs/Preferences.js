@@ -35,23 +35,27 @@ define([
                 
                 ready(function() {
 
-                    dojo.byId('gitHubSettingsUserName').value = settingsManager.getGitHubUser();                
-                    dojo.byId('gitHubSettingsPassword').value = settingsManager.getGitHubPassword();
+
+                    dojo.byId('preferencesAvatar').src = settingsManager.user.gravatar;
+                    
+                    dojo.byId('preferencesFullName').innerHTML = settingsManager.user.fullName;
+                    
+                    dojo.byId('preferencesUserName').innerHTML = settingsManager.user.userName;
+                    
+                    dojo.byId('preferencesEmail').innerHTML = settingsManager.user.emailAddress;
+                    
+                    dojo.byId('preferencesCity').innerHTML = settingsManager.user.city 
+                    
+                    dojo.byId('preferencesCountry').innerHTML = settingsManager.user.country
+                    
+                    dojo.byId('preferencesJoined').innerHTML = settingsManager.user.joined;
+                
+                   
+                   
+                   
+                   
                 });
                 
-            },
-            
-            
-            verifyGitHubCredentials : function(){
-              
-                var credentials = {
-                  
-                    user : dojo.byId('gitHubSettingsUserName').value,
-                    pass : dojo.byId('gitHubSettingsPassword').value    
-                }
-              
-                gitHubManager.verify(credentials);
-              
             },
             
             close : function(){

@@ -90,6 +90,19 @@ define([
                 
                 TEMPLATES : 'toolsMenu_templates',
                 GITHUB : 'toolsMenu_gitHub'
+            },
+            
+            HELP : {
+                
+                ABOUT : 'helpMenu_about'
+            },
+            
+            
+            USER : {
+                
+                PREFERENCES : 'userMenu_preferences',
+                LOGOUT : 'userMenu_logout'
+                
             }
         };
         
@@ -171,14 +184,24 @@ define([
 
                     // summary : Takes care of all initial gui state(s)
 
+
+                    // set the username
                     var userMenu = dijit.byId('userMenu');
                     
                     if(userMenu){
                         
-                        userMenu.set('label', 'Coder : ' +settingsManager.user.userName);
+                        userMenu.set('label', '<b>' + settingsManager.user.userName + '</b>');
                     }
                     
-              
+                    // set avatar
+                    var userImage = dojo.byId('userImage');
+
+                    if(userImage){
+                        userImage.src = settingsManager.user.gravatar;
+                    }
+                    
+                    
+                    
                     // @todo figure out why the UI (editor sync checkbox) is not updating correctly
                     // https://github.com/stormcloud-ide/gui/issues/54
                     
