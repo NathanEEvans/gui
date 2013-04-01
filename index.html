@@ -228,9 +228,11 @@
                         </div>
                     </div>
 
-                    <div id="statusBar">
-                        <div id="statusBarMessage" style="float:left;margin-right: 5px;"></div>
-                        <div data-dojo-type="dijit/ProgressBar" id="progressBar" data-dojo-id="progressBar" data-dojo-props="indeterminate:true"></div>
+                    <div data-dojo-type="dijit/PopupMenuBarItem" id="userMenu">
+                        <span>Test</span>
+                        <div data-dojo-type="dijit/DropDownMenu">
+                            <div data-dojo-type="dijit/MenuItem" id="userMenu_logout">Logout</div>
+                        </div>
                     </div>
 
                 </div>
@@ -245,6 +247,14 @@
                     <div data-dojo-type="dijit/form/Button" id="toolBar_install" data-dojo-props="iconClass:'installCommandIcon', showLabel:false"></div>
                     <span data-dojo-type="dijit/ToolbarSeparator"></span>
                     <div data-dojo-type="dijit/form/Button" id="toolBar_trash" data-dojo-props="iconClass:'trashEmptyIcon', showLabel:false"></div>
+
+
+                    <div id="statusBar">
+                        <div id="statusBarMessage" style="float:left;margin-right: 5px;"></div>
+                        <div data-dojo-type="dijit/ProgressBar" id="progressBar" data-dojo-id="progressBar" data-dojo-props="indeterminate:true"></div>
+                    </div>
+
+
                 </div>
 
             </div>

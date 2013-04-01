@@ -58,7 +58,7 @@ function sendCredentials(user, pass){
 // Make a call to get the user
 //
 function verify(){
-                
+                            
     var userCheck = new XMLHttpRequest();
     userCheck.open('GET', 'http://' + window.location.host + '/stormcloud/api/user', true);
     userCheck.onreadystatechange = function() {
@@ -69,10 +69,9 @@ function verify(){
                         
                         
                 require(['stormcloud/manager/SettingsManager'], function(SettingsManager){
-                    
-                
-                    settingsManager = SettingsManager;        
                         
+                    settingsManager = SettingsManager;             
+    
                     settingsManager.user = JSON.parse(userCheck.responseText);
                
                 });

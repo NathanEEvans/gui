@@ -197,6 +197,20 @@ define([
                     dialogManager.show(DIALOG.TEMPLATES);
                 });
 
+
+                //
+                // User Menu
+                //
+                this.registerClick('userMenu_logout', function() {
+
+
+                    cookieManager.destroy('stormcloud-key');
+                    cookieManager.destroy('stormcloud-user');
+                    
+                    document.location.reload(true);
+                });
+
+
                 //
                 // Toolbar Menu (Icon menubar)
                 //

@@ -169,8 +169,15 @@ define([
               
                 ready(function() {
 
-              
                     // summary : Takes care of all initial gui state(s)
+
+                    var userMenu = dijit.byId('userMenu');
+                    
+                    if(userMenu){
+                        
+                        userMenu.set('label', 'Coder : ' +settingsManager.user.userName);
+                    }
+                    
               
                     // @todo figure out why the UI (editor sync checkbox) is not updating correctly
                     // https://github.com/stormcloud-ide/gui/issues/54
