@@ -19,9 +19,11 @@
  * 
  */
 define([
-    'dojo/ready'], 
+    'dojo/ready',
+    'stormcloud/rest/xhr'], 
     function(
-        ready){
+        ready,
+        xhr){
         
         //
         // module      : stormcloud/dialogs/Preferences
@@ -37,22 +39,39 @@ define([
 
 
                     dojo.byId('preferencesAvatar').src = settingsManager.user.gravatar;
-                    
                     dojo.byId('preferencesFullName').innerHTML = settingsManager.user.fullName;
-                    
                     dojo.byId('preferencesUserName').innerHTML = settingsManager.user.userName;
-                    
                     dojo.byId('preferencesEmail').innerHTML = settingsManager.user.emailAddress;
-                    
                     dojo.byId('preferencesCity').innerHTML = settingsManager.user.city 
-                    
                     dojo.byId('preferencesCountry').innerHTML = settingsManager.user.country
-                    
                     dojo.byId('preferencesJoined').innerHTML = settingsManager.user.joined;
                 
-                   
-                   
-                   
+                    var codersList = dojo.byId('codersList');
+                    
+                    xhr.get({
+                        url: settingsManager.getApiUrl() + '/user/coders',     
+                        load: function(data) {
+            
+                            var coders = JSON.parse(data);
+            
+                            for(var i=0; i < coders.length; i++){
+                                
+                                
+                                var coder = document.createElement('div');
+                                coder.className = 'coderEntry';
+                                
+                                coder.innerHTML = '<img src="' + coders[i].gravatar + '" width="22px" height="22px"><div class="name">' 
+                                + coders[i].userName + '</div><div class="place"> from ' 
+                                + coders[i].homeTown + ', ' + coders[i].country + '</div>';
+                             
+                                codersList.appendChild(coder);
+                             
+                            }
+            
+                            
+                            
+                        }
+                    });
                    
                 });
                 

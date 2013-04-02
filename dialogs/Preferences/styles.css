@@ -82,3 +82,32 @@ label {
     margin-top : 40px;
     padding-left : 24px;
 }
+
+.coderEntry{
+
+    float : left;
+    width : 95%;
+    padding-top: 5px;
+    padding-left: 5px;
+
+}
+
+.coderEntry img{
+
+    float : left;
+    padding-right : 5px;
+}
+
+.coderEntry .name{
+
+    float : left;
+    font-weight : bold;
+    padding-right : 3px;
+}
+
+.coderEntry .place{
+
+    float : left;
+
+}
+
