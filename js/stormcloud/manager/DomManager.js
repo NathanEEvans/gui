@@ -198,7 +198,8 @@ define([
                 });
                         
                 tabs.addChild(tab);
-                    
+                
+                tabs.selectChild(tab);
             },
         
         
@@ -242,6 +243,8 @@ define([
                         });
                         
                         tabs.addChild(tab);
+                        
+                        tabs.selectChild(tab);
                     }
                     
                     
