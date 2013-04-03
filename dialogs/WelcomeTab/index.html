@@ -81,7 +81,25 @@
     <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'bottom'" style="border: 0px;">
 
         <div style="text-align: center;margin-bottom: 10px;">
-            <input data-dojo-type="dijit/form/CheckBox" checked onchange="settingsManager.savePreference(PREFERENCE.SHOW_WELCOME_TAB, false);"/><label>Show on Startup</label>
+            <div id="showWelcomeTab"></div>
+            <label>Show on Startup</label>
         </div>
+
     </div>
+
+
+    <script>
+        require(["dojo/ready", "dijit/form/CheckBox"], function(ready, CheckBox){
+            
+            
+            var checked = settingsManager.getPreference(PREFERENCE.SHOW_WELCOME_TAB);
+            
+            var checkBox = new CheckBox({
+                value: 'agreed',
+                checked: checked == 'true' ? true : false,
+                onChange: function() { settingsManager.savePreference(PREFERENCE.SHOW_WELCOME_TAB, document.getElementById('showWelcomeTab').checked == true ? true : false) }
+            }, 'showWelcomeTab');
+        });
+    </script>
+
 </div>

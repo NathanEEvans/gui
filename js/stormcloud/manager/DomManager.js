@@ -94,6 +94,12 @@ define([
                 GITHUB : 'toolsMenu_gitHub'
             },
             
+            WINDOW : {
+            
+                WELCOME_TAB : 'windowMenu_welcome'
+            
+            },
+            
             HELP : {
                 
                 ABOUT : 'helpMenu_about'
@@ -179,6 +185,23 @@ define([
         return{
         
         
+            openWelcomeTab : function(){
+                
+                var tabs = dijit.byId('tabContainer');
+                        
+                var tab = new ContentPane({
+                    title:'Welcome', 
+                    closable : true,
+                    iconClass : 'welcomeIcon',
+                    id : 'welcomeTab',
+                    href:'dialogs/WelcomeTab/index.html'
+                });
+                        
+                tabs.addChild(tab);
+                    
+            },
+        
+        
             init : function(){
               
               
@@ -235,6 +258,6 @@ define([
                 
                 });
               
-            }      
+            }
         };
     });

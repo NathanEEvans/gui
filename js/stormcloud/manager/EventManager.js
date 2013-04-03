@@ -180,6 +180,15 @@ define([
 
 
                 //
+                // Window Menu
+                //
+                this.registerClick(MENU.WINDOW.WELCOME_TAB, function() {
+
+                    domManager.openWelcomeTab();
+                });
+
+
+                //
                 // Help Menu
                 //
                 this.registerClick(MENU.HELP.ABOUT, function() {

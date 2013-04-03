@@ -48,6 +48,10 @@ define([
             recentlyOpened : new Array(),
             
             
+            // array of changed files
+            changedFiles : new Array(),
+            
+            
             init : function(){
               
                 // summary : Get the recentFiles cookie and 

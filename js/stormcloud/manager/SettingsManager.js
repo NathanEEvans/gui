@@ -18,8 +18,10 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([], 
-    function(){
+define([
+    'stormcloud/rest/xhr'], 
+    function(
+        xhr){
     
         //
         // module       : stormcloud/manager/SettingsManager
@@ -136,7 +138,25 @@ define([],
                 
                 console.info('set ' + key + ' = ' + value );
                 
-                
+                var xhrArgs = {
+                    url: this.getApiUrl() + '/user/preference',
+                    content : {
+                        key : key,
+                        value : value
+                    }
+                }
+    
+                var deferred = xhr.post(xhrArgs);
+            
+                deferred.then(
+                    function(data){
+                    
+                        console.info(data);
+                    },
+                    function(error){
+            
+                        statusManager.error(error);
+                    });    
             }
             
         };
