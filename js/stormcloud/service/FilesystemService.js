@@ -271,7 +271,7 @@ define([
                     }
                     
                     // create new tab
-                    require(["dojo/ready", "dojox/layout/ContentPane"], 
+                    require(['dojo/ready', 'dojox/layout/ContentPane'], 
                         function(ready, ContentPane){
                             ready(function(){
                                 

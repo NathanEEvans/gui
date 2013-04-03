@@ -19,9 +19,11 @@
  * 
  */
 define([
-    'dojo/ready'], 
+    'dojo/ready',
+    'dojox/layout/ContentPane'], 
     function(
-        ready){
+        ready,
+        ContentPane){
 
         //
         // module       : stormcloud/manager/DomManager
@@ -201,21 +203,35 @@ define([
                     }
                     
                     
+                    // check the welcome tab preference
+                    var welcomeTab = settingsManager.getPreference(PREFERENCE.SHOW_WELCOME_TAB);
                     
-                    // @todo figure out why the UI (editor sync checkbox) is not updating correctly
-                    // https://github.com/stormcloud-ide/gui/issues/54
+                    if(welcomeTab == 'true'){
+                        
+                        var tabs = dijit.byId('tabContainer');
+                        
+                        var tab = new ContentPane({
+                            title:'Welcome', 
+                            closable : true,
+                            iconClass : 'welcomeIcon',
+                            id : 'welcomeTab',
+                            href:'dialogs/WelcomeTab/index.html'
+                        });
+                        
+                        tabs.addChild(tab);
+                    }
                     
-                    var checked = settingsManager.getPreference(PREFERENCE.SYNC_EDITOR_VIEWS);
+                    
+                // @todo figure out why the UI (editor sync checkbox) is not updating correctly
+                // https://github.com/stormcloud-ide/gui/issues/54
+                    
+                //var checked = settingsManager.getPreference(PREFERENCE.SYNC_EDITOR_VIEWS);
+                //console.info('we want ' + checked);
+                //var menu = dijit.byId(MENU.VIEW.SYNC_EDITOR);
+                //console.info('its now : ' + menu.get('checked'));
+                //menu.set('checked', checked);
+                //console.info('and now its ' + menu.get('checked'));
                 
-                    console.info('we want ' + checked);
-                
-                    var menu = dijit.byId(MENU.VIEW.SYNC_EDITOR);
-                
-                    console.info('its now : ' + menu.get('checked'));
-                
-                    menu.set('checked', checked);
-                
-                    console.info('and now its ' + menu.get('checked'));
                 
                 });
               

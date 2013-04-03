@@ -27,7 +27,7 @@ function sendCredentials(user, pass){
     
     
     var login = new XMLHttpRequest();
-    login.open('POST', 'http://' + window.location.host + '/stormcloud/api/login', true);
+    login.open('POST', 'https://' + window.location.host + '/stormcloud/api/login', true);
     
     
     login.setRequestHeader('Authorization', 'Basic ' + enc);
@@ -39,7 +39,7 @@ function sendCredentials(user, pass){
                         
             if (login.status == 200) {
                 
-                document.location = 'http://' + window.location.host;
+                document.location = 'https://' + window.location.host;
                 
             }else{
                             
@@ -60,7 +60,7 @@ function sendCredentials(user, pass){
 function verify(){
                             
     var userCheck = new XMLHttpRequest();
-    userCheck.open('GET', 'http://' + window.location.host + '/stormcloud/api/user', true);
+    userCheck.open('GET', 'https://' + window.location.host + '/stormcloud/api/user', true);
     userCheck.onreadystatechange = function() {
                     
         if (userCheck.readyState == 4) {
@@ -78,7 +78,7 @@ function verify(){
             
             }else{
                             
-                document.location = 'http://' + window.location.host + '/login.html'; 
+                document.location = 'https://' + window.location.host + '/login.html'; 
             }
         }
     };

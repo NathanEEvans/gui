@@ -40,6 +40,7 @@ define([],
         
         PREFERENCE = {
             
+            SHOW_WELCOME_TAB : 'SHOW_WELCOME_TAB',
             SYNC_EDITOR_VIEWS : 'SYNC_EDITOR_VIEWS',
             GITHUB_USER : 'GITHUB_USER',
             GITHUB_PASSWORD : 'GITHUB_PASSWORD'
@@ -55,7 +56,7 @@ define([],
             // convenience method to get the api url from user settings
             getApiUrl : function(){
             
-                return 'http://' + window.location.host + this.getSetting(SETTING.API_URL);
+                return 'https://' + window.location.host + this.getSetting(SETTING.API_URL);
             },
             
             // convenience method to get the users project folder
@@ -133,7 +134,7 @@ define([],
             
             savePreference : function(key, value){
                 
-                
+                console.info('set ' + key + ' = ' + value );
                 
                 
             }

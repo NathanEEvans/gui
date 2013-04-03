@@ -1,0 +1,87 @@
+<div data-dojo-type="dijit/layout/BorderContainer" style="width: 100%; height: 100%">
+
+    <div data-dojo-type="dijit/layout/ContentPane" id="welcomeBanner" data-dojo-props="region:'top'" style="border:0px; height: 125px;">
+
+        <img src="images/logo/logo-trimmed.png"/>
+        <span style="font-size:38px; width: 100%; float:left; padding-left:5px; color: #FFFFFF;"><b>Welcome</b></span>
+    </div>
+
+    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'" style="overflow: hidden; border:0px;">
+
+        <div style="width: 90%; height: 90%; float:left; padding-left: 35px; padding-top: 40px;">
+
+            <div style="float:left; width: 100%; padding-bottom: 40px;">
+                <div style="float:left; padding-right: 40px;">
+                    <img style="float:left;" src="images/welcome/new-project.png"/>
+                    <div style="float:left; width: 300px; padding-top: 15px; padding-left: 20px;">
+                        <a href="#" style="text-decoration: none;" onclick="dialogManager.show(DIALOG.NEW_PROJECT);">
+                            <span style="font-size: 18px;"><b>Create New Project</b><br/></span>
+                            <span>Create a new Maven Project based an Archetype</span>
+                        </a>
+                    </div>
+                </div>
+                <div style="float:left;">
+                    <img style="float:left;" src="images/welcome/documentation.png"/>
+                    <div style="float:left; width: 300px; padding-top: 15px; padding-left: 20px;">
+                        <a href="http://stormcloud-ide.org/documentation/" target="_blank" style="text-decoration: none;">
+                            <span style="font-size: 18px;"><b>Documentation</b><br/></span>
+                            <!--span>Browse trough the Stormcloud IDE documentation</span-->
+                            <span>Browse trough the Java IDE documentation</span>
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="float:left; width: 100%; padding-bottom: 40px;">
+                <div style="float:left; padding-right: 40px;"> 
+                    <img style="float:left;" src="images/welcome/open-project.png"/>
+                    <div style="float:left; width: 300px; padding-top: 15px; padding-left: 20px;">
+                        <a href="#" style="text-decoration: none;" onclick="dialogManager.show(DIALOG.OPEN_PROJECT); treeManager.refresh('closedProjectTree');">
+                            <span style="font-size: 18px;"><b>Open Project</b><br/></span>
+                            <span>Browse the Remote Filesystem to open a Project</span>
+                        </a>
+                    </div>
+                </div>
+                <div style="float:left;">
+                    <img style="float:left;" src="images/welcome/tutorials.png"/>
+                    <div style="float:left; width: 300px; padding-top: 15px; padding-left: 20px;">
+                        <a href="http://stormcloud-ide.org/tutorials/" target="_blank" style="text-decoration: none;">
+                            <span style="font-size: 18px;"><b>Tutorials</b><br/></span>
+                            <span>Get started with Project Tutorials</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="float:left; width: 100%; padding-bottom: 40px;">
+                <div style="float:left; padding-right: 40px; visibility: hidden;">
+                    <img style="float:left;" src="images/welcome/import-project.png"/>
+                    <div style="float:left; width: 300px; padding-top: 15px; padding-left: 20px;">
+                        <a href="javascript:alert('open');" style="text-decoration: none;">
+                            <span style="font-size: 18px;"><b>Open Example Project</b><br/></span>
+                            <span>Browse trough the example Maven Projects</span>
+                        </a>
+                    </div>
+                </div>
+                <div style="width: 50%; height: 25%; float:left;"> 
+                    <img style="float:left;" src="images/welcome/forum.png"/>
+                    <div style="float:left; width: 300px; padding-top: 15px; padding-left: 20px;">
+                        <a href="http://list.stormcloud-ide.org/" target="_blank" style="text-decoration: none;">
+                            <span style="font-size: 18px;"><b>Forum</b><br/></span>
+                            <span>Questions, Feedback and Troubleshooting</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'bottom'" style="border: 0px;">
+
+        <div style="text-align: center;margin-bottom: 10px;">
+            <input data-dojo-type="dijit/form/CheckBox" checked onchange="settingsManager.savePreference(PREFERENCE.SHOW_WELCOME_TAB, false);"/><label>Show on Startup</label>
+        </div>
+    </div>
+</div>
