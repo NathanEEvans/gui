@@ -1,0 +1,17 @@
+.changePasswordForm{
+
+
+    float : left;
+    width : 90%;
+}
+
+.changePasswordForm label{
+
+    float : left;
+    margin-top : 7px;
+}
+
+.changePasswordForm input{
+
+    float : left;
+}

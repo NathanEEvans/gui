@@ -46,6 +46,7 @@ require([
             // Declare all managers.
             require([
                 'stormcloud/manager/AnnotationManager',
+                'stormcloud/manager/ApplicationManager',
                 'stormcloud/manager/CookieManager',
                 'stormcloud/manager/DialogManager',
                 'stormcloud/manager/DomManager',
@@ -63,6 +64,7 @@ require([
                 'stormcloud/manager/TreeManager'], 
                 function(
                     AnnotationManager,
+                    ApplicationManager,
                     CookieManager,
                     DialogManager,
                     DomManager,
@@ -82,6 +84,7 @@ require([
                     // declare all managers globally
                     
                     annotationManager = AnnotationManager;
+                    applicationManager = ApplicationManager;
                     cookieManager = CookieManager;
                     dialogManager = DialogManager;
                     domManager = DomManager;

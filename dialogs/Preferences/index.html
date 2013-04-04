@@ -6,6 +6,39 @@
        
             dialog.init();
         }); 
+        
+        function preferencesEdit(entry){
+            
+            dijit.byId(entry + '_Value').set('disabled',false);
+            dojo.byId(entry).style.visibility = 'hidden';
+            dojo.byId(entry + '_Apply').style.visibility = 'visible';
+            dojo.byId(entry + '_Cancel').style.visibility = 'visible';
+        }
+        
+        function preferencesApply(entry){
+        
+            require(['stormcloud/dialogs/Preferences'], function(dialog){
+       
+                dialog.save(entry, dijit.byId(entry + '_Value').get('value'));
+            }); 
+        
+            dijit.byId(entry + '_Value').set('disabled', true);
+            dojo.byId(entry).style.visibility = 'visible';
+            dojo.byId(entry + '_Apply').style.visibility = 'hidden';
+            dojo.byId(entry + '_Cancel').style.visibility = 'hidden';
+        }
+        
+        function preferencesCancel(entry){
+            
+            dijit.byId(entry + '_Value').set('value', settingsManager.getInfo(entry));
+            dijit.byId(entry + '_Value').set('disabled', true);
+            dojo.byId(entry).style.visibility = 'visible';
+            dojo.byId(entry + '_Apply').style.visibility = 'hidden';
+            dojo.byId(entry + '_Cancel').style.visibility = 'hidden';
+        }
+        
+        tooltipManager.attach(['FULL_NAME','EMAIL_ADDRESS','CITY','COUNTRY'],'Edit');
+        
     </script>
 
     <div data-dojo-type="dijit/layout/TabContainer" style="height:100%">
@@ -14,35 +47,47 @@
 
             <div class="preferencesTitle">Community Cloud Coder</div>
 
-            <label>Full Name</label>
-            <div id="preferencesFullName"></div>
-            <div id="preferencesFullNameEdit">
-                <a href="#">edit</a>
+            <div class="preferencesEditForm">
+                <label>User Name</label>
+                <div id="preferencesUserName"></div>
             </div>
 
-            <label>User Name</label>
-            <div id="preferencesUserName"></div>
-
-            <label>Email Address</label>
-            <div id="preferencesEmail"></div>
-            <div id="preferencesEmailEdit">
-                <a href="#">edit</a>
+            <div class="preferencesEditForm">
+                <label>Full Name</label>
+                <input data-dojo-type="dijit/form/TextBox" id="FULL_NAME_Value" disabled="true"/>
+                <img src="/images/edit/edit.png" id="FULL_NAME" onclick="preferencesEdit('FULL_NAME');">
+                <img src="/images/edit/apply.png" id="FULL_NAME_Apply" onclick="preferencesApply('FULL_NAME');" style="visibility: hidden;">
+                <img src="/images/edit/cancel.png" id="FULL_NAME_Cancel" onclick="preferencesCancel('FULL_NAME');" style="visibility: hidden;">
             </div>
 
-            <label>Home Town</label>
-            <div id="preferencesCity"></div>
-            <div id="preferencesCityEdit">
-                <a href="#">edit</a>
+            <div class="preferencesEditForm">
+                <label>Email Address</label>
+                <input data-dojo-type="dijit/form/TextBox" id="EMAIL_ADDRESS_Value" disabled="true"/>
+                <img src="/images/edit/edit.png" id="EMAIL_ADDRESS" onclick="preferencesEdit('EMAIL_ADDRESS');">
+                <img src="/images/edit/apply.png" id="EMAIL_ADDRESS_Apply" onclick="preferencesApply('EMAIL_ADDRESS');" style="visibility: hidden;">
+                <img src="/images/edit/cancel.png" id="EMAIL_ADDRESS_Cancel" onclick="preferencesCancel('EMAIL_ADDRESS');" style="visibility: hidden;">
             </div>
 
-            <label>Country</label>
-            <div id="preferencesCountry"></div>
-            <div id="preferencesCountryEdit">
-                <a href="#">edit</a>
+            <div class="preferencesEditForm">
+                <label>Home Town</label>
+                <input data-dojo-type="dijit/form/TextBox" id="CITY_Value" disabled="true"/>
+                <img src="/images/edit/edit.png" id="CITY" onclick="preferencesEdit('CITY');">
+                <img src="/images/edit/apply.png" id="CITY_Apply" onclick="preferencesApply('CITY');" style="visibility: hidden;">
+                <img src="/images/edit/cancel.png" id="CITY_Cancel" onclick="preferencesCancel('CITY');" style="visibility: hidden;">
             </div>
 
-            <label>Joined us on</label>
-            <div id="preferencesJoined"></div>
+            <div class="preferencesEditForm">
+                <label>Country</label>
+                <input data-dojo-type="dijit/form/TextBox" id="COUNTRY_Value" disabled="true"/>
+                <img src="/images/edit/edit.png" id="COUNTRY" onclick="preferencesEdit('COUNTRY');">
+                <img src="/images/edit/apply.png" id="COUNTRY_Apply" onclick="preferencesApply('COUNTRY');" style="visibility: hidden;">
+                <img src="/images/edit/cancel.png" id="COUNTRY_Cancel" onclick="preferencesCancel('COUNTRY');" style="visibility: hidden;">
+            </div>
+
+            <div class="preferencesEditForm">
+                <label>Joined us on</label>
+                <div id="preferencesJoined"></div>
+            </div>
 
             <div id="preferencesAvatarContainer">
                 <div id="preferencesAvatarTitle">Gravatar</div>
@@ -56,17 +101,21 @@
             </div>
 
 
-            <div id="preferencesActionBar" class="dijitDialogPaneActionBar">
+            <div id="preferencesActionBar">
 
                 <button data-dojo-type="dijit/form/Button" type="button">Change Password
                     <script type="dojo/on" data-dojo-event="click" data-dojo-args="evt">
-                        alert('change');
+                        dialogManager.show(DIALOG.CHANGE_PASSWORD);
                     </script>
                 </button>
 
                 <button data-dojo-type="dijit/form/Button" type="button">Delete Account
                     <script type="dojo/on" data-dojo-event="click" data-dojo-args="evt">
-                        alert('change');
+
+                        require(['stormcloud/dialogs/Preferences'], function(dialog){
+
+                        dialog.deleteAccount();
+                        }); 
                     </script>
                 </button>
 
@@ -75,7 +124,7 @@
         </div>
 
 
-        <div data-dojo-type="dijit/layout/ContentPane" title="The Others">
+        <div data-dojo-type="dijit/layout/ContentPane" title="Cloud Coders">
 
 
             <div id="codersList"></div>
@@ -92,19 +141,9 @@
     </div>
 
 
-
-
-
 </div>
 
 <div class="dijitDialogPaneActionBar">
-
-    <button data-dojo-type="dijit/form/Button" type="button">
-        <script type="dojo/connect" data-dojo-event="onClick">
-            dialogManager.hide(DIALOG.PREFERENCES);
-        </script>
-        Cancel
-    </button>
 
     <button data-dojo-type="dijit/form/Button" type="button">
         <script type="dojo/connect" data-dojo-event="onClick">

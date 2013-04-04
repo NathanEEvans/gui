@@ -29,6 +29,20 @@ define([
         // summary      : 
         //
         
+        
+        INFO = {
+            
+            FULL_NAME : 'FULL_NAME',
+            SCREEN_NAME : 'SCREEN_NAME',
+            EMAIL_ADDRESS : 'EMAIL_ADDRESS',
+            CITY : 'CITY',
+            COUNTRY : 'COUNTRY',
+            GRAVATAR : 'GRAVATAR',
+            JOINED : 'JOINED',
+            WEBSITE : 'WEBSITE'
+        }
+        
+        
         SETTING = {  
     
             API_URL : 'API_URL',
@@ -134,9 +148,105 @@ define([
                 return undefined;
             },
             
-            savePreference : function(key, value){
+            
+            getInfo : function(key){
+              
+                for(var i in this.user.info){
+                    
+                    for(var x in this.user.info[i]){
+                    
+                        if(x == 'key' && this.user.info[i][x] == key){
+                            
+                            return this.user.info[i].value;
+                        }
+                    }   
+                }  
+            
+                return undefined;
+            },
+            
+            setInfo : function(key, value){
+              
+                for(var i in this.user.info){
+                    
+                    for(var x in this.user.info[i]){
+                    
+                        if(x == 'key' && this.user.info[i][x] == key){
+                            
+                            this.user.info[i].value = value;
+                        }
+                    }   
+                }  
+            },
+            
+            
+            changePassword : function(currentPassword, newPassword){
+              
+              
+                console.info(currentPassword + ' ' + newPassword);
                 
-                console.info('set ' + key + ' = ' + value );
+                
+                var xhrArgs = {
+                    url: this.getApiUrl() + '/user/password',
+                    content : {
+                        currentPassword : currentPassword,
+                        newPassword : newPassword
+                    }
+                }
+    
+                var deferred = xhr.post(xhrArgs);
+            
+                deferred.then(
+                    function(data){
+                    
+                        if(data == '0'){
+                            applicationManager.logout();
+                        }else{
+                            dojo.byId(changePasswordMessage).innerHTML = data;
+                        }
+                        
+                    },
+                    function(error){
+            
+                        statusManager.error(error);
+                    });    
+            },
+            
+            
+            deleteAccount : function(){
+              
+              
+              
+            },
+            
+            saveInfo : function(key, value){
+                
+                var xhrArgs = {
+                    url: this.getApiUrl() + '/user/info',
+                    content : {
+                        key : key,
+                        value : value
+                    }
+                }
+    
+                var deferred = xhr.post(xhrArgs);
+            
+                deferred.then(
+                    function(data){
+                    
+                        if(data == '0'){
+                            settingsManager.setInfo(key, value);
+                        }
+                    },
+                    function(error){
+            
+                        statusManager.error(error);
+                    });    
+              
+              
+            },
+            
+            savePreference : function(key, value){
                 
                 var xhrArgs = {
                     url: this.getApiUrl() + '/user/preference',

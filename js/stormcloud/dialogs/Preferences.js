@@ -20,9 +20,11 @@
  */
 define([
     'dojo/ready',
+    'dijit/Dialog',
     'stormcloud/rest/xhr'], 
     function(
         ready,
+        Dialog,
         xhr){
         
         //
@@ -38,13 +40,13 @@ define([
                 ready(function() {
 
 
-                    dojo.byId('preferencesAvatar').src = settingsManager.user.gravatar;
-                    dojo.byId('preferencesFullName').innerHTML = settingsManager.user.fullName;
                     dojo.byId('preferencesUserName').innerHTML = settingsManager.user.userName;
-                    dojo.byId('preferencesEmail').innerHTML = settingsManager.user.emailAddress;
-                    dojo.byId('preferencesCity').innerHTML = settingsManager.user.city 
-                    dojo.byId('preferencesCountry').innerHTML = settingsManager.user.country
-                    dojo.byId('preferencesJoined').innerHTML = settingsManager.user.joined;
+                    dojo.byId('preferencesAvatar').src = settingsManager.getInfo(INFO.GRAVATAR);
+                    dojo.byId('FULL_NAME_Value').value = settingsManager.getInfo(INFO.FULL_NAME);
+                    dojo.byId('EMAIL_ADDRESS_Value').value = settingsManager.getInfo(INFO.EMAIL_ADDRESS);
+                    dojo.byId('CITY_Value').value = settingsManager.getInfo(INFO.CITY); 
+                    dojo.byId('COUNTRY_Value').value = settingsManager.getInfo(INFO.COUNTRY);
+                    dojo.byId('preferencesJoined').innerHTML = settingsManager.getInfo(INFO.JOINED);
                 
                     var codersList = dojo.byId('codersList');
                     
@@ -60,21 +62,33 @@ define([
                                 var coder = document.createElement('div');
                                 coder.className = 'coderEntry';
                                 
+                                var lastSeen = coders[i].lastSeen == null ? 'Has not been around yet. ' : 'Last seen on ' + coders[i].lastSeen;
+                                
                                 coder.innerHTML = '<img src="' + coders[i].gravatar + '" width="22px" height="22px"><div class="name">' 
                                 + coders[i].userName + '</div><div class="place"> from ' 
-                                + coders[i].homeTown + ', ' + coders[i].country + '</div>';
+                                + coders[i].homeTown + ', ' + coders[i].country + '. ' + lastSeen + '</div>';
                              
                                 codersList.appendChild(coder);
-                             
                             }
-            
-                            
-                            
                         }
                     });
                    
                 });
+            },
+            
+            
+            save : function(key, value){
                 
+                settingsManager.saveInfo(key, value);
+            },
+            
+            
+            
+            deleteAccount : function(){
+              
+              
+              
+                settingsManager.deleteAccount();
             },
             
             close : function(){

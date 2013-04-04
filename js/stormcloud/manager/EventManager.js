@@ -207,11 +207,7 @@ define([
 
                 this.registerClick(MENU.USER.LOGOUT, function() {
 
-
-                    cookieManager.destroy('stormcloud-key');
-                    cookieManager.destroy('stormcloud-user');
-                    
-                    document.location.reload(true);
+                    applicationManager.logout();
                 });
 
 

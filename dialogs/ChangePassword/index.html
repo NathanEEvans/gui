@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="/dialogs/ChangePassword/styles.css">
+<div class="dijitDialogPaneContentArea" style="height: 100px; width: 400px;">
+
+    <script>
+        require(['stormcloud/dialogs/ChangePassword'], function(dialog){
+            dialog.init();
+        });
+    </script>
+
+
+
+    <div class="changePasswordForm">
+        <label>Current Password</label>
+        <input data-dojo-type="dijit/form/TextBox" id="currentPassword"/>
+    </div>
+
+    <div class="changePasswordForm">
+        <label>New Password</label>
+        <input data-dojo-type="dijit/form/TextBox" id="newPassword"/>
+    </div>
+
+    <div class="changePasswordForm">
+        <label>Full Name</label>
+        <input data-dojo-type="dijit/form/TextBox"/>
+    </div>
+
+    <div id="changePasswordMessage" style="color:red;"></div>
+
+
+    <div id="changePasswordDescription">
+        After successfully changing your password the IDE will
+        automatically logout and you will have to login again.
+    </div>
+
+</div>
+
+
+<div class="dijitDialogPaneActionBar">
+
+    <button data-dojo-type="dijit/form/Button" type="button">
+        <script type="dojo/connect" data-dojo-event="onClick">
+            require(['stormcloud/dialogs/ChangePassword'], function(dialog){
+            dialog.changePassword();
+            });   
+        </script>
+        Change Password
+    </button>
+
+
+    <button data-dojo-type="dijit/form/Button" type="button">
+        <script type="dojo/connect" data-dojo-event="onClick">
+            require(['stormcloud/dialogs/ChangePassword'], function(dialog){
+            dialog.cancel();
+            });     
+        </script>
+        Cancel
+    </button>
+
+</div>

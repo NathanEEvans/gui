@@ -34,6 +34,7 @@ define([
         DIALOG = {
         
             ABOUT :  'aboutDialog', 
+            CHANGE_PASSWORD : 'changePasswordDialog',
             PREFERENCES : 'preferencesDialog',         
             MY_ACCOUNT : 'myAccountDialog',
             CUSTOM_GOALS : 'customGoalsDialog',
@@ -223,7 +224,7 @@ define([
                     var userImage = dojo.byId('userImage');
 
                     if(userImage){
-                        userImage.src = settingsManager.user.gravatar;
+                        userImage.src = settingsManager.getInfo(INFO.GRAVATAR);
                     }
                     
                     
@@ -248,15 +249,12 @@ define([
                     }
                     
                     
-                // @todo figure out why the UI (editor sync checkbox) is not updating correctly
-                // https://github.com/stormcloud-ide/gui/issues/54
+                    // @todo figure out why the UI (editor sync checkbox) is not updating correctly
+                    // https://github.com/stormcloud-ide/gui/issues/54
                     
-                //var checked = settingsManager.getPreference(PREFERENCE.SYNC_EDITOR_VIEWS);
-                //console.info('we want ' + checked);
-                //var menu = dijit.byId(MENU.VIEW.SYNC_EDITOR);
-                //console.info('its now : ' + menu.get('checked'));
-                //menu.set('checked', checked);
-                //console.info('and now its ' + menu.get('checked'));
+                    var checked = settingsManager.getPreference(PREFERENCE.SYNC_EDITOR_VIEWS);
+                    var menu = dijit.byId(MENU.VIEW.SYNC_EDITOR);
+                    menu.set('checked', checked == 'true' ? true : false);
                 
                 
                 });

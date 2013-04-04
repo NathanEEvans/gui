@@ -1,4 +1,44 @@
 
+#preferencesUserName{
+
+    margin-top : 6px;
+}
+
+#preferencesJoined{
+
+    margin-top : 5px;
+}
+
+.preferencesEditForm{
+
+    float : left;
+    width : 90%;
+}
+
+.preferencesEditForm img{
+
+    cursor : pointer;
+
+    padding-top : 2px;
+
+}
+
+.preferencesEditForm label{
+
+    float : left;
+
+    margin-top : 7px;
+}
+
+.preferencesEditForm input{
+
+    float : left;
+
+}
+
+
+
+
 .preferencesTitle{
 
     float : left;
@@ -110,4 +150,5 @@ label {
     float : left;
 
 }
+
 

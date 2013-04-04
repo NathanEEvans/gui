@@ -31,11 +31,27 @@ define([],
 
         var CONSTANTS = {
         
-            SHOW_DELAY : 1500
+            SHOW_DELAY : 1000
         
         }
 
         return{
+    
+    
+            attach : function(id, label){
+              
+                require(['dijit/Tooltip'], function(Tooltip){
+
+                
+                    new Tooltip({
+                        connectId: id,
+                        showDelay : CONSTANTS.SHOW_DELAY,
+                        label: label
+                    });
+                });
+              
+              
+            },
     
             bind : function(){
             
