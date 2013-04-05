@@ -31,7 +31,7 @@ define([],
 
         var CONSTANTS = {
         
-            SHOW_DELAY : 1000
+            SHOW_DELAY : 500
         
         }
 

@@ -1,0 +1,151 @@
+
+#accountUserName{
+
+    margin-top : 6px;
+}
+
+#accountJoined{
+
+    margin-top : 5px;
+}
+
+.accountEditForm{
+
+    float : left;
+    width : 90%;
+}
+
+.accountEditForm img{
+
+    cursor : pointer;
+
+    padding-top : 2px;
+
+}
+
+.accountEditForm label{
+
+    float : left;
+
+    margin-top : 7px;
+}
+
+.accountEditForm input{
+
+    float : left;
+
+}
+
+.accountTitle{
+
+    float : left;
+    padding-top : 20px;
+    padding-bottom : 20px;
+    width : 95%;
+    font-size : 18px;
+    padding-left : 20px;
+}
+
+label {
+    float : left;
+    width : 100px;
+    padding-left : 20px;
+}
+
+#accountAvatarContainer{
+
+    float : left;
+    text-align : center;
+}
+
+#accountAvatarTitle{
+
+    float : left;
+    text-align : left;
+    width : 95%;
+    font-weight : bold;
+    padding-bottom : 10px;
+    padding-top : 20px;
+    padding-left : 20px;
+}
+
+#accountAvatarExplain {
+
+    float : left;
+    width : 250px;
+    font-size : 10px;
+    text-align : justify;
+    padding-left : 20px;
+}
+
+#accountFullName{
+
+    float : left;
+    width : 200px;
+}
+
+#accountUserName{
+
+    color : grey;
+}
+
+#accountEmail{
+
+    float : left;
+    width : 200px;
+
+}
+
+#accountCity{
+
+    float : left;
+    width : 200px;
+
+}
+
+#accountCountry{
+
+    float : left;
+    width : 200px;
+
+}
+
+
+#accountActionBar{
+
+    float : left;
+    width : 365px;
+    text-align : left;
+    margin-top : 40px;
+    padding-left : 24px;
+}
+
+.coderEntry{
+
+    float : left;
+    width : 95%;
+    padding-top: 5px;
+    padding-left: 5px;
+
+}
+
+.coderEntry img{
+
+    float : left;
+    padding-right : 5px;
+}
+
+.coderEntry .name{
+
+    float : left;
+    font-weight : bold;
+    padding-right : 3px;
+}
+
+.coderEntry .place{
+
+    float : left;
+
+}
+
+

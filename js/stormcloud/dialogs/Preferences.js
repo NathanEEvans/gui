@@ -20,12 +20,14 @@
  */
 define([
     'dojo/ready',
-    'dijit/Dialog',
-    'stormcloud/rest/xhr'], 
+    'dojo/store/Memory',
+    'dijit/form/CheckBox',
+    'dijit/form/ComboBox'], 
     function(
         ready,
-        Dialog,
-        xhr){
+        Memory,
+        CheckBox,
+        ComboBox){
         
         //
         // module      : stormcloud/dialogs/Preferences
@@ -40,55 +42,116 @@ define([
                 ready(function() {
 
 
-                    dojo.byId('preferencesUserName').innerHTML = settingsManager.user.userName;
-                    dojo.byId('preferencesAvatar').src = settingsManager.getInfo(INFO.GRAVATAR);
-                    dojo.byId('FULL_NAME_Value').value = settingsManager.getInfo(INFO.FULL_NAME);
-                    dojo.byId('EMAIL_ADDRESS_Value').value = settingsManager.getInfo(INFO.EMAIL_ADDRESS);
-                    dojo.byId('CITY_Value').value = settingsManager.getInfo(INFO.CITY); 
-                    dojo.byId('COUNTRY_Value').value = settingsManager.getInfo(INFO.COUNTRY);
-                    dojo.byId('preferencesJoined').innerHTML = settingsManager.getInfo(INFO.JOINED);
-                
-                    var codersList = dojo.byId('codersList');
-                    
-                    xhr.get({
-                        url: settingsManager.getApiUrl() + '/user/coders',     
-                        load: function(data) {
-            
-                            var coders = JSON.parse(data);
-            
-                            for(var i=0; i < coders.length; i++){
-                                
-                                
-                                var coder = document.createElement('div');
-                                coder.className = 'coderEntry';
-                                
-                                var lastSeen = coders[i].lastSeen == null ? 'Has not been around yet. ' : 'Last seen on ' + coders[i].lastSeen;
-                                
-                                coder.innerHTML = '<img src="' + coders[i].gravatar + '" width="22px" height="22px"><div class="name">' 
-                                + coders[i].userName + '</div><div class="place"> from ' 
-                                + coders[i].homeTown + ', ' + coders[i].country + '. ' + lastSeen + '</div>';
-                             
-                                codersList.appendChild(coder);
-                            }
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.EDITOR_HIGHLIGHT_ACTIVE_LINE) == 'true' ? true : false,
+                        onChange: function() {
+                            
+                            // update the preview
+                            previewEditor.setHighlightActiveLine(this.get('checked'));
+                            
+                            // save selected value
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                            
+                            // update open editors
+                            editorManager.setHightlightActiveLine(this.get('checked'));
                         }
-                    });
-                   
+                    }, PREFERENCE.EDITOR_HIGHLIGHT_ACTIVE_LINE);
+
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.EDITOR_HIGHLIGHT_SELECTED_WORD) == 'true' ? true : false,
+                        onChange: function() {
+                            
+                            previewEditor.setHighlightSelectedWord(this.get('checked'));
+                            
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                            
+                            editorManager.setHighlightSelectedWord(this.get('checked'));
+                        }
+                    }, PREFERENCE.EDITOR_HIGHLIGHT_SELECTED_WORD);
+
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_INVISIBLES) == 'true' ? true : false,
+                        onChange: function() {
+                            
+                            previewEditor.setShowInvisibles(this.get('checked'));
+                            
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                            
+                            editorManager.setShowInvisibles(this.get('checked'));
+                        }
+                    }, PREFERENCE.EDITOR_SHOW_INVISIBLES);
+
+
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_INDENT_GUIDES) == 'true' ? true : false,
+                        onChange: function() {
+
+                            previewEditor.setDisplayIndentGuides(this.get('checked'));
+                            
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                            
+                            editorManager.setDisplayIndentGuides(this.get('checked'));
+                        }
+                    }, PREFERENCE.EDITOR_SHOW_INDENT_GUIDES);
+
+
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_GUTTER) == 'true' ? true : false,
+                        onChange: function() {
+                            
+                            previewEditor.renderer.setShowGutter(this.get('checked'));
+                            
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                            
+                            editorManager.setShowGutter(this.get('checked'));
+                        }
+                    }, PREFERENCE.EDITOR_SHOW_GUTTER);
+
+
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_PRINT_MARGIN) == 'true' ? true : false,
+                        onChange: function() {
+                            
+                            previewEditor.renderer.setShowPrintMargin(this.get('checked'));
+                            
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                            
+                            editorManager.setShowPrintMargin(this.get('checked'));
+                        }
+                    }, PREFERENCE.EDITOR_SHOW_PRINT_MARGIN);
+
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.EDITOR_USE_SOFT_TAB) == 'true' ? true : false,
+                        onChange: function() {
+                            
+                            previewEditor.getSession().setUseSoftTabs(this.get('checked'));
+                            
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                            
+                            editorManager.setUseSoftTabs(this.get('checked'));
+                        }
+                    }, PREFERENCE.EDITOR_USE_SOFT_TAB);
+
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.EDITOR_FADE_FOLD_WIDGETS) == 'true' ? true : false,
+                        onChange: function() {
+                            
+                            previewEditor.renderer.setFadeFoldWidgets(this.get('checked'));
+                            
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                            
+                            editorManager.setFadeFoldWidgets(this.get('checked'));
+                        }
+                    }, PREFERENCE.EDITOR_FADE_FOLD_WIDGETS);
+
+
+        
                 });
             },
             
             
             save : function(key, value){
                 
-                settingsManager.saveInfo(key, value);
-            },
-            
-            
-            
-            deleteAccount : function(){
-              
-              
-              
-                settingsManager.deleteAccount();
             },
             
             close : function(){

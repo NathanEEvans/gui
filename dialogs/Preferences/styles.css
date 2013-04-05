@@ -1,33 +1,17 @@
-
-#preferencesUserName{
-
-    margin-top : 6px;
-}
-
-#preferencesJoined{
-
-    margin-top : 5px;
-}
-
 .preferencesEditForm{
 
     float : left;
     width : 90%;
-}
-
-.preferencesEditForm img{
-
-    cursor : pointer;
-
-    padding-top : 2px;
-
+    padding-bottom : 5px;
 }
 
 .preferencesEditForm label{
 
     float : left;
+    width : 150px;
+    text-align : right;
+    padding-right : 10px;
 
-    margin-top : 7px;
 }
 
 .preferencesEditForm input{
@@ -35,9 +19,6 @@
     float : left;
 
 }
-
-
-
 
 .preferencesTitle{
 
@@ -49,106 +30,24 @@
     padding-left : 20px;
 }
 
-label {
-    float : left;
-    width : 100px;
-    padding-left : 20px;
-}
-
-#preferencesAvatarContainer{
+#preferencesEditorExplain{
 
     float : left;
-    text-align : center;
-}
-
-#preferencesAvatarTitle{
-
-    float : left;
-    text-align : left;
-    width : 95%;
-    font-weight : bold;
-    padding-bottom : 10px;
     padding-top : 20px;
+    padding-bottom : 20px;
     padding-left : 20px;
-}
-
-#preferencesAvatarExplain {
-
-    float : left;
-    width : 250px;
     font-size : 10px;
+    color : grey;
+    width : 305px;
     text-align : justify;
-    padding-left : 20px;
 }
 
-#preferencesFullName{
+#preferencesEditorPreviewContainer{
 
-    float : left;
-    width : 200px;
+    top : 20px;
+    left : 360px;
+    width : 700px;
+    height : 415px;
+    border : 1px solid #b5bcc7;
 }
-
-#preferencesUserName{
-
-    color : lightgrey;
-}
-
-#preferencesEmail{
-
-    float : left;
-    width : 200px;
-
-}
-
-#preferencesCity{
-
-    float : left;
-    width : 200px;
-
-}
-
-#preferencesCountry{
-
-    float : left;
-    width : 200px;
-
-}
-
-
-#preferencesActionBar{
-
-    float : left;
-    width : 365px;
-    text-align : left;
-    margin-top : 40px;
-    padding-left : 24px;
-}
-
-.coderEntry{
-
-    float : left;
-    width : 95%;
-    padding-top: 5px;
-    padding-left: 5px;
-
-}
-
-.coderEntry img{
-
-    float : left;
-    padding-right : 5px;
-}
-
-.coderEntry .name{
-
-    float : left;
-    font-weight : bold;
-    padding-right : 3px;
-}
-
-.coderEntry .place{
-
-    float : left;
-
-}
-
 

@@ -39,7 +39,7 @@
         <div data-dojo-type="dojox/widget/DialogSimple" id="aboutDialog" data-dojo-props="href: 'dialogs/AboutDialog/index.html', loadingMessage:'Preparing ...'" title="About Stormcloud IDE"></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="changePasswordDialog" data-dojo-props="href: 'dialogs/ChangePassword/index.html', loadingMessage:'Preparing ...'" title="Change your password ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="preferencesDialog" data-dojo-props="href: 'dialogs/Preferences/index.html', loadingMessage:'Preparing ...'" title="Preferences ..."></div>
-        <div data-dojo-type="dojox/widget/DialogSimple" id="myAccountDialog" data-dojo-props="href: 'dialogs/MyAccount/index.html'" title="My Account ..."></div>
+        <div data-dojo-type="dojox/widget/DialogSimple" id="accountDialog" data-dojo-props="href: 'dialogs/Account/index.html'" title="My Account ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="customGoalsDialog" data-dojo-props="href: 'dialogs/CustomGoals/index.html'" title="Run Maven ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="newProjectDialog" data-dojo-props="href: 'dialogs/NewProject/index.html'" title="Create a New Project ..."></div>
         <div data-dojo-type="dojox/widget/DialogSimple" id="cloneRemoteDialog" data-dojo-props="href: 'dialogs/CloneRemote/index.html'" title="Clone a Remote Repository ..."></div>
@@ -239,6 +239,8 @@
                         <span></span>
                         <div data-dojo-type="dijit/DropDownMenu">
                             <div data-dojo-type="dijit/MenuItem" id="userMenu_preferences">Preferences</div>
+                            <div data-dojo-type="dijit/MenuSeparator"></div>
+                            <div data-dojo-type="dijit/MenuItem" id="userMenu_account">Account</div>
                             <div data-dojo-type="dijit/MenuSeparator"></div>
                             <div data-dojo-type="dijit/MenuItem" id="userMenu_logout">Logout</div>
                         </div>

@@ -1,0 +1,148 @@
+<link rel="stylesheet" href="/dialogs/Account/styles.css">
+<div class="dijitDialogPaneContentArea" style="height: 500px; width: 600px;">
+
+    <script>
+        require(['stormcloud/dialogs/Account'], function(dialog){
+       
+            dialog.init();
+        }); 
+        
+        function accountEdit(entry){
+            
+            dijit.byId(entry + '_Value').set('disabled',false);
+            dojo.byId(entry).style.visibility = 'hidden';
+            dojo.byId(entry + '_Apply').style.visibility = 'visible';
+            dojo.byId(entry + '_Cancel').style.visibility = 'visible';
+        }
+        
+        function accountApply(entry){
+        
+            require(['stormcloud/dialogs/Account'], function(dialog){
+       
+                dialog.save(entry, dijit.byId(entry + '_Value').get('value'));
+            }); 
+        
+            dijit.byId(entry + '_Value').set('disabled', true);
+            dojo.byId(entry).style.visibility = 'visible';
+            dojo.byId(entry + '_Apply').style.visibility = 'hidden';
+            dojo.byId(entry + '_Cancel').style.visibility = 'hidden';
+        }
+        
+        function accountCancel(entry){
+            
+            dijit.byId(entry + '_Value').set('value', settingsManager.getInfo(entry));
+            dijit.byId(entry + '_Value').set('disabled', true);
+            dojo.byId(entry).style.visibility = 'visible';
+            dojo.byId(entry + '_Apply').style.visibility = 'hidden';
+            dojo.byId(entry + '_Cancel').style.visibility = 'hidden';
+        }
+        
+        tooltipManager.attach(['FULL_NAME','EMAIL_ADDRESS','CITY','COUNTRY'],'Edit');
+        tooltipManager.attach(['FULL_NAME_Apply','EMAIL_ADDRESS_Apply','CITY_Apply','COUNTRY_Apply'],'Save');
+        tooltipManager.attach(['FULL_NAME_Cancel','EMAIL_ADDRESS_Cancel','CITY_Cancel','COUNTRY_Cancel'],'Cancel');
+        
+    </script>
+
+    <div data-dojo-type="dijit/layout/TabContainer" style="height:100%">
+
+        <div data-dojo-type="dijit/layout/ContentPane" title="You">
+
+            <div class="accountTitle">Community Cloud Coder</div>
+
+            <div class="accountEditForm">
+                <label>User Name</label>
+                <div id="accountUserName"></div>
+            </div>
+
+            <div class="accountEditForm">
+                <label>Full Name</label>
+                <input data-dojo-type="dijit/form/TextBox" id="FULL_NAME_Value" disabled="true"/>
+                <img src="/images/edit/edit.png" id="FULL_NAME" onclick="accountEdit('FULL_NAME');">
+                <img src="/images/edit/apply.png" id="FULL_NAME_Apply" onclick="accountApply('FULL_NAME');" style="visibility: hidden;">
+                <img src="/images/edit/cancel.png" id="FULL_NAME_Cancel" onclick="accountCancel('FULL_NAME');" style="visibility: hidden;">
+            </div>
+
+            <div class="accountEditForm">
+                <label>Email Address</label>
+                <input data-dojo-type="dijit/form/TextBox" id="EMAIL_ADDRESS_Value" disabled="true"/>
+                <img src="/images/edit/edit.png" id="EMAIL_ADDRESS" onclick="accountEdit('EMAIL_ADDRESS');">
+                <img src="/images/edit/apply.png" id="EMAIL_ADDRESS_Apply" onclick="accountApply('EMAIL_ADDRESS');" style="visibility: hidden;">
+                <img src="/images/edit/cancel.png" id="EMAIL_ADDRESS_Cancel" onclick="accountCancel('EMAIL_ADDRESS');" style="visibility: hidden;">
+            </div>
+
+            <div class="accountEditForm">
+                <label>Home Town</label>
+                <input data-dojo-type="dijit/form/TextBox" id="CITY_Value" disabled="true"/>
+                <img src="/images/edit/edit.png" id="CITY" onclick="accountEdit('CITY');">
+                <img src="/images/edit/apply.png" id="CITY_Apply" onclick="accountApply('CITY');" style="visibility: hidden;">
+                <img src="/images/edit/cancel.png" id="CITY_Cancel" onclick="accountCancel('CITY');" style="visibility: hidden;">
+            </div>
+
+            <div class="accountEditForm">
+                <label>Country</label>
+                <input data-dojo-type="dijit/form/TextBox" id="COUNTRY_Value" disabled="true"/>
+                <img src="/images/edit/edit.png" id="COUNTRY" onclick="accountEdit('COUNTRY');">
+                <img src="/images/edit/apply.png" id="COUNTRY_Apply" onclick="accountApply('COUNTRY');" style="visibility: hidden;">
+                <img src="/images/edit/cancel.png" id="COUNTRY_Cancel" onclick="accountCancel('COUNTRY');" style="visibility: hidden;">
+            </div>
+
+            <div class="accountEditForm">
+                <label>Joined us on</label>
+                <div id="accountJoined"></div>
+            </div>
+
+            <div id="accountAvatarContainer">
+                <div id="accountAvatarTitle">Gravatar</div>
+                <img id="accountAvatar">
+                <div id="accountAvatarExplain">
+                    This Gravatar is retrieved from <a href="http://gravatar.com/" target="_blank">Gravatar.com</a> based
+                    on your email address. If you don't see your avatar you either need to sign up at Gravatar.com with 
+                    the email address you are using here as well or change your email address you are using here to the one 
+                    which is registered with Gravatar.com
+                </div>
+            </div>
+
+
+            <div id="accountActionBar">
+
+                <button data-dojo-type="dijit/form/Button" type="button">Change Password
+                    <script type="dojo/on" data-dojo-event="click" data-dojo-args="evt">
+                        dialogManager.show(DIALOG.CHANGE_PASSWORD);
+                    </script>
+                </button>
+
+                <button data-dojo-type="dijit/form/Button" type="button">Delete Account
+                    <script type="dojo/on" data-dojo-event="click" data-dojo-args="evt">
+
+                        require(['stormcloud/dialogs/Account'], function(dialog){
+
+                        dialog.deleteAccount();
+                        }); 
+                    </script>
+                </button>
+
+            </div>
+
+        </div>
+
+        <div data-dojo-type="dijit/layout/ContentPane" title="Cloud Coders">
+
+            <div id="codersList"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="dijitDialogPaneActionBar">
+
+    <button data-dojo-type="dijit/form/Button" type="button">
+        <script type="dojo/connect" data-dojo-event="onClick">
+            dialogManager.hide(DIALOG.ACCOUNT);
+        </script>
+        OK
+    </button>
+
+</div>

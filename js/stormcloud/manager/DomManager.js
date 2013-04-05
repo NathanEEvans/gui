@@ -34,6 +34,7 @@ define([
         DIALOG = {
         
             ABOUT :  'aboutDialog', 
+            ACCOUNT : 'accountDialog',
             CHANGE_PASSWORD : 'changePasswordDialog',
             PREFERENCES : 'preferencesDialog',         
             MY_ACCOUNT : 'myAccountDialog',
@@ -110,6 +111,7 @@ define([
             USER : {
                 
                 PREFERENCES : 'userMenu_preferences',
+                ACCOUNT : 'userMenu_account',
                 LOGOUT : 'userMenu_logout'
                 
             }
@@ -248,14 +250,11 @@ define([
                         tabs.selectChild(tab);
                     }
                     
-                    
-                    // @todo figure out why the UI (editor sync checkbox) is not updating correctly
-                    // https://github.com/stormcloud-ide/gui/issues/54
-                    
+                    // set the editor / view sync checkbox
                     var checked = settingsManager.getPreference(PREFERENCE.SYNC_EDITOR_VIEWS);
+                    
                     var menu = dijit.byId(MENU.VIEW.SYNC_EDITOR);
                     menu.set('checked', checked == 'true' ? true : false);
-                
                 
                 });
               

@@ -166,8 +166,11 @@ define([
                 //
                 this.registerClick(MENU.VIEW.SYNC_EDITOR, function() {
 
+                    var checked = dijit.byId(MENU.VIEW.SYNC_EDITOR).get('checked') == true ? true : false;
 
-                    });
+                    settingsManager.savePreference(
+                        PREFERENCE.SYNC_EDITOR_VIEWS, checked);
+                });
 
 
                 //
@@ -203,6 +206,11 @@ define([
                 this.registerClick(MENU.USER.PREFERENCES, function() {
 
                     dialogManager.show(DIALOG.PREFERENCES);
+                });
+
+                this.registerClick(MENU.USER.ACCOUNT, function() {
+
+                    dialogManager.show(DIALOG.ACCOUNT);
                 });
 
                 this.registerClick(MENU.USER.LOGOUT, function() {

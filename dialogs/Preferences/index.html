@@ -1,145 +1,229 @@
 <link rel="stylesheet" href="/dialogs/Preferences/styles.css">
-<div class="dijitDialogPaneContentArea" style="height: 500px; width: 600px;">
+<div class="dijitDialogPaneContentArea" style="height: 600px; width: 1100px;">
 
     <script>
         require(['stormcloud/dialogs/Preferences'], function(dialog){
        
             dialog.init();
         }); 
-        
-        function preferencesEdit(entry){
-            
-            dijit.byId(entry + '_Value').set('disabled',false);
-            dojo.byId(entry).style.visibility = 'hidden';
-            dojo.byId(entry + '_Apply').style.visibility = 'visible';
-            dojo.byId(entry + '_Cancel').style.visibility = 'visible';
-        }
-        
-        function preferencesApply(entry){
-        
-            require(['stormcloud/dialogs/Preferences'], function(dialog){
-       
-                dialog.save(entry, dijit.byId(entry + '_Value').get('value'));
-            }); 
-        
-            dijit.byId(entry + '_Value').set('disabled', true);
-            dojo.byId(entry).style.visibility = 'visible';
-            dojo.byId(entry + '_Apply').style.visibility = 'hidden';
-            dojo.byId(entry + '_Cancel').style.visibility = 'hidden';
-        }
-        
-        function preferencesCancel(entry){
-            
-            dijit.byId(entry + '_Value').set('value', settingsManager.getInfo(entry));
-            dijit.byId(entry + '_Value').set('disabled', true);
-            dojo.byId(entry).style.visibility = 'visible';
-            dojo.byId(entry + '_Apply').style.visibility = 'hidden';
-            dojo.byId(entry + '_Cancel').style.visibility = 'hidden';
-        }
-        
-        tooltipManager.attach(['FULL_NAME','EMAIL_ADDRESS','CITY','COUNTRY'],'Edit');
-        
     </script>
 
     <div data-dojo-type="dijit/layout/TabContainer" style="height:100%">
 
-        <div data-dojo-type="dijit/layout/ContentPane" title="You">
+        <div data-dojo-type="dijit/layout/ContentPane" title="Editor">
 
-            <div class="preferencesTitle">Community Cloud Coder</div>
+            <div id="preferencesEditorOptions">
 
-            <div class="preferencesEditForm">
-                <label>User Name</label>
-                <div id="preferencesUserName"></div>
-            </div>
-
-            <div class="preferencesEditForm">
-                <label>Full Name</label>
-                <input data-dojo-type="dijit/form/TextBox" id="FULL_NAME_Value" disabled="true"/>
-                <img src="/images/edit/edit.png" id="FULL_NAME" onclick="preferencesEdit('FULL_NAME');">
-                <img src="/images/edit/apply.png" id="FULL_NAME_Apply" onclick="preferencesApply('FULL_NAME');" style="visibility: hidden;">
-                <img src="/images/edit/cancel.png" id="FULL_NAME_Cancel" onclick="preferencesCancel('FULL_NAME');" style="visibility: hidden;">
-            </div>
-
-            <div class="preferencesEditForm">
-                <label>Email Address</label>
-                <input data-dojo-type="dijit/form/TextBox" id="EMAIL_ADDRESS_Value" disabled="true"/>
-                <img src="/images/edit/edit.png" id="EMAIL_ADDRESS" onclick="preferencesEdit('EMAIL_ADDRESS');">
-                <img src="/images/edit/apply.png" id="EMAIL_ADDRESS_Apply" onclick="preferencesApply('EMAIL_ADDRESS');" style="visibility: hidden;">
-                <img src="/images/edit/cancel.png" id="EMAIL_ADDRESS_Cancel" onclick="preferencesCancel('EMAIL_ADDRESS');" style="visibility: hidden;">
-            </div>
-
-            <div class="preferencesEditForm">
-                <label>Home Town</label>
-                <input data-dojo-type="dijit/form/TextBox" id="CITY_Value" disabled="true"/>
-                <img src="/images/edit/edit.png" id="CITY" onclick="preferencesEdit('CITY');">
-                <img src="/images/edit/apply.png" id="CITY_Apply" onclick="preferencesApply('CITY');" style="visibility: hidden;">
-                <img src="/images/edit/cancel.png" id="CITY_Cancel" onclick="preferencesCancel('CITY');" style="visibility: hidden;">
-            </div>
-
-            <div class="preferencesEditForm">
-                <label>Country</label>
-                <input data-dojo-type="dijit/form/TextBox" id="COUNTRY_Value" disabled="true"/>
-                <img src="/images/edit/edit.png" id="COUNTRY" onclick="preferencesEdit('COUNTRY');">
-                <img src="/images/edit/apply.png" id="COUNTRY_Apply" onclick="preferencesApply('COUNTRY');" style="visibility: hidden;">
-                <img src="/images/edit/cancel.png" id="COUNTRY_Cancel" onclick="preferencesCancel('COUNTRY');" style="visibility: hidden;">
-            </div>
-
-            <div class="preferencesEditForm">
-                <label>Joined us on</label>
-                <div id="preferencesJoined"></div>
-            </div>
-
-            <div id="preferencesAvatarContainer">
-                <div id="preferencesAvatarTitle">Gravatar</div>
-                <img id="preferencesAvatar">
-                <div id="preferencesAvatarExplain">
-                    This Gravatar is retrieved from <a href="http://gravatar.com/" target="_blank">Gravatar.com</a> based
-                    on your email address. If you don't see your avatar you either need to sign up at Gravatar.com with 
-                    the email address you are using here as well or change your email address you are using here to the one 
-                    which is registered with Gravatar.com
+                <div id="preferencesEditorExplain">
+                    Here you can adjust the way your Editor looks and behaves by
+                    default. Some of these options can be switched on and off 
+                    trough the editor context menu.
                 </div>
+
+                <div class="preferencesEditForm">
+                    <label>Language</label>
+                    <select data-dojo-type="dijit/form/FilteringSelect"
+                            data-dojo-props="
+                            value: 'java',
+                            onChange: function(){
+
+                            switchContents(this.get('value'));
+
+                            }">
+                        <option value="css">CSS</option>
+                        <option value="html">HTML</option>
+                        <option value="java">Java</option>
+                        <option value="javascript">Javascript</option>
+                        <option value="json">JSON</option>
+                        <option value="jsp">JSP</option>
+                        <option value="sql">SQL</option>
+                        <option value="text">Text</option>
+                        <option value="xml">XML</option>
+                    </select>
+                </div>
+
+                <div class="preferencesEditForm">
+                    <label>Theme</label>
+                    <select id="EDITOR_THEME" 
+                            data-dojo-type="dijit/form/FilteringSelect"
+                            data-dojo-props="
+                            value: settingsManager.getPreference(PREFERENCE.EDITOR_THEME),
+                            onChange: function(){
+
+                            previewEditor.setTheme(this.get('value'));
+                            settingsManager.savePreference(this.get('id'), this.get('value'));
+                            editorManager.setTheme(this.get('value'));
+
+                            }">
+                        <optgroup label="Bright">
+                            <option value="ace/theme/chrome">Chrome</option>
+                            <option value="ace/theme/clouds">Clouds</option>
+                            <option value="ace/theme/crimson_editor">Crimson Editor</option>
+                            <option value="ace/theme/dawn">Dawn</option>
+                            <option value="ace/theme/dreamweaver">Dreamweaver</option>
+                            <option value="ace/theme/eclipse">Eclipse</option>
+                            <option value="ace/theme/github">GitHub</option>
+                            <option value="ace/theme/solarized_light">Solarized Light</option>
+                            <option value="ace/theme/textmate">TextMate</option>
+                            <option value="ace/theme/tomorrow">Tomorrow</option>
+                            <option value="ace/theme/xcode">XCode</option>
+                        </optgroup>
+                        <optgroup label="Dark">
+                            <option value="ace/theme/ambiance">Ambiance</option>
+                            <option value="ace/theme/clouds_midnight">Clouds Midnight</option>
+                            <option value="ace/theme/cobalt">Cobalt</option>
+                            <option value="ace/theme/idle_fingers">idleFingers</option>
+                            <option value="ace/theme/merbivore">Merbivore</option>
+                            <option value="ace/theme/merbivore_soft">Merbivore Soft</option>
+                            <option value="ace/theme/mono_industrial">Mono Industrial</option>
+                            <option value="ace/theme/monokai">Monokai</option>
+                            <option value="ace/theme/pastel_on_dark">Pastel on dark</option>
+                            <option value="ace/theme/solarized_dark">Solarized Dark</option>
+                            <option value="ace/theme/twilight">Twilight</option>
+                            <option value="ace/theme/tomorrow_night">Tomorrow Night</option>
+                            <option value="ace/theme/tomorrow_night_blue">Tomorrow Night Blue</option>
+                            <option value="ace/theme/tomorrow_night_bright">Tomorrow Night Bright</option>
+                            <option value="ace/theme/tomorrow_night_eighties">Tomorrow Night 80s</option>
+                            <option value="ace/theme/vibrant_ink">Vibrant Ink</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <!--div class="preferencesEditForm">
+                    <label>Font Size</label>
+                    <select id="EDITOR_FONT_SIZE" 
+                            data-dojo-type="dijit/form/FilteringSelect"
+                            data-dojo-props="
+                            value: settingsManager.getPreference(PREFERENCE.EDITOR_FONT_SIZE),
+                            onChange: function(){
+
+                            previewEditor.setFontSize(this.get('value'));
+                            settingsManager.savePreference(this.get('id'), this.get('value'));
+
+                            }">
+                        <option value="10px">10px</option>
+                        <option value="11px">11px</option>
+                        <option value="12px">12px</option>
+                        <option value="13px">13px</option>
+                        <option value="14px">14px</option>
+                        <option value="16px">16px</option>
+                        <option value="18px">18px</option>
+                        <option value="20px">20px</option>
+                        <option value="24px">24px</option>
+                    </select>
+                </div-->
+
+                <div class="preferencesEditForm">
+                    <label>Code Folding</label>
+                    <select id="EDITOR_CODE_FOLDING" 
+                            data-dojo-type="dijit/form/FilteringSelect"
+                            data-dojo-props="
+                            value: settingsManager.getPreference(PREFERENCE.EDITOR_CODE_FOLDING),
+                            onChange: function(){
+
+                            previewEditor.session.setFoldStyle(this.get('value'));
+                            settingsManager.savePreference(this.get('id'), this.get('value'));
+                            editorManager.setFoldStyle(this.get('value'));
+
+                            }">
+                        <option value="manual">None</option>
+                        <option value="markbegin">Mark begin</option>
+                        <option value="markbeginend">Mark begin and end</option>
+                    </select>
+                </div>
+
+                <div class="preferencesEditForm">
+                    <label>Soft Wrap</label>
+                    <select id="EDITOR_SOFT_WRAP" 
+                            data-dojo-type="dijit/form/FilteringSelect"
+                            data-dojo-props="
+                            value: settingsManager.getPreference(PREFERENCE.EDITOR_SOFT_WRAP),
+                            onChange: function(){
+
+                            switch (this.get('value')) {
+
+                            case 'off':
+                            previewEditor.session.setUseWrapMode(false);
+                            previewEditor.renderer.setPrintMarginColumn(80);
+                            break;
+
+                            case 'free':
+                            previewEditor.session.setUseWrapMode(true);
+                            previewEditor.session.setWrapLimitRange(null, null);
+                            previewEditor.renderer.setPrintMarginColumn(80);
+                            break;
+
+                            default:
+                            previewEditor.session.setUseWrapMode(true);
+                            var col = parseInt(value, 10);
+                            previewEditor.session.setWrapLimitRange(col, col);
+                            previewEditor.renderer.setPrintMarginColumn(col);
+
+                            }
+
+                            settingsManager.savePreference(this.get('id'), this.get('value'));
+
+                            editorManager.setSoftWrap(this.get('value'));
+
+                            }">
+                        <option value="off">Off</option>
+                        <option value="40">40 Chars</option>
+                        <option value="80">80 Chars</option>
+                        <option value="free">Free</option>
+                    </select>
+                </div>
+
+                <div class="preferencesEditForm">
+                    <label>Highlight Active Line</label>
+                    <input id="EDITOR_HIGHLIGHT_ACTIVE_LINE"/>
+                </div>
+
+                <div class="preferencesEditForm">
+                    <label>Highlight Selected Word</label>
+                    <input id="EDITOR_HIGHLIGHT_SELECTED_WORD"/>
+                </div>
+
+                <div class="preferencesEditForm">
+                    <label>Show Invisibles</label>
+                    <input id="EDITOR_SHOW_INVISIBLES">
+                </div>
+
+                <div class="preferencesEditForm">
+                    <label>Show Indent Guides</label>
+                    <input id="EDITOR_SHOW_INDENT_GUIDES"/>
+                </div>
+
+                <div class="preferencesEditForm">
+                    <label>Show Gutter</label>
+                    <input id="EDITOR_SHOW_GUTTER"/>
+                </div>
+
+                <div class="preferencesEditForm">
+                    <label>Show Print Margin</label>
+                    <input id="EDITOR_SHOW_PRINT_MARGIN"/>
+                </div>
+
+                <div class="preferencesEditForm">
+                    <label>Use Soft Tab</label>
+                    <input id="EDITOR_USE_SOFT_TAB"/>
+                </div>
+
+                <div class="preferencesEditForm">
+                    <label>Fade Fold Widgets </label>
+                    <input id="EDITOR_FADE_FOLD_WIDGETS"/>
+                </div>
+
             </div>
 
+            <div id="preferencesEditorPreview">
 
-            <div id="preferencesActionBar">
-
-                <button data-dojo-type="dijit/form/Button" type="button">Change Password
-                    <script type="dojo/on" data-dojo-event="click" data-dojo-args="evt">
-                        dialogManager.show(DIALOG.CHANGE_PASSWORD);
-                    </script>
-                </button>
-
-                <button data-dojo-type="dijit/form/Button" type="button">Delete Account
-                    <script type="dojo/on" data-dojo-event="click" data-dojo-args="evt">
-
-                        require(['stormcloud/dialogs/Preferences'], function(dialog){
-
-                        dialog.deleteAccount();
-                        }); 
-                    </script>
-                </button>
+                <div id="preferencesEditorPreviewContainer"></div>
 
             </div>
-
-        </div>
-
-
-        <div data-dojo-type="dijit/layout/ContentPane" title="Cloud Coders">
-
-
-            <div id="codersList"></div>
-
-        </div>
-
-
-        <div data-dojo-type="dijit/layout/ContentPane" title="General">
-
-
 
         </div>
 
     </div>
-
 
 </div>
 
@@ -153,3 +237,48 @@
     </button>
 
 </div>
+
+<script type="text/javascript" src="js/ace/src-noconflict/ace.js"></script>
+
+<script type="text/javascript">
+    
+    var previewEditor = ace.edit('preferencesEditorPreviewContainer');
+        
+    function initPreviewer(){
+    
+        previewEditor.getSession().setMode("ace/mode/java");
+        
+        editorManager.setEditorPreferences(previewEditor);
+        
+        switchContents('java');
+    }
+    
+    
+    function switchContents(file){
+        
+        require(['stormcloud/rest/xhr'], function(xhr){
+        
+            var xhrArgs = {
+                url: '/preview/preview.' + file,
+                sync: true
+            };
+        
+            var deferred = xhr.post(xhrArgs);
+    
+            deferred.then(
+            function(data){
+        
+                previewEditor.getSession().setMode('ace/mode/' + file);
+                previewEditor.getSession().setValue(data);
+            
+            });
+    
+        });
+        
+    }
+    
+    
+    initPreviewer();
+    
+</script>
+

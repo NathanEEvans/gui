@@ -58,8 +58,21 @@ define([
             
             SHOW_WELCOME_TAB : 'SHOW_WELCOME_TAB',
             SYNC_EDITOR_VIEWS : 'SYNC_EDITOR_VIEWS',
-            GITHUB_USER : 'GITHUB_USER',
-            GITHUB_PASSWORD : 'GITHUB_PASSWORD'
+            
+            EDITOR_THEME : 'EDITOR_THEME',
+            EDITOR_FONT_SIZE : 'EDITOR_FONT_SIZE',
+            EDITOR_CODE_FOLDING : 'EDITOR_CODE_FOLDING',
+            EDITOR_KEY_BINDINGS : 'EDITOR_KEY_BINDINGS',
+            EDITOR_SOFT_WRAP : 'EDITOR_SOFT_WRAP',
+            EDITOR_FULL_LINE_SELECT : 'EDITOR_FULL_LINE_SELECT',
+            EDITOR_HIGHLIGHT_ACTIVE_LINE : 'EDITOR_HIGHLIGHT_ACTIVE_LINE',
+            EDITOR_SHOW_INVISIBLES : 'EDITOR_SHOW_INVISIBLES',
+            EDITOR_SHOW_INDENT_GUIDES : 'EDITOR_SHOW_INDENT_GUIDES',
+            EDITOR_SHOW_GUTTER : 'EDITOR_SHOW_GUTTER',
+            EDITOR_SHOW_PRINT_MARGIN : 'EDITOR_SHOW_PRINT_MARGIN',
+            EDITOR_USE_SOFT_TAB : 'EDITOR_USE_SOFT_TAB',
+            EDITOR_HIGHLIGHT_SELECTED_WORD : 'EDITOR_HIGHLIGHT_SELECTED_WORD',
+            EDITOR_FADE_FOLD_WIDGETS : 'EDITOR_FADE_FOLD_WIDGETS'
             
         }
     
@@ -130,6 +143,20 @@ define([
               
             },
             
+            setPreference : function(key, value){
+                
+                for(var i in this.user.preferences){
+                    
+                    for(var x in this.user.preferences[i]){
+                    
+                        if(x == 'key' && this.user.preferences[i][x] == key){
+                            
+                            this.user.preferences[i].value = value;
+                        }
+                    }   
+                }    
+            },
+            
             getSetting : function(key){
               
                 // summary : Get a User setting based on the given key
@@ -147,7 +174,6 @@ define([
             
                 return undefined;
             },
-            
             
             getInfo : function(key){
               
@@ -182,10 +208,6 @@ define([
             
             changePassword : function(currentPassword, newPassword){
               
-              
-                console.info(currentPassword + ' ' + newPassword);
-                
-                
                 var xhrArgs = {
                     url: this.getApiUrl() + '/user/password',
                     content : {
@@ -236,7 +258,10 @@ define([
                     
                         if(data == '0'){
                             settingsManager.setInfo(key, value);
+                        }else{
+                            statusManager.error(data);
                         }
+                        
                     },
                     function(error){
             
@@ -261,7 +286,12 @@ define([
                 deferred.then(
                     function(data){
                     
-                        console.info(data);
+                        if(data == '0'){
+                            settingsManager.setPreference(key, value);
+                        }else{
+                            statusManager.error(data);
+                        }
+                        
                     },
                     function(error){
             
