@@ -151,7 +151,7 @@ define([
                     
                         if(x == 'key' && this.user.preferences[i][x] == key){
                             
-                            this.user.preferences[i].value = value;
+                            this.user.preferences[i].value = value.toString();
                         }
                     }   
                 }    
@@ -199,7 +199,7 @@ define([
                     
                         if(x == 'key' && this.user.info[i][x] == key){
                             
-                            this.user.info[i].value = value;
+                            this.user.info[i].value = value.toString();
                         }
                     }   
                 }  

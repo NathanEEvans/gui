@@ -46,7 +46,12 @@ define([
                     dojo.byId('EMAIL_ADDRESS_Value').value = settingsManager.getInfo(INFO.EMAIL_ADDRESS);
                     dojo.byId('CITY_Value').value = settingsManager.getInfo(INFO.CITY); 
                     dojo.byId('COUNTRY_Value').value = settingsManager.getInfo(INFO.COUNTRY);
-                    dojo.byId('accountJoined').innerHTML = settingsManager.getInfo(INFO.JOINED);
+                    
+                    
+                    var joined = settingsManager.getInfo(INFO.JOINED);
+                    var joinedDate = new Date(Date.parse(joined.replace(/-/g, " ")));
+                                
+                    dojo.byId('accountJoined').innerHTML = joinedDate;
                 
                     var codersList = dojo.byId('codersList');
                     
@@ -62,7 +67,10 @@ define([
                                 var coder = document.createElement('div');
                                 coder.className = 'coderEntry';
                                 
-                                var lastSeen = coders[i].lastSeen == null ? 'Has not been around yet. ' : 'Last seen on ' + coders[i].lastSeen;
+                                var date = coders[i].lastSeen;
+                                date = new Date(Date.parse(date.replace(/-/g, " ")));
+                                
+                                var lastSeen = coders[i].lastSeen == null ? 'Has not been around yet. ' : 'Last seen on ' + date;
                                 
                                 coder.innerHTML = '<img src="' + coders[i].gravatar + '" width="22px" height="22px"><div class="name">' 
                                 + coders[i].userName + '</div><div class="place"> from ' 

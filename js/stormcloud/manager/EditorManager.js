@@ -78,6 +78,16 @@ define([
             
             setEditorPreferences : function(editor){
               
+              
+                editor.setHighlightActiveLine(settingsManager.getPreference(PREFERENCE.EDITOR_HIGHLIGHT_ACTIVE_LINE) == 'true' ? true : false);         
+                editor.setHighlightSelectedWord(settingsManager.getPreference(PREFERENCE.EDITOR_HIGHLIGHT_SELECTED_WORD) == 'true' ? true : false);
+                editor.setShowInvisibles(settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_INVISIBLES) == 'true' ? true : false);
+                editor.setDisplayIndentGuides(settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_INDENT_GUIDES) == 'true' ? true : false);
+                editor.renderer.setShowGutter(settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_GUTTER) == 'true' ? true : false);
+                editor.renderer.setShowPrintMargin(settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_PRINT_MARGIN) == 'true' ? true : false);
+                editor.getSession().setUseSoftTabs(settingsManager.getPreference(PREFERENCE.EDITOR_USE_SOFT_TAB) == 'true' ? true : false);
+                editor.renderer.setFadeFoldWidgets(settingsManager.getPreference(PREFERENCE.EDITOR_FADE_FOLD_WIDGETS) == 'true' ? true : false);
+              
                 editor.setTheme(settingsManager.getPreference(PREFERENCE.EDITOR_THEME));
                 //editor.setFontSize(settingsManager.getPreference(PREFERENCE.EDITOR_FONT_SIZE));
                 editor.session.setFoldStyle(settingsManager.getPreference(PREFERENCE.EDITOR_CODE_FOLDING));
@@ -98,20 +108,11 @@ define([
 
                     default:
                         editor.session.setUseWrapMode(true);
-                        var col = parseInt(value, 10);
+                        var col = parseInt(settingsManager.getPreference(PREFERENCE.EDITOR_SOFT_WRAP), 10);
                         editor.session.setWrapLimitRange(col, col);
                         editor.renderer.setPrintMarginColumn(col);
 
                 }
-                 
-                editor.setHighlightActiveLine(settingsManager.getPreference(PREFERENCE.EDITOR_HIGHLIGHT_ACTIVE_LINE) == 'true' ? true : false);         
-                editor.setHighlightSelectedWord(settingsManager.getPreference(PREFERENCE.EDITOR_HIGHLIGHT_SELECTED_WORD) == 'true' ? true : false);
-                editor.setShowInvisibles(settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_INVISIBLES) == 'true' ? true : false);
-                editor.setDisplayIndentGuides(settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_INDENT_GUIDES) == 'true' ? true : false);
-                editor.renderer.setShowGutter(settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_GUTTER) == 'true' ? true : false);
-                editor.renderer.setShowPrintMargin(settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_PRINT_MARGIN) == 'true' ? true : false);
-                editor.getSession().setUseSoftTabs(settingsManager.getPreference(PREFERENCE.EDITOR_USE_SOFT_TAB) == 'true' ? true : false);
-                editor.renderer.setFadeFoldWidgets(settingsManager.getPreference(PREFERENCE.EDITOR_FADE_FOLD_WIDGETS) == 'true' ? true : false);
             },
             
             setHightlightActiveLine : function(value){
