@@ -247,6 +247,7 @@
     function initPreviewer(){
     
         previewEditor.getSession().setMode("ace/mode/java");
+        previewEditor.getSession().setUseWorker(false); 
         
         editorManager.setEditorPreferences(previewEditor);
         
