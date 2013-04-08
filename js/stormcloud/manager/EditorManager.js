@@ -389,7 +389,7 @@ define([
                 // Change tab to bold when file edited
                 editor.getSession().on('change',function(){
 
-                    dijit.byId(item.id).set('title', '<b>'+item.label+'</b>');
+                    dijit.byId(item.id).set('title', '<b><i>'+item.label+'*</i></b>');
                     
                     // add to changed files list
                     fileManager.addChangedFile(item);
