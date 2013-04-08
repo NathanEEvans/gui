@@ -736,10 +736,9 @@
 
 .saveAllIcon{
 
-    background-image: url("/icons/images/editorIconsEnabled.png"); 
-    width            : 18px;
-    height           : 18px;
-    background-position: -18px;
+    background-image: url("/images/menubar/save-all.gif"); 
+    width            : 16px;
+    height           : 16px;
 }
 
 .undoIcon{

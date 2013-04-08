@@ -6,29 +6,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/login.css">
 
-
-        <script>
-            dojoConfig = {
-                parseOnLoad: true,
-                async : true
-            }
-        </script>
-
-        <script src='/js/dojo/dojo.js'></script>
-        <script>require(["dojo/parser", "dijit/form/Button"]);</script>
-
-        <script type="text/javascript" src="js/stormcloud/auth.js"></script>
-
-        <script>
-            function send(){
-                
-                var user = document.getElementById('username');
-                var pass = document.getElementById('password'); 
-                
-                sendCredentials(user.value, pass.value);
-            }
-        </script>
-
     </head>
 
     <body class="claro">
@@ -95,6 +72,28 @@
             </div>
 
         </div>
+
+        <script>
+            dojoConfig = {
+                parseOnLoad: true,
+                async : true
+            }
+        </script>
+
+        <script src='/js/dojo/dojo.js'></script>
+        <script>require(["dojo/parser", "dijit/form/Button"]);</script>
+
+        <script type="text/javascript" src="js/stormcloud/auth.js"></script>
+
+        <script>
+            function send(){
+                
+                var user = document.getElementById('username');
+                var pass = document.getElementById('password'); 
+                
+                sendCredentials(user.value, pass.value);
+            }
+        </script>
 
     </body>
 </html>

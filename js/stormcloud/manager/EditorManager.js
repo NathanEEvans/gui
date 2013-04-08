@@ -377,12 +377,8 @@ define([
                         mac: 'Ctrl-Space'
                     },
                     exec: function(editor) {
-                                 
-                        var pos = editor.getCursorPositionScreen();            
-                                        
-                        for(prop in pos){
-                            alert(prop + ' ' + pos[prop]);
-                        }
+                         
+                    // show autocompletion
                     }
                 });
             },
@@ -394,15 +390,16 @@ define([
                 editor.getSession().on('change',function(){
 
                     dijit.byId(item.id).set('title', '<b>'+item.label+'</b>');
-                                    
+                    
+                    // add to changed files list
+                    fileManager.addChangedFile(item);
                 });
                 
                 // select the file in the tree when focus received
                 editor.on('focus',function(){
 
                     // if the preference is true we select the file in the tree
-                    if(settingsManager.getPreference(PREFERENCE.SYNC_EDITOR_VIEWS) == 'true'
-                        || settingsManager.getPreference(PREFERENCE.SYNC_EDITOR_VIEWS) == true){
+                    if(settingsManager.getPreference(PREFERENCE.SYNC_EDITOR_VIEWS) == 'true'){
                 
                         treeManager.select('projectTree', item);
                     }

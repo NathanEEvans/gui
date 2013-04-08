@@ -348,14 +348,6 @@ define([
                     });  
             },
     
-    
-            saveAll: function(){
-          
-                alert('SaveAll Not Supported Yet.');
-          
-            },
-    
-    
             // create a new file
             create: function(item){
               
@@ -413,8 +405,6 @@ define([
                     function(data){
             
                         dijit.byId(item.id).set('title', item.label);
-                        
-                        mavenManager.compile();
                     },
 
                     function(error){

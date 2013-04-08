@@ -6,28 +6,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/stormcloud.css">
 
-        <script type="text/javascript" src="js/stormcloud/auth.js"></script>
-
-        <!-- Set the Dojo configuration -->
-        <script type="text/javascript">
-            
-            verify();
-            
-            dojoConfig = {
-                
-                async: true
-            }
-        </script>
-
-        <!-- Load Dojo -->
-        <script type="text/javascript" src="js/dojo/dojo.js"></script>
-
-        <!-- Load Ace -->
-        <script type="text/javascript" src="js/ace/src-noconflict/ace.js"></script>
-
-        <!-- Load Stormcloud -->
-        <script type="text/javascript" src="js/stormcloud/stormcloud.js"></script>
-
     </head>
 
     <body class="claro">
@@ -164,16 +142,22 @@
 
         <div data-dojo-type="dijit/Menu" id="editorMenu" style="display: none;">
             <div data-dojo-type="dijit/MenuItem" id="editorMenu_save">Save Ctrl+S</div>
-            <div data-dojo-type="dijit/MenuItem" id="editorMenu_insert">Insert Code Ctrl+I</div>
-            <div data-dojo-type="dijit/MenuItem" id="editorMenu_fix_imports">Fix Imports Shift+Ctrl+I</div>
-            <div data-dojo-type="dijit/MenuSeparator"></div>
-            <div data-dojo-type="dijit/MenuItem" id="editorMenu_breakpoint">Toggle Breakpoint</div>
             <div data-dojo-type="dijit/MenuSeparator"></div>
             <div data-dojo-type="dijit/MenuItem" id="editorMenu_cut">Cut</div>
             <div data-dojo-type="dijit/MenuItem" id="editorMenu_copy">Copy</div>
             <div data-dojo-type="dijit/MenuItem" id="editorMenu_paste" data-dojo-props="disabled:true">Paste</div>
             <div data-dojo-type="dijit/MenuSeparator"></div>
             <div data-dojo-type="dijit/MenuItem" id="editorMenu_select">Select in Project</div>
+            <div data-dojo-type="dijit/MenuSeparator"></div>
+            <div data-dojo-type="dijit/PopupMenuItem"><span>Show</span>
+                <div data-dojo-type="dijit/Menu">
+                    <div data-dojo-type="dijit/CheckedMenuItem">Synchronize Editor with Views</div>
+                    <div data-dojo-type="dijit/CheckedMenuItem">Show Gutter</div>
+                    <div data-dojo-type="dijit/CheckedMenuItem">Show Print Margin</div>
+                    <div data-dojo-type="dijit/CheckedMenuItem">Show Invisibles</div>
+
+                </div>
+            </div>
         </div>
 
         <div data-dojo-type="dijit/layout/BorderContainer" id="borderContainer" data-dojo-props="gutters:true, liveSplitters:false">
@@ -252,6 +236,8 @@
                     <div data-dojo-type="dijit/form/Button" id="toolBar_new_file" data-dojo-props="iconClass:'newFileIcon', showLabel:false"></div>
                     <div data-dojo-type="dijit/form/Button" id="toolBar_new_project" data-dojo-props="iconClass:'newProjectIcon', showLabel:false"></div>
                     <div data-dojo-type="dijit/form/Button" id="toolBar_open_project" data-dojo-props="iconClass:'openProjectIcon', showLabel:false"></div>
+                    <span data-dojo-type="dijit/ToolbarSeparator"></span>
+                    <div data-dojo-type="dijit/form/Button" id="toolBar_save_all" data-dojo-props="iconClass:'saveAllIcon', showLabel:false"></div>
                     <span data-dojo-type="dijit/ToolbarSeparator"></span>
                     <div data-dojo-type="dijit/form/Button" id="toolBar_compile" data-dojo-props="iconClass:'compileCommandIcon', showLabel:false"></div>
                     <div data-dojo-type="dijit/form/Button" id="toolBar_clean" data-dojo-props="iconClass:'cleanCommandIcon', showLabel:false"></div>
@@ -342,5 +328,31 @@
 
         </div>
 
+
+        <script type="text/javascript" src="js/stormcloud/auth.js"></script>
+
+        <!-- Set the Dojo configuration -->
+        <script type="text/javascript">
+            
+            verify();
+            
+            dojoConfig = {
+                
+                async: true
+            }
+        </script>
+
+        <!-- Load Dojo -->
+        <script type="text/javascript" src="js/dojo/dojo.js"></script>
+
+        <!-- Load Ace -->
+        <script type="text/javascript" src="js/ace/src-noconflict/ace.js"></script>
+
+        <!-- Load Stormcloud -->
+        <script type="text/javascript" src="js/stormcloud/stormcloud.js"></script>
+
+
     </body>
+
+
 </html>

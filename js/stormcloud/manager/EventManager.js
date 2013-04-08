@@ -238,7 +238,12 @@ define([
 
                     treeManager.refresh('closedProjectTree');
                 });
+                
+                this.registerClick('toolBar_save_all', function() {
 
+                    fileManager.saveAll();
+                });
+                
                 this.registerClick('toolBar_compile', function() {
 
                     mavenManager.compile();
@@ -424,6 +429,15 @@ define([
                     // save the editor contents
                     fileManager.save();
                 });
+                
+                this.registerClick('editorMenu_cut', function() {
+                
+                    });
+                
+                // editorMenu_copy
+                // editorMenu_paste
+                // editorMenu_select
+                
                 
                 //
                 // Tab Toolbars

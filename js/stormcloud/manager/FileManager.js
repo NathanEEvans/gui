@@ -48,8 +48,8 @@ define([
             recentlyOpened : new Array(),
             
             
-            // array of changed files
-            changedFiles : new Array(),
+            // array of dirty files
+            dirtyFiles : new Array(),
             
             
             init : function(){
@@ -141,8 +141,41 @@ define([
               
                 // save it
                 filesystemService.save(this.selected, contents);
+                
+                // lookup the file in the changedFileList and remove it
+                for(var i=0; i < this.dirtyFiles.length; i++){
+                    
+                    if(this.dirtyFiles[i] == this.selected){
+                        this.dirtyFiles.splice(i,1);
+                    }
+                }
+                
+                // @todo check preference to compile or not
+                mavenManager.compile();
             },
             
+            saveAll : function(){
+            
+                // summary : save all files from the dirty list and remove them
+                //
+                
+                var i = this.dirtyFiles.length;
+                var saved = i;
+                
+                while (i--) {
+                    
+                    var contents = editorManager.getEditorContents(this.dirtyFiles[i]);
+              
+                    filesystemService.save(this.dirtyFiles[i], contents);
+                
+                    this.dirtyFiles.splice(i,1);    
+                }
+                
+                if(saved>0){
+                    // @todo check preference to compile or not
+                    mavenManager.compile();
+                }
+            },
             
             create : function(item){
                 
@@ -215,6 +248,93 @@ define([
             
             },
             
+            addRecentlyOpenedFile : function(item){
+            
+                // summary :
+            
+                
+                // check if it's already in the array
+                var i = this.recentlyOpened.length;
+                while (i--) {
+                    if (this.recentlyOpened[i] == item) {
+                        // it's already in there, return ziltsj
+                        return;
+                    }
+                }
+                
+                // add file to the array, at the top as it was selected last
+                // and should show up in the menu that way
+                this.recentlyOpened.unshift(item);
+                
+                // pop the last item in the array to only contain the last 10 items
+                // when more than 10 are in there
+                if(this.recentlyOpened.length > 10){
+                    this.recentlyOpened.pop();
+                }
+                
+                
+                // add the updated list to the cookie
+                cookieManager.set('recentFiles', json.stringify(this.recentlyOpened));
+                
+                // update the menu
+                this._updateOpenedFiles();
+            },
+            
+            
+            addChangedFile : function(item){
+              
+              
+                var i = this.dirtyFiles.length;
+              
+                while (i--) {
+                    if (this.dirtyFiles[i] == item) {
+                        // it's already in there, do nothing
+                        return;
+                    }
+                }
+              
+                this.dirtyFiles.push(item);
+              
+            },
+            
+            // update the 'file -> open recent file'
+            _updateOpenedFiles : function(){
+                
+                // get handle on the menu
+                var menu = dijit.byId('fileMenu_open_recent_file');
+                
+                // remove all existing items
+                menu.destroyDescendants(false);
+                
+                var file;
+                
+                // create the refreshed list
+                for (var i = 0; i < this.recentlyOpened.length; i++) {
+                    
+                    // if there is actually an item in the slot
+                    if(this.recentlyOpened[i] != undefined){
+                        
+                        file = this.recentlyOpened[i];
+                    
+                        var menuItem = new MenuItem({
+                            
+                            label : file.label,
+                            file : file,
+                            iconClass : '',
+                            onClick : function(event){
+                         
+                                var item = registry.getEnclosingWidget(event.target);
+                    
+                                fileManager.get(item.get('file'), false);
+                            } 
+                        })
+                    
+                        // add a menuitem for it
+                        menu.addChild(menuItem);
+                        
+                    }
+                }
+            },
             
             getIcon : function(item, opened){
               
@@ -697,79 +817,7 @@ define([
                     return "/images/tree/unknown.png";
                 }  
               
-            },
-            
-            
-            addRecentlyOpenedFile : function(item){
-            
-                // summary :
-            
-                
-                // check if it's already in the array
-                var i = this.recentlyOpened.length;
-                while (i--) {
-                    if (this.recentlyOpened[i] == item) {
-                        // it's already in there, return ziltsj
-                        return;
-                    }
-                }
-                
-                // add file to the array, at the top as it was selected last
-                // and should show up in the menu that way
-                this.recentlyOpened.unshift(item);
-                
-                // pop the last item in the array to only contain the last 10 items
-                // when more than 10 are in there
-                if(this.recentlyOpened.length > 10){
-                    this.recentlyOpened.pop();
-                }
-                
-                
-                // add the updated list to the cookie
-                cookieManager.set('recentFiles', json.stringify(this.recentlyOpened));
-                
-                // update the menu
-                this._updateOpenedFiles();
-            },
-            
-            // update the 'file -> open recent file'
-            _updateOpenedFiles : function(){
-                
-                // get handle on the menu
-                var menu = dijit.byId('fileMenu_open_recent_file');
-                
-                // remove all existing items
-                menu.destroyDescendants(false);
-                
-                var file;
-                
-                // create the refreshed list
-                for (var i = 0; i < this.recentlyOpened.length; i++) {
-                    
-                    // if there is actually an item in the slot
-                    if(this.recentlyOpened[i] != undefined){
-                        
-                        file = this.recentlyOpened[i];
-                    
-                        var menuItem = new MenuItem({
-                            
-                            label : file.label,
-                            file : file,
-                            iconClass : '',
-                            onClick : function(event){
-                         
-                                var item = registry.getEnclosingWidget(event.target);
-                    
-                                fileManager.get(item.get('file'), false);
-                            } 
-                        })
-                    
-                        // add a menuitem for it
-                        menu.addChild(menuItem);
-                        
-                    }
-                }
-            }    
+            }   
         };
     });
 
