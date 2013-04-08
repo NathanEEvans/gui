@@ -150,8 +150,10 @@ define([
                     }
                 }
                 
-                // @todo check preference to compile or not
-                mavenManager.compile();
+                if(settingsManager.getPreference(PREFERENCE.MAVEN_COMPILE_ON_SAVE) == 'true'){
+                    mavenManager.compile();
+                }
+                
             },
             
             saveAll : function(){
@@ -172,8 +174,9 @@ define([
                 }
                 
                 if(saved>0){
-                    // @todo check preference to compile or not
-                    mavenManager.compile();
+                    if(settingsManager.getPreference(PREFERENCE.MAVEN_COMPILE_ON_SAVE) == 'true'){
+                        mavenManager.compile();
+                    }
                 }
             },
             

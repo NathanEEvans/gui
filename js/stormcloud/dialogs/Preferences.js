@@ -42,6 +42,9 @@ define([
                 ready(function() {
 
 
+                    //
+                    // Editor Preferences
+                    //
                     new CheckBox({
                         checked: settingsManager.getPreference(PREFERENCE.EDITOR_HIGHLIGHT_ACTIVE_LINE) == 'true' ? true : false,
                         onChange: function() {
@@ -145,13 +148,28 @@ define([
                     }, PREFERENCE.EDITOR_FADE_FOLD_WIDGETS);
 
 
+                    //
+                    // Maven preferences
+                    //
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.MAVEN_COMPILE_ON_SAVE) == 'true' ? true : false,
+                        onChange: function() {
+                            
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                        }
+                    }, PREFERENCE.MAVEN_COMPILE_ON_SAVE);
+
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.MAVEN_COMPILE_ON_PROJECT_OPEN) == 'true' ? true : false,
+                        onChange: function() {
+                            
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                        }
+                    }, PREFERENCE.MAVEN_COMPILE_ON_PROJECT_OPEN);
+
+
         
                 });
-            },
-            
-            
-            save : function(key, value){
-                
             },
             
             close : function(){

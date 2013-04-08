@@ -172,9 +172,10 @@ define([
                                     
                             projectManager.setSelected(item);    
                                     
-                            // compile the project
-                            mavenManager.compile();
-                             
+                            if(settingsManager.getPreference(PREFERENCE.MAVEN_COMPILE_ON_PROJECT_OPEN) == 'true'){
+                                mavenManager.compile();
+                            } 
+                            
                         }else{
             
                             statusManager.error(
