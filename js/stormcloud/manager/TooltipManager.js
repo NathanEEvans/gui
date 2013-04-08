@@ -154,6 +154,33 @@ define([],
                         showDelay : CONSTANTS.SHOW_DELAY,
                         label: 'Open Trash'
                     });
+                    
+                    new Tooltip({
+                        connectId: ['toolBarMaven_rerun'],
+                        showDelay : CONSTANTS.SHOW_DELAY,
+                        label: 'Run last Command'
+                    });
+                    
+                    new Tooltip({
+                        connectId: ['toolBarMaven_run'],
+                        showDelay : CONSTANTS.SHOW_DELAY,
+                        label: 'Define Command'
+                    });
+                    
+                    
+                    new Tooltip({
+                        connectId: ['toolbarSearch_redefine'],
+                        showDelay : CONSTANTS.SHOW_DELAY,
+                        label: 'Define Search'
+                    });
+                    
+                    new Tooltip({
+                        connectId: ['toolbarSearch_clear'],
+                        showDelay : CONSTANTS.SHOW_DELAY,
+                        label: 'Clear Search'
+                    });
+                    
+                    
                 
                 
                 });
