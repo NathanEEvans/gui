@@ -1,28 +1,69 @@
 <link rel="stylesheet" href="/dialogs/ChangePassword/styles.css">
-<div class="dijitDialogPaneContentArea" style="height: 100px; width: 400px;">
+<div class="dijitDialogPaneContentArea" style="height: 150px; width: 400px;">
 
     <script>
         require(['stormcloud/dialogs/ChangePassword'], function(dialog){
             dialog.init();
         });
+        
+        function checkPassword(value, constraints){
+            
+            var isValid = false;
+            if(constraints && constraints.other)  {
+                var otherInput =  dijit.byId(constraints.other);
+                if(otherInput) {
+                    var otherValue = otherInput.value;
+                    console.log("%s == %s ?", value, otherValue);
+                    isValid = (value == otherValue);
+                }
+            }
+            return isValid;
+            
+        }
     </script>
 
 
+    <form data-dojo-type="dijit/form/Form">
 
-    <div class="changePasswordForm">
-        <label>Current Password</label>
-        <input data-dojo-type="dijit/form/TextBox" id="currentPassword"/>
-    </div>
+        <div class="changePasswordFormEntry">
+            <label>Current Password</label>
+            <input data-dojo-type="dijit/form/ValidationTextBox"
+                   data-dojo-props="required:true,invalidMessage:'Provide your current Password', missingMessage:''" 
+                   type="password"
+                   id="currentPassword"/>
+        </div>
 
-    <div class="changePasswordForm">
-        <label>New Password</label>
-        <input data-dojo-type="dijit/form/TextBox" id="newPassword"/>
-    </div>
+        <div class="changePasswordFormEntry">
+            <label>New Password</label>
+            <input data-dojo-type="dijit/form/ValidationTextBox"
+                   data-dojo-props="required:true,invalidMessage:'Provide your new Password', missingMessage:'',intermediateChanges:false" 
+                   type="password" 
+                   id="newPassword" />
+        </div>
 
-    <div class="changePasswordForm">
-        <label>Full Name</label>
-        <input data-dojo-type="dijit/form/TextBox"/>
-    </div>
+        <div class="changePasswordFormEntry">
+            <label>Confirm New Password</label>
+            <input data-dojo-type="dijit/form/ValidationTextBox"
+                   data-dojo-props="required:true,invalidMessage:'Passwords do not match', missingMessage:'', intermediateChanges:false, constraints:{'other': 'newPassword'}, validator:checkPassword" 
+                   type="password" 
+                   id="confirmNewPassword" />
+        </div>
+
+        <script type="dojo/method" data-dojo-event="onValidStateChange" data-dojo-args="valid">
+
+            console.info(valid);
+
+            var btn = dijit.byId('changePasswordButton');
+
+            if(valid){
+            btn.setAttribute('disabled', false);
+            }else{
+            btn.setAttribute('disabled', true);
+            }
+
+        </script>
+
+    </form>
 
     <div id="changePasswordMessage" style="color:red;"></div>
 
@@ -37,7 +78,7 @@
 
 <div class="dijitDialogPaneActionBar">
 
-    <button data-dojo-type="dijit/form/Button" type="button">
+    <button data-dojo-type="dijit/form/Button" type="button" id="changePasswordButton" disabled="true">
         <script type="dojo/connect" data-dojo-event="onClick">
             require(['stormcloud/dialogs/ChangePassword'], function(dialog){
             dialog.changePassword();

@@ -18,8 +18,10 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([], 
-    function(){
+define(
+    ['dojox/validate/web'], 
+    function(
+        validator){
         
         //
         // module      : stormcloud/dialogs/ChangePassword
@@ -32,7 +34,27 @@ define([],
             // initialize th dialog
             init : function(){
                 
+                
             },
+            
+            
+            validatePassword : function(value, constraints){
+                
+                var isValid = false;
+                
+                if(constraints && constraints.other)  {
+                
+                    var otherInput =  dijit.byId(constraints.other);
+                
+                    if(otherInput) {
+                        var otherValue = otherInput.value;
+                        console.log("%s == %s ?", value, otherValue);
+                        isValid = (value == otherValue);
+                    }
+                }
+                return isValid;
+            },
+            
             
             // user cancelled
             cancel: function(){

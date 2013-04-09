@@ -1,4 +1,4 @@
-.changePasswordForm{
+.changePasswordFormEntry{
 
 
     float : left;
@@ -9,6 +9,23 @@
 
     float : left;
     margin-top : 7px;
+}
+
+#changePasswordMessage{
+
+    float : left;
+    text-align : center;
+    width : 100%;
+    padding-top:5px;
+    padding-bottom : 5px;
+}
+
+#changePasswordDescription{
+
+    float : left;
+    width : 300px;
+    font-size : 6px;
+    color : #b5bcc7;
 }
 
 .changePasswordForm input{
