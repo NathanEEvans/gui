@@ -63,7 +63,7 @@ define([
                 var projectTree = new Tree({
                     
                     model:treeModel, 
-                    persist:true, 
+                    persist:false, 
                     showRoot:false, 
                     openOnDblClick:true, 
                     // tree icon function
@@ -105,7 +105,7 @@ define([
                 var filesystemTree = new Tree({
                     
                     model:filesystemModel, 
-                    persist:true, 
+                    persist:false, 
                     showRoot:false, 
                     openOnDblClick:true, 
                     // tree icon function
@@ -135,7 +135,7 @@ define([
                 var servicesTree = new Tree({
                     
                     model:servicesTreeModel, 
-                    persist:true, 
+                    persist:false, 
                     showRoot:false, 
                     openOnDblClick:true, 
                     // tree icon function
