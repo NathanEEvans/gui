@@ -684,16 +684,22 @@ define([
                 
                 }else if(item.type == 'tomcat'){
 		
-                    icon = "tomcatIcon";
+                    icon = 'tomcatIcon';
 			
                     return icon;
                     
                 }else if(item.type == 'tomcatWebApps'){
 		
-                    icon = "tomcatWebAppsIcon";
+                    icon = 'tomcatWebAppsIcon';
 			
                     return icon;
-                    
+                
+                }else if(item.type == 'tomcatLib'){
+		
+                    icon = 'tomcatLibIcon';
+			
+                    return icon;
+                
                 }else if(item.type == 'tomcatApp'){
 		
                     icon = "tomcatAppIcon";

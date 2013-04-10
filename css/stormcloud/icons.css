@@ -63,6 +63,13 @@
     height           : 16px;
 }
 
+.tomcatLibIcon{
+
+    background-image : url('/images/tree/library.png');	
+    width            : 16px;
+    height           : 16px;
+}
+
 .tomcatAppIcon {
 
     background-image : url('/images/services/tomcat-webapp.png');	
