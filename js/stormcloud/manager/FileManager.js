@@ -646,6 +646,42 @@ define([
 			
                     return icon;
                     
+                }else if(item.type == 'yamlFile'){
+		
+                    icon = "yamlFileIcon";
+                    
+                    if(item.status == 'untracked'){
+                        icon = "yamlFileUntrackedIcon";
+                    }
+		
+                    if(item.status == 'modified'){	    
+                        icon = "yamlFileModifiedIcon";
+                    }
+		
+                    if(item.status == 'missing'){
+                        icon = "yamlFileMissingIcon";
+                    }
+			
+                    return icon;
+                    
+                }else if(item.type == 'manifestFile'){
+		
+                    icon = "manifestFileIcon";
+			
+                    if(item.status == 'untracked'){
+                        icon = "manifestFileUntrackedIcon";
+                    }
+		
+                    if(item.status == 'modified'){	    
+                        icon = "manifestFileModifiedIcon";
+                    }
+		
+                    if(item.status == 'missing'){
+                        icon = "manifestFileMissingIcon";
+                    }
+                        
+                    return icon;
+                
                 }else if(item.type == 'tomcat'){
 		
                     icon = "tomcatIcon";
@@ -810,7 +846,16 @@ define([
                 }else if(item.type == 'jarFile'){
 		
                     return "/images/tree/jar-file.png";
-			
+		
+                }else if(item.type == 'yamlFile'){
+		
+                    return "/images/tree/yaml-file.png";
+                    
+                }else if(item.type == 'manifestFile'){
+		
+                    return "/images/tree/manifest-file.png";
+                
+                
                 }else if(item.type == 'folder'){
 		        
                     return "/images/tree/folder.png";

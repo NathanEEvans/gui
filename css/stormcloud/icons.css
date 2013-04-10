@@ -415,6 +415,49 @@
     height           : 16px;    
 }
 
+.yamlFileIcon{
+
+    background-image : url('/images/tree/yaml-file.png');	
+    width            : 16px;
+    height           : 16px;
+}
+
+.yamlFileMofifiedIcon{
+
+    background-image : url('/images/tree/yaml-file-modified.png');	
+    width            : 16px;
+    height           : 16px;
+}
+
+.yamlFileUntrackedIcon{
+
+    background-image : url('/images/tree/yaml-file-untracked.png');	
+    width            : 16px;
+    height           : 16px;
+}
+
+
+.manifestFileIcon{
+
+    background-image : url('/images/tree/manifest-file.png');	
+    width            : 16px;
+    height           : 16px;
+}
+
+.manifestFileMofifiedIcon{
+
+    background-image : url('/images/tree/manifest-file-modified.png');	
+    width            : 16px;
+    height           : 16px;
+}
+
+.manifestFileUntrackedIcon{
+
+    background-image : url('/images/tree/manifest-file-untracked.png');	
+    width            : 16px;
+    height           : 16px;
+}
+
 
 .sqlFileIcon {
 
