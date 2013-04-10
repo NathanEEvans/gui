@@ -41,7 +41,6 @@ define([
 
             initialize : function(){
             
-            
                 // create project tree
                 var projectRestStore = new JsonRest({
                 
@@ -70,7 +69,7 @@ define([
                     getIconClass : fileManager.getIcon,
                     // tree double click handler
                     onDblClick : this.openItem,
-                    onClick : this.setSelected
+                    onClick : this.setSelected 
                     
                 }, 'projectTree');
                 
@@ -80,6 +79,8 @@ define([
                 projectTree.onLoadDeferred.then(function(){
           
                     projectManager.init();
+                    
+                    document.getElementById('projectTreeLoading').style.display = 'none';
                 });
 
                 
@@ -148,6 +149,7 @@ define([
                 this.bindContextMenus(projectTree);
                 this.bindContextMenus(filesystemTree);    
                 this.bindContextMenus(servicesTree);
+                
             },
 
             mayHaveChildren : function(item){
