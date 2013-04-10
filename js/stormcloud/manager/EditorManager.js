@@ -430,9 +430,24 @@ define([
                         
                         // while at it change the tab icon as well
                         var tab = dijit.byId(errors[i].fileId);
+                        
                         if(tab != undefined){
                             tab.set('iconClass','problemIcon');    
-                        }    
+                        }
+                        
+                        // and add markers in the editor
+                        for(var i2=0; i2 < errors[i].annotations.length; i2++ ){
+                        
+                            var range = editor.getSession().getAWordRange(errors[i].annotations[i2].row, errors[i].annotations[i2].column);
+                        
+                            // @todo possibly do something with the word result
+                            var word = editor.getSession().getTextRange(range);
+                        
+                            editor.getSession().addMarker(range,"sc_maven_error", "text", true);
+                        
+                        }
+                        
+                        
                     }
                 }  
             },

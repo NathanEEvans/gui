@@ -418,3 +418,11 @@ a:active {
     padding-left : 2px;
 
 }
+
+
+.sc_maven_error{
+
+    border-bottom : 2px dotted red;     
+    position: absolute;
+
+}
