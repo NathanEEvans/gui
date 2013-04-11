@@ -60,6 +60,11 @@
                                             send();
                                         </script>
                                     </button>
+                                    <!--button data-dojo-type="dijit/form/Button" type="button">Sign me up!
+                                        <script type="dojo/on" data-dojo-event="click" data-dojo-args="evt">
+                                            signup();
+                                        </script>
+                                    </button-->
                                 </div>
 
                             </td>
@@ -92,6 +97,10 @@
                 var pass = document.getElementById('password'); 
                 
                 sendCredentials(user.value, pass.value);
+            }
+            
+            function signup(){
+                document.location = 'https://' + window.location.host + '/signup.html'; 
             }
         </script>
 
