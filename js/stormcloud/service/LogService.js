@@ -138,13 +138,7 @@ define([
        
             startMaven : function(){
            
-                statusManager.showProgress();
-                statusManager.info('Maven Running');
-       
-                // get handle on the correct tab
-                var tabs = dijit.byId('logTabs');
-                var tab = dijit.byId('mavenLogTab');
-                tabs.selectChild(tab);
+                statusManager.showProgress('Maven Running');
                     
                 // start log polling
                 p = new Poll(function() {
@@ -172,8 +166,8 @@ define([
                 p.stop();
           
                 statusManager.hideProgress();
-                statusManager.clear();
-            
+                statusManager.info('Maven Finished');
+                
                 var failed = false
             
                 if(data != '0'){

@@ -18,8 +18,10 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([], 
-    function(){
+define([
+    'stormcloud/util/date'], 
+    function(
+        date){
 
         //
         // module       : stormcloud/manager/StatusManager
@@ -31,32 +33,48 @@ define([],
             
             info : function(message){
     
-                var statusBar = document.getElementById('statusBarMessage');
-                statusBar.style.color = 'black';
-                statusBar.innerHTML = message;
+                var statusBar = document.getElementById('consoleWindow');
+                
+                var entry = document.createElement('div');
+                entry.className = 'consoleInfo';
+                entry.innerHTML =  date.getLogTime() + ' ' + message;
+                
+                statusBar.appendChild(entry);
             },
             
             error : function(message){
     
-                var statusBar = document.getElementById('statusBarMessage');
-                statusBar.style.color = 'red';
-                statusBar.innerHTML = message;
+                var statusBar = document.getElementById('consoleWindow');
+                
+                var entry = document.createElement('div');
+                entry.className = 'consoleError';
+                entry.innerHTML = date.getLogTime() + ' ' + message;
+                
+                statusBar.appendChild(entry);
             },
             
             warn : function(message){
     
-                var statusBar = document.getElementById('statusBarMessage');
-                statusBar.style.color = 'yellow';
-                statusBar.innerHTML = message;
+                var statusBar = document.getElementById('consoleWindow');
+                
+                var entry = document.createElement('div');
+                entry.className = 'consoleWarning';
+                entry.innerHTML = date.getLogTime() + ' ' + message;
+                
+                statusBar.appendChild(entry);
             },
             
             clear : function(){
-                var statusBar = document.getElementById('statusBarMessage');
+                
+                var statusBar = document.getElementById('consoleWindow');
                 statusBar.innerHTML = '';
             },
             
-            showProgress : function(){
+            showProgress : function(message){
     
+                var statusBar = document.getElementById('statusBarMessage');
+                statusBar.innerHTML = message;
+                
                 var progressBar = document.getElementById('progressBar');
                 progressBar.style.visibility = 'visible';
     
@@ -64,6 +82,9 @@ define([],
             
             hideProgress : function(){
     
+                var statusBar = document.getElementById('statusBarMessage');
+                statusBar.innerHTML = '';
+                
                 var progressBar = document.getElementById('progressBar');
                 progressBar.style.visibility = 'hidden';
             }

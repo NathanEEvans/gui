@@ -280,6 +280,15 @@
 
             <div data-dojo-type="dijit/layout/TabContainer" id="logTabs" data-dojo-props="tabPosition:'top', region:'bottom', splitter:true, tabStrip:true">
 
+                <div data-dojo-type="dijit/layout/ContentPane" id="consoleTab" data-dojo-props="title:'Console'">
+
+                    <div id="consoleToolBar" data-dojo-type="dijit/Toolbar">
+                    </div>
+
+                    <div id="consoleWindow"></div>
+
+                </div>
+
                 <div data-dojo-type="dijit/layout/ContentPane" id="mavenLogTab" data-dojo-props="title:'Maven'">
 
                     <div id="mavenToolBar" data-dojo-type="dijit/Toolbar">
