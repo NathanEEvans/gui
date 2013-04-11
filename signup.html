@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Stormcloud IDE</title>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/signup.css">
+
+    </head>
+
+    <body class="claro">
+
+        <div id="mainContainer">
+
+            <div id="leftContainer">
+
+            </div>
+
+
+            <div id="centercontainer">
+
+                <div id="welcomeBanner">
+
+                    <img src="images/logo/logo-trimmed.png"/>
+                    <div>
+                        <span><b>Signup</b></span>
+                    </div>
+
+                </div>
+
+                <div id="loginForm">
+
+                    <table style="width: 100%;">
+
+                        <tr>
+                            <td style="width: 20%;">
+                                <label for="name" style="font-size: 12px;">Choose your Username</label>
+                            </td>
+                            <td style="width: 80%; text-align: left;">
+                                <input data-dojo-type="dijit/form/TextBox" id="username" type="text" style=" width: 250px; font-size: 16px;">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="width: 20%;">
+                                <label for="name" style="font-size: 12px;">Email Address</label>
+                            </td>
+                            <td style="width: 80%; text-align: left;">
+                                <input data-dojo-type="dijit/form/TextBox" id="emailAddress" type="text" style=" width: 250px; font-size: 16px;">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="width: 20%;">
+                                <label for="password" style="font-size: 12px;">Password</label>
+                            </td>
+                            <td style="width: 80%; text-align: left;">
+                                <input data-dojo-type="dijit/form/TextBox" type="password" id="password" style="width: 250px; font-size: 16px;">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="width: 20%;">
+                                <label for="password" style="font-size: 12px;">Re-type Password</label>
+                            </td>
+                            <td style="width: 80%; text-align: left;">
+                                <input data-dojo-type="dijit/form/TextBox" type="password" id="confirmPassword" style="width: 250px; font-size: 16px;">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td style="text-align: left;"><div id="statusMessage">&nbsp;</div></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="dijitDialogPaneActionBar">
+                                    <button data-dojo-type="dijit/form/Button" type="button">Sign me up!
+                                        <script type="dojo/on" data-dojo-event="click" data-dojo-args="evt">
+                                            send();
+                                        </script>
+                                    </button>
+                                </div>
+
+                            </td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script>
+            dojoConfig = {
+                parseOnLoad: true,
+                async : true
+            }
+        </script>
+
+        <script src='/js/dojo/dojo.js'></script>
+        <script>require(["dojo/parser", "dijit/form/Button"]);</script>
+
+        <script type="text/javascript" src="js/stormcloud/signup.js"></script>
+
+        <script>
+            function send(){
+                
+                alert('signup');
+            }
+        </script>
+
+    </body>
+</html>

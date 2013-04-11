@@ -21,10 +21,15 @@
 require([
     'dojo/ready',
     'dojo/parser',
-    'dojo/domReady!'],
+    'dojo/domReady!',
+    'stormcloud/auth'
+    ],
     function(
         ready,
-        parser) {
+        parser,
+        domReady,
+        auth,
+        SettingsManager) {
 
         //
         // module      : stormcloud/stormcloud
@@ -32,7 +37,7 @@ require([
         // summary     : This module defines all JS that needs to be intialized,
         //               events that need to be bound, gui related things etc...
         //               
-
+        
         parser.parse();
         
         
@@ -41,6 +46,7 @@ require([
             // Declare all managers.
             require([
                 'stormcloud/manager/AnnotationManager',
+                'stormcloud/manager/ApplicationManager',
                 'stormcloud/manager/CookieManager',
                 'stormcloud/manager/DialogManager',
                 'stormcloud/manager/DomManager',
@@ -58,6 +64,7 @@ require([
                 'stormcloud/manager/TreeManager'], 
                 function(
                     AnnotationManager,
+                    ApplicationManager,
                     CookieManager,
                     DialogManager,
                     DomManager,
@@ -77,6 +84,7 @@ require([
                     // declare all managers globally
                     
                     annotationManager = AnnotationManager;
+                    applicationManager = ApplicationManager;
                     cookieManager = CookieManager;
                     dialogManager = DialogManager;
                     domManager = DomManager;
@@ -108,7 +116,7 @@ require([
                     fileManager.init();
 
                     // init git data
-                    gitHubManager.init();
+                    // gitHubManager.init();
                     
                     domManager.init();
             

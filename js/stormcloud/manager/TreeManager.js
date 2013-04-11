@@ -41,7 +41,6 @@ define([
 
             initialize : function(){
             
-            
                 // create project tree
                 var projectRestStore = new JsonRest({
                 
@@ -63,14 +62,14 @@ define([
                 var projectTree = new Tree({
                     
                     model:treeModel, 
-                    persist:true, 
+                    persist:false, 
                     showRoot:false, 
                     openOnDblClick:true, 
                     // tree icon function
                     getIconClass : fileManager.getIcon,
                     // tree double click handler
                     onDblClick : this.openItem,
-                    onClick : this.setSelected
+                    onClick : this.setSelected 
                     
                 }, 'projectTree');
                 
@@ -80,6 +79,8 @@ define([
                 projectTree.onLoadDeferred.then(function(){
           
                     projectManager.init();
+                    
+                    document.getElementById('projectTreeLoading').style.display = 'none';
                 });
 
                 
@@ -105,7 +106,7 @@ define([
                 var filesystemTree = new Tree({
                     
                     model:filesystemModel, 
-                    persist:true, 
+                    persist:false, 
                     showRoot:false, 
                     openOnDblClick:true, 
                     // tree icon function
@@ -135,7 +136,7 @@ define([
                 var servicesTree = new Tree({
                     
                     model:servicesTreeModel, 
-                    persist:true, 
+                    persist:false, 
                     showRoot:false, 
                     openOnDblClick:true, 
                     // tree icon function
@@ -148,6 +149,7 @@ define([
                 this.bindContextMenus(projectTree);
                 this.bindContextMenus(filesystemTree);    
                 this.bindContextMenus(servicesTree);
+                
             },
 
             mayHaveChildren : function(item){

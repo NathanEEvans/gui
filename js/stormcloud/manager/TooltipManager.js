@@ -31,11 +31,27 @@ define([],
 
         var CONSTANTS = {
         
-            SHOW_DELAY : 1500
+            SHOW_DELAY : 500
         
         }
 
         return{
+    
+    
+            attach : function(id, label){
+              
+                require(['dijit/Tooltip'], function(Tooltip){
+
+                
+                    new Tooltip({
+                        connectId: id,
+                        showDelay : CONSTANTS.SHOW_DELAY,
+                        label: label
+                    });
+                });
+              
+              
+            },
     
             bind : function(){
             
@@ -138,6 +154,33 @@ define([],
                         showDelay : CONSTANTS.SHOW_DELAY,
                         label: 'Open Trash'
                     });
+                    
+                    new Tooltip({
+                        connectId: ['toolBarMaven_rerun'],
+                        showDelay : CONSTANTS.SHOW_DELAY,
+                        label: 'Run last Command'
+                    });
+                    
+                    new Tooltip({
+                        connectId: ['toolBarMaven_run'],
+                        showDelay : CONSTANTS.SHOW_DELAY,
+                        label: 'Define Command'
+                    });
+                    
+                    
+                    new Tooltip({
+                        connectId: ['toolbarSearch_redefine'],
+                        showDelay : CONSTANTS.SHOW_DELAY,
+                        label: 'Define Search'
+                    });
+                    
+                    new Tooltip({
+                        connectId: ['toolbarSearch_clear'],
+                        showDelay : CONSTANTS.SHOW_DELAY,
+                        label: 'Clear Search'
+                    });
+                    
+                    
                 
                 
                 });

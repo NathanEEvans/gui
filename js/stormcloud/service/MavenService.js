@@ -183,8 +183,6 @@ define([
                             statusManager.error('Failed to create your project. Please review the <a href=\"javascript:alert(\'Open logfile window\');">log</a>');
                         }
             
-                        hideProgress();
-            
                         // reset the form
                         var btn = dijit.byId('newProjectOkButton');
                         btn.setAttribute('disabled', true);

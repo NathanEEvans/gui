@@ -63,6 +63,13 @@
     height           : 16px;
 }
 
+.tomcatLibIcon{
+
+    background-image : url('/images/tree/library.png');	
+    width            : 16px;
+    height           : 16px;
+}
+
 .tomcatAppIcon {
 
     background-image : url('/images/services/tomcat-webapp.png');	
@@ -415,6 +422,49 @@
     height           : 16px;    
 }
 
+.yamlFileIcon{
+
+    background-image : url('/images/tree/yaml-file.png');	
+    width            : 16px;
+    height           : 16px;
+}
+
+.yamlFileMofifiedIcon{
+
+    background-image : url('/images/tree/yaml-file-modified.png');	
+    width            : 16px;
+    height           : 16px;
+}
+
+.yamlFileUntrackedIcon{
+
+    background-image : url('/images/tree/yaml-file-untracked.png');	
+    width            : 16px;
+    height           : 16px;
+}
+
+
+.manifestFileIcon{
+
+    background-image : url('/images/tree/manifest-file.png');	
+    width            : 16px;
+    height           : 16px;
+}
+
+.manifestFileMofifiedIcon{
+
+    background-image : url('/images/tree/manifest-file-modified.png');	
+    width            : 16px;
+    height           : 16px;
+}
+
+.manifestFileUntrackedIcon{
+
+    background-image : url('/images/tree/manifest-file-untracked.png');	
+    width            : 16px;
+    height           : 16px;
+}
+
 
 .sqlFileIcon {
 
@@ -736,10 +786,9 @@
 
 .saveAllIcon{
 
-    background-image: url("/icons/images/editorIconsEnabled.png"); 
-    width            : 18px;
-    height           : 18px;
-    background-position: -18px;
+    background-image: url("/images/menubar/save-all.gif"); 
+    width            : 16px;
+    height           : 16px;
 }
 
 .undoIcon{

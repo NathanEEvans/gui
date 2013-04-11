@@ -19,9 +19,15 @@
  * 
  */
 define([
-    'dojo/ready'], 
+    'dojo/ready',
+    'dojo/store/Memory',
+    'dijit/form/CheckBox',
+    'dijit/form/ComboBox'], 
     function(
-        ready){
+        ready,
+        Memory,
+        CheckBox,
+        ComboBox){
         
         //
         // module      : stormcloud/dialogs/Preferences
@@ -35,23 +41,135 @@ define([
                 
                 ready(function() {
 
-                    dojo.byId('gitHubSettingsUserName').value = settingsManager.getGitHubUser();                
-                    dojo.byId('gitHubSettingsPassword').value = settingsManager.getGitHubPassword();
+
+                    //
+                    // Editor Preferences
+                    //
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.EDITOR_HIGHLIGHT_ACTIVE_LINE) == 'true' ? true : false,
+                        onChange: function() {
+                            
+                            // update the preview
+                            previewEditor.setHighlightActiveLine(this.get('checked'));
+                            
+                            // save selected value
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                            
+                            // update open editors
+                            editorManager.setHightlightActiveLine(this.get('checked'));
+                        }
+                    }, PREFERENCE.EDITOR_HIGHLIGHT_ACTIVE_LINE);
+
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.EDITOR_HIGHLIGHT_SELECTED_WORD) == 'true' ? true : false,
+                        onChange: function() {
+                            
+                            previewEditor.setHighlightSelectedWord(this.get('checked'));
+                            
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                            
+                            editorManager.setHighlightSelectedWord(this.get('checked'));
+                        }
+                    }, PREFERENCE.EDITOR_HIGHLIGHT_SELECTED_WORD);
+
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_INVISIBLES) == 'true' ? true : false,
+                        onChange: function() {
+                            
+                            previewEditor.setShowInvisibles(this.get('checked'));
+                            
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                            
+                            editorManager.setShowInvisibles(this.get('checked'));
+                        }
+                    }, PREFERENCE.EDITOR_SHOW_INVISIBLES);
+
+
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_INDENT_GUIDES) == 'true' ? true : false,
+                        onChange: function() {
+
+                            previewEditor.setDisplayIndentGuides(this.get('checked'));
+                            
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                            
+                            editorManager.setDisplayIndentGuides(this.get('checked'));
+                        }
+                    }, PREFERENCE.EDITOR_SHOW_INDENT_GUIDES);
+
+
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_GUTTER) == 'true' ? true : false,
+                        onChange: function() {
+                            
+                            previewEditor.renderer.setShowGutter(this.get('checked'));
+                            
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                            
+                            editorManager.setShowGutter(this.get('checked'));
+                        }
+                    }, PREFERENCE.EDITOR_SHOW_GUTTER);
+
+
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_PRINT_MARGIN) == 'true' ? true : false,
+                        onChange: function() {
+                            
+                            previewEditor.renderer.setShowPrintMargin(this.get('checked'));
+                            
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                            
+                            editorManager.setShowPrintMargin(this.get('checked'));
+                        }
+                    }, PREFERENCE.EDITOR_SHOW_PRINT_MARGIN);
+
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.EDITOR_USE_SOFT_TAB) == 'true' ? true : false,
+                        onChange: function() {
+                            
+                            previewEditor.getSession().setUseSoftTabs(this.get('checked'));
+                            
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                            
+                            editorManager.setUseSoftTabs(this.get('checked'));
+                        }
+                    }, PREFERENCE.EDITOR_USE_SOFT_TAB);
+
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.EDITOR_FADE_FOLD_WIDGETS) == 'true' ? true : false,
+                        onChange: function() {
+                            
+                            previewEditor.renderer.setFadeFoldWidgets(this.get('checked'));
+                            
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                            
+                            editorManager.setFadeFoldWidgets(this.get('checked'));
+                        }
+                    }, PREFERENCE.EDITOR_FADE_FOLD_WIDGETS);
+
+
+                    //
+                    // Maven preferences
+                    //
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.MAVEN_COMPILE_ON_SAVE) == 'true' ? true : false,
+                        onChange: function() {
+                            
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                        }
+                    }, PREFERENCE.MAVEN_COMPILE_ON_SAVE);
+
+                    new CheckBox({
+                        checked: settingsManager.getPreference(PREFERENCE.MAVEN_COMPILE_ON_PROJECT_OPEN) == 'true' ? true : false,
+                        onChange: function() {
+                            
+                            settingsManager.savePreference(this.get('id'), this.get('checked'));
+                        }
+                    }, PREFERENCE.MAVEN_COMPILE_ON_PROJECT_OPEN);
+
+
+        
                 });
-                
-            },
-            
-            
-            verifyGitHubCredentials : function(){
-              
-                var credentials = {
-                  
-                    user : dojo.byId('gitHubSettingsUserName').value,
-                    pass : dojo.byId('gitHubSettingsPassword').value    
-                }
-              
-                gitHubManager.verify(credentials);
-              
             },
             
             close : function(){

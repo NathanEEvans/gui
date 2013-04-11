@@ -35,9 +35,9 @@ define([
            
                 var editor = ace.edit(item.id);
                 
-                // set the general highlighting theme
-                editor.setTheme("ace/theme/eclipse");
-            
+                // set the user editor preferences
+                this.setEditorPreferences(editor);
+                
                 // set the file contents
                 // this has to stay here before event binding
                 // otherwise events will already be triggered
@@ -75,6 +75,225 @@ define([
                 }                
             },
         
+            
+            setEditorPreferences : function(editor){
+              
+              
+                editor.setHighlightActiveLine(settingsManager.getPreference(PREFERENCE.EDITOR_HIGHLIGHT_ACTIVE_LINE) == 'true' ? true : false);         
+                editor.setHighlightSelectedWord(settingsManager.getPreference(PREFERENCE.EDITOR_HIGHLIGHT_SELECTED_WORD) == 'true' ? true : false);
+                editor.setShowInvisibles(settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_INVISIBLES) == 'true' ? true : false);
+                editor.setDisplayIndentGuides(settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_INDENT_GUIDES) == 'true' ? true : false);
+                editor.renderer.setShowGutter(settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_GUTTER) == 'true' ? true : false);
+                editor.renderer.setShowPrintMargin(settingsManager.getPreference(PREFERENCE.EDITOR_SHOW_PRINT_MARGIN) == 'true' ? true : false);
+                editor.getSession().setUseSoftTabs(settingsManager.getPreference(PREFERENCE.EDITOR_USE_SOFT_TAB) == 'true' ? true : false);
+                editor.renderer.setFadeFoldWidgets(settingsManager.getPreference(PREFERENCE.EDITOR_FADE_FOLD_WIDGETS) == 'true' ? true : false);
+              
+                editor.setTheme(settingsManager.getPreference(PREFERENCE.EDITOR_THEME));
+                //editor.setFontSize(settingsManager.getPreference(PREFERENCE.EDITOR_FONT_SIZE));
+                editor.session.setFoldStyle(settingsManager.getPreference(PREFERENCE.EDITOR_CODE_FOLDING));
+                //editor.setKeyboardHandler(settingsManager.getPreference(PREFERENCE.EDITOR_KEY_BINDINGS));
+        
+                switch (settingsManager.getPreference(PREFERENCE.EDITOR_SOFT_WRAP)) {
+
+                    case 'off':
+                        editor.session.setUseWrapMode(false);
+                        editor.renderer.setPrintMarginColumn(80);
+                        break;
+
+                    case 'free':
+                        editor.session.setUseWrapMode(true);
+                        editor.session.setWrapLimitRange(null, null);
+                        editor.renderer.setPrintMarginColumn(80);
+                        break;
+
+                    default:
+                        editor.session.setUseWrapMode(true);
+                        var col = parseInt(settingsManager.getPreference(PREFERENCE.EDITOR_SOFT_WRAP), 10);
+                        editor.session.setWrapLimitRange(col, col);
+                        editor.renderer.setPrintMarginColumn(col);
+
+                }
+            },
+            
+            setHightlightActiveLine : function(value){
+              
+                var tc = dijit.byId('tabContainer');
+                var tabs = tc.getChildren();
+
+                for(var i = 0; i < tabs.length; i++){
+                    
+                    var editor = registry.byId('ace_editor_' + tabs[i].id);
+                    
+                    editor.setHighlightActiveLine(value);
+                }
+              
+            },
+            
+            setTheme : function(value){
+              
+                var tc = dijit.byId('tabContainer');
+                var tabs = tc.getChildren();
+
+                for(var i = 0; i < tabs.length; i++){
+                    
+                    var editor = registry.byId('ace_editor_' + tabs[i].id);
+                    
+                    editor.setTheme(value);
+                }
+            },
+            
+            setFoldStyle : function(value){
+              
+                var tc = dijit.byId('tabContainer');
+                var tabs = tc.getChildren();
+
+                for(var i = 0; i < tabs.length; i++){
+                    
+                    var editor = registry.byId('ace_editor_' + tabs[i].id);
+                    
+                    editor.session.setFoldStyle(value);
+                }
+            },
+            
+            setSoftWrap : function(value){
+              
+                var tc = dijit.byId('tabContainer');
+                var tabs = tc.getChildren();
+
+                for(var i = 0; i < tabs.length; i++){
+                    
+                    var editor = registry.byId('ace_editor_' + tabs[i].id);
+                    
+                    switch (value) {
+
+                        case 'off':
+                            editor.session.setUseWrapMode(false);
+                            editor.renderer.setPrintMarginColumn(80);
+                            break;
+
+                        case 'free':
+                            editor.session.setUseWrapMode(true);
+                            editor.session.setWrapLimitRange(null, null);
+                            editor.renderer.setPrintMarginColumn(80);
+                            break;
+
+                        default:
+                            editor.session.setUseWrapMode(true);
+                            var col = parseInt(value, 10);
+                            editor.session.setWrapLimitRange(col, col);
+                            editor.renderer.setPrintMarginColumn(col);
+                    }
+                }
+            },
+            
+            setHighlightActiveLine : function(value){
+              
+                var tc = dijit.byId('tabContainer');
+                var tabs = tc.getChildren();
+
+                for(var i = 0; i < tabs.length; i++){
+                    
+                    var editor = registry.byId('ace_editor_' + tabs[i].id);
+                    
+                    editor.setHighlightActiveLine(value);
+                }
+            },
+            
+            setHighlightSelectedWord : function(value){
+              
+                var tc = dijit.byId('tabContainer');
+                var tabs = tc.getChildren();
+
+                for(var i = 0; i < tabs.length; i++){
+                    
+                    var editor = registry.byId('ace_editor_' + tabs[i].id);
+                    
+                    editor.setHighlightSelectedWord(value);
+                }
+            },
+            
+            setShowInvisibles : function(value){
+              
+                var tc = dijit.byId('tabContainer');
+                var tabs = tc.getChildren();
+
+                for(var i = 0; i < tabs.length; i++){
+                    
+                    var editor = registry.byId('ace_editor_' + tabs[i].id);
+                    
+                    editor.setShowInvisibles(value);
+                }
+            },
+            
+            
+            setDisplayIndentGuides : function(value){
+              
+                var tc = dijit.byId('tabContainer');
+                var tabs = tc.getChildren();
+
+                for(var i = 0; i < tabs.length; i++){
+                    
+                    var editor = registry.byId('ace_editor_' + tabs[i].id);
+                    
+                    editor.setDisplayIndentGuides(value);
+                }
+            },
+            
+            
+            setShowGutter : function(value){
+              
+                var tc = dijit.byId('tabContainer');
+                var tabs = tc.getChildren();
+
+                for(var i = 0; i < tabs.length; i++){
+                    
+                    var editor = registry.byId('ace_editor_' + tabs[i].id);
+                    
+                    editor.renderer.setShowGutter(value);
+                }
+            },
+            
+            
+            setShowPrintMargin : function(value){
+              
+                var tc = dijit.byId('tabContainer');
+                var tabs = tc.getChildren();
+
+                for(var i = 0; i < tabs.length; i++){
+                    
+                    var editor = registry.byId('ace_editor_' + tabs[i].id);
+                    
+                    editor.renderer.setShowPrintMargin(value);
+                }
+            },
+            
+            setUseSoftTabs : function(value){
+              
+                var tc = dijit.byId('tabContainer');
+                var tabs = tc.getChildren();
+
+                for(var i = 0; i < tabs.length; i++){
+                    
+                    var editor = registry.byId('ace_editor_' + tabs[i].id);
+                    
+                    editor.session.setUseSoftTabs(value);
+                }
+            },
+            
+            
+            setFadeFoldWidgets : function(value){
+              
+                var tc = dijit.byId('tabContainer');
+                var tabs = tc.getChildren();
+
+                for(var i = 0; i < tabs.length; i++){
+                    
+                    var editor = registry.byId('ace_editor_' + tabs[i].id);
+                    
+                    editor.renderer.setFadeFoldWidgets(value);
+                }
+            },
+                
             
             getEditorContents : function(item){
               
@@ -158,12 +377,8 @@ define([
                         mac: 'Ctrl-Space'
                     },
                     exec: function(editor) {
-                                 
-                        var pos = editor.getCursorPositionScreen();            
-                                        
-                        for(prop in pos){
-                            alert(prop + ' ' + pos[prop]);
-                        }
+                         
+                    // show autocompletion
                     }
                 });
             },
@@ -174,23 +389,28 @@ define([
                 // Change tab to bold when file edited
                 editor.getSession().on('change',function(){
 
-                    dijit.byId(item.id).set('title', '<b>'+item.label+'</b>');
-                                    
+                    dijit.byId(item.id).set('title', '<b><i>'+item.label+'*</i></b>');
+                    
+                    // add to changed files list
+                    fileManager.addChangedFile(item);
                 });
-                
                 
                 // select the file in the tree when focus received
                 editor.on('focus',function(){
 
-                    treeManager.select('projectTree', item);
+                    // if the preference is true we select the file in the tree
+                    if(settingsManager.getPreference(PREFERENCE.SYNC_EDITOR_VIEWS) == 'true'){
+                
+                        treeManager.select('projectTree', item);
+                    }
                     
                     // select the project this file belongs to
                     projectManager.setSelected(item);
                     
                     // set the file that was selected
                     fileManager.setSelected(item);
+                        
                 });
-                
             },
             
             
@@ -210,9 +430,24 @@ define([
                         
                         // while at it change the tab icon as well
                         var tab = dijit.byId(errors[i].fileId);
+                        
                         if(tab != undefined){
                             tab.set('iconClass','problemIcon');    
-                        }    
+                        }
+                        
+                        // and add markers in the editor
+                        for(var i2=0; i2 < errors[i].annotations.length; i2++ ){
+                        
+                            var range = editor.getSession().getAWordRange(errors[i].annotations[i2].row, errors[i].annotations[i2].column);
+                        
+                            // @todo possibly do something with the word result
+                            var word = editor.getSession().getTextRange(range);
+                        
+                            editor.getSession().addMarker(range,"sc_maven_error", "text", true);
+                        
+                        }
+                        
+                        
                     }
                 }  
             },

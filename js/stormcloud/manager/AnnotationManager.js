@@ -41,7 +41,7 @@ define([
     
             process : function(lines){
                
-                this.clear();
+                this.clearAll();
                
                 // set the new annotations
                 this._setAnnotations(lines);
@@ -72,8 +72,22 @@ define([
                     var editor = registry.byId('ace_editor_' + errors[i].fileId);
                 
                     if(editor){
+                        
                         // when found, clear the annotations
                         editor.getSession().setAnnotations([]);
+            
+                        // clear markers
+                        var markers = editor.getSession().getMarkers();
+                        
+                        console.info(markers);
+                        
+                        for(var marker in markers){
+                            
+                            if(markers[marker].clazz == 'sc_maven_error'){    
+                         
+                                editor.getSession().removeMarker(markers[marker].id);
+                            }
+                        }
                     }
                 }
                 
@@ -102,8 +116,6 @@ define([
             
             clear : function(item){
                 
-                // Clear the opened editors
-                // loop trough the errors to clear them
                 for (var i = 0; i < errors.length; i++) {
               
                     if(errors[i].fileId.startsWith(item.id)){
@@ -114,6 +126,17 @@ define([
                         if(editor){
                             // when found, clear the annotations
                             editor.getSession().setAnnotations([]);
+                            
+                            // clear markers
+                            var markers = editor.getSession().getMarkers();
+                          
+                            for(var marker in markers){
+                         
+                                if(markers[marker].clazz == 'sc_maven_error'){
+                                
+                                    editor.getSession().removeMarker(markers[marker].id);
+                                }
+                            }
                         }
                     }   
                 }
@@ -167,9 +190,19 @@ define([
                 
                     if(editor != undefined){
                         
-                        // when found, set the annotations
+                        // when found, set the gutter annotations
                         editor.getSession().setAnnotations(errors[i].annotations);
-   
+                        
+                        // and add markers in the editor
+                        for(var i2=0; i2 < errors[i].annotations.length; i2++ ){
+                        
+                            var range = editor.getSession().getAWordRange(errors[i].annotations[i2].row, errors[i].annotations[i2].column);
+                        
+                            var word = editor.getSession().getTextRange(range);
+                        
+                            editor.getSession().addMarker(range,"sc_maven_error", "text", false);
+                        
+                        }
                     }
                 }  
             },

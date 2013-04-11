@@ -172,9 +172,10 @@ define([
                                     
                             projectManager.setSelected(item);    
                                     
-                            // compile the project
-                            mavenManager.compile();
-                             
+                            if(settingsManager.getPreference(PREFERENCE.MAVEN_COMPILE_ON_PROJECT_OPEN) == 'true'){
+                                mavenManager.compile();
+                            } 
+                            
                         }else{
             
                             statusManager.error(
@@ -271,7 +272,7 @@ define([
                     }
                     
                     // create new tab
-                    require(["dojo/ready", "dojox/layout/ContentPane"], 
+                    require(['dojo/ready', 'dojox/layout/ContentPane'], 
                         function(ready, ContentPane){
                             ready(function(){
                                 
@@ -348,14 +349,6 @@ define([
                     });  
             },
     
-    
-            saveAll: function(){
-          
-                alert('SaveAll Not Supported Yet.');
-          
-            },
-    
-    
             // create a new file
             create: function(item){
               
@@ -413,8 +406,6 @@ define([
                     function(data){
             
                         dijit.byId(item.id).set('title', item.label);
-                        
-                        mavenManager.compile();
                     },
 
                     function(error){

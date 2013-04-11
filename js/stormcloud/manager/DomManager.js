@@ -19,9 +19,11 @@
  * 
  */
 define([
-    'dojo/ready'], 
+    'dojo/ready',
+    'dojox/layout/ContentPane'], 
     function(
-        ready){
+        ready,
+        ContentPane){
 
         //
         // module       : stormcloud/manager/DomManager
@@ -32,6 +34,8 @@ define([
         DIALOG = {
         
             ABOUT :  'aboutDialog', 
+            ACCOUNT : 'accountDialog',
+            CHANGE_PASSWORD : 'changePasswordDialog',
             PREFERENCES : 'preferencesDialog',         
             MY_ACCOUNT : 'myAccountDialog',
             CUSTOM_GOALS : 'customGoalsDialog',
@@ -90,6 +94,26 @@ define([
                 
                 TEMPLATES : 'toolsMenu_templates',
                 GITHUB : 'toolsMenu_gitHub'
+            },
+            
+            WINDOW : {
+            
+                WELCOME_TAB : 'windowMenu_welcome'
+            
+            },
+            
+            HELP : {
+                
+                ABOUT : 'helpMenu_about'
+            },
+            
+            
+            USER : {
+                
+                PREFERENCES : 'userMenu_preferences',
+                ACCOUNT : 'userMenu_account',
+                LOGOUT : 'userMenu_logout'
+                
             }
         };
         
@@ -164,31 +188,76 @@ define([
         return{
         
         
+            openWelcomeTab : function(){
+                
+                var tabs = dijit.byId('tabContainer');
+                        
+                var tab = new ContentPane({
+                    title:'Welcome', 
+                    closable : true,
+                    iconClass : 'welcomeIcon',
+                    id : 'welcomeTab',
+                    href:'dialogs/WelcomeTab/index.html'
+                });
+                        
+                tabs.addChild(tab);
+                
+                tabs.selectChild(tab);
+            },
+        
+        
             init : function(){
               
               
                 ready(function() {
 
-              
                     // summary : Takes care of all initial gui state(s)
-              
-                    // @todo figure out why the UI (editor sync checkbox) is not updating correctly
-                    // https://github.com/stormcloud-ide/gui/issues/54
+
+
+                    // set the username
+                    var userMenu = dijit.byId('userMenu');
                     
+                    if(userMenu){
+                        
+                        userMenu.set('label', '<b>' + settingsManager.user.userName + '</b>');
+                    }
+                    
+                    // set avatar
+                    var userImage = dojo.byId('userImage');
+
+                    if(userImage){
+                        userImage.src = settingsManager.getInfo(INFO.GRAVATAR);
+                    }
+                    
+                    
+                    // check the welcome tab preference
+                    var welcomeTab = settingsManager.getPreference(PREFERENCE.SHOW_WELCOME_TAB);
+                    
+                    if(welcomeTab == 'true'){
+                        
+                        var tabs = dijit.byId('tabContainer');
+                        
+                        var tab = new ContentPane({
+                            title:'Welcome', 
+                            closable : true,
+                            iconClass : 'welcomeIcon',
+                            id : 'welcomeTab',
+                            href:'dialogs/WelcomeTab/index.html'
+                        });
+                        
+                        tabs.addChild(tab);
+                        
+                        tabs.selectChild(tab);
+                    }
+                    
+                    // set the editor / view sync checkbox
                     var checked = settingsManager.getPreference(PREFERENCE.SYNC_EDITOR_VIEWS);
-                
-                    console.info('we want ' + checked);
-                
+                    
                     var menu = dijit.byId(MENU.VIEW.SYNC_EDITOR);
-                
-                    console.info('its now : ' + menu.get('checked'));
-                
-                    menu.set('checked', checked);
-                
-                    console.info('and now its ' + menu.get('checked'));
+                    menu.set('checked', checked == 'true' ? true : false);
                 
                 });
               
-            }      
+            }
         };
     });

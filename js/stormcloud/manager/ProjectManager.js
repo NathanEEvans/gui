@@ -124,6 +124,11 @@ define([
                 
                     // if it's a project type we were given, just return it
                     return item;
+                    
+                // skip the maven settings as it does not belong to any projects
+                }else if(item.type == 'mavenSettings'){
+                        
+                    return item;
                 
                 }else{
                     

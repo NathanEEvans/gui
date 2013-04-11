@@ -18,14 +18,30 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * 
  */
-define([], 
-    function(){
+define([
+    'stormcloud/rest/xhr'], 
+    function(
+        xhr){
     
         //
         // module       : stormcloud/manager/SettingsManager
         // 
         // summary      : 
         //
+        
+        
+        INFO = {
+            
+            FULL_NAME : 'FULL_NAME',
+            SCREEN_NAME : 'SCREEN_NAME',
+            EMAIL_ADDRESS : 'EMAIL_ADDRESS',
+            CITY : 'CITY',
+            COUNTRY : 'COUNTRY',
+            GRAVATAR : 'GRAVATAR',
+            JOINED : 'JOINED',
+            WEBSITE : 'WEBSITE'
+        }
+        
         
         SETTING = {  
     
@@ -40,9 +56,25 @@ define([],
         
         PREFERENCE = {
             
+            SHOW_WELCOME_TAB : 'SHOW_WELCOME_TAB',
             SYNC_EDITOR_VIEWS : 'SYNC_EDITOR_VIEWS',
-            GITHUB_USER : 'GITHUB_USER',
-            GITHUB_PASSWORD : 'GITHUB_PASSWORD'
+            
+            EDITOR_THEME : 'EDITOR_THEME',
+            EDITOR_FONT_SIZE : 'EDITOR_FONT_SIZE',
+            EDITOR_CODE_FOLDING : 'EDITOR_CODE_FOLDING',
+            EDITOR_KEY_BINDINGS : 'EDITOR_KEY_BINDINGS',
+            EDITOR_SOFT_WRAP : 'EDITOR_SOFT_WRAP',
+            EDITOR_FULL_LINE_SELECT : 'EDITOR_FULL_LINE_SELECT',
+            EDITOR_HIGHLIGHT_ACTIVE_LINE : 'EDITOR_HIGHLIGHT_ACTIVE_LINE',
+            EDITOR_SHOW_INVISIBLES : 'EDITOR_SHOW_INVISIBLES',
+            EDITOR_SHOW_INDENT_GUIDES : 'EDITOR_SHOW_INDENT_GUIDES',
+            EDITOR_SHOW_GUTTER : 'EDITOR_SHOW_GUTTER',
+            EDITOR_SHOW_PRINT_MARGIN : 'EDITOR_SHOW_PRINT_MARGIN',
+            EDITOR_USE_SOFT_TAB : 'EDITOR_USE_SOFT_TAB',
+            EDITOR_HIGHLIGHT_SELECTED_WORD : 'EDITOR_HIGHLIGHT_SELECTED_WORD',
+            EDITOR_FADE_FOLD_WIDGETS : 'EDITOR_FADE_FOLD_WIDGETS',
+            MAVEN_COMPILE_ON_SAVE : 'MAVEN_COMPILE_ON_SAVE',
+            MAVEN_COMPILE_ON_PROJECT_OPEN : 'MAVEN_COMPILE_ON_PROJECT_OPEN'
             
         }
     
@@ -55,7 +87,7 @@ define([],
             // convenience method to get the api url from user settings
             getApiUrl : function(){
             
-                return 'http://' + window.location.host + this.getSetting(SETTING.API_URL);
+                return 'https://' + window.location.host + this.getSetting(SETTING.API_URL);
             },
             
             // convenience method to get the users project folder
@@ -113,6 +145,20 @@ define([],
               
             },
             
+            setPreference : function(key, value){
+                
+                for(var i in this.user.preferences){
+                    
+                    for(var x in this.user.preferences[i]){
+                    
+                        if(x == 'key' && this.user.preferences[i][x] == key){
+                            
+                            this.user.preferences[i].value = value.toString();
+                        }
+                    }   
+                }    
+            },
+            
             getSetting : function(key){
               
                 // summary : Get a User setting based on the given key
@@ -131,11 +177,128 @@ define([],
                 return undefined;
             },
             
+            getInfo : function(key){
+              
+                for(var i in this.user.info){
+                    
+                    for(var x in this.user.info[i]){
+                    
+                        if(x == 'key' && this.user.info[i][x] == key){
+                            
+                            return this.user.info[i].value;
+                        }
+                    }   
+                }  
+            
+                return undefined;
+            },
+            
+            setInfo : function(key, value){
+              
+                for(var i in this.user.info){
+                    
+                    for(var x in this.user.info[i]){
+                    
+                        if(x == 'key' && this.user.info[i][x] == key){
+                            
+                            this.user.info[i].value = value.toString();
+                        }
+                    }   
+                }  
+            },
+            
+            
+            changePassword : function(currentPassword, newPassword){
+              
+                var xhrArgs = {
+                    url: this.getApiUrl() + '/user/password',
+                    content : {
+                        currentPassword : currentPassword,
+                        newPassword : newPassword
+                    }
+                }
+    
+                var deferred = xhr.post(xhrArgs);
+            
+                deferred.then(
+                    function(data){
+                    
+                        if(data == '0'){
+                            applicationManager.logout();
+                        }else{
+                            dojo.byId(changePasswordMessage).innerHTML = data;
+                        }
+                        
+                    },
+                    function(error){
+            
+                        statusManager.error(error);
+                    });    
+            },
+            
+            
+            deleteAccount : function(){
+              
+              
+              
+            },
+            
+            saveInfo : function(key, value){
+                
+                var xhrArgs = {
+                    url: this.getApiUrl() + '/user/info',
+                    content : {
+                        key : key,
+                        value : value
+                    }
+                }
+    
+                var deferred = xhr.post(xhrArgs);
+            
+                deferred.then(
+                    function(data){
+                    
+                        if(data == '0'){
+                            settingsManager.setInfo(key, value);
+                        }else{
+                            statusManager.error(data);
+                        }
+                        
+                    },
+                    function(error){
+            
+                        statusManager.error(error);
+                    });    
+              
+              
+            },
+            
             savePreference : function(key, value){
                 
-                
-                
-                
+                var xhrArgs = {
+                    url: this.getApiUrl() + '/user/preference',
+                    content : {
+                        key : key,
+                        value : value
+                    }
+                }
+    
+                var deferred = xhr.post(xhrArgs);
+            
+                deferred.then(
+                    function(data){
+                    
+                        if(data == '0'){
+                            settingsManager.setPreference(key, value);
+                        }else{
+                            statusManager.error(data);
+                        }
+                        
+                    },
+                    function(error){
+            
+                        statusManager.error(error);
+                    });    
             }
             
         };

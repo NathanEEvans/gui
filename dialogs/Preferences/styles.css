@@ -1,35 +1,72 @@
+.preferencesEditForm{
 
-#gitHubCredentials{
-
-    margin-left : 20px;
-    margin-top: 20px;
-    border: 1px solid #b5bcc7;
-    width : 400px;
+    float : left;
+    width : 90%;
+    padding-bottom : 5px;
 }
 
-#gitHubCredentialsTitle{
-
-    font-weight : bold;
-    padding-top: 10px;
-    padding-left:10px;
-
-}
-
-.gitHubCredentialsField{
-
-    padding-top: 10px;
-    padding-left : 10px;
-}
-
-.gitHubCredentialsField label{
+.preferencesEditForm label{
 
     float : left;
     width : 150px;
+    text-align : right;
+    padding-right : 10px;
+
 }
 
-#gitHubCredentialsSubmit{
+.preferencesEditForm input{
 
-    padding-top: 10px;
-    padding-left : 158px;
-    padding-bottom: 10px;
+    float : left;
+
 }
+
+.preferencesTitle{
+
+    float : left;
+    padding-top : 20px;
+    padding-bottom : 20px;
+    width : 95%;
+    font-size : 18px;
+    padding-left : 20px;
+}
+
+#preferencesEditorExplain{
+
+    float : left;
+    padding-top : 20px;
+    padding-bottom : 20px;
+    padding-left : 20px;
+    font-size : 10px;
+    color : grey;
+    width : 305px;
+    text-align : justify;
+}
+
+#preferencesEditorPreviewContainer{
+
+    top : 20px;
+    left : 360px;
+    width : 700px;
+    height : 415px;
+    border : 1px solid #b5bcc7;
+}
+
+
+#preferencesMavenOptions{
+
+    float : left;
+    margin-left : 20px;
+    margin-top : 20px;
+    border : 1px solid #b5bcc7;
+
+}
+
+.preferenceSectionTitle{
+
+    float : left;
+    font-size : 12px;
+    padding-left : 10px;
+    padding-top : 10px;
+    padding-bottom : 10px;
+}
+
