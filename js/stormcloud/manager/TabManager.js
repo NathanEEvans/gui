@@ -1,5 +1,5 @@
 /*
- * Stormcloud IDE - stormcloud/dialogs/ExportProject
+ * Stormcloud IDE - stormcloud/manager/TabManager
  * 
  * Copyright (C) 2012 - 2013 Stormcloud IDE
  * 
@@ -20,20 +20,29 @@
  */
 define([], 
     function(){
-        
+
         //
-        // module      : stormcloud/dialogs/ExportProject
-        // 
-        // summary     : 
-        //               
-
-        return{
+        // module       : stormcloud/manager/TabManager
+        //		
+        // summary      : 
+        //				
     
-            init : function(){
+        return {
+            
+            
+            selectMavenTab : function(){
                 
+                var tabs = dijit.byId('logTabs');
+                var tab = dijit.byId('mavenLogTab');
+                tabs.selectChild(tab);
             }
-    
-    
+            
+            
+            
+            
+            
         }
-
+        
+        
     });
+

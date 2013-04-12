@@ -108,7 +108,11 @@
         <script>
             function send(){
                 
-                alert('signup');
+                var username = document.getElementById('username').value;
+                var password = document.getElementById('password').value; 
+                var emailAddress = document.getElementById('emailAddress').value; 
+                
+                createAccount(username, password, emailAddress);
             }
         </script>
 

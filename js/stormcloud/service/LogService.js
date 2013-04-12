@@ -165,15 +165,18 @@ define([
            
                 p.stop();
           
-                statusManager.hideProgress();
-                statusManager.info('Maven Finished');
-                
                 var failed = false
             
                 if(data != '0'){
                 
                     // failure
                     failed = true;
+                    
+                    statusManager.error('Maven Finished with Errors. <a href=\"javascript:tabManager.selectMavenTab();">Review the Maven log for details.</a>');
+                    
+                }else{
+                
+                    statusManager.info('Maven Finished Successfully.');
                 }
           
                 xhr.get({
@@ -217,6 +220,10 @@ define([
                         }
                     }
                 });
+                
+                
+                statusManager.hideProgress();
+                statusManager.info('Maven Finished');
             }
         }
     });

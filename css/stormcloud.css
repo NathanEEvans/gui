@@ -363,7 +363,9 @@ a:active {
     height: 100%; 
     border:0;
     font-family:monospace;
-    font-size: 11px;    
+    font-size: 11px;   
+    overflow-y: auto;
+    overflow-x : hidden;
 
 }
 
@@ -473,15 +475,18 @@ a:active {
 .consoleInfo{
 
     color : #000000;
+    padding-left : 5px;
 }
 
 .consoleError{
 
     color : red;
-
+    padding-left : 5px;
 }
 
 .consoleWarning{
 
     color : gold;
+    padding-left : 5px;
+
 }

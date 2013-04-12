@@ -31,15 +31,40 @@ define([
     
         return {
             
+            
+            startProcess : function(message){
+              
+                // summary : convenience method which both shows progress
+                //           with the specified message and logs the message
+                //           to the console.
+              
+                this.info(message);
+                this.showProgress(message);
+              
+            },
+            
+            stopProcess : function(message){
+              
+                // summary : convenience method which both hides the progress
+                //           and logs the given message to console
+              
+                this.info(message);
+                this.hideProgress();
+              
+            },
+            
             info : function(message){
     
                 var statusBar = document.getElementById('consoleWindow');
                 
                 var entry = document.createElement('div');
                 entry.className = 'consoleInfo';
-                entry.innerHTML =  date.getLogTime() + ' ' + message;
+                entry.innerHTML =  date.getLogTime() + ' INFO ' + message;
                 
                 statusBar.appendChild(entry);
+                
+                statusBar.scrollTop = statusBar.scrollHeight;
+                    
             },
             
             error : function(message){
@@ -48,9 +73,12 @@ define([
                 
                 var entry = document.createElement('div');
                 entry.className = 'consoleError';
-                entry.innerHTML = date.getLogTime() + ' ' + message;
+                entry.innerHTML = date.getLogTime() + ' ERROR ' + message;
                 
                 statusBar.appendChild(entry);
+      
+                statusBar.scrollTop = statusBar.scrollHeight;
+      
             },
             
             warn : function(message){
@@ -59,9 +87,11 @@ define([
                 
                 var entry = document.createElement('div');
                 entry.className = 'consoleWarning';
-                entry.innerHTML = date.getLogTime() + ' ' + message;
+                entry.innerHTML = date.getLogTime() + ' WARNING ' + message;
                 
                 statusBar.appendChild(entry);
+                
+                statusBar.scrollTop = statusBar.scrollHeight;
             },
             
             clear : function(){

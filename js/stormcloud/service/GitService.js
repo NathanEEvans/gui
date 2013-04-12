@@ -43,9 +43,8 @@ define([
             
             clone : function(uri){
               
-                statusManager.showProgress();
-                statusManager.info('Git Clone Running');
-           
+                statusManager.startProcess('Git Clone Running');
+                
                 var data = {
         
                     uri : uri
@@ -53,7 +52,8 @@ define([
     
                 var xhrArgs = {
                     url: GIT.CLONE_REMOTE,
-                    postData: dojo.toJson(data)
+                    postData: dojo.toJson(data),
+                    error : this.handleError
                 };
             
                 var deferred = xhr.post(xhrArgs,'JSON');
@@ -63,26 +63,24 @@ define([
             
                         if(data == '0'){
                 
-                            statusManager.hideProgress();
-                            statusManager.info('Repository Cloned.');
+                            statusManager.stopProcess('Repository ' + uri + ' Cloned.');
             
                             treeManager.refresh('projectTree');
                             
                         }else{
             
-                            statusManager.error(
-                                'Failed to Clone.'+
-                                ' Please review the <a href=\"javascript:alert'
-                                +'(\'Open logfile window\');">log</a>');
+                            statusManager.error(data);    
                         }
-                    },
-
-                    function(error){
-            
-                        statusManager.error(error);
                     });
-                
             },
+            
+            
+            handleError : function(error, ioArgs){
+              
+                statusManager.error(ioArgs.xhr.responseText);
+                statusManager.stopProcess('Git Clone Finished');    
+            },
+            
             
             // Show changes made to the current working tree.
             showChanges: function(item){

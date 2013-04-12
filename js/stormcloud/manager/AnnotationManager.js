@@ -264,13 +264,6 @@ define([
                 
                 // update the tab title with the amount of tests we found
                 tab.set('title', 'Tests (' + testCount + ')');
-                
-                // when we found it, set selected in the tab conatiner
-                if(tab != null){
-                    tabs.selectChild(tab);
-                }
-              
-              
             },
             
             // Takes care of reporting the problems in
@@ -347,11 +340,7 @@ define([
                 
                 // update the tab title with the amount of errors we found
                 tab.set('title', 'Problems (' + problemCount + ')');
-                // when we found it, set selected in the tab conatiner
-                if(tab != null){
-                    tabs.selectChild(tab);
-                }
-              
+                
             },
             
             

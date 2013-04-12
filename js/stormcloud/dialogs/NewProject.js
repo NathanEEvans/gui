@@ -103,9 +103,6 @@ define([
             
                 MavenService.create(data);
             
-                statusManager.info('Creating Project');
-                statusManager.showProgress();
-            
                 dialogManager.hide(DIALOG.NEW_PROJECT);
                 dijit.byId('newProjectWizard').selectChild('step1');
             

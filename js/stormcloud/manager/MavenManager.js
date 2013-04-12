@@ -37,9 +37,6 @@ define([
             
             run : function(command){
                 
-                
-                statusManager.info('Running Maven command [' + command + ']');
-                
                 annotationManager.clear(projectManager.selected);
                 
                 this.lastCommand = command;

@@ -49,6 +49,8 @@ define([
         
             custom: function(command, item){
               
+                statusManager.info('Running Maven command [' + command + ']');
+                
                 var xhrArgs = {
                     url: URL.MAVEN_EXECUTE,
                     content : {
@@ -156,6 +158,8 @@ define([
         
             create: function(postData){
     
+                statusManager.startProcess('Creating Project');
+            
                 var xhrArgs = {
                     url: URL.MAVEN_CREATE,
                     handleAs: 'json',
@@ -173,9 +177,8 @@ define([
             
                         if(data == '0'){
             
-                            statusManager.hideProgress();
-                            statusManager.clear();
-                        
+                            statusManager.stopProcess('Project Created Successfully.');
+                            
                             treeManager.refresh('projectTree');
                 
                         }else{
@@ -199,6 +202,10 @@ define([
             
                         statusManager.error(error);
                     });
+                    
+                    
+                    
+                    
             }
         
         };

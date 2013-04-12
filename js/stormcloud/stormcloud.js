@@ -60,6 +60,7 @@ require([
                 'stormcloud/manager/ProjectManager',
                 'stormcloud/manager/SearchManager',
                 'stormcloud/manager/StatusManager',
+                'stormcloud/manager/TabManager',
                 'stormcloud/manager/TooltipManager',
                 'stormcloud/manager/TreeManager'], 
                 function(
@@ -78,6 +79,7 @@ require([
                     ProjectManager,
                     SearchManager,
                     StatusManager,
+                    TabManager,
                     TooltipManager,
                     TreeManager) {
 
@@ -98,6 +100,7 @@ require([
                     projectManager = ProjectManager;
                     searchManager = SearchManager;
                     statusManager = StatusManager;
+                    tabManager = TabManager;
                     tooltipManager = TooltipManager;
                     treeManager = TreeManager;
 

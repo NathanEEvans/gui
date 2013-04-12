@@ -161,7 +161,7 @@ define([
                         if(data == '0'){
                 
                             treeManager.refresh('projectTree');
-                            treeManager.refresh('filesystemTree');
+                            //treeManager.refresh('filesystemTree');
                                 
                             // we are moving from closed to projects
                             // so we need to change the path to reflect this

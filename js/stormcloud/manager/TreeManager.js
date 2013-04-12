@@ -220,22 +220,65 @@ define([
             },
             
             refresh : function(tree){
-            
+    
+                // show loading message
+                document.getElementById('projectTreeLoading').style.display = 'block';
+                
                 var selectedTree = dijit.byId(tree);
     
-                if(selectedTree != undefined){
+                if(tree == 'projectTree'){
+    
+                    registry.remove(selectedTree.id);
+    
+                    var projectRestStore = new JsonRest({
+                
+                        target : settingsManager.getApiUrl() + '/filesystem/opened'
+                    });
+                
+                    var treeModel = new TreeStoreModel({
+          
+                        store : new ObjectStore({
                     
-                    selectedTree.dndController.selectNone();
-                    selectedTree._itemNodesMap = {};
-                    selectedTree.model.root = null;
-                    selectedTree.rootNode.destroyRecursive();
-                    selectedTree._load();
-            
-                    if(tree == 'projectTree'){
+                            objectStore : projectRestStore
+                        }),
+                    
+                        mayHaveChildren : this.mayHaveChildren
+                    });
+       
+                    var projectTree = new Tree({
+                    
+                        model:treeModel, 
+                        persist:false, 
+                        showRoot:false, 
+                        openOnDblClick:true, 
+                        // tree icon function
+                        getIconClass : fileManager.getIcon,
+                        // tree double click handler
+                        onDblClick : this.openItem,
+                        onClick : this.setSelected 
+                    
+                    }, 'projectTree');
+                    
+                    projectTree.onLoadDeferred.then(function(){
+          
                         projectManager.init();
-                    }
                     
-                }    
+                        document.getElementById('projectTreeLoading').style.display = 'none';
+                    });
+                    
+                    this.bindContextMenus(projectTree);
+                    
+                }else{
+                    
+                    if(selectedTree){
+                    
+                        selectedTree.dndController.selectNone();
+                        selectedTree._itemNodesMap = {};
+                        selectedTree.model.root = null;
+                        selectedTree.rootNode.destroyRecursive();
+                        selectedTree._load();
+                    }
+                }
             },
 
 

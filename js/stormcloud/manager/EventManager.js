@@ -442,6 +442,11 @@ define([
                 //
                 // Tab Toolbars
                 //
+                this.registerClick('toolbarConsole_clear', function() {
+                    
+                    statusManager.clear();
+                });
+                
                 this.registerClick(TABS.SEARCH.REDEFINE, function() {
                     
                     dialogManager.show(DIALOG.FIND);

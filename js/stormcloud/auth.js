@@ -53,7 +53,7 @@ function sendCredentials(user, pass){
                 
     login.send(null);
    
-};
+}
         
 // Make a call to get the user
 //
