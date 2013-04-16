@@ -406,6 +406,8 @@ define([
                     function(data){
             
                         dijit.byId(item.id).set('title', item.label);
+                        treeManager.setSavedChanges(item);
+                        statusManager.info('Saved file ' + item.id);
                     },
 
                     function(error){

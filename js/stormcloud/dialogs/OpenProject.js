@@ -73,6 +73,8 @@ define([
             
             cancel : function(){
                 
+                
+                document.getElementById('projectTreeLoading').style.display = 'none';
                 dialogManager.hide(DIALOG.OPEN_PROJECT);
             },
             

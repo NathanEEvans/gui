@@ -1,31 +1,62 @@
-/* 
-    Document   : icons
-    Created on : Dec 11, 2012, 10:01:23 AM
-    Author     : martijn
-    Description:
-        Purpose of the stylesheet follows.
-*/
+/*
+  Icons & badges
+  ==============
 
-/**
- * Icons
 */
 .projectIcon {
 
-    background-image : url('/images/tree/project.png');	
+    background-image : url('/images/tree/project.png');
     width            : 16px;
     height           : 16px;
 }
 
+.mavenPomProjectIcon {
+
+    background-image : url('/images/maven/project.gif');
+    width            : 16px;
+    height           : 16px;
+}
+
+.mavenWebProjectIcon {
+
+    background-image : url('/images/maven/webappicon.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.mavenJarProjectIcon.testBadge{
+
+    background-image : url('/images/badges/package.gif'), url('/images/maven/jaricon.png');
+    background-repeat : no-repeat;
+    background-position : bottom right, center;
+    background-size : 8px 8px, 16px 16px; ;
+    width : 16px;
+    height : 16px;
+
+}
+
+
+.mavenJarProjectIcon {
+
+    background-image : url('/images/maven/jaricon.png');
+    background-repeat : no-repeat;
+    background-position : center;
+    background-size : 16px 16px; ;
+    width : 16px;
+    height : 16px;
+}
+
+
 .welcomeIcon{
 
-    background-image : url('/images/tabs/welcome.png');	
+    background-image : url('/images/tabs/welcome.png');
     width            : 16px;
     height           : 16px;
 }
 
 .closedProjectIcon {
 
-    background-image : url('/images/tree/project.png');	
+    background-image : url('/images/tree/project.png');
     width            : 16px;
     height           : 16px;
 }
@@ -35,100 +66,101 @@
     color: #b5bcc7;
 }
 
+
 .trashEmptyIcon{
 
-    background-image : url('/images/menubar/trash.png');	
+    background-image : url('/images/menubar/trash.png');
     width            : 16px;
-    height           : 16px;	
+    height           : 16px;
 }
 
 .trashFullIcon{
 
-    background-image : url('/images/menubar/trash-full.png');	
+    background-image : url('/images/menubar/trash-full.png');
     width            : 16px;
-    height           : 16px;	
+    height           : 16px;
 }
 
 .tomcatIcon {
 
-    background-image : url('/images/services/tomcat16x16.png');	
+    background-image : url('/images/services/tomcat16x16.png');
     width            : 24px;
     height           : 16px;
 }
 
 .tomcatWebAppsIcon {
 
-    background-image : url('/images/services/tomcat-webapps.png');	
+    background-image : url('/images/services/tomcat-webapps.png');
     width            : 16px;
     height           : 16px;
 }
 
 .tomcatLibIcon{
 
-    background-image : url('/images/tree/library.png');	
+    background-image : url('/images/tree/library.png');
     width            : 16px;
     height           : 16px;
 }
 
 .tomcatAppIcon {
 
-    background-image : url('/images/services/tomcat-webapp.png');	
+    background-image : url('/images/services/tomcat-webapp.png');
     width            : 16px;
     height           : 16px;
 }
 
 .mysqlIcon {
 
-    background-image : url('/images/services/mysql.png');	
+    background-image : url('/images/services/mysql.png');
     width            : 24px;
     height           : 16px;
 }
 
 .oracleIcon {
 
-    background-image : url('/images/services/oracle.png');	
+    background-image : url('/images/services/oracle.png');
     width            : 24px;
     height           : 16px;
 }
 
 .javadbIcon {
 
-    background-image : url('/images/services/javadb.png');	
+    background-image : url('/images/services/javadb.png');
     width            : 24px;
     height           : 16px;
 }
 
 .databasesIcon {
 
-    background-image : url('/images/services/databases.png');	
+    background-image : url('/images/services/databases.png');
     width            : 16px;
     height           : 16px;
 }
 
 .webServicesIcon{
 
-    background-image : url('/images/services/web-services.png');	
+    background-image : url('/images/services/web-services.png');
     width            : 16px;
     height           : 16px;
 }
 
 .serverIcon{
 
-    background-image : url('/images/services/server.png');	
+    background-image : url('/images/services/server.png');
     width            : 16px;
     height           : 16px;
 }
 
 .mavenRepositoriesIcon{
 
-    background-image : url('/images/services/maven-repositories.png');	
+    background-image : url('/images/services/maven-repositories.png');
     width            : 16px;
     height           : 16px;
 }
 
 .issueTrackersIcon{
 
-    background-image : url('/images/services/issue-trackers.png');	
+    background-image : url('/images/services/issue-trackers.png');
     width            : 16px;
     height           : 16px;
 }
@@ -136,309 +168,309 @@
 .continuousIntegrationIcon{
 
 
-    background-image : url('/images/services/continuous-integration.png');	
+    background-image : url('/images/services/continuous-integration.png');
     width            : 16px;
     height           : 16px;
 }
 
 .thumbUpIcon{
 
-    background-image : url('/images/menubar/thumb-up.png');	
+    background-image : url('/images/menubar/thumb-up.png');
     width            : 16px;
-    height           : 16px;	
+    height           : 16px;
 }
 
 .thumbDownIcon{
 
-    background-image : url('/images/menubar/thumb-down.png');	
+    background-image : url('/images/menubar/thumb-down.png');
     width            : 16px;
-    height           : 16px;	
+    height           : 16px;
 }
 
 .noThumbIcon{
 
     width            : 16px;
-    height           : 16px;	
+    height           : 16px;
 }
 
 .commentAddIcon{
 
-    background-image : url('/images/menubar/comment-add.png');	
+    background-image : url('/images/menubar/comment-add.png');
     width            : 16px;
-    height           : 16px;	
+    height           : 16px;
 }
 
 .bugAddIcon{
 
-    background-image : url('/images/menubar/bug-add.png');	
+    background-image : url('/images/menubar/bug-add.png');
     width            : 16px;
-    height           : 16px;	
+    height           : 16px;
 }
 
 .projectSettingsIcon {
 
-    background-image : url('/images/tree/project-settings.png');	
+    background-image : url('/images/tree/project-settings.png');
     width            : 16px;
-    height           : 16px;	
+    height           : 16px;
 }
 
 .projectSettingsUntrackedIcon{
 
-    background-image : url('/images/tree/project-settings-untracked.png');	
+    background-image : url('/images/tree/project-settings-untracked.png');
     width            : 16px;
-    height           : 16px;	
+    height           : 16px;
 }
 
 .projectSettingsModifiedIcon{
 
-    background-image : url('/images/tree/project-settings-modified.png');	
+    background-image : url('/images/tree/project-settings-modified.png');
     width            : 16px;
-    height           : 16px;	
+    height           : 16px;
 }
 
 .mavenSettingsIcon {
 
-    background-image : url('/images/tree/maven-settings.png');	
+    background-image : url('/images/tree/maven-settings.png');
     width            : 16px;
     height           : 16px;
 }
 
 .mavenSettingsModifiedIcon {
 
-    background-image : url('/images/tree/maven-settings-modified.png');	
+    background-image : url('/images/tree/maven-settings-modified.png');
     width            : 16px;
     height           : 16px;
 }
 
 .mavenSettingsUntrackedIcon {
 
-    background-image : url('/images/tree/maven-settings-untracked.png');	
+    background-image : url('/images/tree/maven-settings-untracked.png');
     width            : 16px;
     height           : 16px;
 }
 
 .wsdlFileIcon {
 
-    background-image : url('/images/tree/wsdl-file.png');	
+    background-image : url('/images/tree/wsdl-file.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .wsdlFileModifiedIcon {
 
-    background-image : url('/images/tree/wsdl-file-modified.png');	
+    background-image : url('/images/tree/wsdl-file-modified.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .wsdlFileUntrackedIcon  {
 
-    background-image : url('/images/tree/wsdl-file-untracked.png');	
+    background-image : url('/images/tree/wsdl-file-untracked.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .jarFileIcon {
 
-    background-image : url('/images/tree/jar-file.png');	
+    background-image : url('/images/tree/jar-file.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .sha1FileIcon {
 
-    background-image : url('/images/tree/sha1-file.png');	
+    background-image : url('/images/tree/sha1-file.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .xsdFileIcon {
 
-    background-image : url('/images/tree/xsd-file.png');	
+    background-image : url('/images/tree/xsd-file.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .xsdFileModifiedIcon {
 
-    background-image : url('/images/tree/xsd-file-modified.png');	
+    background-image : url('/images/tree/xsd-file-modified.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .xsdFileUntrackedIcon  {
 
-    background-image : url('/images/tree/xsd-file-untracked.png');	
+    background-image : url('/images/tree/xsd-file-untracked.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .xhtmlFileIcon {
 
-    background-image : url('/images/tree/xhtml-file.png');	
+    background-image : url('/images/tree/xhtml-file.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .xhtmlFileModifiedIcon {
 
-    background-image : url('/images/tree/xhtml-file-modified.png');	
+    background-image : url('/images/tree/xhtml-file-modified.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .xhtmlFileUntrackedIcon  {
 
-    background-image : url('/images/tree/xhtml-file-untracked.png');	
+    background-image : url('/images/tree/xhtml-file-untracked.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .cssFileIcon {
 
-    background-image : url('/images/tree/css-file.png');	
+    background-image : url('/images/tree/css-file.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .cssFileModifiedIcon {
 
-    background-image : url('/images/tree/css-file-modified.png');	
+    background-image : url('/images/tree/css-file-modified.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .cssFileUntrackedIcon  {
 
-    background-image : url('/images/tree/css-file-untracked.png');	
+    background-image : url('/images/tree/css-file-untracked.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .textFileIcon {
 
-    background-image : url('/images/tree/text-file.png');	
+    background-image : url('/images/tree/text-file.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .textFileModifiedIcon {
 
-    background-image : url('/images/tree/text-file-modified.png');	
+    background-image : url('/images/tree/text-file-modified.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .textFileUntrackedIcon  {
 
-    background-image : url('/images/tree/text-file-untracked.png');	
+    background-image : url('/images/tree/text-file-untracked.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .jsFileIcon {
 
-    background-image : url('/images/tree/javascript-file.png');	
+    background-image : url('/images/tree/javascript-file.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .jsFileModifiedIcon {
 
-    background-image : url('/images/tree/javascript-file-modified.png');	
+    background-image : url('/images/tree/javascript-file-modified.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .jsFileUntrackedIcon  {
 
-    background-image : url('/images/tree/javascript-file-untracked.png');	
+    background-image : url('/images/tree/javascript-file-untracked.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .imageFileIcon {
 
-    background-image : url('/images/tree/image-file.png');	
+    background-image : url('/images/tree/image-file.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .imageFileModifiedIcon {
 
-    background-image : url('/images/tree/image-file-modified.png');	
+    background-image : url('/images/tree/image-file-modified.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .imageFileUntrackedIcon  {
 
-    background-image : url('/images/tree/image-file-untracked.png');	
+    background-image : url('/images/tree/image-file-untracked.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 
 .tldFileIcon {
 
-    background-image : url('/images/tree/tld-file.png');	
+    background-image : url('/images/tree/tld-file.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .tldFileModifiedIcon {
 
-    background-image : url('/images/tree/tld-file-modified.png');	
+    background-image : url('/images/tree/tld-file-modified.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .tldFileUntrackedIcon  {
 
-    background-image : url('/images/tree/tld-file-untracked.png');	
+    background-image : url('/images/tree/tld-file-untracked.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 
 .htmlFileIcon {
 
-    background-image : url('/images/tree/html-file.png');	
+    background-image : url('/images/tree/html-file.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .htmlFileModifiedIcon {
 
-    background-image : url('/images/tree/html-file-modified.png');	
+    background-image : url('/images/tree/html-file-modified.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .htmlFileUntrackedIcon  {
 
-    background-image : url('/images/tree/html-file-untracked.png');	
+    background-image : url('/images/tree/html-file-untracked.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .yamlFileIcon{
 
-    background-image : url('/images/tree/yaml-file.png');	
+    background-image : url('/images/tree/yaml-file.png');
     width            : 16px;
     height           : 16px;
 }
 
 .yamlFileMofifiedIcon{
 
-    background-image : url('/images/tree/yaml-file-modified.png');	
+    background-image : url('/images/tree/yaml-file-modified.png');
     width            : 16px;
     height           : 16px;
 }
 
 .yamlFileUntrackedIcon{
 
-    background-image : url('/images/tree/yaml-file-untracked.png');	
+    background-image : url('/images/tree/yaml-file-untracked.png');
     width            : 16px;
     height           : 16px;
 }
@@ -446,21 +478,21 @@
 
 .manifestFileIcon{
 
-    background-image : url('/images/tree/manifest-file.png');	
+    background-image : url('/images/tree/manifest-file.png');
     width            : 16px;
     height           : 16px;
 }
 
 .manifestFileMofifiedIcon{
 
-    background-image : url('/images/tree/manifest-file-modified.png');	
+    background-image : url('/images/tree/manifest-file-modified.png');
     width            : 16px;
     height           : 16px;
 }
 
 .manifestFileUntrackedIcon{
 
-    background-image : url('/images/tree/manifest-file-untracked.png');	
+    background-image : url('/images/tree/manifest-file-untracked.png');
     width            : 16px;
     height           : 16px;
 }
@@ -468,120 +500,120 @@
 
 .sqlFileIcon {
 
-    background-image : url('/images/tree/sql-file.png');	
+    background-image : url('/images/tree/sql-file.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .sqlFileModifiedIcon {
 
-    background-image : url('/images/tree/sql-file-modified.png');	
+    background-image : url('/images/tree/sql-file-modified.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .sqlFileUntrackedIcon  {
 
-    background-image : url('/images/tree/sql-file-untracked.png');	
+    background-image : url('/images/tree/sql-file-untracked.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 
 .propertiesFileIcon{
 
-    background-image : url('/images/tree/properties-file.png');	
+    background-image : url('/images/tree/properties-file.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .propertiesFileModifiedIcon{
 
-    background-image : url('/images/tree/properties-file.png');	
+    background-image : url('/images/tree/properties-file.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .propertiesFileUntrackedIcon{
 
-    background-image : url('/images/tree/properties-file.png');	
+    background-image : url('/images/tree/properties-file.png');
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 .flowDesignIcon {
 
-    background-image : url('/images/tree/flow-design.png');	
+    background-image : url('/images/tree/flow-design.png');
     width            : 16px;
-    height           : 16px;		
+    height           : 16px;
 }
 
 .flowDesignUntrackedIcon {
 
-    background-image : url('/images/tree/flow-design-untracked.png');	
+    background-image : url('/images/tree/flow-design-untracked.png');
     width            : 16px;
-    height           : 16px;		
+    height           : 16px;
 }
 
 .flowDesignModifiedIcon {
 
-    background-image : url('/images/tree/flow-design-modified.png');	
+    background-image : url('/images/tree/flow-design-modified.png');
     width            : 16px;
-    height           : 16px;		
+    height           : 16px;
 }
 
 .sourceFolderIcon {
 
-    background-image : url('/images/tree/source-folder.png');	
+    background-image : url('/images/tree/source-folder.png');
     width            : 16px;
     height           : 16px;
 }
 
 .sourceFolderUntrackedIcon {
 
-    background-image : url('/images/tree/source-folder-untracked.png');	
+    background-image : url('/images/tree/source-folder-untracked.png');
     width            : 16px;
     height           : 16px;
 }
 
 .sourceFolderModifiedIcon {
 
-    background-image : url('/images/tree/source-folder-modified.png');	
+    background-image : url('/images/tree/source-folder-modified.png');
     width            : 16px;
     height           : 16px;
 }
 
 .sourceFolderMissingIcon {
 
-    background-image : url('/images/tree/source-folder-missing.png');	
+    background-image : url('/images/tree/source-folder-missing.png');
     width            : 16px;
     height           : 16px;
 }
 
 .webappFolderIcon {
 
-    background-image : url('/images/tree/webapp-folder.png');	
+    background-image : url('/images/tree/webapp-folder.png');
     width            : 16px;
     height           : 16px;
 }
 
 .webappFolderUntrackedIcon {
 
-    background-image : url('/images/tree/webapp-folder-untracked.png');	
+    background-image : url('/images/tree/webapp-folder-untracked.png');
     width            : 16px;
     height           : 16px;
 }
 
 .webappFolderModifiedIcon {
 
-    background-image : url('/images/tree/webapp-folder-modified.png');	
+    background-image : url('/images/tree/webapp-folder-modified.png');
     width            : 16px;
     height           : 16px;
 }
 
 .webappFolderMissingIcon {
 
-    background-image : url('/images/tree/webapp-folder-missing.png');	
+    background-image : url('/images/tree/webapp-folder-missing.png');
     width            : 16px;
     height           : 16px;
 }
@@ -589,126 +621,126 @@
 
 .javaFileIcon {
 
-    background-image : url('/images/tree/java-file.png');	
+    background-image : url('/images/tree/java-file.png');
     width            : 16px;
     height           : 16px;
 }
 
 .javaFileUntrackedIcon {
 
-    background-image : url('/images/tree/java-file-untracked.png');	
+    background-image : url('/images/tree/java-file-untracked.png');
     width            : 16px;
     height           : 16px;
 }
 
 .javaFileModifiedIcon {
 
-    background-image : url('/images/tree/java-file-modified.png');	
+    background-image : url('/images/tree/java-file-modified.png');
     width            : 16px;
     height           : 16px;
 }
 
 .jspFileIcon {
 
-    background-image : url('/images/tree/jsp-file.png');	
+    background-image : url('/images/tree/jsp-file.png');
     width            : 16px;
     height           : 16px;
 }
 
 .jspFileUntrackedIcon {
 
-    background-image : url('/images/tree/java-file-untracked.png');	
+    background-image : url('/images/tree/java-file-untracked.png');
     width            : 16px;
     height           : 16px;
 }
 
 .jspFileModifiedIcon {
 
-    background-image : url('/images/tree/java-file-modified.png');	
+    background-image : url('/images/tree/java-file-modified.png');
     width            : 16px;
     height           : 16px;
 }
 
 .xmlFileIcon {
 
-    background-image : url('/images/tree/xml-file.png');	
+    background-image : url('/images/tree/xml-file.png');
     width            : 16px;
     height           : 16px;
 }
 
 .xmlFileUntrackedIcon {
 
-    background-image : url('/images/tree/xml-file-untracked.png');	
+    background-image : url('/images/tree/xml-file-untracked.png');
     width            : 16px;
     height           : 16px;
 }
 
 .xmlFileModifiedIcon {
 
-    background-image : url('/images/tree/xml-file-modified.png');	
+    background-image : url('/images/tree/xml-file-modified.png');
     width            : 16px;
     height           : 16px;
 }
 
 .resourceFolderIcon {
 
-    background-image : url('/images/tree/resource-folder.png');	
+    background-image : url('/images/tree/resource-folder.png');
     width            : 16px;
     height           : 16px;
 }
 
 .resourceFolderUntrackedIcon {
 
-    background-image : url('/images/tree/resource-folder-untracked.png');	
+    background-image : url('/images/tree/resource-folder-untracked.png');
     width            : 16px;
     height           : 16px;
 }
 
 .resourceFolderModifiedIcon {
 
-    background-image : url('/images/tree/resource-folder-modified.png');	
+    background-image : url('/images/tree/resource-folder-modified.png');
     width            : 16px;
     height           : 16px;
 }
 
 .resourceFolderMissingIcon {
 
-    background-image : url('/images/tree/resource-folder-missing.png');	
+    background-image : url('/images/tree/resource-folder-missing.png');
     width            : 16px;
     height           : 16px;
 }
 
 .folderIcon {
 
-    background-image : url('/images/tree/folder.png');	
+    background-image : url('/images/tree/folder.png');
     width            : 16px;
     height           : 16px;
 }
 
 .unknownIcon {
 
-    background-image : url('/images/tree/unknown.png');	
+    background-image : url('/images/tree/unknown.png');
     width            : 16px;
     height           : 16px;
 }
 
 .folderUntrackedIcon {
 
-    background-image : url('/images/tree/folder-untracked.png');	
+    background-image : url('/images/tree/folder-untracked.png');
     width            : 16px;
     height           : 16px;
 }
 
 .folderModifiedIcon {
 
-    background-image : url('/images/tree/folder-modified.png');	
+    background-image : url('/images/tree/folder-modified.png');
     width            : 16px;
     height           : 16px;
 }
 
 .folderMissingIcon {
 
-    background-image : url('/images/tree/folder-missing.png');	
+    background-image : url('/images/tree/folder-missing.png');
     width            : 16px;
     height           : 16px;
 }
@@ -718,28 +750,28 @@
 */
 .compileCommandIcon{
 
-    background-image : url('/images/maven/compile.png');	
+    background-image : url('/images/maven/compile.png');
     width            : 16px;
     height           : 16px;
 }
 
 .cleanCommandIcon{
 
-    background-image : url('/images/maven/clean.png');	
+    background-image : url('/images/maven/clean.png');
     width            : 16px;
     height           : 16px;
 }
 
 .installCommandIcon{
 
-    background-image : url('/images/maven/install.png');	
+    background-image : url('/images/maven/install.png');
     width            : 16px;
     height           : 16px;
 }
 
 .customCommandIcon{
 
-    background-image : url('/images/maven/custom.png');	
+    background-image : url('/images/maven/custom.png');
     width            : 16px;
     height           : 16px;
 }
@@ -750,28 +782,28 @@
 */
 .newProjectIcon {
 
-    background-image : url('/images/menubar/project-add.png');	
+    background-image : url('/images/menubar/project-add.png');
     width            : 16px;
     height           : 16px;
 }
 
 .newFileIcon {
 
-    background-image : url('/images/menubar/file-add.png');	
+    background-image : url('/images/menubar/file-add.png');
     width            : 16px;
     height           : 16px;
 }
 
 .openProjectIcon{
 
-    background-image : url('/images/menubar/project-open.png');	
+    background-image : url('/images/menubar/project-open.png');
     width            : 16px;
     height           : 16px;
 }
 
 .projectDeleteIcon {
 
-    background-image : url('/images/menubar/project-delete.png');	
+    background-image : url('/images/menubar/project-delete.png');
     width            : 16px;
     height           : 16px;
 
@@ -779,21 +811,21 @@
 
 .closeProjectIcon {
 
-    background-image : url('/images/menubar/project-close.png');	
+    background-image : url('/images/menubar/project-close.png');
     width            : 16px;
     height           : 16px;
 }
 
 .saveAllIcon{
 
-    background-image: url("/images/menubar/save-all.gif"); 
+    background-image: url("/images/menubar/save-all.gif");
     width            : 16px;
     height           : 16px;
 }
 
 .undoIcon{
 
-    background-image: url("/icons/images/editorIconsEnabled.png"); 
+    background-image: url("/icons/images/editorIconsEnabled.png");
     width            : 18px;
     height           : 18px;
     background-position: -144px;
@@ -801,15 +833,15 @@
 
 .redoIcon{
 
-    background-image: url("/icons/images/editorIconsEnabled.png"); 
+    background-image: url("/icons/images/editorIconsEnabled.png");
     width            : 18px;
     height           : 18px;
-    background-position: -162px;      
+    background-position: -162px;
 }
 
 .cutIcon{
 
-    background-image: url("/icons/images/editorIconsEnabled.png"); 
+    background-image: url("/icons/images/editorIconsEnabled.png");
     width            : 18px;
     height           : 18px;
     background-position: -54px;
@@ -817,7 +849,7 @@
 
 .copyIcon{
 
-    background-image: url("/icons/images/editorIconsEnabled.png"); 
+    background-image: url("/icons/images/editorIconsEnabled.png");
     width            : 18px;
     height           : 18px;
     background-position: -72px;
@@ -825,7 +857,7 @@
 
 .pasteIcon{
 
-    background-image: url("/icons/images/editorIconsEnabled.png"); 
+    background-image: url("/icons/images/editorIconsEnabled.png");
     width            : 18px;
     height           : 18px;
     background-position: -90px;
@@ -845,20 +877,20 @@
     float:left;
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUM2OEZDQTg4RTU0MTFFMUEzM0VFRTM2RUY1M0RBMjYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUM2OEZDQTk4RTU0MTFFMUEzM0VFRTM2RUY1M0RBMjYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBQzY4RkNBNjhFNTQxMUUxQTMzRUVFMzZFRjUzREEyNiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBQzY4RkNBNzhFNTQxMUUxQTMzRUVFMzZFRjUzREEyNiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pgd7PfIAAAGmSURBVHjaYvr//z8DJZiJgUIANoCRkREb9gLiSVAaQx4OQM7AAkwd7XU2/v++/rOttdYGEB9dASEvOMydGKfH8Gv/p4XTkvRBfLxeQAP+1cUhXopyvzhP7P/IoSj7g7Mw09cNKO6J1QQ0L4gICPIv/veg/8W+JdFvQNLHVsW9/nmn9zk7B+cCkDwhL7gt6knSZnx9/LuCEOcvkIAMP+cvto9nfqyZmmUAksfnBUtbM60gX/3/kgyv3/xSFOL5DZT+L8vP+Yfh5cvfPvp/xUHyQHXGyAYwgpwBjZYFT3Y1OEl/OfCH4ffv3wzc4iwMvNIsDJ+f/mH4+vIPAxsb631WW0Yln6ZpQLXdMK/DXGDflh+sIv37EivD5x//Gb7+YWT4y86sl7BCCkSD+Z++/1dkvsFRl+HnD1Rvje4F8whjMXmGj58YGf5zsDMwcnAwfPvKcml62DsQDeaDxN+/Y0qwlpEHqrdB94IRNIDUgfgfKJChGK4OikEW3gTiXUB950ASLFAF54AC94A0G9QAfOnmF9DCDzABFqS08IHYDIScdijOjQABBgC+/9awBH96jwAAAABJRU5ErkJggg==");
     width            : 16px;
-    height           : 16px;    
+    height           : 16px;
 }
 
 
 .runMaven{
 
-    background-image: url("/images/maven/run-new.png"); 
+    background-image: url("/images/maven/run-new.png");
     width            : 16px;
     height           : 16px;
 }
 
 .stop{
 
-    background-image: url("/images/maven/stop.png"); 
+    background-image: url("/images/maven/stop.png");
     width            : 16px;
     height           : 16px;
 }
@@ -866,7 +898,7 @@
 
 .toolbarSearch {
 
-    background-image: url("/images/toolBar/search.png"); 
+    background-image: url("/images/toolBar/search.png");
     width            : 16px;
     height           : 16px;
 
@@ -875,14 +907,14 @@
 
 .toolbarRerun{
 
-    background-image: url("/images/toolBar/rerun.png"); 
+    background-image: url("/images/toolBar/rerun.png");
     width            : 16px;
     height           : 16px;
 }
 
 .toolbarClear{
 
-    background-image: url("/images/toolBar/clear.png"); 
+    background-image: url("/images/toolBar/clear.png");
     width            : 16px;
     height           : 16px;
 }

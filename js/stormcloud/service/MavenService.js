@@ -187,11 +187,11 @@ define([
                         }
             
                         // reset the form
-                        var btn = dijit.byId('newProjectOkButton');
-                        btn.setAttribute('disabled', true);
+                        //var btn = dijit.byId('newProjectOkButton');
+                        //btn.setAttribute('disabled', true);
                 
-                        btn = dijit.byId('newProjectCancelButton');
-                        btn.setAttribute('label', 'Cancel');
+                        //btn = dijit.byId('newProjectCancelButton');
+                        //btn.setAttribute('label', 'Cancel');
             
                         dojo.forEach(dijit.byId('newProjectForm').getDescendants(), function(widget) {
                             widget.attr('value', null);

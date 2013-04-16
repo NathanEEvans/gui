@@ -67,9 +67,14 @@ define([
                     openOnDblClick:true, 
                     // tree icon function
                     getIconClass : fileManager.getIcon,
+                    getLabelClass : fileManager.getLabelClass,
+                    getLabel : fileManager.getLabel,
                     // tree double click handler
                     onDblClick : this.openItem,
-                    onClick : this.setSelected 
+                    onClick : this.setSelected,
+                    getItem : function(item){
+                        return this._itemNodesMap[item.id][0];
+                    }
                     
                 }, 'projectTree');
                 
@@ -210,6 +215,35 @@ define([
                 }
             },
             
+            
+            setSavedChanges : function(item){
+              
+                var tree = dijit.byId('projectTree');
+                    
+                var node = tree.getItem(item);
+                    
+                console.info(node);    
+                    
+                    
+                node.labelNode.innerHTML = node.label + ' [M]';    
+                    
+                node.labelNode.style.fontWeight = '';
+                node.labelNode.style.color = 'blue';
+                
+                node.labelNode.style.fontStyle = '';
+              
+            },
+            
+            setUnsavedChanges : function(item){
+              
+                var tree = dijit.byId('projectTree');
+                    
+                var node = tree.getItem(item);
+                    
+                node.labelNode.style.fontWeight = 'bold';
+                node.labelNode.style.fontStyle = 'italic';
+            },
+            
             setSelected : function(item, opened){
                 
                 // set the selected project
@@ -222,11 +256,13 @@ define([
             refresh : function(tree){
     
                 // show loading message
-                document.getElementById('projectTreeLoading').style.display = 'block';
                 
                 var selectedTree = dijit.byId(tree);
     
                 if(tree == 'projectTree'){
+    
+                    document.getElementById('projectTreeLoading').style.display = 'block';
+                
     
                     registry.remove(selectedTree.id);
     

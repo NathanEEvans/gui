@@ -38,7 +38,9 @@
             </div>
 
             <script type="dojo/method" event="cancelFunction">
-                dialogManager.hide(DIALOG.OPEN_PROJECT);
+                require(['stormcloud/dialogs/OpenProject'], function(OpenProject){
+                OpenProject.cancel();
+                });
             </script>
 
         </div>

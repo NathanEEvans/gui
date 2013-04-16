@@ -490,3 +490,15 @@ a:active {
     padding-left : 5px;
 
 }
+
+
+
+.modifiedFile {
+
+    color : blue;
+}
+
+.untrackedFile{
+
+    color : green;
+}
