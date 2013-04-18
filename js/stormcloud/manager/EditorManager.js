@@ -313,44 +313,44 @@ define([
             _setMode: function(editor, item ){
 
 
-                if(item.type == 'javaFile'){
+                if(item.style == 'java'){
                     editor.getSession().setMode("ace/mode/java");
                 }
 
-                if(item.type == 'jspFile'){
+                if(item.style == 'jsp'){
                     editor.getSession().setMode("ace/mode/jsp");
                 }
 
-                if(item.type == 'jsFile'){
+                if(item.style == 'js'){
                     editor.getSession().setMode("ace/mode/javascript");
                 }
 
-                if(item.type == 'xmlFile'
-                    || item.type == 'projectSettings'
-                    || item.type == 'flowDesign'
-                    || item.type == 'mavenSettings'
-                    || item.type == 'wsdlFile'
-                    || item.type == 'xsdFile'
-                    || item.type == 'xhtmlFile'
-                    || item.type == 'tldFile'
-                    || item.type == 'xslFile'
+                if(item.style == 'xml'
+                    || item.style == 'projectSettings'
+                    || item.style == 'flowDesign'
+                    || item.style == 'mavenSettings'
+                    || item.style == 'wsdl'
+                    || item.style == 'xsd'
+                    || item.style == 'xhtml'
+                    || item.style == 'tld'
+                    || item.style == 'xsl'
                     ){
                     editor.getSession().setMode("ace/mode/xml");
                 }
 
-                if(item.type == 'htmlFile'){
+                if(item.style == 'html'){
                     editor.getSession().setMode("ace/mode/html");
                 }
 
-                if(item.type == 'sqlFile'){
+                if(item.style == 'sql'){
                     editor.getSession().setMode("ace/mode/sql");
                 }
 
-                if(item.type == 'textFile'){
+                if(item.style == 'txt'){
                     editor.getSession().setMode("ace/mode/text");
                 }
 
-                if(item.type == 'cssFile'){
+                if(item.style == 'css'){
                     editor.getSession().setMode("ace/mode/css");
                 }
             },

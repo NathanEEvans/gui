@@ -1,0 +1,325 @@
+/*
+   This stylesheet contains the icons for the files and folder and
+   selectors for the folder icons combined with badge(s).
+*/
+
+
+/* Plain Folder
+*/
+.folderIcon{
+
+    background-image : url('/images/files/folder.png');
+    width            : 16px;
+    height           : 16px;
+
+}
+
+.folderIcon.modifiedBadge{
+
+    background-image : url('/images/badges/modified.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : top left, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+}
+
+.folderIcon.missingBadge{
+
+    background-image : url('/images/badges/modified.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : top left, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+}
+
+/* Modules folder
+*/
+.modulesIcon{
+
+    background-image : url('/images/badges/modules.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : bottom right, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+
+}
+
+.modulesIcon.modifiedBadge{
+
+    background-image : url('/images/badges/modules.png'), url('/images/badges/modified.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : bottom right, top left, center;
+    background-size : 8px 8px, 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+
+}
+
+.modulesIcon.missingBadge{
+
+    background-image : url('/images/badges/modules.png'), url('/images/badges/modified.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : bottom right, top left, center;
+    background-size : 8px 8px, 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+}
+
+
+
+/* Maven sources folder
+*/
+.sourcesIcon{
+
+    background-image : url('/images/badges/sources.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : bottom right, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+
+}
+
+.sourcesIcon.modifiedBadge{
+
+    background-image : url('/images/badges/sources.png'), url('/images/badges/modified.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : bottom right, top left, center;
+    background-size : 8px 8px, 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+
+}
+
+.sourcesIcon.missingBadge{
+
+    background-image : url('/images/badges/sources.png'), url('/images/badges/modified.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : bottom right, top left, center;
+    background-size : 8px 8px, 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+}
+
+/* Maven resources folder
+*/
+.resourcesIcon{
+
+    background-image : url('/images/badges/resources.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : bottom right, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+
+}
+
+.resourcesIcon.modifiedBadge{
+
+    background-image : url('/images/badges/resources.png'), url('/images/badges/modified.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : bottom right, top left, center;
+    background-size : 8px 8px, 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+
+}
+
+.resourcesIcon.missingBadge{
+
+    background-image : url('/images/badges/resources.png'), url('/images/badges/modified.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : bottom right, top left, center;
+    background-size : 8px 8px, 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+
+}
+
+/* Webapp (pages) folder
+*/
+.webappIcon{
+
+    background-image : url('/images/badges/webapp.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : bottom right, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+
+}
+
+.webappIcon.modifiedBadge{
+
+    background-image : url('/images/badges/webapp.png'), url('/images/badges/modified.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : bottom right, top left, center;
+    background-size : 8px 8px, 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+
+}
+
+.webappIcon.missingBadge{
+
+    background-image : url('/images/badges/webapp.png'), url('/images/badges/modified.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : bottom right, top left, center;
+    background-size : 8px 8px, 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+
+}
+
+/* Project Files
+*/
+.projectFilesIcon{
+
+    background-image : url('/images/badges/projectfiles.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : bottom right, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+
+}
+
+.projectFilesIcon.modifiedBadge{
+
+    background-image : url('/images/badges/projectfiles.png'), url('/images/badges/modified.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : bottom right, top left, center;
+    background-size : 8px 8px, 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+
+}
+
+.projectFilesIcon.missingBadge{
+
+    background-image : url('/images/badges/projectfiles.png'), url('/images/badges/modified.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : bottom right, top left, center;
+    background-size : 8px 8px, 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+
+}
+
+/* Java source package
+   @todo when implemented the Netbeans 'list' style explorer
+         change to actual package icon : /images/files/package.png
+*/
+.packageIcon{
+
+    background-image : url('/images/files/folder.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.packageIcon.modifiedBadge{
+
+    background-image : url('/images/badges/modified.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : top left, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+}
+
+.packageIcon.missingBadge{
+
+    background-image : url('/images/badges/modified.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : top left, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+}
+
+/* Files
+*/
+.javaIcon{
+
+    background-image : url('/images/files/java.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.jspIcon{
+
+    background-image : url('/images/files/jsp.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.xmlIcon{
+
+    background-image : url('/images/files/xml.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.xsdIcon{
+
+    background-image : url('/images/files/xml.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.xslIcon{
+
+    background-image : url('/images/files/xsl.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.xslIcon{
+
+    background-image : url('/images/files/xsl.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+
+.htmlIcon{
+
+    background-image : url('/images/files/html.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.xhtmlIcon{
+
+    background-image : url('/images/files/html.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.jsIcon{
+
+    background-image : url('/images/files/js.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.cssIcon{
+
+    background-image : url('/images/files/css.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.sqlIcon{
+
+    background-image : url('/images/files/sql.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+
+
+

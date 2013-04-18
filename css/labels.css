@@ -1,0 +1,15 @@
+
+.modifiedfile {
+
+    color : blue;
+}
+
+.untrackedfile {
+
+    color : green;
+}
+
+.untrackedfolder {
+
+    color : green;
+}

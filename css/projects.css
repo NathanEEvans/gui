@@ -1,0 +1,128 @@
+/* Project Icons
+   =============
+*/
+
+
+/* Maven pom project
+*/
+.pomProjectIcon {
+
+    background-image : url('/images/projects/pom.gif');
+    width            : 16px;
+    height           : 16px;
+}
+
+.pomProjectIcon.modifiedBadge {
+
+    background-image : url('/images/badges/modified.png'), url('/images/projects/pom.gif');
+    background-repeat : no-repeat;
+    background-position : top right, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+}
+
+.pomProjectIcon.missingBadge {
+
+    background-image : url('/images/badges/modified.png'), url('/images/projects/pom.gif');
+    background-repeat : no-repeat;
+    background-position : top right, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+}
+
+.pomProjectIcon.untrackedBadge {
+
+    background-image : url('/images/badges/modified.png'), url('/images/projects/pom.gif');
+    background-repeat : no-repeat;
+    background-position : top right, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+}
+
+
+/* Maven war project
+*/
+.warProjectIcon {
+
+    background-image : url('/images/projects/war.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+
+.warProjectIcon.modifiedBadge {
+
+    background-image : url('/images/badges/modified.png'), url('/images/projects/war.png');
+    background-repeat : no-repeat;
+    background-position : top right, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+}
+
+.warProjectIcon.missingBadge {
+
+    background-image : url('/images/badges/modified.png'), url('/images/projects/war.png');
+    background-repeat : no-repeat;
+    background-position : top right, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+}
+
+.warProjectIcon.untrackedBadge {
+
+    background-image : url('/images/badges/modified.png'), url('/images/projects/war.png');
+    background-repeat : no-repeat;
+    background-position : top right, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+}
+
+/* Maven jar project
+*/
+.jarProjectIcon {
+
+    background-image : url('/images/projects/jar.png');
+    width : 16px;
+    height : 16px;
+}
+
+.jarProjectIcon.modifiedBadge {
+
+    background-image : url('/images/badges/modified.png'), url('/images/projects/jar.png');
+    background-repeat : no-repeat;
+    background-position : top right, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+}
+
+.jarProjectIcon.missingBadge {
+
+    background-image : url('/images/badges/modified.png'), url('/images/projects/jar.png');
+    background-repeat : no-repeat;
+    background-position : top right, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+}
+
+.jarProjectIcon.untrackedBadge {
+
+    background-image : url('/images/badges/modified.png'), url('/images/projects/jar.png');
+    background-repeat : no-repeat;
+    background-position : top right, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+}
+
+
+
+/* @todo maven-plugin, ejb, ear, rar, par
+*/

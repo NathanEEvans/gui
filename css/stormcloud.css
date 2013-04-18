@@ -20,8 +20,14 @@
 /**
  * Stormcloud styling
 */
+
+@import url(files.css);
+@import url(projects.css);
+@import url(labels.css);
+
+
 @import url(stormcloud/icons.css);
-@import url(stormcloud/chat.css);
+
 
 
 html, body {
@@ -36,9 +42,9 @@ html, body {
     padding:0;
     margin:0;
     position:absolute;
-    top:0; 
+    top:0;
     left:0;
-    width:100%; 
+    width:100%;
     height:100%;
     background:  #fff url('/js/dijit/themes/claro/images/loadingAnimation.gif') no-repeat 10px 23px;
     z-index:999;
@@ -58,7 +64,7 @@ html, body {
 
 #loginContainer{
 
-    width: 100%; 
+    width: 100%;
     height: 100%;
 }
 
@@ -71,11 +77,11 @@ html, body {
 
 }
 
-#betaTag{ 
+#betaTag{
 
     position:absolute;
     left:260px;
-    top:8px;  
+    top:8px;
     color:grey;
 }
 
@@ -95,7 +101,7 @@ a:link {
 a:visited {
 
     color: #b5bcc7;
-}  
+}
 
 a:hover {
 
@@ -111,9 +117,9 @@ a:active {
     padding:0;
     margin:0;
     position:absolute;
-    top:0; 
+    top:0;
     left:0;
-    width:100%; 
+    width:100%;
     height:100%;
     background:  #fff url('/js/dijit/themes/claro/images/loadingAnimation.gif') no-repeat 10px 23px;
     z-index:999;
@@ -142,14 +148,14 @@ a:active {
 #statusBar{
 
     float:right;
-    padding-right: 5px; 
+    padding-right: 5px;
     padding-top: 5px;
 }
 
 #userMenu{
 
     float:right;
-    padding-right: 10px; 
+    padding-right: 10px;
     padding-top: 5px;
 }
 
@@ -310,7 +316,7 @@ a:active {
 .searchEntry{
 
 
-    float:left; 
+    float:left;
     padding-left : 5px;
     width : 100%;
 }
@@ -335,23 +341,23 @@ a:active {
 
 #gitLogTab{
 
-    overflow:hidden;    
+    overflow:hidden;
 }
 
 #testTab{
 
-    overflow:hidden;        
+    overflow:hidden;
 }
 
 #gitLogWindow{
 
     float:left;
     resize:none;
-    width: 97%; 
-    height: 100%; 
+    width: 97%;
+    height: 100%;
     border:0;
     font-family:monospace;
-    font-size: 11px;    
+    font-size: 11px;
 
 }
 
@@ -359,11 +365,11 @@ a:active {
 
     float:left;
     resize:none;
-    width: 97%; 
-    height: 100%; 
+    width: 97%;
+    height: 100%;
     border:0;
     font-family:monospace;
-    font-size: 11px;   
+    font-size: 11px;
     overflow-y: auto;
     overflow-x : hidden;
 
@@ -373,8 +379,8 @@ a:active {
 
     float:left;
     resize:none;
-    width: 97%; 
-    height: 100%; 
+    width: 97%;
+    height: 100%;
     border:0;
     font-family:monospace;
     font-size: 11px;
@@ -394,49 +400,49 @@ a:active {
 #gitToolBar{
 
     float : left;
-    border-top:1px solid #b5bcc7; 
+    border-top:1px solid #b5bcc7;
     width: 30px;
-    height: 97%;    
+    height: 97%;
 }
 
 #consoleToolBar{
 
     float : left;
-    border-top:1px solid #b5bcc7; 
+    border-top:1px solid #b5bcc7;
     width: 30px;
-    height: 97%;    
+    height: 97%;
 }
 
 
 #testToolBar{
 
     float : left;
-    border-top:1px solid #b5bcc7; 
+    border-top:1px solid #b5bcc7;
     width: 30px;
-    height: 97%;        
+    height: 97%;
 }
 
 #mavenToolBar{
 
     float : left;
-    border-top:1px solid #b5bcc7; 
+    border-top:1px solid #b5bcc7;
     width: 30px;
-    height: 97%;    
+    height: 97%;
 }
 
 #problemToolBar{
 
     float : left;
-    border-top:1px solid #b5bcc7; 
+    border-top:1px solid #b5bcc7;
     width: 30px;
-    height: 97%;    
+    height: 97%;
 }
 
 
 #searchToolBar{
 
     float : left;
-    border-top:1px solid #b5bcc7; 
+    border-top:1px solid #b5bcc7;
     width: 30px;
     height: 97%;
 
@@ -453,7 +459,7 @@ a:active {
 
 .sc_maven_error{
 
-    border-bottom : 2px dotted red;     
+    border-bottom : 2px dotted red;
     position: absolute;
 
 }
@@ -463,7 +469,7 @@ a:active {
     float : left;
     padding:0;
     margin:0;
-    width:100%; 
+    width:100%;
     height:100%;
     background:  #fff url('/js/dijit/themes/claro/images/loadingAnimation.gif') no-repeat 10px 23px;
     z-index:999;
@@ -489,16 +495,4 @@ a:active {
     color : gold;
     padding-left : 5px;
 
-}
-
-
-
-.modifiedFile {
-
-    color : blue;
-}
-
-.untrackedFile{
-
-    color : green;
 }

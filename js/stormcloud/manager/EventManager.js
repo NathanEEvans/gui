@@ -1,22 +1,22 @@
 /*
  * Stormcloud IDE - stormcloud/manager/EventManager
- * 
+ *
  * Copyright (C) 2012 - 2013 Stormcloud IDE
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
- * 
+ *
  */
 define([
     'dojo/on',
@@ -27,8 +27,8 @@ define([
 
         //
         // module       : stormcloud/manager/EventManager
-        // 
-        // summary      : 
+        //
+        // summary      :
         //
 
         EVENT = {
@@ -55,79 +55,79 @@ define([
             //submit - a form has been submitted
             SUBMIT: 'submit'
 
-        /** 
+        /**
          * @todo find usable implementation for the dojo mouse events
-         * dojo/mouse#enter - a normalized version of onmouseover that wont fire more than you’d like (only on first enter)    
+         * dojo/mouse#enter - a normalized version of onmouseover that wont fire more than you’d like (only on first enter)
          * dojo/mouse#leave - a normalized version of onmouseout that wont fire more than you’d like (only once when leaving)
          */
 
         }
-        
+
         return {
 
             register : function(node, type, listener){
-                
+
                 on(registry.byId(node), type, listener);
             },
 
             registerClick : function(node, listener){
-                
+
                 on(registry.byId(node), EVENT.CLICK, listener);
             },
-            
+
             registerDoubleClick : function(node, listener){
-              
+
                 on(registry.byId(node), EVENT.DOUBLE_CLICK, listener);
             },
-            
+
             registerFocus : function(node, listener){
-              
+
                 on(registry.byId(node), EVENT.FOCUS, listener);
             },
-            
+
             registerBlur : function(node, listener){
-              
+
                 on(registry.byId(node), EVENT.BLUR, listener);
             },
 
             registerChange : function(node, listener){
-              
+
                 on(registry.byId(node), EVENT.CHANGE, listener);
             },
-            
+
             registerKeyPress : function(node, listener){
-              
+
                 on(registry.byId(node), EVENT.KEYPRESS, listener);
             },
-            
+
             registerKeyDown : function(node, listener){
-              
+
                 on(registry.byId(node), EVENT.KEYDOWN, listener);
             },
 
             registerKeyUp : function(node, listener){
-              
+
                 on(registry.byId(node), EVENT.KEYUP, listener);
             },
 
             registerMouseOver : function(node, listener){
-                
+
                 on(registry.byId(node), EVENT.MOUSEOVER, listener);
             },
 
             registerMouseOut : function(node, listener){
-              
+
                 on(registry.byId(node), EVENT.MOUSEOUT, listener);
             },
-            
+
             registerSubmit : function(node, listener){
-              
+
                 on(registry.byId(node), EVENT.SUBMIT, listener);
             },
 
             bind : function(){
-                
-                
+
+
                 //
                 // File Menu
                 //
@@ -155,12 +155,12 @@ define([
 
                 //
                 // Edit Menu
-                // 
+                //
                 this.registerClick(MENU.EDIT.FIND, function() {
 
                     dialogManager.show(DIALOG.FIND);
                 });
-                
+
                 //
                 // View Menu
                 //
@@ -238,12 +238,12 @@ define([
 
                     treeManager.refresh('closedProjectTree');
                 });
-                
+
                 this.registerClick('toolBar_save_all', function() {
 
                     fileManager.saveAll();
                 });
-                
+
                 this.registerClick('toolBar_compile', function() {
 
                     mavenManager.compile();
@@ -262,11 +262,11 @@ define([
                 this.registerClick('toolBar_trash', function() {
 
                     dialogManager.show(DIALOG.OPEN_TRASH);
-                    
+
                     treeManager.refresh('trashTree');
                 });
-                
-                
+
+
 
                 //
                 // Project Context Menu
@@ -300,17 +300,17 @@ define([
 
                     dialogManager.show(DIALOG.FIND);
                 });
-                
+
                 this.registerClick(CONTEXT_MENU.PROJECT.SET_MAIN, function() {
 
                     projectManager.setMainProject();
                 });
-                
+
                 this.registerClick(CONTEXT_MENU.PROJECT.CLOSE, function() {
 
-                    projectManager.close(projectManager.selected);
+                    projectManager.close();
                 });
-                
+
                 this.registerClick('projectMenu_show_changes', function() {
 
                     GitService.showChanges(dijit.byId('projectTree').attr('selectedItem'));
@@ -397,7 +397,7 @@ define([
                 });
 
                 this.registerClick(CONTEXT_MENU.FILESYSTEM.OPEN, function() {
- 
+
                     fileManager.get(dijit.byId('projectTree').attr('selectedItem'), false);
                 });
 
@@ -413,7 +413,7 @@ define([
 
                 this.registerClick(CONTEXT_MENU.FILESYSTEM.PASTE, function() {
 
-                    fileManager.paste();       
+                    fileManager.paste();
                 });
 
                 this.registerClick(CONTEXT_MENU.FILESYSTEM.DELETE, function() {
@@ -425,45 +425,45 @@ define([
                 // Editor Context Menu
                 //
                 this.registerClick(CONTEXT_MENU.EDITOR.SAVE, function() {
-                    
+
                     // save the editor contents
                     fileManager.save();
                 });
-                
+
                 this.registerClick('editorMenu_cut', function() {
-                
+
                     });
-                
+
                 // editorMenu_copy
                 // editorMenu_paste
                 // editorMenu_select
-                
-                
+
+
                 //
                 // Tab Toolbars
                 //
                 this.registerClick('toolbarConsole_clear', function() {
-                    
+
                     statusManager.clear();
                 });
-                
+
                 this.registerClick(TABS.SEARCH.REDEFINE, function() {
-                    
+
                     dialogManager.show(DIALOG.FIND);
                 });
-                
+
                 this.registerClick(TABS.SEARCH.CLEAR, function() {
-                    
+
                     searchManager.clear();
                 });
-    
+
                 this.registerClick(TABS.MAVEN.RUN, function() {
-                    
+
                     dialogManager.show(DIALOG.CUSTOM_GOALS);
                 });
-                
+
                 this.registerClick(TABS.MAVEN.RERUN, function() {
-                    
+
                     mavenManager.runLastCommand();
                 });
 

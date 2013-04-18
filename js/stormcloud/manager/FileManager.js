@@ -80,7 +80,7 @@ define([
 
             setSelected : function(item){
 
-                if(item.type != 'project'){
+                if(item.type != 'OPENED_PROJECT'){
                     this.selected = item;
                 }
             },
@@ -101,7 +101,7 @@ define([
                 // check if the project is opened
                 var project = projectManager.getProjectNodeFromFile(item);
 
-                if(project.type == 'closedProject'){
+                if(project.type == 'CLOSED_PROJECT'){
 
                     // the project is closed
                     var projectName = projectManager.getProjectNameFromFile(item);
@@ -345,14 +345,22 @@ define([
 
                 var label = item.label;
 
-                if(item.directory == false){
+                if(item.type != ITEM_TYPE.OPENED_PROJECT){
 
-                    if(item.status == 'modified'){
-                        label = item.label + ' [M]';
+                    if(item.status == ITEM_STATUS.MODIFIED
+                        && item.type != ITEM_TYPE.FOLDER ){
+
+                        label = item.label + ' [-/M]';
                     }
 
-                    if(item.status == 'untracked'){
-                        label = item.label + ' [A]';
+                    if(item.status == ITEM_STATUS.UNTRACKED){
+                        label = item.label + ' [-/A]';
+                    }
+
+                    if(item.status == ITEM_STATUS.MISSING
+                        && item.type != ITEM_TYPE.FOLDER ){
+
+                        label = item.label + ' [-/D]';
                     }
                 }
 
@@ -362,566 +370,29 @@ define([
 
             getLabelClass : function(item, opened){
 
-                var label = 'unmodifiedFile';
+                // summary : provides the class for tree label coloring
 
-                if(item.directory == false){
+                if(item.type != ITEM_TYPE.OPENED_PROJECT){
 
-                    if(item.status == 'modified'){
-                        label = 'modifiedFile';
-                    }
+                    return item.status + item.type.toLowerCase();
 
-                    if(item.status == 'untracked'){
-                        label = 'untrackedFile';
-                    }
+                }else{
+
+                    return '';
                 }
 
-                return label;
             },
 
             getIcon : function(item, opened){
 
-                // return unknown when nothing applies
-                var icon = 'unknownIcon';
-
-                if(item.type == 'mavenPomProject'){
-
-                    return 'mavenPomProjectIcon';
-
-                }else if(item.type == 'mavenWebProject'){
-
-                    return 'mavenWebProjectIcon';
-
-                }else if(item.type == 'mavenJarProject'){
-
-                    return 'mavenJarProjectIcon';
-                    
-                }else if(item.type == 'project' ){
-
-                    return "projectIcon";
-
-                }else if(item.type == 'projectSettings'){
-
-                    icon = "projectSettingsIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "projectSettingsUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "projectSettingsModifiedIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'mavenSettings'){
-
-                    icon = "mavenSettingsIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "mavenSettingsUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "mavenSettingsModifiedIcon";
-                    }
-
-                    return icon;
-
-
-                }else if(item.type == 'flowDesign'){
-
-                    icon = "flowDesignIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "flowDesignUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "flowDesignModifiedIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'sources'){
-
-                    icon = "sourceFolderIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "sourceFolderUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "sourceFolderModifiedIcon";
-                    }
-
-                    if(item.status == 'missing'){
-                        icon = "sourceFolderMissingIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'webapp'){
-
-                    icon = "webappFolderIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "webappFolderUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "webappFolderModifiedIcon";
-                    }
-
-                    if(item.status == 'missing'){
-                        icon = "webappFolderMissingIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'javaFile'){
-
-                    icon = "javaFileIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "javaFileUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "javaFileModifiedIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'jspFile'){
-
-                    icon = "jspFileIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "jspFileUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "jspFileModifiedIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'xmlFile'){
-
-                    icon = "xmlFileIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "xmlFileUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "xmlFileModifiedIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'xhtmlFile'){
-
-                    icon = "xhtmlFileIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "xhtmlFileUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "xhtmlFileModifiedIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'htmlFile'){
-
-                    icon = "htmlFileIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "htmlFileUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "htmlFileModifiedIcon";
-                    }
-
-                    return icon;
-
-
-                }else if(item.type == 'wsdlFile'){
-
-                    icon = "wsdlFileIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "wsdlFileUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "wsdlFileModifiedIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'xsdFile'){
-
-                    icon = "xsdFileIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "xsdFileUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "xsdFileModifiedIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'textFile'){
-
-                    icon = "textFileIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "textFileUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "textFileModifiedIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'cssFile'){
-
-                    icon = "cssFileIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "cssFileUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "cssFileModifiedIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'jsFile'){
-
-                    icon = "jsFileIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "jsFileUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "jsFileModifiedIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'imageFile'){
-
-                    icon = "imageFileIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "imageFileUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "imageFileModifiedIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'tldFile'){
-
-                    icon = "tldFileIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "tldFileUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "tldFileModifiedIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'sqlFile'){
-
-                    icon = "sqlFileIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "sqlFileUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "sqlFileModifiedIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'resources'){
-
-                    icon = "resourceFolderIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "resourceFolderUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "resourceFolderModifiedIcon";
-                    }
-
-                    if(item.status == 'missing'){
-                        icon = "resourceFolderMissingIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'propertiesFile'){
-
-                    icon = "propertiesFileIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "propertiesFileUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "propertiesFileModifiedIcon";
-                    }
-
-                    if(item.status == 'missing'){
-                        icon = "propertiesFileMissingIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'yamlFile'){
-
-                    icon = "yamlFileIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "yamlFileUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "yamlFileModifiedIcon";
-                    }
-
-                    if(item.status == 'missing'){
-                        icon = "yamlFileMissingIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'manifestFile'){
-
-                    icon = "manifestFileIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "manifestFileUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "manifestFileModifiedIcon";
-                    }
-
-                    if(item.status == 'missing'){
-                        icon = "manifestFileMissingIcon";
-                    }
-
-                    return icon;
-
-                }else if(item.type == 'tomcat'){
-
-                    icon = 'tomcatIcon';
-
-                    return icon;
-
-                }else if(item.type == 'tomcatWebApps'){
-
-                    icon = 'tomcatWebAppsIcon';
-
-                    return icon;
-
-                }else if(item.type == 'tomcatLib'){
-
-                    icon = 'tomcatLibIcon';
-
-                    return icon;
-
-                }else if(item.type == 'tomcatApp'){
-
-                    icon = "tomcatAppIcon";
-
-                    return icon;
-
-                }else if(item.type == 'jarFile'){
-
-                    icon = "jarFileIcon";
-
-                    return icon;
-
-                }else if(item.type == 'sha1File'){
-
-                    icon = "sha1FileIcon";
-
-                    return icon;
-
-                }else if(item.type == 'mysql'){
-
-                    icon = "mysqlIcon";
-
-                    return icon;
-
-                }else if(item.type == 'javadb'){
-
-                    icon = "javadbIcon";
-
-                    return icon;
-
-                }
-                else if(item.type == 'oracle'){
-
-                    icon = "oracleIcon";
-
-                    return icon;
-
-                }else if(item.type == 'rdbms'){
-
-                    icon = "databasesIcon";
-
-                    return icon;
-
-                }else if(item.type == 'webServices'){
-
-                    icon = "webServicesIcon";
-
-                    return icon;
-
-                }else if(item.type == 'servers'){
-
-                    icon = "serverIcon";
-
-                    return icon;
-
-                }else if(item.type == 'mavenRepositories'){
-
-                    icon = "mavenRepositoriesIcon";
-
-                    return icon;
-
-                }else if(item.type == 'continuousIntegration'){
-
-                    icon = "continuousIntegrationIcon";
-
-                    return icon;
-
-                }else if(item.type == 'issueTrackers'){
-
-                    icon = "issueTrackersIcon";
-
-                    return icon;
-
-                }else if(item.type == 'folder'){
-
-                    icon = "folderIcon";
-
-                    if(item.status == 'untracked'){
-                        icon = "folderUntrackedIcon";
-                    }
-
-                    if(item.status == 'modified'){
-                        icon = "folderModifiedIcon";
-                    }
-
-                    if(item.status == 'missing'){
-                        icon = "folderMissingIcon";
-                    }
-                }
-
-                return icon;
+                // set the file type icon and badge
+                return item.style + 'Icon ' + item.status + 'Badge';
             },
 
 
             getImage : function(item){
 
-                if(item.type == 'javaFile'){
-
-                    return "/images/tree/java-file.png";
-
-                }else if(item.type == 'jspFile'){
-
-                    return  "/images/tree/jsp-file.png";
-
-                }else if(item.type == 'xmlFile'
-                    || item.type == 'xhtmlFile' ){
-
-                    return "/images/tree/xml-file.png";
-
-                }else if(item.type == 'htmlFile'){
-
-                    return "/images/tree/html-file.png";
-
-                }else if(item.type == 'wsdlFile'){
-
-                    return "/images/tree/wsdl-file.png";
-
-                }else if(item.type == 'xsdFile'){
-
-                    return "/images/tree/xsd-file.png";
-
-                }else if(item.type == 'textFile'){
-
-                    return "/images/tree/text-file.png";
-
-                }else if(item.type == 'cssFile'){
-
-                    return "/images/tree/css-file.png";
-
-                }else if(item.type == 'jsFile'){
-
-                    return "/images/tree/javascript-file.png";
-
-                }else if(item.type == 'imageFile'){
-
-                    return "/images/tree/image-file.png";
-
-                }else if(item.type == 'tldFile'){
-
-                    return "/images/tree/tld-file.png";
-
-                }else if(item.type == 'sqlFile'){
-
-                    return "/images/tree/sql-file.png";
-
-                }else if(item.type == 'propertiesFile'){
-
-                    return "/images/tree/properties-file.png";
-
-                }else if(item.type == 'jarFile'){
-
-                    return "/images/tree/jar-file.png";
-
-                }else if(item.type == 'yamlFile'){
-
-                    return "/images/tree/yaml-file.png";
-
-                }else if(item.type == 'manifestFile'){
-
-                    return "/images/tree/manifest-file.png";
-
-
-                }else if(item.type == 'folder'){
-
-                    return "/images/tree/folder.png";
-
-                }else{
-
-                    return "/images/tree/unknown.png";
-                }
-
+                return '/images/files/ ' + item.style + '.png'
             }
         };
     });

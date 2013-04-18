@@ -110,6 +110,13 @@
             <div dojoType="dijit/MenuItem" id="filesystemMenu_delete">Delete</div>
         </div>
 
+        <div data-dojo-type="dijit/Menu" id="modulesMenu" style="display: none;">
+            <div data-dojo-type="dijit/MenuItem" id="modulesMenu_newModule">New Module ...</div>
+        </div>
+
+        <div data-dojo-type="dijit/Menu" id="projectFilesMenu" style="display: none;">
+        </div>
+
         <div data-dojo-type="dijit/Menu" id="tomcatMenu" style="display: none;">
             <div data-dojo-type="dijit/MenuItem" id="tomcatMenu_start">Start</div>
             <div data-dojo-type="dijit/MenuItem" id="tomcatMenu_start_debug">Start in Debug Mode</div>
@@ -192,7 +199,7 @@
 
                     <div data-dojo-type="dijit/PopupMenuBarItem"><span>View</span>
                         <div data-dojo-type="dijit/DropDownMenu" id="viewMenu">
-                            <div data-dojo-type="dijit/CheckedMenuItem" 
+                            <div data-dojo-type="dijit/CheckedMenuItem"
                                  id="viewMenu_sync_editor_views">Synchronize Editor with Views</div>
                         </div>
                     </div>
@@ -340,11 +347,11 @@
 
         <!-- Set the Dojo configuration -->
         <script type="text/javascript">
-            
+
             verify();
-            
+
             dojoConfig = {
-                
+
                 async: true
             }
         </script>
