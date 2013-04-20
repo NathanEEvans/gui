@@ -23,13 +23,21 @@ define([
     'dojo/store/JsonRest',
     'dojo/data/ObjectStore',
     'dijit/tree/TreeStoreModel',
-    'dijit/Tree'],
+    'dijit/Tree',
+    'dojo/store/Observable',
+    'dijit/tree/ObjectStoreModel',
+    'dojo/store/Memory',
+    'stormcloud/service/FilesystemService'],
     function(
         registry,
         JsonRest,
         ObjectStore,
         TreeStoreModel,
-        Tree){
+        Tree,
+        Observable,
+        ObjectStoreModel,
+        Memory,
+        FilesystemService){
 
         //
         // module:
@@ -39,29 +47,38 @@ define([
 
         return{
 
+            projectStore : null,
+
             initialize : function(){
 
-                // create project tree
-                var projectRestStore = new JsonRest({
+                var projectData = FilesystemService.projects();
 
-                    target : settingsManager.getApiUrl() + '/filesystem/opened'
+                this.projectStore = new Memory({
+
+                    data : projectData,
+                    getChildren: function(object){
+                        return this.query({
+                            parent: object.id
+                        });
+                    }
                 });
 
+                this.projectStore = new Observable(this.projectStore);
 
-                var treeModel = new TreeStoreModel({
+                var projectModel = new ObjectStoreModel({
+                    store: this.projectStore,
+                    query: {
+                        id: 'root'
+                    },
+                    mayHaveChildren: function (object){
 
-                    store : new ObjectStore({
-
-                        objectStore : projectRestStore
-                    }),
-
-                    mayHaveChildren : this.mayHaveChildren
+                        return this.store.getChildren(object).length > 0;
+                    }
                 });
-
 
                 var projectTree = new Tree({
 
-                    model:treeModel,
+                    model:projectModel,
                     persist:false,
                     showRoot:false,
                     openOnDblClick:true,
@@ -75,7 +92,6 @@ define([
                     getItem : function(item){
                         return this._itemNodesMap[item.id][0];
                     }
-
                 }, 'projectTree');
 
 
@@ -157,13 +173,9 @@ define([
 
             },
 
-            mayHaveChildren : function(item){
+            mayHaveChildren : function(object){
 
-                if(item.children.length == 0){
-                    return false;
-                }else{
-                    return true;
-                }
+
             },
 
 
@@ -216,6 +228,24 @@ define([
             },
 
 
+            deleteItem : function(item){
+
+                // summary: removes an item from the tree trough
+                //          deletion from the store.
+
+                this.projectStore.remove(item.id);
+            },
+
+
+            addItem : function(item){
+
+                // summary : adds an item to the tree trough
+                //           adding it in the store.
+                
+                this.projectStore.add(item);
+            },
+
+
             setSavedChanges : function(item){
 
                 var tree = dijit.byId('projectTree');
@@ -225,7 +255,7 @@ define([
                 console.info(node);
 
 
-                node.labelNode.innerHTML = node.label + ' [M]';
+                node.labelNode.innerHTML = node.label + ' [-/M]';
 
                 node.labelNode.style.fontWeight = '';
                 node.labelNode.style.color = 'blue';
@@ -289,9 +319,14 @@ define([
                         openOnDblClick:true,
                         // tree icon function
                         getIconClass : fileManager.getIcon,
+                        getLabelClass : fileManager.getLabelClass,
+                        getLabel : fileManager.getLabel,
                         // tree double click handler
                         onDblClick : this.openItem,
-                        onClick : this.setSelected
+                        onClick : this.setSelected,
+                        getItem : function(item){
+                            return this._itemNodesMap[item.id][0];
+                        }
 
                     }, 'projectTree');
 
@@ -536,15 +571,17 @@ define([
 
             openItemReadonly : function(item, opened){
 
-
-                fileManager.get(item, true);
+                if(item.type == ITEM_TYPE.FILE){
+                    fileManager.get(item, true);
+                }
             },
 
 
             openItem : function(item, opened){
 
-
-                fileManager.get(item, false);
+                if(item.type == ITEM_TYPE.FILE){
+                    fileManager.get(item, false);
+                }
             },
 
             getTarget : function(target){

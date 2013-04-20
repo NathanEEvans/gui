@@ -284,6 +284,19 @@
     height           : 16px;
 }
 
+.dtdIcon{
+
+    background-image : url('/images/files/dtd.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.entIcon{
+
+    background-image : url('/images/files/ent.png');
+    width            : 16px;
+    height           : 16px;
+}
 
 .htmlIcon{
 
@@ -320,6 +333,18 @@
     height           : 16px;
 }
 
+.propertiesIcon{
 
+    background-image : url('/images/files/properties.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.txtIcon{
+
+    background-image : url('/images/files/txt.png');
+    width            : 16px;
+    height           : 16px;
+}
 
 
