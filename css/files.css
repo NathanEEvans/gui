@@ -80,7 +80,6 @@
     background-size : 8px 8px, 16px 16px;
     width : 16px;
     height : 16px;
-
 }
 
 .sourcesIcon.modifiedBadge{
@@ -103,6 +102,55 @@
     width : 16px;
     height : 16px;
 }
+
+/* Java source package
+*/
+.packageIcon{
+
+    background-image : url('/images/files/package.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.packageIcon.modifiedBadge{
+
+    background-image : url('/images/badges/modified.png'), url('/images/files/package.png');
+    background-repeat : no-repeat;
+    background-position : top left, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+}
+
+.packageIcon.missingBadge{
+
+    background-image : url('/images/badges/modified.png'), url('/images/files/package.png');
+    background-repeat : no-repeat;
+    background-position : top left, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+}
+
+/* Empty Java source package
+*/
+.emptyPackageIcon{
+
+    background-image : url('/images/files/empty-package.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.emptyPackageIcon.missingBadge{
+
+    background-image : url('/images/badges/modified.png'), url('/images/files/empty-package.png');
+    background-repeat : no-repeat;
+    background-position : top left, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
+}
+
 
 /* Maven resources folder
 */
@@ -206,38 +254,32 @@
     background-size : 8px 8px, 8px 8px, 16px 16px;
     width : 16px;
     height : 16px;
+}
+
+
+.generatedSourcesIcon{
+
+    background-image : url('/images/badges/sources.png'), url('/images/files/folder.png');
+    background-repeat : no-repeat;
+    background-position : bottom right, center;
+    background-size : 8px 8px, 16px 16px;
+    width : 16px;
+    height : 16px;
 
 }
 
-/* Java source package
-   @todo when implemented the Netbeans 'list' style explorer
-         change to actual package icon : /images/files/package.png
+
+/* Maven dependencies folder
 */
-.packageIcon{
+.dependenciesIcon{
 
-    background-image : url('/images/files/folder.png');
-    width            : 16px;
-    height           : 16px;
-}
-
-.packageIcon.modifiedBadge{
-
-    background-image : url('/images/badges/modified.png'), url('/images/files/folder.png');
+    background-image : url('/images/badges/dependencies.png'), url('/images/files/folder.png');
     background-repeat : no-repeat;
-    background-position : top left, center;
+    background-position : bottom right, center;
     background-size : 8px 8px, 16px 16px;
     width : 16px;
     height : 16px;
-}
 
-.packageIcon.missingBadge{
-
-    background-image : url('/images/badges/modified.png'), url('/images/files/folder.png');
-    background-repeat : no-repeat;
-    background-position : top left, center;
-    background-size : 8px 8px, 16px 16px;
-    width : 16px;
-    height : 16px;
 }
 
 /* Files
@@ -245,6 +287,13 @@
 .javaIcon{
 
     background-image : url('/images/files/java.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.jarIcon{
+
+    background-image : url('/images/files/jar.png');
     width            : 16px;
     height           : 16px;
 }

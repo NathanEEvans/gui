@@ -404,7 +404,7 @@ define([
                     // if the preference is true we select the file in the tree
                     if(settingsManager.getPreference(PREFERENCE.SYNC_EDITOR_VIEWS) == 'true'){
 
-                        treeManager.select('projectTree', item);
+                        treeManager.select(item);
                     }
 
                     // select the project this file belongs to

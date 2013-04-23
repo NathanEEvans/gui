@@ -36,8 +36,10 @@ define([
         // Filesystem constants.
         var FILESYSTEM = {
 
-            // projects url
+            // get projects url
             PROJECTS : settingsManager.getApiUrl() + '/filesystem/projects',
+            // get project
+            PROJECT : settingsManager.getApiUrl() + '/filesystem/project',
             // get opened projects url
             OPENED : settingsManager.getApiUrl() + '/filesystem/opened',
             // Open project service url.
@@ -149,7 +151,9 @@ define([
             },
 
 
-            projects : function(){
+            getProjects : function(){
+
+                // summary : get all projects
 
                 var parsedData;
 
@@ -165,6 +169,38 @@ define([
 
                 return parsedData;
 
+            },
+
+
+            getProject : function(id){
+
+                // summary : get a project
+
+                var parsedData;
+
+                xhr.post({
+                    url: FILESYSTEM.PROJECT,
+                    sync: true,
+                    content: {
+                        filePath: id
+                    },
+                    load: function(data) {
+
+                        parsedData = json.parse(data);
+
+                    },
+                    error : this.handleError
+                });
+
+                return parsedData;
+            },
+
+            handleError : function(error, ioArgs){
+
+                console.info(error);
+                console.info(ioArgs);
+
+                statusManager.error(ioArgs.xhr.responseText);
             },
 
             // Open a Project.

@@ -28,566 +28,436 @@ define([
     'dijit/tree/ObjectStoreModel',
     'dojo/store/Memory',
     'stormcloud/service/FilesystemService'],
-    function(
-        registry,
-        JsonRest,
-        ObjectStore,
-        TreeStoreModel,
-        Tree,
-        Observable,
-        ObjectStoreModel,
-        Memory,
-        FilesystemService){
+        function(
+                registry,
+                JsonRest,
+                ObjectStore,
+                TreeStoreModel,
+                Tree,
+                Observable,
+                ObjectStoreModel,
+                Memory,
+                FilesystemService) {
 
-        //
-        // module:
-        //		stormcloud/manager/TreeManager
-        // summary:
-        //
+            //
+            // module:
+            //		stormcloud/manager/TreeManager
+            // summary:
+            //
 
-        return{
+            return{
+                projectStore: null,
+                initialize: function() {
 
-            projectStore : null,
+                    var projectData = FilesystemService.getProjects();
 
-            initialize : function(){
-
-                var projectData = FilesystemService.projects();
-
-                this.projectStore = new Memory({
-
-                    data : projectData,
-                    getChildren: function(object){
-                        return this.query({
-                            parent: object.id
-                        });
-                    }
-                });
-
-                this.projectStore = new Observable(this.projectStore);
-
-                var projectModel = new ObjectStoreModel({
-                    store: this.projectStore,
-                    query: {
-                        id: 'root'
-                    },
-                    mayHaveChildren: function (object){
-
-                        return this.store.getChildren(object).length > 0;
-                    }
-                });
-
-                var projectTree = new Tree({
-
-                    model:projectModel,
-                    persist:false,
-                    showRoot:false,
-                    openOnDblClick:true,
-                    // tree icon function
-                    getIconClass : fileManager.getIcon,
-                    getLabelClass : fileManager.getLabelClass,
-                    getLabel : fileManager.getLabel,
-                    // tree double click handler
-                    onDblClick : this.openItem,
-                    onClick : this.setSelected,
-                    getItem : function(item){
-                        return this._itemNodesMap[item.id][0];
-                    }
-                }, 'projectTree');
-
-
-                // Initialize the project manager as soon as the tree
-                // finished loading
-                projectTree.onLoadDeferred.then(function(){
-
-                    projectManager.init();
-
-                    document.getElementById('projectTreeLoading').style.display = 'none';
-                });
-
-
-
-                // create filesystem tree
-                var filesystemRestStore = new JsonRest({
-
-                    target : settingsManager.getApiUrl() + '/filesystem/bare'
-                });
-
-
-                var filesystemModel = new TreeStoreModel({
-
-                    store : new ObjectStore({
-
-                        objectStore : filesystemRestStore
-                    }),
-
-                    mayHaveChildren : this.mayHaveChildren
-
-                });
-
-                var filesystemTree = new Tree({
-
-                    model:filesystemModel,
-                    persist:false,
-                    showRoot:false,
-                    openOnDblClick:true,
-                    // tree icon function
-                    getIconClass : fileManager.getIcon,
-                    // tree double click handler
-                    onDblClick : this.openItem
-
-                }, 'filesystemTree');
-
-                // create services tree
-                var servicesRestStore = new JsonRest({
-
-                    target : settingsManager.getApiUrl() + '/services'
-                });
-
-                var servicesTreeModel = new TreeStoreModel({
-
-                    store : new ObjectStore({
-
-                        objectStore : servicesRestStore
-                    }),
-
-                    mayHaveChildren : this.mayHaveChildren
-
-                });
-
-                var servicesTree = new Tree({
-
-                    model:servicesTreeModel,
-                    persist:false,
-                    showRoot:false,
-                    openOnDblClick:true,
-                    // tree icon function
-                    getIconClass : fileManager.getIcon,
-                    // tree double click handler
-                    onDblClick : this.openItemReadonly
-
-                }, 'servicesTree');
-
-                this.bindContextMenus(projectTree);
-                this.bindContextMenus(filesystemTree);
-                this.bindContextMenus(servicesTree);
-
-            },
-
-            mayHaveChildren : function(object){
-
-
-            },
-
-
-            bindContextMenus : function(widget){
-
-                var menus = {
-                    folder : registry.byId('filesystemMenu'),
-                    sources : registry.byId('filesystemMenu'),
-                    resources : registry.byId('filesystemMenu'),
-                    modules : registry.byId('modulesMenu'),
-                    pomProject : registry.byId('projectMenu'),
-                    warProject : registry.byId('projectMenu'),
-                    jarProject : registry.byId('projectMenu'),
-                    projectFiles : registry.byId('projectFilesMenu')
-                };
-
-
-                widget.onOpen = function(item, node) {
-
-                    function bindProperMenu(node, item){
-
-                        for(var menu in menus){
-                            menus[menu].unBindDomNode(node);
+                    this.projectStore = new Memory({
+                        data: projectData,
+                        getChildren: function(object) {
+                            return this.query({
+                                parent: object.id
+                            });
                         }
-
-                        if (item.style){
-
-                            var menuType = menus[item.style];
-
-                            if(menuType){
-                                menuType.bindDomNode(node);
-                            }
-                        }
-                    }
-
-                    var children = node.containerNode.childNodes;
-                    var n = children.length;
-                    var thisWidget;
-
-                    while(n--){
-
-                        thisWidget = dijit.getEnclosingWidget(children[n]);
-                        bindProperMenu(thisWidget.domNode, thisWidget.item);
-                    }
-
-                    if (!item.root){
-                        bindProperMenu(node.domNode, item);
-                    }
-                }
-            },
-
-
-            deleteItem : function(item){
-
-                // summary: removes an item from the tree trough
-                //          deletion from the store.
-
-                this.projectStore.remove(item.id);
-            },
-
-
-            addItem : function(item){
-
-                // summary : adds an item to the tree trough
-                //           adding it in the store.
-                
-                this.projectStore.add(item);
-            },
-
-
-            setSavedChanges : function(item){
-
-                var tree = dijit.byId('projectTree');
-
-                var node = tree.getItem(item);
-
-                console.info(node);
-
-
-                node.labelNode.innerHTML = node.label + ' [-/M]';
-
-                node.labelNode.style.fontWeight = '';
-                node.labelNode.style.color = 'blue';
-
-                node.labelNode.style.fontStyle = '';
-
-            },
-
-            setUnsavedChanges : function(item){
-
-                var tree = dijit.byId('projectTree');
-
-                var node = tree.getItem(item);
-
-                node.labelNode.style.fontWeight = 'bold';
-                node.labelNode.style.fontStyle = 'italic';
-            },
-
-            setSelected : function(item, opened){
-
-                // set the selected project
-                projectManager.setSelected(item);
-
-                // set selected file
-                fileManager.setSelected(item);
-            },
-
-            refresh : function(tree){
-
-                // show loading message
-
-                var selectedTree = dijit.byId(tree);
-
-                if(tree == 'projectTree'){
-
-                    document.getElementById('projectTreeLoading').style.display = 'block';
-
-
-                    registry.remove(selectedTree.id);
-
-                    var projectRestStore = new JsonRest({
-
-                        target : settingsManager.getApiUrl() + '/filesystem/opened'
                     });
 
-                    var treeModel = new TreeStoreModel({
+                    this.projectStore = new Observable(this.projectStore);
 
-                        store : new ObjectStore({
+                    var projectModel = new ObjectStoreModel({
+                        store: this.projectStore,
+                        query: {
+                            id: 'root'
+                        },
+                        mayHaveChildren: function(object) {
 
-                            objectStore : projectRestStore
-                        }),
-
-                        mayHaveChildren : this.mayHaveChildren
+                            return this.store.getChildren(object).length > 0;
+                        }
                     });
 
                     var projectTree = new Tree({
-
-                        model:treeModel,
-                        persist:false,
-                        showRoot:false,
-                        openOnDblClick:true,
+                        model: projectModel,
+                        persist: false,
+                        showRoot: false,
+                        openOnDblClick: true,
                         // tree icon function
-                        getIconClass : fileManager.getIcon,
-                        getLabelClass : fileManager.getLabelClass,
-                        getLabel : fileManager.getLabel,
+                        getIconClass: fileManager.getIcon,
+                        getLabelClass: fileManager.getLabelClass,
+                        getLabel: fileManager.getLabel,
                         // tree double click handler
-                        onDblClick : this.openItem,
-                        onClick : this.setSelected,
-                        getItem : function(item){
-                            return this._itemNodesMap[item.id][0];
+                        onDblClick: this.openItem,
+                        onClick: this.setSelected,
+                        getNode: function(item) {
+                            var found = this._itemNodesMap[item.id];
+                            if (found) {
+                                return found[0];
+                            } else {
+                                return null;
+                            }
                         }
-
                     }, 'projectTree');
 
-                    projectTree.onLoadDeferred.then(function(){
+                    // only one selection at a time for now...
+                    projectTree.dndController.singular = true;
+
+                    // Initialize the project manager as soon as the tree
+                    // finished loading
+                    projectTree.onLoadDeferred.then(function() {
 
                         projectManager.init();
 
                         document.getElementById('projectTreeLoading').style.display = 'none';
                     });
 
+
+
+                    // create filesystem tree
+                    var filesystemRestStore = new JsonRest({
+                        target: settingsManager.getApiUrl() + '/filesystem/bare'
+                    });
+
+
+                    var filesystemModel = new TreeStoreModel({
+                        store: new ObjectStore({
+                            objectStore: filesystemRestStore
+                        }),
+                        mayHaveChildren: this.mayHaveChildren
+
+                    });
+
+                    var filesystemTree = new Tree({
+                        model: filesystemModel,
+                        persist: false,
+                        showRoot: false,
+                        openOnDblClick: true,
+                        // tree icon function
+                        getIconClass: fileManager.getIcon,
+                        // tree double click handler
+                        onDblClick: this.openItem
+
+                    }, 'filesystemTree');
+
+                    // create services tree
+                    var servicesRestStore = new JsonRest({
+                        target: settingsManager.getApiUrl() + '/services'
+                    });
+
+                    var servicesTreeModel = new TreeStoreModel({
+                        store: new ObjectStore({
+                            objectStore: servicesRestStore
+                        }),
+                        mayHaveChildren: this.mayHaveChildren
+
+                    });
+
+                    var servicesTree = new Tree({
+                        model: servicesTreeModel,
+                        persist: false,
+                        showRoot: false,
+                        openOnDblClick: true,
+                        // tree icon function
+                        getIconClass: fileManager.getIcon,
+                        // tree double click handler
+                        onDblClick: this.openItemReadonly
+
+                    }, 'servicesTree');
+
                     this.bindContextMenus(projectTree);
+                    this.bindContextMenus(filesystemTree);
+                    this.bindContextMenus(servicesTree);
 
-                }else{
+                },
+                mayHaveChildren: function(item) {
 
-                    if(selectedTree){
-
-                        selectedTree.dndController.selectNone();
-                        selectedTree._itemNodesMap = {};
-                        selectedTree.model.root = null;
-                        selectedTree.rootNode.destroyRecursive();
-                        selectedTree._load();
+                    if (item.children.length === 0) {
+                        return false;
+                    } else {
+                        return true;
                     }
-                }
-            },
+                },
+                bindContextMenus: function(widget) {
+
+                    var menus = {
+                        folder: registry.byId('filesystemMenu'),
+                        sources: registry.byId('filesystemMenu'),
+                        resources: registry.byId('filesystemMenu'),
+                        modules: registry.byId('modulesMenu'),
+                        pomProject: registry.byId('projectMenu'),
+                        warProject: registry.byId('projectMenu'),
+                        jarProject: registry.byId('projectMenu'),
+                        projectFiles: registry.byId('projectFilesMenu')
+                    };
+
+                    widget.onOpen = function(item, node) {
+
+                        function bindProperMenu(node, item) {
+
+                            for (var menu in menus) {
+                                menus[menu].unBindDomNode(node);
+                            }
+
+                            if (item.style) {
+
+                                var menuType = menus[item.style];
+
+                                if (menuType) {
+                                    menuType.bindDomNode(node);
+                                }
+                            }
+                        }
+
+                        var children = node.containerNode.childNodes;
+                        var n = children.length;
+                        var thisWidget;
+
+                        while (n--) {
+
+                            thisWidget = dijit.getEnclosingWidget(children[n]);
+                            bindProperMenu(thisWidget.domNode, thisWidget.item);
+                        }
+
+                        if (!item.root) {
+                            bindProperMenu(node.domNode, item);
+                        }
+                    };
+                },
+                deleteItem: function(item) {
+
+                    // summary: removes an item from the tree trough
+                    //          deletion from the store.
+
+                    this.projectStore.remove(item.id);
+                },
+                addItem: function(item) {
+
+                    // summary : adds an item to the tree trough
+                    //           adding it in the store.
+
+                    this.projectStore.add(item);
+                },
+                setSavedChanges: function(item) {
+
+                    // summary : mark file as modified and
+
+                    var tree = dijit.byId('projectTree');
+
+                    var node = tree.getNode(item);
+
+                    console.info(node);
 
 
-            select : function(tree, item){
+                    node.labelNode.innerHTML = node.label + ' [-/M]';
 
-                // summary : select the item in the given tree
+                    node.labelNode.style.fontWeight = '';
+                    node.labelNode.style.color = 'blue';
 
-                var selectedTree = dijit.byId(tree);
+                    node.labelNode.style.fontStyle = '';
 
-                var path = Array();
-                var chop = item.id;
+                },
+                setUnsavedChanges: function(item) {
 
-                // add filesystem root
-                path.push('filesystem');
+                    var tree = dijit.byId('projectTree');
 
-                // get the projects folder + project
-                var projectFolder = settingsManager.getSetting(SETTING.PROJECT_FOLDER);
+                    var node = tree.getNode(item);
 
-                // remove project folder from the input
-                chop = chop.replace(projectFolder+'/','');
+                    node.labelNode.style.fontWeight = 'bold';
+                    node.labelNode.style.fontStyle = 'italic';
+                },
+                setSelected: function(item, opened) {
 
-                // get the project name
-                var projectName = chop.substring(0,chop.indexOf('/'));
+                    // set the selected project
+                    projectManager.setSelected(item);
 
-                // push the project name
-                path.push(projectFolder + '/' + projectName);
+                    // set selected file
+                    fileManager.setSelected(item);
+                },
+                refresh: function(tree) {
 
-                // remove the project name from chop
-                chop = chop.replace(projectName,'');
+                    // show loading message
 
-                // check for /src/main/java, /src/main/resources, /src/main/webapp,
-                //           /src/test/java, /src/test/resources
-                var sourceFolder;
-                var srcMainJava = '/src/main/java';
-                var srcMainResources = '/src/main/resources';
-                var srcMainWebapp = '/src/main/webapp';
-                var srcTestJava = '/src/test/java';
-                var srcTestResources = '/src/test/resources';
+                    var selectedTree = dijit.byId(tree);
 
-                if(chop.slice(0, srcMainJava.length) == srcMainJava){
+                    if (tree === 'projectTree') {
 
-                    sourceFolder = srcMainJava;
-                    path.push(projectFolder + '/' + projectName + sourceFolder);
-                    chop = chop.replace(sourceFolder+'/','');
+                        document.getElementById('projectTreeLoading').style.display = 'block';
 
-                }else if(chop.slice(0, srcMainResources.length) == srcMainResources){
 
-                    sourceFolder = srcMainResources;
-                    path.push(projectFolder + '/' + projectName + sourceFolder);
-                    chop = chop.replace(sourceFolder+'/','');
+                        registry.remove(selectedTree.id);
 
-                }else if(chop.slice(0, srcMainWebapp.length) == srcMainWebapp){
+                        var projectRestStore = new JsonRest({
+                            target: settingsManager.getApiUrl() + '/filesystem/opened'
+                        });
 
-                    sourceFolder = srcMainWebapp;
-                    path.push(projectFolder + '/' + projectName + sourceFolder);
-                    chop = chop.replace(sourceFolder+'/','');
+                        var treeModel = new TreeStoreModel({
+                            store: new ObjectStore({
+                                objectStore: projectRestStore
+                            }),
+                            mayHaveChildren: this.mayHaveChildren
+                        });
 
-                }else if(chop.slice(0, srcTestJava.length) == srcTestJava){
+                        var projectTree = new Tree({
+                            model: treeModel,
+                            persist: false,
+                            showRoot: false,
+                            openOnDblClick: true,
+                            // tree icon function
+                            getIconClass: fileManager.getIcon,
+                            getLabelClass: fileManager.getLabelClass,
+                            getLabel: fileManager.getLabel,
+                            // tree double click handler
+                            onDblClick: this.openItem,
+                            onClick: this.setSelected,
+                            getItem: function(item) {
+                                return this._itemNodesMap[item.id][0];
+                            }
 
-                    sourceFolder = srcTestJava;
-                    path.push(projectFolder + '/' + projectName + sourceFolder);
-                    chop = chop.replace(sourceFolder+'/','');
+                        }, 'projectTree');
 
-                }else if(chop.slice(0, srcTestResources.length) == srcTestResources){
+                        projectTree.onLoadDeferred.then(function() {
 
-                    sourceFolder = srcTestResources;
-                    path.push(projectFolder + '/' + projectName + sourceFolder);
-                    chop = chop.replace(sourceFolder+'/','');
+                            projectManager.init();
 
-                }else{
+                            document.getElementById('projectTreeLoading').style.display = 'none';
+                        });
 
-                    // if we came here we might have to deal with the fact
-                    // that it's a module. test it
+                        this.bindContextMenus(projectTree);
 
-                    chop = chop.substring(1, chop.length);
+                    } else {
 
-                    var module = chop.substring(0,chop.indexOf('/'));
+                        if (selectedTree) {
 
-                    // remove module
-                    chop = chop.replace(module,'');
+                            selectedTree.dndController.selectNone();
+                            selectedTree._itemNodesMap = {};
+                            selectedTree.model.root = null;
+                            selectedTree.rootNode.destroyRecursive();
+                            selectedTree._load();
+                        }
+                    }
+                },
+                select: function(item) {
 
-                    var isModule = false;
+                    // summary : set the item selected in the project tree
 
-                    if(chop.slice(0, srcMainJava.length) == srcMainJava){
+                    var paths = Array();
 
-                        isModule=true;
-                        sourceFolder = srcMainJava;
-                        path.push(projectFolder + '/' + projectName + '/' + module);
-                        path.push(projectFolder + '/' + projectName + '/' + module + sourceFolder);
-                        chop = chop.replace(sourceFolder+'/','');
+                    // get the selected node
+                    var node = dijit.byId('projectTree').getNode(item);
 
-                    }else if(chop.slice(0, srcMainResources.length) == srcMainResources){
+                    // push the item to be selected
+                    paths.push(node.item.id);
 
-                        isModule=true;
-                        sourceFolder = srcMainResources;
-                        path.push(projectFolder + '/' + projectName + '/' + module);
-                        path.push(projectFolder + '/' + projectName + '/' + module + sourceFolder);
-                        chop = chop.replace(sourceFolder+'/','');
+                    // get the depth
+                    var indent = node.indent;
 
-                    }else if(chop.slice(0, srcMainWebapp.length) == srcMainWebapp){
+                    // traverse the parent nodes upwards
+                    while (indent--) {
 
-                        isModule=true;
-                        sourceFolder = srcMainWebapp;
-                        path.push(projectFolder + '/' + projectName + '/' + module);
-                        path.push(projectFolder + '/' + projectName + '/' + module + sourceFolder);
-                        chop = chop.replace(sourceFolder+'/','');
+                        node = node.getParent();
 
-                    }else if(chop.slice(0, srcTestJava.length) == srcTestJava){
-
-                        isModule=true;
-                        sourceFolder = srcTestJava;
-                        path.push(projectFolder + '/' + projectName + '/' + module);
-                        path.push(projectFolder + '/' + projectName + '/' + module + sourceFolder);
-                        chop = chop.replace(sourceFolder+'/','');
-
-                    }else if(chop.slice(0, srcTestResources.length) == srcTestResources){
-
-                        isModule=true;
-                        sourceFolder = srcTestResources;
-                        path.push(projectFolder + '/' + projectName + '/' + module);
-                        path.push(projectFolder + '/' + projectName + '/' + module + sourceFolder);
-                        chop = chop.replace(sourceFolder+'/','');
-
-                    }else{
-
-                    // pfff, no idea yet. I think this way of chopping the path is far
-                    // from ideal but have to think on how to do this with
-                    // the 'fixed' src/main/java etc grouping...
-
+                        // push each parent
+                        paths.push(node.item.id);
                     }
 
-                }
+                    // add the root
+                    paths.push('root');
 
-                // from here we loop trough the remaining folders and add them
-                var folderArray = chop.split('/');
+                    // reverse the paths so it reads root -> leaf order
+                    paths.reverse();
 
-                var folderPath ='';
+                    // set the path in the tree
+                    tree.set('paths', [paths]);
+                },
+                getNode: function(tree, id) {
 
-                for(var i=0;i<folderArray.length;i++){
+                    // summary : get a tree node from the tree by id
 
-                    folderPath += '/' + folderArray[i];
+                    var targetTree = dijit.byId(tree);
 
-                    if(isModule){
-                        path.push(projectFolder + '/' + projectName + '/' + module + sourceFolder + folderPath);
-                    }else{
-                        path.push(projectFolder + '/' + projectName + sourceFolder + folderPath);
+                    var node = targetTree._itemNodesMap[id];
+
+                    return node;
+                },
+                markMain: function(item) {
+
+                    // summary : get the given item from the tree and mark it as
+                    //           main project.
+
+                    var node = dijit.byId(item);
+
+                    if (node) {
+                        node[0].labelNode.className = 'mainProject';
                     }
+                },
+                unmarkMain: function(tree, item) {
+
+                    // summary : Get the given item from the tree and mark it as
+                    //           a 'normal' project (as in not the main project)
+
+                    var selectedTree = dijit.byId(tree);
+
+                    if (selectedTree) {
+                        var node = selectedTree._itemNodesMap[item.id];
+                    }
+
+                    if (node) {
+                        node[0].labelNode.className = 'dijitTreeLabel';
+                    }
+                },
+                openItemReadonly: function(item, opened) {
+
+                    if (item.type === ITEM_TYPE.FILE) {
+                        fileManager.get(item, true);
+                    }
+                },
+                openItem: function(item, opened) {
+
+                    if (item.type === ITEM_TYPE.FILE) {
+                        fileManager.get(item, false);
+                    }
+
+                    if (item.type == ITEM_TYPE.CLOSED_PROJECT) {
+
+                        // get a handle on the project tree
+                        var tree = dijit.byId('projectTree');
+
+                        // check if the project is already opened
+                        // switch id & path for closed projects
+                        item.id = item.path;
+                        var p = tree.getNode(item);
+
+                        // project is not opened yet
+                        if (p == null) {
+
+                            // open it by path
+                            var project = FilesystemService.getProject(item.path);
+
+                            var root;
+
+                            for (var i = 0; i < project.length; i++) {
+
+                                // keep the project root to be added last
+                                if (project[i].parent == 'root') {
+
+                                    root = project[i];
+
+                                } else {
+
+                                    tree.model.store.add(project[i]);
+                                }
+                            }
+
+                            tree.model.store.add(root);
+
+                        } else {
+
+                            // set it selected in the tree
+                            tree.set('paths', [item.path]);
+                        }
+                    }
+
+                },
+                getTarget: function(target) {
+
+                    return dijit.byNode(target.getParent().currentTarget).item;
                 }
-
-                // set the path in the tree
-                selectedTree.set('paths', [path]);
-
-            // @issue #47 scroll to the actual selected node
-            // does not work properly now. looks like it
-            // is called multiple times.
-            // maybe because focus event is also picked
-            // up by the ace editor and tries to set
-            // focus again, rsulting in focus event to
-            // be emitted etc...
-            // It also hangs up the editor, not being able to
-            // type anything. Looks like some race condition.
-            //
-            // https://github.com/stormcloud-ide/gui/issues/47
-            //
-            // scroll the file into view
-            //    var node = selectedTree._itemNodesMap[item.id];
-            //
-            //require([ 'dijit/focus' ], function(focusUtil){
-            //    focusUtil.focus(node[0].domNode);
-            //});
-
-
-
-            },
-
-            getNode : function(tree, id){
-
-                // summary : Get a tree (widget) node from the tree based on id
-
-                var targetTree = dijit.byId(tree);
-
-                var node  = targetTree._itemNodesMap[id];
-
-                return node;
-            },
-
-            markMain : function(tree, item){
-
-                // summary : Get the given item from the tree and mark it as
-                //           main project.
-
-                var selectedTree = dijit.byId(tree);
-
-
-                if(selectedTree){
-                    var node = selectedTree._itemNodesMap[item.id];
-                }
-
-                if(node){
-                    node[0].labelNode.className = 'mainProject';
-                }
-            },
-
-            unmarkMain : function(tree, item){
-
-                // summary : Get the given item from the tree and mark it as
-                //           a 'normal' project (as in not the main project)
-
-                var selectedTree = dijit.byId(tree);
-
-                if(selectedTree){
-                    var node = selectedTree._itemNodesMap[item.id];
-                }
-
-                if(node){
-                    node[0].labelNode.className = 'dijitTreeLabel';
-                }
-            },
-
-            openItemReadonly : function(item, opened){
-
-                if(item.type == ITEM_TYPE.FILE){
-                    fileManager.get(item, true);
-                }
-            },
-
-
-            openItem : function(item, opened){
-
-                if(item.type == ITEM_TYPE.FILE){
-                    fileManager.get(item, false);
-                }
-            },
-
-            getTarget : function(target){
-
-                return dijit.byNode(target.getParent().currentTarget).item;
             }
-        }
 
-    });
+        });
