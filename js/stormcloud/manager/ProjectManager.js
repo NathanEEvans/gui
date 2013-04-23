@@ -19,8 +19,12 @@
  *
  */
 define([
+    'dojo/json',
+    'dijit/MenuItem',
     'stormcloud/service/FilesystemService'],
         function(
+                json,
+                MenuItem,
                 filesystemService) {
 
             //
@@ -29,12 +33,31 @@ define([
             // summary  : Manager for Project handling
             //
 
-
             return {
                 // the currently selected project
                 selected: null,
+                recentlyOpened: new Array(),
                 mainProject: null,
                 init: function() {
+
+                    // summary : Get the recentFiles cookie and
+                    //           add the contained files in the menu
+                    //           if it exists
+
+                    var recentProjects = cookieManager.get('recentProjects');
+
+                    if (recentProjects) {
+
+                        var projects = json.parse(recentProjects);
+                    }
+
+                    if (projects) {
+
+                        this.recentlyOpened = projects;
+
+                        this._updateRecentlyOpenedMenu();
+                    }
+
 
                     // summary : Get the initial selected project from cookie
                     //           and set it as selected
@@ -92,13 +115,21 @@ define([
 
                     // summary : open a nested module
 
+                    // request open on filesystem
                     filesystemService.openModule(item);
+
+                    // add to recently opened menu
+                    this.addRecentlyOpened(item);
                 },
                 open: function(item) {
 
                     // summary : open a project
 
+                    // request open on filesystem
                     filesystemService.open(item);
+
+                    // add to recently opened menu
+                    this.addRecentlyOpened(item);
                 },
                 close: function() {
 
@@ -167,6 +198,76 @@ define([
                     // summary : set the selected project based on an item
 
                     this.selected = this.getProject(item);
+                },
+                addRecentlyOpened: function(item) {
+
+                    // summary : add an item to the recently opened
+                    //           projects menu
+
+                    // check if it's already in the array
+                    var i = this.recentlyOpened.length;
+
+                    while (i--) {
+
+                        if (this.recentlyOpened[i] === item) {
+                            // it's already in there, do nothing
+                            return;
+                        }
+                    }
+
+                    // add project to the array, at the top as it was
+                    // selected last and should show up in the menu that way
+                    this.recentlyOpened.unshift(item);
+
+                    // pop the last item in the array to only contain the last
+                    // 10 items when more than 10 are in there
+                    if (this.recentlyOpened.length > 10) {
+
+                        this.recentlyOpened.pop();
+                    }
+
+                    // add the updated list to the cookie
+                    cookieManager.set(
+                            'recentProjects',
+                            json.stringify(this.recentlyOpened));
+
+                    // update the menu
+                    this._updateRecentlyOpenedMenu();
+                },
+                _updateRecentlyOpenedMenu: function() {
+
+                    // get handle on the menu
+                    var menu = dijit.byId('fileMenu_open_recent_project');
+
+                    // remove all existing items
+                    menu.destroyDescendants(false);
+
+                    var project;
+
+                    // create the refreshed list
+                    for (var i = 0; i < this.recentlyOpened.length; i++) {
+
+                        // if there is actually an item in the slot
+                        if (this.recentlyOpened[i] !== undefined) {
+
+                            project = this.recentlyOpened[i];
+
+                            var menuItem = new MenuItem({
+                                label: project.label,
+                                id: project.id,
+                                item: project,
+                                iconClass: '',
+                                onClick: function(event) {
+
+                                    treeManager.openItem(this.item, null);
+                                }
+                            });
+
+                            // add a menuitem for it
+                            menu.addChild(menuItem);
+
+                        }
+                    }
                 }
             };
 

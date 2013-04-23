@@ -41,10 +41,7 @@ define([
                 moveSource: null,
                 copyDestination: null,
                 moveDestination: null,
-                // array of last (recent) opened files
-                // will contain max 10 last opened files
                 recentlyOpened: new Array(),
-                // array of dirty files
                 dirtyFiles: new Array(),
                 init: function() {
 
@@ -100,7 +97,10 @@ define([
                         var projectName = projectManager.getProject(item).label;
 
                         // ask to open the project
-                        var open = confirm("This file belongs to the " + projectName + " Project.\nDo you want to open it?");
+                        var open = confirm(
+                                "This file belongs to the "
+                                + projectName
+                                + " Project.\nDo you want to open it?");
 
                         if (open === true) {
 
@@ -109,7 +109,6 @@ define([
                         } else {
                             return;
                         }
-
                     }
 
                     // open the file
@@ -128,7 +127,8 @@ define([
                     //           currently selected item
 
                     // get editor contents
-                    var contents = editorManager.getEditorContents(this.selected);
+                    var contents =
+                            editorManager.getEditorContents(this.selected);
 
                     // save it
                     filesystemService.save(this.selected, contents);
@@ -136,27 +136,31 @@ define([
                     // lookup the file in the changedFileList and remove it
                     for (var i = 0; i < this.dirtyFiles.length; i++) {
 
-                        if (this.dirtyFiles[i] == this.selected) {
+                        if (this.dirtyFiles[i] === this.selected) {
                             this.dirtyFiles.splice(i, 1);
                         }
                     }
 
-                    if (settingsManager.getPreference(PREFERENCE.MAVEN_COMPILE_ON_SAVE) == 'true') {
+                    if (settingsManager.getPreference(
+                            PREFERENCE.MAVEN_COMPILE_ON_SAVE) === 'true') {
+
                         mavenManager.compile();
                     }
 
                 },
                 saveAll: function() {
 
-                    // summary : save all files from the dirty list and remove them
-                    //
+                    // summary : save all files from the dirty list and
+                    //           remove them
 
                     var i = this.dirtyFiles.length;
                     var saved = i;
 
                     while (i--) {
 
-                        var contents = editorManager.getEditorContents(this.dirtyFiles[i]);
+                        var contents =
+                                editorManager.getEditorContents(
+                                this.dirtyFiles[i]);
 
                         filesystemService.save(this.dirtyFiles[i], contents);
 
@@ -164,7 +168,10 @@ define([
                     }
 
                     if (saved > 0) {
-                        if (settingsManager.getPreference(PREFERENCE.MAVEN_COMPILE_ON_SAVE) == 'true') {
+
+                        if (settingsManager.getPreference(
+                                PREFERENCE.MAVEN_COMPILE_ON_SAVE) === 'true') {
+
                             mavenManager.compile();
                         }
                     }
@@ -188,39 +195,54 @@ define([
 
                 },
                 copy: function() {
-                    this.copySource = dijit.byId('projectTree').attr('selectedItem');
+
+                    // set the copy source
+                    this.copySource =
+                            dijit.byId('projectTree').attr('selectedItem');
+
+                    // enable the paste button
                     dijit.byId('filesystemMenu_paste').attr('disabled', false);
                 },
                 cut: function() {
-                    this.moveSource = dijit.byId('projectTree').attr('selectedItem');
+
+                    // the the cut source
+                    this.moveSource =
+                            dijit.byId('projectTree').attr('selectedItem');
+
+                    // enable the paste button
                     dijit.byId('filesystemMenu_paste').attr('disabled', false);
                 },
                 paste: function() {
 
-                    if (this.copySource == null) {
+                    if (this.copySource === null) {
 
-                        this.moveDestination = dijit.byId('projectTree').attr('selectedItem');
+                        this.moveDestination =
+                                dijit.byId('projectTree').attr('selectedItem');
 
-                        if (this.moveSource.id == this.moveDestination.id) {
+                        if (this.moveSource.id === this.moveDestination.id) {
 
                             alert('Source and Destination cannot be the same');
 
                         } else {
 
-                            filesystemService.rename(this.moveSource.id, this.moveDestination.id);
+                            filesystemService.rename(
+                                    this.moveSource.id,
+                                    this.moveDestination.id);
                         }
 
                     } else {
 
-                        this.copyDestination = dijit.byId('projectTree').attr('selectedItem');
+                        this.copyDestination =
+                                dijit.byId('projectTree').attr('selectedItem');
 
-                        if (this.copySource.id == this.copyDestination.id) {
+                        if (this.copySource.id === this.copyDestination.id) {
 
                             alert('Source and Destination cannot be the same');
 
                         } else {
 
-                            filesystemService.copy(this.copySource.id, this.copyDestination.id);
+                            filesystemService.copy(
+                                    this.copySource.id, this.copyDestination.id);
                         }
                     }
 
@@ -234,14 +256,15 @@ define([
                 },
                 addRecentlyOpenedFile: function(item) {
 
-                    // summary :
-
+                    // summary : add an item to the recently opened files list
 
                     // check if it's already in the array
                     var i = this.recentlyOpened.length;
+
                     while (i--) {
-                        if (this.recentlyOpened[i] == item) {
-                            // it's already in there, return ziltsj
+
+                        if (this.recentlyOpened[i] === item) {
+                            // it's already in there, do nothing
                             return;
                         }
                     }
@@ -250,15 +273,18 @@ define([
                     // and should show up in the menu that way
                     this.recentlyOpened.unshift(item);
 
-                    // pop the last item in the array to only contain the last 10 items
-                    // when more than 10 are in there
+                    // pop the last item in the array to only contain the last
+                    // 10 items when more than 10 are in there
                     if (this.recentlyOpened.length > 10) {
+
                         this.recentlyOpened.pop();
                     }
 
 
                     // add the updated list to the cookie
-                    cookieManager.set('recentFiles', json.stringify(this.recentlyOpened));
+                    cookieManager.set(
+                            'recentFiles',
+                            json.stringify(this.recentlyOpened));
 
                     // update the menu
                     this._updateOpenedFiles();

@@ -413,7 +413,7 @@ define([
                         fileManager.get(item, false);
                     }
 
-                    if (item.type == ITEM_TYPE.CLOSED_PROJECT) {
+                    if (item.type === ITEM_TYPE.CLOSED_PROJECT) {
 
                         // get a handle on the project tree
                         var tree = dijit.byId('projectTree');
@@ -424,7 +424,7 @@ define([
                         var p = tree.getNode(item);
 
                         // project is not opened yet
-                        if (p == null) {
+                        if (p === null) {
 
                             // open it by path
                             var project = FilesystemService.getProject(item.path);
@@ -434,7 +434,7 @@ define([
                             for (var i = 0; i < project.length; i++) {
 
                                 // keep the project root to be added last
-                                if (project[i].parent == 'root') {
+                                if (project[i].parent === 'root') {
 
                                     root = project[i];
 
@@ -445,6 +445,8 @@ define([
                             }
 
                             tree.model.store.add(root);
+
+                            projectManager.addRecentlyOpened(item);
 
                         } else {
 
