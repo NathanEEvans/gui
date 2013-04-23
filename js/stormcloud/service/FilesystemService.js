@@ -85,7 +85,7 @@ define([
                     deferred.then(
                             function(data) {
 
-                                if (data == '0') {
+                                if (data === '0') {
 
                                     treeManager.refresh('projectTree');
 
@@ -127,7 +127,7 @@ define([
                     deferred.then(
                             function(data) {
 
-                                if (data == '0') {
+                                if (data === '0') {
 
                                     treeManager.refresh('projectTree');
 
@@ -208,7 +208,7 @@ define([
                     deferred.then(
                             function(data) {
 
-                                if (data == '0') {
+                                if (data === '0') {
 
                                     treeManager.refresh('projectTree');
                                     //treeManager.refresh('filesystemTree');
@@ -222,7 +222,7 @@ define([
 
                                     projectManager.setSelected(item);
 
-                                    if (settingsManager.getPreference(PREFERENCE.MAVEN_COMPILE_ON_PROJECT_OPEN) == 'true') {
+                                    if (settingsManager.getPreference(PREFERENCE.MAVEN_COMPILE_ON_PROJECT_OPEN) === 'true') {
                                         mavenManager.compile();
                                     }
 
@@ -254,7 +254,7 @@ define([
                     deferred.then(
                             function(data) {
 
-                                if (data == '0') {
+                                if (data === '0') {
 
                                     treeManager.refresh('projectTree');
 
@@ -361,14 +361,14 @@ define([
                         content: {
                             filePath: item.id
                         }
-                    }
+                    };
 
                     var deferred = xhr.post(xhrArgs);
 
                     deferred.then(
                             function(data) {
 
-                                if (data == '0') {
+                                if (data === '0') {
 
                                     // mark trash as 'full'
                                     dijit.byId('toolBar_trash').set('iconClass', 'trashFullIcon');
@@ -411,13 +411,13 @@ define([
                     deferred.then(
                             function(data) {
 
-                                if (data == '0') {
+                                if (data === '0') {
 
                                     // add it to the tree
                                     treeManager.addItem(item);
 
                                     // open it in the editor
-                                    if (item.type == ITEM_TYPE.FILE) {
+                                    if (item.type === ITEM_TYPE.FILE) {
 
                                         fileManager.get(item, false);
                                     }
@@ -517,7 +517,7 @@ define([
                         url: FILESYSTEM.HAS_TRASH,
                         load: function(data) {
 
-                            if (data == '0') {
+                            if (data === '0') {
 
                                 dijit.byId('toolBar_trash').set('iconClass', 'trashEmptyIcon');
 
@@ -534,7 +534,7 @@ define([
                         url: FILESYSTEM.EMPTY_TRASH,
                         load: function(data) {
 
-                            if (data == '0') {
+                            if (data === '0') {
 
                                 // check the trash and update icon
                                 fileManager.checkTrash();
