@@ -1,48 +1,48 @@
 /*
  * Stormcloud IDE - stormcloud/auth
- * 
+ *
  * Copyright (C) 2012 - 2013 Stormcloud IDE
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
- * 
+ *
  */
-    
-function sendCredentials(user, pass){
-        
+
+function sendCredentials(user, pass) {
+
     var str = user + ':' + pass;
-        
+
     var enc = Base64.encode(str);
-    
-    
+
+
     var login = new XMLHttpRequest();
     login.open('POST', 'https://' + window.location.host + '/stormcloud/api/login', true);
-    
-    
+
+
     login.setRequestHeader('Authorization', 'Basic ' + enc);
-    
-    
+
+
     login.onreadystatechange = function() {
-                    
+
         if (login.readyState == 4) {
-                        
+
             if (login.status == 200) {
-                
+
                 document.location = 'https://' + window.location.host;
-                
-            }else{
-                            
+
+            } else {
+
                 var message = "We do not recognize you as a registered user.";
                 var statusBar = document.getElementById('statusMessage');
                 statusBar.style.color = 'red';
@@ -50,56 +50,54 @@ function sendCredentials(user, pass){
             }
         }
     };
-                
+
     login.send(null);
-   
+
 }
-        
+
 // Make a call to get the user
 //
-function verify(){
-                            
+function verify() {
+
     var userCheck = new XMLHttpRequest();
     userCheck.open('GET', 'https://' + window.location.host + '/stormcloud/api/user', true);
     userCheck.onreadystatechange = function() {
-                    
-        if (userCheck.readyState == 4) {
-                        
-            if (userCheck.status == 200) {
-                        
-                        
-                require(['stormcloud/manager/SettingsManager'], function(SettingsManager){
-                        
-                    settingsManager = SettingsManager;             
-    
+
+        if (userCheck.readyState === 4) {
+
+            if (userCheck.status === 200) {
+
+
+                require(['stormcloud/manager/SettingsManager'], function(SettingsManager) {
+
+                    settingsManager = SettingsManager;
+
                     settingsManager.user = JSON.parse(userCheck.responseText);
-               
+
                 });
-            
-            }else{
-                            
-                document.location = 'https://' + window.location.host + '/login.html'; 
+
+            } else {
+
+                document.location = 'https://' + window.location.host + '/login.html';
             }
         }
     };
-                
+
     userCheck.send(null);
-                
+
 }
 
 /**
-*
-*  Base64 encode / decode
-*  http://www.webtoolkit.info/
-*
-**/
+ *
+ *  Base64 encode / decode
+ *  http://www.webtoolkit.info/
+ *
+ **/
 var Base64 = {
-
     // private property
-    _keyStr : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
-
+    _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
     // public method for encoding
-    encode : function (input) {
+    encode: function(input) {
         var output = "";
         var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
         var i = 0;
@@ -124,16 +122,15 @@ var Base64 = {
             }
 
             output = output +
-            this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
-            this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
+                    this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
+                    this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
 
         }
 
         return output;
     },
-
     // public method for decoding
-    decode : function (input) {
+    decode: function(input) {
         var output = "";
         var chr1, chr2, chr3;
         var enc1, enc2, enc3, enc4;
@@ -168,10 +165,9 @@ var Base64 = {
         return output;
 
     },
-
     // private method for UTF-8 encoding
-    _utf8_encode : function (string) {
-        string = string.replace(/\r\n/g,"\n");
+    _utf8_encode: function(string) {
+        string = string.replace(/\r\n/g, "\n");
         var utftext = "";
 
         for (var n = 0; n < string.length; n++) {
@@ -181,7 +177,7 @@ var Base64 = {
             if (c < 128) {
                 utftext += String.fromCharCode(c);
             }
-            else if((c > 127) && (c < 2048)) {
+            else if ((c > 127) && (c < 2048)) {
                 utftext += String.fromCharCode((c >> 6) | 192);
                 utftext += String.fromCharCode((c & 63) | 128);
             }
@@ -195,14 +191,13 @@ var Base64 = {
 
         return utftext;
     },
-
     // private method for UTF-8 decoding
-    _utf8_decode : function (utftext) {
+    _utf8_decode: function(utftext) {
         var string = "";
         var i = 0;
         var c = c1 = c2 = 0;
 
-        while ( i < utftext.length ) {
+        while (i < utftext.length) {
 
             c = utftext.charCodeAt(i);
 
@@ -210,14 +205,14 @@ var Base64 = {
                 string += String.fromCharCode(c);
                 i++;
             }
-            else if((c > 191) && (c < 224)) {
-                c2 = utftext.charCodeAt(i+1);
+            else if ((c > 191) && (c < 224)) {
+                c2 = utftext.charCodeAt(i + 1);
                 string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
                 i += 2;
             }
             else {
-                c2 = utftext.charCodeAt(i+1);
-                c3 = utftext.charCodeAt(i+2);
+                c2 = utftext.charCodeAt(i + 1);
+                c3 = utftext.charCodeAt(i + 2);
                 string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
                 i += 3;
             }
@@ -228,5 +223,4 @@ var Base64 = {
     }
 
 }
-        
-    
+

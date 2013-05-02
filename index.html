@@ -4,11 +4,34 @@
         <title>Stormcloud IDE</title>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link rel="stylesheet" href="js/codemirror/lib/codemirror.css">
+
+        <link rel="stylesheet" href="js/firepad/firepad.css">
+        <link rel="stylesheet" href="js/firepad/firepad-userlist.css">
+
+        <link rel="stylesheet" href="js/codemirror/theme/ambiance.css">
+        <link rel="stylesheet" href="js/codemirror/theme/blackboard.css">
+        <link rel="stylesheet" href="js/codemirror/theme/cobalt.css">
+        <link rel="stylesheet" href="js/codemirror/theme/eclipse.css">
+        <link rel="stylesheet" href="js/codemirror/theme/elegant.css">
+        <link rel="stylesheet" href="js/codemirror/theme/erlang-dark.css">
+        <link rel="stylesheet" href="js/codemirror/theme/lesser-dark.css">
+        <link rel="stylesheet" href="js/codemirror/theme/midnight.css">
+        <link rel="stylesheet" href="js/codemirror/theme/monokai.css">
+        <link rel="stylesheet" href="js/codemirror/theme/neat.css">
+        <link rel="stylesheet" href="js/codemirror/theme/night.css">
+        <link rel="stylesheet" href="js/codemirror/theme/rubyblue.css">
+        <link rel="stylesheet" href="js/codemirror/theme/solarized.css">
+        <link rel="stylesheet" href="js/codemirror/theme/twilight.css">
+        <link rel="stylesheet" href="js/codemirror/theme/vibrant-ink.css">
+        <link rel="stylesheet" href="js/codemirror/theme/xq-dark.css">
+        <link rel="stylesheet" href="js/codemirror/theme/xq-light.css">
         <link rel="stylesheet" href="css/stormcloud.css">
 
     </head>
 
-    <body class="claro">
+    <body class="claro" style="height: 100%">
 
         <div id="loader">
             <div class="loaderInner">Please stick around while we prepare your application ...</div>
@@ -241,6 +264,19 @@
                         </div>
                     </div>
 
+                    <div data-dojo-type="dijit/PopupMenuBarItem" data-dojo-props="iconClass:'onlineIcon'">
+                        <span>test</span>
+                        <div data-dojo-type="dijit/DropDownMenu">
+                            <div data-dojo-type="dijit/MenuItem" data-dojo-props="iconClass:'onlineIcon'">Online</div>
+                            <div data-dojo-type="dijit/MenuSeparator"></div>
+                            <div data-dojo-type="dijit/MenuItem" data-dojo-props="iconClass:'awayIcon'">Away</div>
+                            <div data-dojo-type="dijit/MenuSeparator"></div>
+                            <div data-dojo-type="dijit/MenuItem" data-dojo-props="iconClass:'busyIcon'">Busy</div>
+                            <div data-dojo-type="dijit/MenuSeparator"></div>
+                            <div data-dojo-type="dijit/MenuItem" data-dojo-props="iconClass:'offlineIcon'">Offline</div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div id="toolBar" data-dojo-type="dijit/Toolbar">
@@ -267,7 +303,7 @@
 
             </div>
 
-            <div data-dojo-type="dijit/layout/TabContainer" data-dojo-props="region:'leading', tabStrip:false, splitter:true" style="width: 20%;">
+            <div data-dojo-type="dijit/layout/TabContainer" data-dojo-props="region:'leading', tabStrip:false, splitter:true" style="width: 20%; height: 100%;">
 
                 <div data-dojo-type="dijit/layout/ContentPane" title="Projects" data-dojo-props="closable:false">
                     <div id="projectTreeLoading">
@@ -286,7 +322,61 @@
 
             </div>
 
-            <div data-dojo-type="dijit/layout/TabContainer" id="tabContainer" data-dojo-props="region:'center', tabStrip:true">
+            <div data-dojo-type="dijit/layout/TabContainer" id="tabContainer" data-dojo-props="region:'center', tabStrip:true" style="height: 100%">
+            </div>
+
+            <div data-dojo-type="dijit.layout.TabContainer" id="shareContainer" data-dojo-props="tabPosition:'right', region:'right', tabStrip:true, splitter:true">
+
+                <div data-dojo-type="dijit.layout.ContentPane" data-dojo-props="iconClass:'contactsIcon'">
+
+                    <div data-dojo-type="dijit.layout.TabContainer" data-dojo-props="nested:true" style="width: 200px; height: 100%">
+
+                        <div data-dojo-type="dijit.layout.ContentPane" id="friendsUserList" data-dojo-props='title:"Friends"'>
+                        </div>
+
+                        <div data-dojo-type="dijit.layout.ContentPane" id="publicUserList" data-dojo-props='title:"Public"'>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div data-dojo-type="dijit.layout.ContentPane" class="userTab" data-dojo-props="iconClass:'user1Icon'">
+
+                    <div data-dojo-type="dijit.layout.ContentPane" class="userTabInfo" data-dojo-props="region:'top'">
+                        <img alt="" src="https://secure.gravatar.com/avatar/459fd6c20e9ddfcbeb948cb141318415" width="22" height="22">
+                        <div class="userTabName">raymon</div>
+                        <div class="userTabPlace">Breda, The Netherlands</div>
+                    </div>
+
+                    <div data-dojo-type="dijit.layout.TabContainer" class="userTabContact" data-dojo-props="nested:true, region:'center'">
+
+                        <div data-dojo-type="dijit.layout.ContentPane" class="userTabChat" data-dojo-props="title:'Chat', region:'center'">
+
+                            <textarea class="chatWindow">
+me: hi
+other: ho
+me: hi
+other: ho
+me: hi
+other: ho
+me: hi
+other: ho
+me: hi
+other: ho
+                            </textarea>
+
+                            <input type="text" style="width:100%" data-dojo-type="dijit/form/TextBox" data-dojo-props="region:'bottom'"/>
+
+                        </div>
+
+                        <div data-dojo-type="dijit.layout.ContentPane" class="userTabShare" data-dojo-props="title:'Share', region:'center'">
+                            Files shared
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
 
             <div data-dojo-type="dijit/layout/TabContainer" id="logTabs" data-dojo-props="tabPosition:'top', region:'bottom', splitter:true, tabStrip:true">
@@ -356,18 +446,36 @@
 
             dojoConfig = {
                 async: true
-            }
+            };
         </script>
 
         <!-- Load Dojo -->
         <script type="text/javascript" src="js/dojo/dojo.js"></script>
 
-        <!-- Load Ace -->
-        <script type="text/javascript" src="js/ace/src-noconflict/ace.js"></script>
+        <!-- Load CodeMirror -->
+        <script type="text/javascript" src="js/codemirror/lib/codemirror.js"></script>
+        <script type="text/javascript" src="js/codemirror/mode/clike/clike.js"></script>
+        <script type="text/javascript" src="js/codemirror/mode/xml/xml.js"></script>
+        <script type="text/javascript" src="js/codemirror/mode/css/css.js"></script>
+        <script type="text/javascript" src="js/codemirror/mode/diff/diff.js"></script>
+        <script type="text/javascript" src="js/codemirror/mode/htmlembedded/htmlembedded.js"></script>
+        <script type="text/javascript" src="js/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+        <script type="text/javascript" src="js/codemirror/mode/javascript/javascript.js"></script>
+        <script type="text/javascript" src="js/codemirror/mode/properties/properties.js"></script>
+        <script type="text/javascript" src="js/codemirror/mode/sql/sql.js"></script>
+        <script type="text/javascript" src="js/codemirror/mode/velocity/velocity.js"></script>
+        <script type="text/javascript" src="js/codemirror/mode/yaml/yaml.js"></script>
+
+
+        <!-- Load Firebase -->
+        <script type="text/javascript" src="js/firebase/firebase.js"></script>
+
+        <!-- Load Firepad -->
+        <script type="text/javascript" src="js/firepad/firepad.js"></script>
+        <script type="text/javascript" src="js/firepad/firepad-userlist.js"></script>
 
         <!-- Load Stormcloud -->
         <script type="text/javascript" src="js/stormcloud/stormcloud.js"></script>
-
 
     </body>
 

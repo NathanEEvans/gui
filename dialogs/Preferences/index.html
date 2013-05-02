@@ -1,11 +1,22 @@
 <link rel="stylesheet" href="/dialogs/Preferences/styles.css">
 <div class="dijitDialogPaneContentArea" style="height: 600px; width: 1100px;">
 
+    <!--style type="text/css">
+        .CodeMirror {
+            top:80px;
+            left:20px;
+            height: 400px;
+            width: 740px;
+            font-size : 12px;
+            border:1px solid #b5bcc7;
+        }
+    </style-->
+
     <script>
-        require(['stormcloud/dialogs/Preferences'], function(dialog){
-       
+        require(['stormcloud/dialogs/Preferences'], function(dialog) {
+
             dialog.init();
-        }); 
+        });
     </script>
 
     <div data-dojo-type="dijit/layout/TabContainer" style="height:100%">
@@ -16,7 +27,7 @@
 
                 <div id="preferencesEditorExplain">
                     Here you can adjust the way your Editor looks and behaves by
-                    default. Some of these options can be switched on and off 
+                    default. Some of these options can be switched on and off
                     trough the editor context menu.
                 </div>
 
@@ -33,89 +44,50 @@
                         <option value="css">CSS</option>
                         <option value="html">HTML</option>
                         <option value="java">Java</option>
-                        <option value="javascript">Javascript</option>
+                        <option value="js">Javascript</option>
                         <option value="json">JSON</option>
                         <option value="jsp">JSP</option>
                         <option value="sql">SQL</option>
-                        <option value="text">Text</option>
                         <option value="xml">XML</option>
                     </select>
                 </div>
 
                 <div class="preferencesEditForm">
                     <label>Theme</label>
-                    <select id="EDITOR_THEME" 
+                    <select id="EDITOR_THEME"
                             data-dojo-type="dijit/form/FilteringSelect"
                             data-dojo-props="
                             value: settingsManager.getPreference(PREFERENCE.EDITOR_THEME),
                             onChange: function(){
 
-                            previewEditor.setTheme(this.get('value'));
+                            previewEditor.setOption('theme', this.get('value'));
                             settingsManager.savePreference(this.get('id'), this.get('value'));
                             editorManager.setTheme(this.get('value'));
 
                             }">
-                        <optgroup label="Bright">
-                            <option value="ace/theme/chrome">Chrome</option>
-                            <option value="ace/theme/clouds">Clouds</option>
-                            <option value="ace/theme/crimson_editor">Crimson Editor</option>
-                            <option value="ace/theme/dawn">Dawn</option>
-                            <option value="ace/theme/dreamweaver">Dreamweaver</option>
-                            <option value="ace/theme/eclipse">Eclipse</option>
-                            <option value="ace/theme/github">GitHub</option>
-                            <option value="ace/theme/solarized_light">Solarized Light</option>
-                            <option value="ace/theme/textmate">TextMate</option>
-                            <option value="ace/theme/tomorrow">Tomorrow</option>
-                            <option value="ace/theme/xcode">XCode</option>
-                        </optgroup>
-                        <optgroup label="Dark">
-                            <option value="ace/theme/ambiance">Ambiance</option>
-                            <option value="ace/theme/clouds_midnight">Clouds Midnight</option>
-                            <option value="ace/theme/cobalt">Cobalt</option>
-                            <option value="ace/theme/idle_fingers">idleFingers</option>
-                            <option value="ace/theme/merbivore">Merbivore</option>
-                            <option value="ace/theme/merbivore_soft">Merbivore Soft</option>
-                            <option value="ace/theme/mono_industrial">Mono Industrial</option>
-                            <option value="ace/theme/monokai">Monokai</option>
-                            <option value="ace/theme/pastel_on_dark">Pastel on dark</option>
-                            <option value="ace/theme/solarized_dark">Solarized Dark</option>
-                            <option value="ace/theme/twilight">Twilight</option>
-                            <option value="ace/theme/tomorrow_night">Tomorrow Night</option>
-                            <option value="ace/theme/tomorrow_night_blue">Tomorrow Night Blue</option>
-                            <option value="ace/theme/tomorrow_night_bright">Tomorrow Night Bright</option>
-                            <option value="ace/theme/tomorrow_night_eighties">Tomorrow Night 80s</option>
-                            <option value="ace/theme/vibrant_ink">Vibrant Ink</option>
-                        </optgroup>
+                        <option value="ambiance">Ambiance</option>
+                        <option value="blackboard">Blackboard</option>
+                        <option value="cobalt">Cobalt</option>
+                        <option value="eclipse">Eclipse</option>
+                        <option value="elegant">Elegant</option>
+                        <option value="erlang-dark">Erlang Dark</option>
+                        <option value="lesser-dark">Lesser Dark</option>
+                        <option value="midnight">Midnight</option>
+                        <option value="monokai">Monokai</option>
+                        <option value="neat">Neat</option>
+                        <option value="night">Night</option>
+                        <option value="rubyblue">Ruby Blue</option>
+                        <option value="solarized">Solarized</option>
+                        <option value="twilight">Twilight</option>
+                        <option value="vibrant-ink">Vibrant Ink</option>
+                        <option value="xq-dark">XQ Dark</option>
+                        <option value="xq-light">XQ Light</option>
                     </select>
                 </div>
 
-                <!--div class="preferencesEditForm">
-                    <label>Font Size</label>
-                    <select id="EDITOR_FONT_SIZE" 
-                            data-dojo-type="dijit/form/FilteringSelect"
-                            data-dojo-props="
-                            value: settingsManager.getPreference(PREFERENCE.EDITOR_FONT_SIZE),
-                            onChange: function(){
-
-                            previewEditor.setFontSize(this.get('value'));
-                            settingsManager.savePreference(this.get('id'), this.get('value'));
-
-                            }">
-                        <option value="10px">10px</option>
-                        <option value="11px">11px</option>
-                        <option value="12px">12px</option>
-                        <option value="13px">13px</option>
-                        <option value="14px">14px</option>
-                        <option value="16px">16px</option>
-                        <option value="18px">18px</option>
-                        <option value="20px">20px</option>
-                        <option value="24px">24px</option>
-                    </select>
-                </div-->
-
                 <div class="preferencesEditForm">
                     <label>Code Folding</label>
-                    <select id="EDITOR_CODE_FOLDING" 
+                    <select id="EDITOR_CODE_FOLDING"
                             data-dojo-type="dijit/form/FilteringSelect"
                             data-dojo-props="
                             value: settingsManager.getPreference(PREFERENCE.EDITOR_CODE_FOLDING),
@@ -134,7 +106,7 @@
 
                 <div class="preferencesEditForm">
                     <label>Soft Wrap</label>
-                    <select id="EDITOR_SOFT_WRAP" 
+                    <select id="EDITOR_SOFT_WRAP"
                             data-dojo-type="dijit/form/FilteringSelect"
                             data-dojo-props="
                             value: settingsManager.getPreference(PREFERENCE.EDITOR_SOFT_WRAP),
@@ -217,7 +189,7 @@
 
             <div id="preferencesEditorPreview">
 
-                <div id="preferencesEditorPreviewContainer"></div>
+                <textarea id="preferencesEditorPreviewContainer"></textarea>
 
             </div>
 
@@ -259,48 +231,79 @@
 
 </div>
 
-<script type="text/javascript" src="js/ace/src-noconflict/ace.js"></script>
-
 <script type="text/javascript">
-    
-    var previewEditor = ace.edit('preferencesEditorPreviewContainer');
-        
-    function initPreviewer(){
-    
-        previewEditor.getSession().setMode("ace/mode/java");
-        previewEditor.getSession().setUseWorker(false); 
-        
+
+    var previewEditor = CodeMirror.fromTextArea(
+            document.getElementById('preferencesEditorPreviewContainer'),
+            {
+                mode: 'text/x-java'
+
+            });
+
+    function initPreviewer() {
+
         editorManager.setEditorPreferences(previewEditor);
-        
+
         switchContents('java');
     }
-    
-    
-    function switchContents(file){
-        
-        require(['stormcloud/rest/xhr'], function(xhr){
-        
+
+
+    function switchContents(file) {
+
+        require(['stormcloud/rest/xhr'], function(xhr) {
+
             var xhrArgs = {
                 url: '/preview/preview.' + file,
                 sync: true
             };
-        
+
             var deferred = xhr.post(xhrArgs);
-    
+
             deferred.then(
-            function(data){
-        
-                previewEditor.getSession().setMode('ace/mode/' + file);
-                previewEditor.getSession().setValue(data);
-            
-            });
-    
+                    function(data) {
+
+                        if (file === 'java') {
+                            previewEditor.setOption('mode', 'text/x-java');
+                        }
+
+                        if (file === 'jsp') {
+                            previewEditor.setOption('mode', 'application/x-jsp');
+                        }
+
+                        if (file === 'js') {
+                            previewEditor.setOption('mode', 'text/javascript');
+                        }
+
+                        if (file === 'json') {
+                            previewEditor.setOption('mode', 'application/json');
+                        }
+
+                        if (file === 'xml') {
+                            previewEditor.setOption('mode', 'application/xml');
+                        }
+
+                        if (file === 'html') {
+                            previewEditor.setOption('mode', 'text/html');
+                        }
+
+                        if (file === 'sql') {
+                            previewEditor.setOption('mode', 'text/x-sql');
+                        }
+
+                        if (file === 'css') {
+                            previewEditor.setOption('mode', 'text/css');
+                        }
+
+                        previewEditor.setValue(data);
+
+                    });
+
         });
-        
+
     }
-    
-    
+
+
     initPreviewer();
-    
+
 </script>
 

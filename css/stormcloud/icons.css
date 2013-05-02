@@ -6,18 +6,104 @@
     height           : 16px;
 }
 
-.closedProjectIcon {
+.onlineIcon{
 
-    background-image : url('/images/tree/project.png');
+    background-image : url('/images/menubar/user-online-2.png');
     width            : 16px;
     height           : 16px;
+}
+
+.onlineIconSmall{
+
+    background-image : url('/images/menubar/user-online-2.png');
+    background-size: 12px 12px;
+    height: 12px;
+    width: 12px;
+}
+
+
+.offlineIcon{
+
+    background-image : url('/images/menubar/user-offline-2.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.offlineIconSmall{
+
+    background-image : url('/images/menubar/user-offline-2.png');
+    background-size: 12px 12px;
+    height: 12px;
+    width: 12px;
+}
+
+.awayIcon{
+
+    background-image : url('/images/menubar/user-away-2.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.awayIconSmall{
+
+    background-image : url('/images/menubar/user-away-2.png');
+    background-size: 12px 12px;
+    height: 12px;
+    width: 12px;
+}
+
+.busyIcon{
+
+    background-image : url('/images/menubar/user-busy-2.png');
+    width            : 16px;
+    height           : 16px;
+}
+
+.busyIconSmall{
+
+    background-image : url('/images/menubar/user-busy-2.png');
+    background-size: 12px 12px;
+    height: 12px;
+    width: 12px;
+}
+
+.contactsIcon{
+
+    background-image : url('/images/menubar/contacts.png');
+    width            : 16px;
+    height           : 16px;
+    background-repeat:repeat-x;
+    margin-top : 5px;
+    padding-bottom : 4px;
+}
+
+.user1Icon{
+
+    background-image : url('https://secure.gravatar.com/avatar/459fd6c20e9ddfcbeb948cb141318415');
+    width            : 16px;
+    height           : 16px;
+    background-repeat: no-repeat;
+    background-size  : 16px 16px;
+    margin-top : 5px;
+    padding-bottom : 4px;
+}
+
+
+.user2Icon{
+
+    background-image : url('https://secure.gravatar.com/avatar/2380725c95e0ef5805312882e253c835');
+    width            : 16px;
+    height           : 16px;
+    background-repeat: no-repeat;
+    background-size  : 16px 16px;
+    margin-top : 5px;
+    padding-bottom : 4px;
 }
 
 .noAvailableProjectsIcon{
 
     color: #b5bcc7;
 }
-
 
 .trashEmptyIcon{
 

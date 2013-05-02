@@ -328,7 +328,7 @@ define([
 
                                                 require(['dijit/registry'], function(registry) {
 
-                                                    registry.remove('ace_editor_' + item.id);
+                                                    registry.remove('editor_' + item.id);
                                                 });
 
                                                 return true;
@@ -341,7 +341,11 @@ define([
                                         if (isBinary) {
                                             contentPane.set('content', '<img src="data:image/png;base64,' + imageBin + '">');
                                         } else {
+
+                                            contentPane.set('content', '<textarea class="editorArea" id="editor_' + item.id + '"></textarea>');
+
                                             contentPane.connect(contentPane, 'onLoad', editorManager.load(item, fileContents, readonly));
+
                                         }
                                     });
                                 });
